@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [Andrey Pahomov](https://up.htmlacademy.ru/react/1/user/866291).
-* Наставник: `Неизвестно`.
+* Наставник: [Евгений Щеколдин](https://up.htmlacademy.ru/react/1/user/861059).
 
 ---
 
