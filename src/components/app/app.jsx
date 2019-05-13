@@ -5,10 +5,10 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      films: [`Fantastic Beasts`, `Bohemian Rhapsody`, `Macbeth`, `We need to talk about Kevin`]
+      films: [`Macbeth`, `Bohemian Rhapsody`, `Macbeth`, `We need to talk about Kevin`]
     };
   }
   render() {
-    return <MainScreen films={this.state.films}/>;
+    return <MainScreen/>;
   }
 }

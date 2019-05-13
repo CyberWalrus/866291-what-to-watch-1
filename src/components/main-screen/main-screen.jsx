@@ -230,7 +230,7 @@ export default class MainScreen extends React.Component {
             </ul>
 
             <div className="catalog__movies-list">
-              {this.props.films[0] ? (
+              {this.props.films !== undefined && this.props.films.length > 0 ? (
                 this.props.films.map((filmName, i) => (
                   <article
                     className="small-movie-card catalog__movies-card"
@@ -239,6 +239,7 @@ export default class MainScreen extends React.Component {
                     <button
                       className="small-movie-card__play-btn"
                       type="button"
+                      onClick={this.props.onPlayButtonClick}
                     >
                       Play
                     </button>
@@ -292,5 +293,6 @@ export default class MainScreen extends React.Component {
 }
 
 MainScreen.propTypes = {
-  films: PropTypes.array.isRequired
+  films: PropTypes.array.isRequired,
+  onPlayButtonClick: PropTypes.func
 };
