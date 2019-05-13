@@ -9,6 +9,6 @@ export default class App extends React.Component {
     };
   }
   render() {
-    return <MainScreen/>;
+    return <MainScreen films={this.state.films}/>;
   }
 }
