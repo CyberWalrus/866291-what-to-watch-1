@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import CardList from "../card-list/card-list.jsx";
 
 export default class MainScreen extends React.Component {
   constructor(props) {
@@ -229,42 +230,7 @@ export default class MainScreen extends React.Component {
               </li>
             </ul>
 
-            <div className="catalog__movies-list">
-              {this.props.films !== undefined && this.props.films.length > 0 ? (
-                this.props.films.map((filmName, i) => (
-                  <article
-                    className="small-movie-card catalog__movies-card"
-                    key={i}
-                  >
-                    <button
-                      className="small-movie-card__play-btn"
-                      type="button"
-                      onClick={this.props.onPlayButtonClick}
-                    >
-                      Play
-                    </button>
-                    <div className="small-movie-card__image">
-                      <img
-                        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-                        alt="Fantastic Beasts: The Crimes of Grindelwald"
-                        width="280"
-                        height="175"
-                      />
-                    </div>
-                    <h3 className="small-movie-card__title">
-                      <a
-                        className="small-movie-card__link"
-                        href="movie-page.html"
-                      >
-                        {filmName}
-                      </a>
-                    </h3>
-                  </article>
-                ))
-              ) : (
-                <> </>
-              )}
-            </div>
+            <CardList films={this.props.films} />
 
             <div className="catalog__more">
               <button className="catalog__button" type="button">
@@ -293,6 +259,11 @@ export default class MainScreen extends React.Component {
 }
 
 MainScreen.propTypes = {
-  films: PropTypes.array.isRequired,
-  onPlayButtonClick: PropTypes.func
+  films: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        src: PropTypes.string.isRequired
+      })
+  )
 };
