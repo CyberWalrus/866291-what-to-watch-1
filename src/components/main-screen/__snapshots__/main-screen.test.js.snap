@@ -375,6 +375,7 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
+          onMouseEnter={[Function]}
           onMouseLeave={[Function]}
           onMouseOver={[Function]}
         >
@@ -400,6 +401,7 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onMouseEnter={[Function]}
           onMouseLeave={[Function]}
           onMouseOver={[Function]}
         >

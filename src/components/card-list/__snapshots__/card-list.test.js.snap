@@ -12,6 +12,7 @@ exports[`CardList component renders correctly with props 1`] = `
 >
   <article
     className="small-movie-card catalog__movies-card"
+    onMouseEnter={[Function]}
     onMouseLeave={[Function]}
     onMouseOver={[Function]}
   >
@@ -37,6 +38,7 @@ exports[`CardList component renders correctly with props 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
+    onMouseEnter={[Function]}
     onMouseLeave={[Function]}
     onMouseOver={[Function]}
   >

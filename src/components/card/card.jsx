@@ -5,15 +5,40 @@ import VideoPlayer from "../video-player/video-player.jsx";
 export default class Card extends React.Component {
   constructor(props) {
     super(props);
+
+    this.timeoutFunc = null;
+
+    this.state = {
+      isPlay: false
+    };
+
+    this.onCardMouseOver = this.onCardMouseOver.bind(this);
+    this.onCardMouseLeave = this.onCardMouseLeave.bind(this);
+  }
+  onCardMouseOver() {
+    const timeoutMs = 1000;
+
+    this.timeoutFunc = setTimeout(() => {
+      this.setState({
+        isPlay: true
+      });
+    }, timeoutMs);
+  }
+  onCardMouseLeave() {
+    clearTimeout(this.timeoutFunc);
+    this.setState({
+      isPlay: false
+    });
   }
   render() {
     return (
       <article
-        onMouseOver={() => this.props.onMouseOver(this.props.id)}
-        onMouseLeave={() => this.props.onMouseLeave(this.props.id)}
+        onMouseEnter={() => this.props.onMouseEnter(this.props.id)}
+        onMouseOver={this.onCardMouseOver}
+        onMouseLeave={this.onCardMouseLeave}
         className="small-movie-card catalog__movies-card"
       >
-        {!this.props.isPlay ? (
+        {!this.state.isPlay ? (
           <>
             <div className="small-movie-card__image">
               <img
@@ -36,12 +61,10 @@ export default class Card extends React.Component {
 }
 
 Card.propTypes = {
-  isPlay: PropTypes.bool.isRequired,
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   src: PropTypes.string.isRequired,
   genre: PropTypes.oneOf([`comedy`, `drama`]).isRequired,
   preview: PropTypes.string.isRequired,
-  onMouseLeave: PropTypes.func.isRequired,
-  onMouseOver: PropTypes.func.isRequired
+  onMouseEnter: PropTypes.func
 };

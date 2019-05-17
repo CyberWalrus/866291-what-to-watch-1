@@ -14,16 +14,12 @@ describe(`<Card />`, () => {
           title="What We Do in the Shadows"
           src="img/what-we-do-in-the-shadows.jpg"
           preview="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
-          isPlay={false}
-          onMouseLeave={handleClick}
-          onMouseOver={handleClick}
+          onMouseEnter={handleClick}
         />
     );
     const card = app.find(`.small-movie-card`);
 
-    card.simulate(`mouseover`);
-    expect(handleClick).toHaveBeenCalledWith(1);
-    card.simulate(`mouseleave`);
+    card.simulate(`mouseenter`);
     expect(handleClick).toHaveBeenCalledWith(1);
   });
 });
