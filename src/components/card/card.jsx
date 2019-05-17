@@ -9,8 +9,8 @@ export default class Card extends React.Component {
   render() {
     return (
       <article
-        onMouseEnter={() => this.props.onMouseEnter(this.props.id)}
         onMouseOver={() => this.props.onMouseOver(this.props.id)}
+        onMouseLeave={() => this.props.onMouseLeave(this.props.id)}
         className="small-movie-card catalog__movies-card"
       >
         {!this.props.isPlay ? (
@@ -42,6 +42,6 @@ Card.propTypes = {
   src: PropTypes.string.isRequired,
   genre: PropTypes.oneOf([`comedy`, `drama`]).isRequired,
   preview: PropTypes.string.isRequired,
-  onMouseOver: PropTypes.func.isRequired,
-  onMouseEnter: PropTypes.func
+  onMouseLeave: PropTypes.func.isRequired,
+  onMouseOver: PropTypes.func.isRequired
 };

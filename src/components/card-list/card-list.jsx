@@ -5,32 +5,39 @@ import Card from "../card/card.jsx";
 export default class CardList extends React.Component {
   constructor(props) {
     super(props);
-    this.timeoutId = null;
+    this.timeoutFunc = null;
     this.state = {
       playArr: []
     };
 
-    this.onCardMouseEnter = this.onCardMouseEnter.bind(this);
     this.onCardMouseOver = this.onCardMouseOver.bind(this);
+    this.onCardMouseLeave = this.onCardMouseLeave.bind(this);
   }
   componentDidMount() {
     const playArr = [];
-    this.props.films.forEach((element) => {
-      playArr.push({id: element.id, isPlay: false});
-    });
-    this.setState({
-      playArr
-    });
-  }
-  onCardMouseEnter(id) {
-    const playArr = this.state.playArr.slice();
-    const play = playArr.find((x) => x.id === id);
-    play.isPlay = true;
+    if (this.props.films && this.props.films.length > 1) {
+      this.props.films.forEach((element) => {
+        playArr.push({id: element.id, isPlay: false});
+      });
+    }
     this.setState({
       playArr
     });
   }
   onCardMouseOver(id) {
+    const timeoutMs = 1000;
+
+    this.timeoutFunc = setTimeout(() => {
+      const playArr = this.state.playArr.slice();
+      const play = playArr.find((x) => x.id === id);
+      play.isPlay = true;
+      this.setState({
+        playArr
+      });
+    }, timeoutMs);
+  }
+  onCardMouseLeave(id) {
+    clearTimeout(this.timeoutFunc);
     const playArr = this.state.playArr.slice();
     const play = playArr.find((x) => x.id === id);
     play.isPlay = false;
@@ -56,14 +63,12 @@ export default class CardList extends React.Component {
                     ? this.state.playArr.find((x) => x.id === id).isPlay
                     : false
                 }
+                onMouseLeave={this.onCardMouseLeave}
                 onMouseOver={this.onCardMouseOver}
-                onMouseEnter={this.onCardMouseEnter}
               />
             ))}
           </>
-        ) : (
-          <> </>
-        )}
+        ) : null}
       </div>
     );
   }

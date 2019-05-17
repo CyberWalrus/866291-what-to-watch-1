@@ -11,7 +11,8 @@ export default class VideoPlayer extends React.Component {
         src={this.props.preview}
         poster={this.props.poster}
         style={{
-          width: `100%`
+          width: `100%`,
+          height: `100%`
         }}
         muted
         autoPlay

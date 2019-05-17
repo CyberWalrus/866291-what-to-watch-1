@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import CardList from "./card-list";
+import CardList from "./card-list.jsx";
 import films from "../../mock/films-test";
 
 it(`CardList component renders correctly with props`, () => {
