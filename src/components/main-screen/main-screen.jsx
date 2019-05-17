@@ -263,7 +263,9 @@ MainScreen.propTypes = {
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
-        src: PropTypes.string.isRequired
+        src: PropTypes.string.isRequired,
+        genre: PropTypes.oneOf([`comedy`, `drama`]).isRequired,
+        preview: PropTypes.string.isRequired
       })
   )
 };

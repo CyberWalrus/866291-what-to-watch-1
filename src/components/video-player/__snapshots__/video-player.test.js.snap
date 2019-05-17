@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VideoPlayer correctly renders after relaunch 1`] = `
+<video
+  autoPlay={true}
+  muted={true}
+  poster="img/what-we-do-in-the-shadows.jpg"
+  src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+  style={
+    Object {
+      "height": "100%",
+      "width": "100%",
+    }
+  }
+/>
+`;

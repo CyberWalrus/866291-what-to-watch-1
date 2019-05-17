@@ -3,9 +3,7 @@
 exports[`CardList component renders correctly with empty props 1`] = `
 <div
   className="catalog__movies-list"
->
-   
-</div>
+/>
 `;
 
 exports[`CardList component renders correctly with props 1`] = `
@@ -15,14 +13,9 @@ exports[`CardList component renders correctly with props 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseOver={[Function]}
   >
-    <button
-      className="small-movie-card__play-btn"
-      onClick={[Function]}
-      type="button"
-    >
-      Play
-    </button>
     <div
       className="small-movie-card__image"
     >
@@ -46,14 +39,9 @@ exports[`CardList component renders correctly with props 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseOver={[Function]}
   >
-    <button
-      className="small-movie-card__play-btn"
-      onClick={[Function]}
-      type="button"
-    >
-      Play
-    </button>
     <div
       className="small-movie-card__image"
     >

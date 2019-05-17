@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import Card from "./card";
+import Card from "./card.jsx";
 
 Enzyme.configure({adapter: new Adapter()});
 describe(`<Card />`, () => {
@@ -13,16 +13,13 @@ describe(`<Card />`, () => {
           genre="comedy"
           title="What We Do in the Shadows"
           src="img/what-we-do-in-the-shadows.jpg"
-          onClick={handleClick}
+          preview="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
           onMouseEnter={handleClick}
         />
     );
     const card = app.find(`.small-movie-card`);
-    const button = app.find(`.small-movie-card__play-btn`);
 
     card.simulate(`mouseenter`);
-    expect(handleClick).toHaveBeenCalledWith(1);
-    button.simulate(`click`);
     expect(handleClick).toHaveBeenCalledWith(1);
   });
 });
