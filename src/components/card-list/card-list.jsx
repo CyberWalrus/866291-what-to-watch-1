@@ -5,22 +5,59 @@ import Card from "../card/card.jsx";
 export default class CardList extends React.Component {
   constructor(props) {
     super(props);
+    this.timeoutId = null;
+    this.state = {
+      playArr: []
+    };
+
+    this.onCardMouseEnter = this.onCardMouseEnter.bind(this);
+    this.onCardMouseOver = this.onCardMouseOver.bind(this);
   }
-  setFilm() {}
+  componentDidMount() {
+    const playArr = [];
+    this.props.films.forEach((element) => {
+      playArr.push({id: element.id, isPlay: false});
+    });
+    this.setState({
+      playArr
+    });
+  }
+  onCardMouseEnter(id) {
+    const playArr = this.state.playArr.slice();
+    const play = playArr.find((x) => x.id === id);
+    play.isPlay = true;
+    this.setState({
+      playArr
+    });
+  }
+  onCardMouseOver(id) {
+    const playArr = this.state.playArr.slice();
+    const play = playArr.find((x) => x.id === id);
+    play.isPlay = false;
+    this.setState({
+      playArr
+    });
+  }
   render() {
     return (
       <div className="catalog__movies-list">
-        {this.props.films !== undefined && this.props.films.length > 0 ? (
+        {this.props.films && this.props.films.length > 0 ? (
           <>
-            {this.props.films.map(({id, title, src, genre}) => (
+            {this.props.films.map(({id, title, src, genre, preview}) => (
               <Card
                 key={id}
                 id={id}
                 title={title}
                 src={src}
                 genre={genre}
-                onClick={this.setFilm}
-                onMouseEnter={this.setFilm}
+                preview={preview}
+                isPlay={
+                  this.state.playArr.length > 0
+                    ? this.state.playArr.find((x) => x.id === id).isPlay
+                    : false
+                }
+                onMouseOver={this.onCardMouseOver}
+                onMouseEnter={this.onCardMouseEnter}
               />
             ))}
           </>
@@ -38,7 +75,8 @@ CardList.propTypes = {
         id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
         src: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired
+        genre: PropTypes.oneOf([`comedy`, `drama`]).isRequired,
+        preview: PropTypes.string.isRequired
       })
   )
 };

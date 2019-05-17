@@ -13,8 +13,9 @@ export default class App extends React.Component {
 App.propTypes = {
   films: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
-    genre: PropTypes.string.isRequired,
+    genre: PropTypes.oneOf([`comedy`, `drama`]).isRequired,
     title: PropTypes.string.isRequired,
     src: PropTypes.string.isRequired,
+    preview: PropTypes.string.isRequired,
   })),
 };
