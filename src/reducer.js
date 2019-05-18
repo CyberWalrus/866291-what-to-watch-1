@@ -6,16 +6,28 @@ const intialState = {
 
 const ActionCreator = {
   changeGenre: (value) => {
-    if (value === `all`) {
+    if (
+      [
+        `comedy`,
+        `crime`,
+        `documentary`,
+        `drama`,
+        `horror`,
+        `family`,
+        `romance`,
+        `sci-fi`,
+        `thriller`
+      ].find((item) => item === value)
+    ) {
+      const filmsNew = films.filter((item) => item.genre === value);
       return {
-        type: `RESET`
+        type: `CHANGE_GENRE`,
+        genreNew: value,
+        filmsNew
       };
     }
-    const filmsNew = films.filter((item) => item.genre === value);
     return {
-      type: `CHANGE_GENRE`,
-      genreNew: value,
-      filmsNew
+      type: `RESET`
     };
   }
 };

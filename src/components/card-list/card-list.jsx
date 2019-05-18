@@ -30,31 +30,28 @@ class CardList extends React.Component {
 }
 
 CardList.propTypes = {
-  genreFilter: PropTypes.oneOf([
-    `all`,
-    `comedy`,
-    `crime`,
-    `documentary`,
-    `drama`,
-    `horror`,
-    `family`,
-    `romance`,
-    `sci-fi`,
-    `thriller`
-  ]).isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
         src: PropTypes.string.isRequired,
-        genre: PropTypes.oneOf([`comedy`, `drama`]).isRequired,
+        genre: PropTypes.oneOf([
+          `comedy`,
+          `crime`,
+          `documentary`,
+          `drama`,
+          `horror`,
+          `family`,
+          `romance`,
+          `sci-fi`,
+          `thriller`
+        ]).isRequired,
         preview: PropTypes.string.isRequired
       })
   )
 };
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
-    genreFilter: state.genreFilter,
     films: state.films
   });
 
