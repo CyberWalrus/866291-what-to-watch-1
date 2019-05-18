@@ -1,8 +1,9 @@
 import React from "react";
+import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import Card from "../card/card.jsx";
 
-export default class CardList extends React.Component {
+class CardList extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -29,6 +30,18 @@ export default class CardList extends React.Component {
 }
 
 CardList.propTypes = {
+  genreFilter: PropTypes.oneOf([
+    `all`,
+    `comedy`,
+    `crime`,
+    `documentary`,
+    `drama`,
+    `horror`,
+    `family`,
+    `romance`,
+    `sci-fi`,
+    `thriller`
+  ]).isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
@@ -39,3 +52,12 @@ CardList.propTypes = {
       })
   )
 };
+const mapStateToProps = (state, ownProps) =>
+  Object.assign({}, ownProps, {
+    genreFilter: state.genreFilter,
+    films: state.films
+  });
+
+export {CardList};
+
+export default connect(mapStateToProps)(CardList);
