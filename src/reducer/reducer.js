@@ -1,4 +1,4 @@
-import films from "./mock/films.js";
+import films from "../mock/films.js";
 const intialState = {
   genreFilter: `all`,
   films

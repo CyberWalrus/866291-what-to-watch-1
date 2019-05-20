@@ -1,5 +1,5 @@
 import {reducer} from "./reducer";
-import films from "./mock/films.js";
+import films from "../mock/films.js";
 
 describe(`Reducer works correctly`, () => {
   it(`Reducer without additional parameters should return inital state`, () => {
@@ -8,6 +8,7 @@ describe(`Reducer works correctly`, () => {
       films
     });
   });
+
   it(`Reducer test reset`, () => {
     expect(
         reducer(
