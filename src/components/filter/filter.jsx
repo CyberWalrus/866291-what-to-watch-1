@@ -47,14 +47,11 @@ const filterValueArr = [
 class Filter extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      filterArr: filterValueArr
-    };
   }
   render() {
     return (
       <ul className="catalog__genres-list">
-        {this.state.filterArr.map(({name, genre}, i) => (
+        {filterValueArr.map(({name, genre}, i) => (
           <li
             key={i}
             className={

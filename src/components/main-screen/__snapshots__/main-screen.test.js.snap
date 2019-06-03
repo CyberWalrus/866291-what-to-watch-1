@@ -389,25 +389,18 @@ Array [
           onMouseLeave={[Function]}
           onMouseOver={[Function]}
         >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Aviator"
-              height="175"
-              src="img/aviator.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-            >
-              Aviator
-            </a>
-          </h3>
+          <video
+            autoPlay={true}
+            muted={true}
+            poster="img/aviator.jpg"
+            src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+            style={
+              Object {
+                "height": "100%",
+                "width": "100%",
+              }
+            }
+          />
         </article>
         <article
           className="small-movie-card catalog__movies-card"
@@ -415,25 +408,18 @@ Array [
           onMouseLeave={[Function]}
           onMouseOver={[Function]}
         >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Macbeth"
-              height="175"
-              src="img/macbeth.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-            >
-              Macbeth
-            </a>
-          </h3>
+          <video
+            autoPlay={true}
+            muted={true}
+            poster="img/macbeth.jpg"
+            src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+            style={
+              Object {
+                "height": "100%",
+                "width": "100%",
+              }
+            }
+          />
         </article>
         <article
           className="small-movie-card catalog__movies-card"
@@ -441,25 +427,18 @@ Array [
           onMouseLeave={[Function]}
           onMouseOver={[Function]}
         >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Revenant"
-              height="175"
-              src="img/revenant.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-            >
-              Revenant
-            </a>
-          </h3>
+          <video
+            autoPlay={true}
+            muted={true}
+            poster="img/revenant.jpg"
+            src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+            style={
+              Object {
+                "height": "100%",
+                "width": "100%",
+              }
+            }
+          />
         </article>
         <article
           className="small-movie-card catalog__movies-card"
@@ -467,25 +446,18 @@ Array [
           onMouseLeave={[Function]}
           onMouseOver={[Function]}
         >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Johnny English"
-              height="175"
-              src="img/johnny-english.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-            >
-              Johnny English
-            </a>
-          </h3>
+          <video
+            autoPlay={true}
+            muted={true}
+            poster="img/johnny-english.jpg"
+            src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+            style={
+              Object {
+                "height": "100%",
+                "width": "100%",
+              }
+            }
+          />
         </article>
         <article
           className="small-movie-card catalog__movies-card"
@@ -493,25 +465,18 @@ Array [
           onMouseLeave={[Function]}
           onMouseOver={[Function]}
         >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="What We Do in the Shadows"
-              height="175"
-              src="img/what-we-do-in-the-shadows.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-            >
-              What We Do in the Shadows
-            </a>
-          </h3>
+          <video
+            autoPlay={true}
+            muted={true}
+            poster="img/what-we-do-in-the-shadows.jpg"
+            src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
+            style={
+              Object {
+                "height": "100%",
+                "width": "100%",
+              }
+            }
+          />
         </article>
       </div>
       <div

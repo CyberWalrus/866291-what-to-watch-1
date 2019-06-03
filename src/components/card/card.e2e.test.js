@@ -14,6 +14,7 @@ describe(`<Card />`, () => {
           title="What We Do in the Shadows"
           src="img/what-we-do-in-the-shadows.jpg"
           preview="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+          isPlay={false}
           onMouseEnter={handleClick}
         />
     );
