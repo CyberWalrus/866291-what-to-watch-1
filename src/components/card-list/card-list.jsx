@@ -2,6 +2,9 @@ import React from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import Card from "../card/card.jsx";
+import withPlayCard from "../../hocs/with-play-card/with-play-card.js";
+
+const CardPlay = withPlayCard(Card);
 
 class CardList extends React.Component {
   constructor(props) {
@@ -14,7 +17,7 @@ class CardList extends React.Component {
       <div className="catalog__movies-list">
         {this.props.films &&
           this.props.films.map(({id, title, src, genre, preview}) => (
-            <Card
+            <CardPlay
               key={id}
               id={id}
               title={title}
