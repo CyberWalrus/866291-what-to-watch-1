@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import App from "./app.jsx";
-import {reducer} from "../../reducer/reducer.js";
+import reducer from "../../reducer";
 import {createStore} from "redux";
 import {Provider} from "react-redux";
 

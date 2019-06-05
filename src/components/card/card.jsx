@@ -40,17 +40,7 @@ Card.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   src: PropTypes.string.isRequired,
-  genre: PropTypes.oneOf([
-    `comedy`,
-    `crime`,
-    `documentary`,
-    `drama`,
-    `horror`,
-    `family`,
-    `romance`,
-    `sci-fi`,
-    `thriller`
-  ]).isRequired,
+  genre: PropTypes.string.isRequired,
   preview: PropTypes.string.isRequired,
   isPlay: PropTypes.bool.isRequired,
   onMouseEnter: PropTypes.func,

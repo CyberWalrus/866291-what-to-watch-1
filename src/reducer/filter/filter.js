@@ -1,7 +1,6 @@
-import films from "../mock/films.js";
+
 const intialState = {
-  genreFilter: `all`,
-  films
+  genreFilter: `all`
 };
 
 const ActionCreator = {
@@ -19,11 +18,9 @@ const ActionCreator = {
         `thriller`
       ].find((item) => item === value)
     ) {
-      const filmsNew = films.filter((item) => item.genre === value);
       return {
         type: `CHANGE_GENRE`,
-        genreNew: value,
-        filmsNew
+        genreNew: value
       };
     }
     return {
@@ -36,8 +33,7 @@ const reducer = (state = intialState, action) => {
   switch (action.type) {
     case `CHANGE_GENRE`:
       return Object.assign({}, state, {
-        genreFilter: action.genreNew,
-        films: action.filmsNew
+        genreFilter: action.genreNew
       });
     case `RESET`:
       return Object.assign({}, intialState);
