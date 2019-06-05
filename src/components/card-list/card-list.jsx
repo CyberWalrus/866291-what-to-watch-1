@@ -10,7 +10,8 @@ class CardList extends React.Component {
   constructor(props) {
     super(props);
   }
-  componentDidMount() {}
+  componentDidMount() {
+  }
   onCardMouseEnter() {}
   render() {
     return (
@@ -38,24 +39,14 @@ CardList.propTypes = {
         id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
         src: PropTypes.string.isRequired,
-        genre: PropTypes.oneOf([
-          `comedy`,
-          `crime`,
-          `documentary`,
-          `drama`,
-          `horror`,
-          `family`,
-          `romance`,
-          `sci-fi`,
-          `thriller`
-        ]).isRequired,
+        genre: PropTypes.string.isRequired,
         preview: PropTypes.string.isRequired
       })
   )
 };
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
-    films: state.films
+    films: state.DATA.films
   });
 
 export {CardList};

@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer/reducer.js";
+import {ActionCreator} from "../../reducer/filter/filter.js";
 import PropTypes from "prop-types";
 const filterValueArr = [
   {
@@ -87,7 +87,7 @@ Filter.propTypes = {
 };
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
-    genreFilter: state.genreFilter
+    genreFilter: state.FILTER.genreFilter
   });
 const mapDispatchToProps = (dispatch) => ({
   changeFilter: (value) => dispatch(ActionCreator.changeGenre(value))
