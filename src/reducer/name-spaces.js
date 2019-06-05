@@ -1,6 +1,7 @@
 const NameSpace = {
   DATA: `DATA`,
-  FILTER: `FILTER`
+  FILTER: `FILTER`,
+  USER: `USER`
 };
 
 export default NameSpace;

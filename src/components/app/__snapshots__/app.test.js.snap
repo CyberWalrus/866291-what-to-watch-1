@@ -163,16 +163,11 @@ Array [
       <div
         className="user-block"
       >
-        <div
-          className="user-block__avatar"
+        <a
+          href="/signin"
         >
-          <img
-            alt="User avatar"
-            height="63"
-            src="img/avatar.jpg"
-            width="63"
-          />
-        </div>
+          Sign In
+        </a>
       </div>
     </header>
     <div
