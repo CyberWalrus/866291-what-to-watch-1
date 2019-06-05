@@ -1,7 +1,11 @@
 import React from "react";
 import CardList from "../card-list/card-list.jsx";
 import Filter from "../filter/filter.jsx";
-export default class App extends React.PureComponent {
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {getAuthorizationStatus} from "../../reducer/user/selectors";
+
+class App extends React.PureComponent {
   constructor(props) {
     super(props);
   }
@@ -119,14 +123,18 @@ export default class App extends React.PureComponent {
             </div>
 
             <div className="user-block">
-              <div className="user-block__avatar">
-                <img
-                  src="img/avatar.jpg"
-                  alt="User avatar"
-                  width="63"
-                  height="63"
-                />
-              </div>
+              {!this.props.isAuthorizationRequired ? (
+                <a href="/signin">Sign In</a>
+              ) : (
+                <div className="user-block__avatar">
+                  <img
+                    src="img/avatar.jpg"
+                    alt="User avatar"
+                    width="63"
+                    height="63"
+                  />
+                </div>
+              )}
             </div>
           </header>
 
@@ -176,8 +184,8 @@ export default class App extends React.PureComponent {
           <section className="catalog">
             <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-            <Filter/>
-            <CardList/>
+            <Filter />
+            <CardList />
 
             <div className="catalog__more">
               <button className="catalog__button" type="button">
@@ -204,3 +212,15 @@ export default class App extends React.PureComponent {
     );
   }
 }
+
+App.propTypes = {
+  isAuthorizationRequired: PropTypes.bool.isRequired
+};
+
+const mapStateToProps = (state, ownProps) =>
+  Object.assign({}, ownProps, {
+    isAuthorizationRequired: getAuthorizationStatus(state)
+  });
+export {App};
+
+export default connect(mapStateToProps)(App);
