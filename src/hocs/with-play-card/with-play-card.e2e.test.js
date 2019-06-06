@@ -21,7 +21,7 @@ class MockTestComponent extends React.PureComponent {
 MockTestComponent.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired,
+  srcPreviewImage: PropTypes.string.isRequired,
   genre: PropTypes.oneOf([
     `comedy`,
     `crime`,
@@ -50,7 +50,7 @@ describe(`<MockComponentWrapped />`, () => {
           id={1}
           genre="comedy"
           title="What We Do in the Shadows"
-          src="img/what-we-do-in-the-shadows.jpg"
+          srcPreviewImage="img/what-we-do-in-the-shadows.jpg"
           preview="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
           onMouseEnter={handleClick}
         />

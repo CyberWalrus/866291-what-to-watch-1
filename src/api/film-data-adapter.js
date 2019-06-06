@@ -1,7 +1,7 @@
 const FilmDataAdapter = (data) => {
   return {
     bgColor: data.background_color,
-    bgImage: data.background_image,
+    srcBgImage: data.background_image,
     description: data.description,
     director: data.director,
     genre: data.genre,
@@ -9,16 +9,32 @@ const FilmDataAdapter = (data) => {
     isFavourite: data.is_favorite,
     title: data.name,
     pageUrl: data.name,
-    posterImage: data.poster_image,
-    src: data.preview_image,
+    srcPosterImage: data.poster_image,
+    srcPreviewImage: data.preview_image,
     previewVideo: data.preview_video_link,
     rating: data.rating,
     released: data.released,
     runTime: data.run_time,
     scoresCount: data.scores_count,
-    starring: data.starring,
-    preview: data.video_link
+    starrings: data.starring,
+    preview: data.video_link,
+    ratingLevel: setRatingLevel(data.rating)
   };
 };
 
+const setRatingLevel = (rating) => {
+  switch (true) {
+    case rating < 3:
+      return `Bad`;
+    case rating < 5:
+      return `Normal`;
+    case rating < 8:
+      return `Good`;
+    case rating < 10:
+      return `Very good`;
+    case rating === 10:
+      return `Awesome`;
+  }
+  return `Bad`;
+};
 export default FilmDataAdapter;

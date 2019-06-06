@@ -18,7 +18,7 @@ export default class Card extends React.PureComponent {
           <>
             <div className="small-movie-card__image">
               <img
-                src={this.props.src}
+                src={this.props.srcPreviewImage}
                 alt={this.props.title}
                 width="280"
                 height="175"
@@ -29,7 +29,7 @@ export default class Card extends React.PureComponent {
             </h3>
           </>
         ) : (
-          <VideoPlayer poster={this.props.src} preview={this.props.preview} />
+          <VideoPlayer poster={this.props.srcPreviewImage} preview={this.props.preview} />
         )}
       </article>
     );
@@ -39,7 +39,7 @@ export default class Card extends React.PureComponent {
 Card.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired,
+  srcPreviewImage: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   preview: PropTypes.string.isRequired,
   isPlay: PropTypes.bool.isRequired,

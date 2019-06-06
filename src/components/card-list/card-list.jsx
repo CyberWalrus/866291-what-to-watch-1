@@ -17,12 +17,12 @@ class CardList extends React.Component {
     return (
       <div className="catalog__movies-list">
         {this.props.films &&
-          this.props.films.map(({id, title, src, genre, preview}) => (
+          this.props.films.map(({id, title, srcPreviewImage, genre, preview}) => (
             <CardPlay
               key={id}
               id={id}
               title={title}
-              src={src}
+              src={srcPreviewImage}
               genre={genre}
               preview={preview}
               onMouseEnter={this.onCardMouseEnter}
@@ -38,7 +38,7 @@ CardList.propTypes = {
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
-        src: PropTypes.string.isRequired,
+        srcPreviewImage: PropTypes.string.isRequired,
         genre: PropTypes.string.isRequired,
         preview: PropTypes.string.isRequired
       })
