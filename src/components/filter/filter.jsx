@@ -37,12 +37,14 @@ class Filter extends React.Component {
 }
 
 Filter.propTypes = {
+  genreSelected: PropTypes.string.isRequired,
   genres: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   changeFilter: PropTypes.func.isRequired
 };
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
-    genres: getGeners(state)
+    genres: getGeners(state),
+    genreSelected: getGenreSelected(state)
   });
 const mapDispatchToProps = (dispatch) => ({
   changeFilter: (value) => dispatch(ActionCreator.changeGenre(value))

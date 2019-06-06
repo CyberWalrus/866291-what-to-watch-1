@@ -19,7 +19,6 @@ const getFilms = (state) => {
   if (films.length > 20) {
     films.length = 20;
   }
-  console.log(state[NAME_SPACE].films);
   return films;
 };
 
