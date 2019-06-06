@@ -9,6 +9,7 @@ import SignIn from "../../components/sign-in/sign-in.jsx";
 import MyList from "../../components/my-list/my-list.jsx";
 import FilmScreen from "../../components/film-screen/film-screen.jsx";
 import withFilmRoute from "../with-film-route/with-film-route.js";
+import WithPrivateRoute from "../with-private-route/with-private-route.js";
 
 const FilmScreenRoute = withFilmRoute(FilmScreen);
 
@@ -31,11 +32,17 @@ const withScreenSwitch = (Component) => {
                 />
               )}
             />
-            <Route exact path={RoutePath.MY_LIST} component={MyList} />
+            <WithPrivateRoute
+              exact
+              path={RoutePath.MY_LIST}
+              component={MyList}
+            />
             <Route
               exact
               path={`${RoutePath.FILM}/:id`}
-              render={(props) => <FilmScreenRoute id={parseInt(props.match.params.id, 10)} />}
+              render={(props) => (
+                <FilmScreenRoute id={parseInt(props.match.params.id, 10)} />
+              )}
             />
             <Route exact path={RoutePath.LOGIN} component={SignIn} />
           </Switch>
