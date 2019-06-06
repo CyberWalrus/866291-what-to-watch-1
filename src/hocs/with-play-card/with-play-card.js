@@ -37,7 +37,7 @@ const withPlayCard = (Component) => {
           id={this.props.id}
           genre={this.props.genre}
           title={this.props.title}
-          src={this.props.src}
+          srcPreviewImage={this.props.srcPreviewImage}
           preview={this.props.preview}
           isPlay={this.state.isPlay}
           onMouseEnter={this.onMouseEnter}
@@ -51,7 +51,7 @@ const withPlayCard = (Component) => {
   WithPlayCard.propTypes = {
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired,
+    srcPreviewImage: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     preview: PropTypes.string.isRequired,
     onMouseEnter: PropTypes.func

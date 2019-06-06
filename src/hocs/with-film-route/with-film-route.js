@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import FilmRoute from "../../mock/film-route.js";
 
 const withFilmRoute = (Component) => {
@@ -23,13 +24,16 @@ const withFilmRoute = (Component) => {
     render() {
       return (
         <Component
+          id={this.props.id}
           route={this.state.route}
           changeFilmRoute={this.changeFilmRoute}
         />
       );
     }
   }
-
+  WithFilmRoute.propTypes = {
+    id: PropTypes.number.isRequired
+  };
   return WithFilmRoute;
 };
 

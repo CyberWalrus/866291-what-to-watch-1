@@ -137,6 +137,7 @@ class FilmScreen extends PureComponent {
   }
 }
 FilmScreen.propTypes = {
+  id: PropTypes.number.isRequired,
   route: PropTypes.string.isRequired,
   changeFilmRoute: PropTypes.func.isRequired,
   film: PropTypes.shape({
@@ -160,7 +161,7 @@ FilmScreen.propTypes = {
 };
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
-    film: getFilm(state, 1)
+    film: getFilm(state, ownProps.id)
   });
 
 export {FilmScreen};

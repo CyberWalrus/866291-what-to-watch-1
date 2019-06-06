@@ -1,13 +1,7 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 
-const FilmDetails = ({
-  runTime,
-  genre,
-  released,
-  director,
-  starrings
-}) => {
+const FilmDetails = ({runTime, genre, released, director, starrings}) => {
   return (
     <Fragment>
       <div className="movie-card__text movie-card__row">
@@ -32,7 +26,9 @@ const FilmDetails = ({
         <div className="movie-card__text-col">
           <p className="movie-card__details-item">
             <strong className="movie-card__details-name">Run Time</strong>
-            <span className="movie-card__details-value">{runTime}</span>
+            <span className="movie-card__details-value">
+              {timeConvert(runTime)}
+            </span>
           </p>
           <p className="movie-card__details-item">
             <strong className="movie-card__details-name">Genre</strong>
@@ -47,6 +43,13 @@ const FilmDetails = ({
     </Fragment>
   );
 };
+
+const timeConvert = (num) => {
+  const hours = Math.floor(num / 60);
+  const minutes = num % 60;
+  return `${hours}h ${minutes}m`;
+};
+
 FilmDetails.propTypes = {
   runTime: PropTypes.number.isRequired,
   genre: PropTypes.string.isRequired,

@@ -31,8 +31,12 @@ const withScreenSwitch = (Component) => {
                 />
               )}
             />
-            <Route exact path={RoutePath.MY_LIST} component={MyList}/>
-            <Route exact path={RoutePath.FILM} component={FilmScreenRoute}/>
+            <Route exact path={RoutePath.MY_LIST} component={MyList} />
+            <Route
+              exact
+              path={`${RoutePath.FILM}/:id`}
+              render={(props) => <FilmScreenRoute id={parseInt(props.match.params.id, 10)} />}
+            />
             <Route exact path={RoutePath.LOGIN} component={SignIn} />
           </Switch>
         </BrowserRouter>

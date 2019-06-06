@@ -22,7 +22,7 @@ class CardList extends React.Component {
               key={id}
               id={id}
               title={title}
-              src={srcPreviewImage}
+              srcPreviewImage={srcPreviewImage}
               genre={genre}
               preview={preview}
               onMouseEnter={this.onCardMouseEnter}
