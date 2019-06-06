@@ -15,7 +15,7 @@ describe(`Reducer works correctly`, () => {
       expect(dispatch).toHaveBeenCalledTimes(1);
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: ActionType.LOAD_FILMS,
-        filmsNew: [{fake: true}]
+        payload: [{fake: true}]
       });
     });
   });

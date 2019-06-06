@@ -1,22 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import VideoPlayer from "../video-player/video-player.jsx";
-import {Redirect} from "react-router-dom";
-import RoutePath from "../../routes.js";
 
 export default class Card extends React.PureComponent {
   constructor(props) {
     super(props);
-    this._toFilm = this._toFilm.bind(this);
-  }
-  _toFilm() {
-    return <Redirect to={`${RoutePath.FILM}/${this.props.id}`} />;
   }
   render() {
     return (
       <article
-        onClick={this._toFilm}
-        onMouseEnter={() => this.props.onMouseEnter(this.props.id)}
+        onClick={this.props.onClickComponent}
         onMouseOver={this.props.onCardMouseOver}
         onMouseLeave={this.props.onCardMouseLeave}
         className="small-movie-card catalog__movies-card"
@@ -53,7 +46,7 @@ Card.propTypes = {
   genre: PropTypes.string.isRequired,
   preview: PropTypes.string.isRequired,
   isPlay: PropTypes.bool.isRequired,
-  onMouseEnter: PropTypes.func,
-  onCardMouseOver: PropTypes.func,
-  onCardMouseLeave: PropTypes.func
+  onCardMouseOver: PropTypes.func.isRequired,
+  onCardMouseLeave: PropTypes.func.isRequired,
+  onClickComponent: PropTypes.func.isRequired,
 };

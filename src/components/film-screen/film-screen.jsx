@@ -8,7 +8,7 @@ import Header from "../header/header.jsx";
 import FilmOverview from "../film-overview/film-overview.jsx";
 import FilmDetails from "../film-details/film-details.jsx";
 import FilmNav from "../film-nav/film-nav.jsx";
-import FilmRoute from "../../mock/film-route.js";
+import {FilmRoute} from "../../mock/constants.js";
 
 class FilmScreen extends PureComponent {
   constructor(props) {

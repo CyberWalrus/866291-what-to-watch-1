@@ -1,41 +1,30 @@
+import {GENRE_DEFOULT} from "../../mock/constants.js";
 
 const intialState = {
-  genreFilter: `all`
+  genreSelected: GENRE_DEFOULT
+};
+
+const ActionType = {
+  CHANGE_GENRE: `CHANGE_GENRE`,
+  RESET: `RESET`
 };
 
 const ActionCreator = {
   changeGenre: (value) => {
-    if (
-      [
-        `comedy`,
-        `crime`,
-        `documentary`,
-        `drama`,
-        `horror`,
-        `family`,
-        `romance`,
-        `sci-fi`,
-        `thriller`
-      ].find((item) => item === value)
-    ) {
-      return {
-        type: `CHANGE_GENRE`,
-        genreNew: value
-      };
-    }
     return {
-      type: `RESET`
+      type: ActionType.CHANGE_GENRE,
+      payload: value
     };
   }
 };
 
 const reducer = (state = intialState, action) => {
   switch (action.type) {
-    case `CHANGE_GENRE`:
+    case ActionType.CHANGE_GENRE:
       return Object.assign({}, state, {
-        genreFilter: action.genreNew
+        genreSelected: action.payload
       });
-    case `RESET`:
+    case ActionType.RESET:
       return Object.assign({}, intialState);
   }
   return state;

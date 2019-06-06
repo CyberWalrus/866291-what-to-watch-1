@@ -3,4 +3,7 @@ const FilmRoute = {
   DETAILS: `Details`,
   REVIEWS: `Reviews`
 };
-export default FilmRoute;
+const GENRE_DEFOULT = `All genres`;
+
+export {FilmRoute, GENRE_DEFOULT};
+

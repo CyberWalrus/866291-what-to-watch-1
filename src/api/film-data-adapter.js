@@ -1,3 +1,4 @@
+import {GENRE_DEFOULT} from "../mock/constants.js";
 const FilmDataAdapter = (data) => {
   return {
     bgColor: data.background_color,
@@ -21,6 +22,14 @@ const FilmDataAdapter = (data) => {
     ratingLevel: setRatingLevel(data.rating)
   };
 };
+const getGenerFromData = (data) => {
+  const uniqueGeners = [...new Set(data.map((item) => item.genre))];
+  uniqueGeners.unshift(GENRE_DEFOULT);
+  if (uniqueGeners.length > 9) {
+    uniqueGeners.length = 9;
+  }
+  return uniqueGeners;
+};
 
 const setRatingLevel = (rating) => {
   switch (true) {
@@ -37,4 +46,4 @@ const setRatingLevel = (rating) => {
   }
   return `Bad`;
 };
-export default FilmDataAdapter;
+export {FilmDataAdapter, getGenerFromData};

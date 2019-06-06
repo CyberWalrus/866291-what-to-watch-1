@@ -3,6 +3,8 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import Card from "../card/card.jsx";
 import withPlayCard from "../../hocs/with-play-card/with-play-card.js";
+import {getFilms} from "../../store/data/selectors.js";
+import {getGenreSelected} from "../../store/filter/selectors.js";
 
 const CardPlay = withPlayCard(Card);
 
@@ -12,7 +14,6 @@ class CardList extends React.Component {
   }
   componentDidMount() {
   }
-  onCardMouseEnter() {}
   render() {
     return (
       <div className="catalog__movies-list">
@@ -25,7 +26,6 @@ class CardList extends React.Component {
               srcPreviewImage={srcPreviewImage}
               genre={genre}
               preview={preview}
-              onMouseEnter={this.onCardMouseEnter}
             />
           ))}
       </div>
@@ -46,7 +46,7 @@ CardList.propTypes = {
 };
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
-    films: state.DATA.films
+    films: getFilms(state)
   });
 
 export {CardList};
