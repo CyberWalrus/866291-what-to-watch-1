@@ -2,10 +2,10 @@ import React from "react";
 import CardList from "../card-list/card-list.jsx";
 import Filter from "../filter/filter.jsx";
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {getAuthorizationStatus} from "../../reducer/user/selectors";
+import {Link} from "react-router-dom";
+import RoutePath from "../../routes.js";
 
-class App extends React.PureComponent {
+export default class App extends React.PureComponent {
   constructor(props) {
     super(props);
   }
@@ -124,7 +124,7 @@ class App extends React.PureComponent {
 
             <div className="user-block">
               {!this.props.isAuthorizationRequired ? (
-                <a href="/signin">Sign In</a>
+                <Link to={RoutePath.LOGIN}>Sign In</Link>
               ) : (
                 <div className="user-block__avatar">
                   <img
@@ -216,11 +216,3 @@ class App extends React.PureComponent {
 App.propTypes = {
   isAuthorizationRequired: PropTypes.bool.isRequired
 };
-
-const mapStateToProps = (state, ownProps) =>
-  Object.assign({}, ownProps, {
-    isAuthorizationRequired: getAuthorizationStatus(state)
-  });
-export {App};
-
-export default connect(mapStateToProps)(App);

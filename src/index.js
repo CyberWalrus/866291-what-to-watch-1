@@ -4,11 +4,13 @@ import {createStore, applyMiddleware} from "redux";
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import {compose} from "recompose";
-import {createAPI} from './api/api';
-import reducer from "./reducer";
-import {Operation} from "./reducer/data/data";
+import {createAPI} from "./api/api";
+import reducer from "./store";
+import {Operation} from "./store/data/data";
 import App from "./components/app/app.jsx";
+import withScreenSwitch from "./hocs/with-screen-switch/with-screen-switch";
 
+const AppWrapped = withScreenSwitch(App);
 
 const init = () => {
   const api = createAPI(() => history.pushState(null, null, `/login`));
@@ -23,7 +25,7 @@ const init = () => {
   store.dispatch(Operation.loadFilms());
   ReactDOM.render(
       <Provider store={store}>
-        <App />
+        <AppWrapped/>
       </Provider>,
       document.querySelector(`#root`)
   );

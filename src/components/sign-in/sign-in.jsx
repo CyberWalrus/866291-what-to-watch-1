@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 
-import {getUser} from "./../../reducer/user/selectors.js";
-import {Operation} from "./../../reducer/user/user.js";
+import {getUser} from "../../store/user/selectors.js";
+import {Operation} from "../../store/user/user.js";
 
 class SignIn extends React.PureComponent {
   constructor(props) {

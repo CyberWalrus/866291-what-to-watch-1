@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer/filter/filter.js";
+import {ActionCreator} from "../../store/filter/filter.js";
 import PropTypes from "prop-types";
 const filterValueArr = [
   {
