@@ -4,6 +4,7 @@ const FilmRoute = {
   REVIEWS: `Reviews`
 };
 const GENRE_DEFOULT = `All genres`;
+const NUMBER_FILM = 20;
 
-export {FilmRoute, GENRE_DEFOULT};
+export {FilmRoute, GENRE_DEFOULT, NUMBER_FILM};
 

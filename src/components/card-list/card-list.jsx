@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import Card from "../card/card.jsx";
@@ -11,28 +11,45 @@ class CardList extends React.Component {
   constructor(props) {
     super(props);
   }
-  componentDidMount() {
-  }
   render() {
     return (
-      <div className="catalog__movies-list">
-        {this.props.films &&
-          this.props.films.map(({id, title, srcPreviewImage, genre, preview}) => (
-            <CardPlay
-              key={id}
-              id={id}
-              title={title}
-              srcPreviewImage={srcPreviewImage}
-              genre={genre}
-              preview={preview}
-            />
-          ))}
-      </div>
+      <Fragment>
+        <div className="catalog__movies-list">
+          {this.props.films &&
+            this.props.films.map(
+                ({id, title, srcPreviewImage, genre, preview}) => (
+                  <CardPlay
+                    key={id}
+                    id={id}
+                    title={title}
+                    srcPreviewImage={srcPreviewImage}
+                    genre={genre}
+                    preview={preview}
+                  />
+                )
+            )}
+        </div>
+        {this.props.films && this.props.films.length >= this.props.numberFilm ? (
+          <div className="catalog__more">
+            <button
+              className="catalog__button"
+              type="button"
+              onClick={this.props.onShowMoreClick}
+            >
+              Show more
+            </button>
+          </div>
+        ) : (
+          <Fragment />
+        )}
+      </Fragment>
     );
   }
 }
 
 CardList.propTypes = {
+  numberFilm: PropTypes.number.isRequired,
+  onShowMoreClick: PropTypes.func.isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
@@ -45,7 +62,7 @@ CardList.propTypes = {
 };
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
-    films: getFilms(state)
+    films: getFilms(state, ownProps.numberFilm)
   });
 
 export {CardList};

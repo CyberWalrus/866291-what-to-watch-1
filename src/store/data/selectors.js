@@ -1,10 +1,10 @@
 import NameSpace from "./../name-spaces.js";
-import {GENRE_DEFOULT} from "../../mock/constants.js";
+import {GENRE_DEFOULT, NUMBER_FILM} from "../../mock/constants.js";
 import {getGenreSelected} from "../filter/selectors.js";
 
 const NAME_SPACE = NameSpace.DATA;
 
-const getFilms = (state) => {
+const getFilms = (state, number = NUMBER_FILM) => {
   let films = [];
   const genre = getGenreSelected(state);
   if (genre === GENRE_DEFOULT) {
@@ -16,8 +16,8 @@ const getFilms = (state) => {
       }
     });
   }
-  if (films.length > 20) {
-    films.length = 20;
+  if (films.length > number) {
+    films.length = number;
   }
   return films;
 };

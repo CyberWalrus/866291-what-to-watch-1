@@ -23,7 +23,6 @@ class Filter extends React.Component {
               }
             >
               <a
-                href="#"
                 className="catalog__genres-link"
                 onClick={() => this.props.changeFilter(item)}
               >
