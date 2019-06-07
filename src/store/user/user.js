@@ -1,4 +1,6 @@
 import {userDataAdapter} from "../../api/data-adapter.js";
+import {Operation as OperationData} from "../data/data.js";
+
 const initialState = {
   isAuthorizationRequired: false,
   user: {},
@@ -42,6 +44,7 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.signIn(response.data));
         dispatch(ActionCreator.requireAuthorization(true));
+        dispatch(OperationData.loadFavorites());
       })
       .catch((error) => {
         dispatch(ActionCreator.setError(error.toString()));

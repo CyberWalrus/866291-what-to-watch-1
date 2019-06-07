@@ -16,7 +16,7 @@ const SignInPage = (props) => {
   return (
     <Fragment>
       <div className="user-page">
-        <Header isSignin={true} />
+        <Header isUserClass={true} isShowIcon={false} title={`Sign In`} />
 
         <div className="sign-in user-page__content">
           <form onSubmit={onSubmitClick} className="sign-in__form">

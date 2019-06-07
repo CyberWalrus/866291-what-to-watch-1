@@ -19,7 +19,7 @@ const App = () => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <Filter />
-          <CardListActiveFilm />
+          <CardListActiveFilm isFavorite={false}/>
         </section>
         <Footer />
       </div>

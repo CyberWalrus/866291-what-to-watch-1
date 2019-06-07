@@ -2,7 +2,7 @@ import React, {Fragment} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import Card from "../card/card.jsx";
-import {getFilms} from "../../store/data/selectors.js";
+import {getFilms, getFavorites} from "../../store/data/selectors.js";
 
 const CardList = ({
   numberFilm,
@@ -50,6 +50,7 @@ const CardList = ({
 };
 
 CardList.propTypes = {
+  isFavorite: PropTypes.bool.isRequired,
   numberFilm: PropTypes.number.isRequired,
   onShowMoreClick: PropTypes.func.isRequired,
   activeFilm: PropTypes.number.isRequired,
@@ -68,7 +69,9 @@ CardList.propTypes = {
 };
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
-    films: getFilms(state, ownProps.numberFilm)
+    films: ownProps.isFavorite
+      ? getFavorites(state, ownProps.numberFilm)
+      : getFilms(state, ownProps.numberFilm)
   });
 
 export {CardList};

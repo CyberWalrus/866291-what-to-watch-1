@@ -2,12 +2,14 @@ import {FilmDataAdapter, getGenerFromData} from "../../api/data-adapter.js";
 
 const initialState = {
   films: [],
+  favorites: [],
   genres: []
 };
 
 const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
-  LOAD_GENRE: `LOAD_GENRE`
+  LOAD_GENRE: `LOAD_GENRE`,
+  LOAD_FAVORITES: `LOAD_GENRE`
 };
 
 const ActionCreator = {
@@ -15,6 +17,12 @@ const ActionCreator = {
     return {
       type: ActionType.LOAD_FILMS,
       payload: films
+    };
+  },
+  loadFavorites: (favorites) => {
+    return {
+      type: ActionType.LOAD_FAVORITES,
+      payload: favorites
     };
   },
   loadGenre: (films) => {
@@ -31,6 +39,11 @@ const Operation = {
       dispatch(ActionCreator.loadFilms(response.data));
       dispatch(ActionCreator.loadGenre(response.data));
     });
+  },
+  loadFavorites: () => (dispatch, _getState, api) => {
+    return api.get(`/favorite`).then((response) => {
+      dispatch(ActionCreator.loadFavorites(response.data));
+    });
   }
 };
 
@@ -39,6 +52,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_FILMS:
       return Object.assign({}, state, {
         films: action.payload.map(FilmDataAdapter)
+      });
+    case ActionType.LOAD_FAVORITES:
+      return Object.assign({}, state, {
+        favorites: action.payload.map(FilmDataAdapter)
       });
     case ActionType.LOAD_GENRE:
       return Object.assign({}, state, {

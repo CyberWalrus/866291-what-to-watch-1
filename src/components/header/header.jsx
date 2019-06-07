@@ -1,15 +1,21 @@
-import React from "react";
+import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import RoutePath from "../../routes.js";
 import {getAuthorizationStatus, getUser} from "../../store/user/selectors.js";
 
-const Header = ({isAuthorizationRequired, isSignin, user}) => {
+const Header = ({
+  isAuthorizationRequired,
+  isUserClass = false,
+  isShowIcon = true,
+  user,
+  title
+}) => {
   return (
     <header
       className={
-        isSignin
+        isUserClass
           ? `page-header user-page__head`
           : `page-header movie-card__head`
       }
@@ -22,8 +28,14 @@ const Header = ({isAuthorizationRequired, isSignin, user}) => {
         </Link>
       </div>
 
-      {isSignin ? (
-        <h1 className="page-title user-page__title">Sign in</h1>
+      {title ? (
+        <h1 className="page-title user-page__title">{title}</h1>
+      ) : (
+        <Fragment />
+      )}
+
+      {!isShowIcon ? (
+        <Fragment />
       ) : (
         <div className="user-block">
           {!isAuthorizationRequired ? (
@@ -50,7 +62,9 @@ const Header = ({isAuthorizationRequired, isSignin, user}) => {
 
 Header.propTypes = {
   isAuthorizationRequired: PropTypes.bool.isRequired,
-  isSignin: PropTypes.bool,
+  isUserClass: PropTypes.bool,
+  isShowIcon: PropTypes.bool,
+  title: PropTypes.string,
   user: PropTypes.shape({
     id: PropTypes.number,
     email: PropTypes.string,
