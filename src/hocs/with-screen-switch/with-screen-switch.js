@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
-import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
 import {compose} from "recompose";
 import {getAuthorizationStatus, getError} from "../../store/user/selectors.js";
 import RoutePath from "../../routes.js";
@@ -45,7 +45,9 @@ const withScreenSwitch = (Component) => {
             <WithPrivateRoute
               exact
               path={RoutePath.ADD_REVIEW}
-              component={(props) => <FilmAddReviewState id={parseInt(props.match.params.id, 10)} />}
+              component={(props) => (
+                <FilmAddReviewState id={parseInt(props.match.params.id, 10)} />
+              )}
             />
             <WithPrivateRoute
               exact
@@ -59,6 +61,7 @@ const withScreenSwitch = (Component) => {
                 />
               )}
             />
+            <Redirect to={RoutePath.INDEX} />
           </Switch>
         </BrowserRouter>
       );

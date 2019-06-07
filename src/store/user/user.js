@@ -2,7 +2,7 @@ import {userDataAdapter} from "../../api/data-adapter.js";
 import {Operation as OperationData} from "../data/data.js";
 
 const initialState = {
-  isAuthorizationRequired: false,
+  isAuthorizationRequired: true,
   user: {},
   errorMessage: ``
 };
