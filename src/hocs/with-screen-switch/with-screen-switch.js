@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import {compose} from "recompose";
-import {getAuthorizationStatus} from "../../store/user/selectors.js";
+import {getAuthorizationStatus, getError} from "../../store/user/selectors.js";
 import RoutePath from "../../routes.js";
 import {Operation} from "../../store/user/user.js";
 import SignIn from "../../components/sign-in/sign-in.jsx";
@@ -45,7 +45,7 @@ const withScreenSwitch = (Component) => {
               redirectPath={RoutePath.INDEX}
               isAuthor={false}
               component={() => (
-                <SignInWithState onSubmitClick={this.props.signIn} />
+                <SignInWithState onSubmitClick={this.props.signIn} errorMessage={this.props.errorMessage}/>
               )}
             />
           </Switch>
@@ -55,14 +55,16 @@ const withScreenSwitch = (Component) => {
   }
   WithScreenSwitch.propTypes = {
     isAuthorizationRequired: PropTypes.bool.isRequired,
-    signIn: PropTypes.func.isRequired
+    signIn: PropTypes.func.isRequired,
+    errorMessage: PropTypes.string.isRequired
   };
   return WithScreenSwitch;
 };
 
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
-    isAuthorizationRequired: getAuthorizationStatus(state)
+    isAuthorizationRequired: getAuthorizationStatus(state),
+    errorMessage: getError(state)
   });
 const mapDispatchToProps = (dispatch) => ({
   signIn: (email, password) => {

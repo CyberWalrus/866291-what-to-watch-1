@@ -42,13 +42,15 @@ const withAuthorizationState = (Component) => {
           onEmailInputChange={this.handleEmailInputChange}
           onPasswordInputChange={this.handlePasswordInputChange}
           onSubmitClick={this.onSubmitClick}
+          errorMessage={this.props.errorMessage}
         />
       );
     }
   }
 
   WithAuthorizationState.propTypes = {
-    onSubmitClick: PropTypes.func.isRequired
+    onSubmitClick: PropTypes.func.isRequired,
+    errorMessage: PropTypes.string.isRequired
   };
 
   return WithAuthorizationState;

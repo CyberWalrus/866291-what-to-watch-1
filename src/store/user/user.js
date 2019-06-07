@@ -1,13 +1,14 @@
 import {userDataAdapter} from "../../api/data-adapter.js";
 const initialState = {
   isAuthorizationRequired: false,
-  user: {}
+  user: {},
+  errorMessage: ``
 };
 
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   SIGN_IN: `SIGN_IN`,
-  LOG_OUT: `LOG_OUT`
+  SET_ERROR: `SET_ERROR`
 };
 
 const ActionCreator = {
@@ -23,10 +24,10 @@ const ActionCreator = {
       payload: user
     };
   },
-  logOut: () => {
+  setError: (error) => {
     return {
-      type: ActionType.LOG_OUT,
-      payload: {}
+      type: ActionType.SET_ERROR,
+      payload: error
     };
   }
 };
@@ -42,8 +43,8 @@ const Operation = {
         dispatch(ActionCreator.signIn(response.data));
         dispatch(ActionCreator.requireAuthorization(true));
       })
-      .catch(() => {
-        dispatch(ActionCreator.logOut());
+      .catch((error) => {
+        dispatch(ActionCreator.setError(error.toString()));
         dispatch(ActionCreator.requireAuthorization(false));
       });
   },
@@ -66,9 +67,9 @@ const reducer = (state = initialState, action) => {
         user: userDataAdapter(action.payload)
       });
 
-    case ActionType.LOG_OUT:
+    case ActionType.SET_ERROR:
       return Object.assign({}, state, {
-        user: action.payload
+        errorMessage: action.payload
       });
 
     default:

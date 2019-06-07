@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import RoutePath from "../../routes.js";
-import {SERVER_URL} from "../../mock/constants.js";
 import {getAuthorizationStatus, getUser} from "../../store/user/selectors.js";
 
 const Header = ({isAuthorizationRequired, isSignin, user}) => {

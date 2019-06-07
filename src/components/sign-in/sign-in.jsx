@@ -9,7 +9,8 @@ const SignInPage = (props) => {
     password,
     onEmailInputChange,
     onPasswordInputChange,
-    onSubmitClick
+    onSubmitClick,
+    errorMessage
   } = props;
 
   return (
@@ -19,6 +20,9 @@ const SignInPage = (props) => {
 
         <div className="sign-in user-page__content">
           <form onSubmit={onSubmitClick} className="sign-in__form">
+            <div className="sign-in__message">
+              <p>{errorMessage}</p>
+            </div>
             <div className="sign-in__fields">
               <div className="sign-in__field">
                 <input
@@ -72,6 +76,7 @@ const SignInPage = (props) => {
 SignInPage.propTypes = {
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
+  errorMessage: PropTypes.string.isRequired,
   onEmailInputChange: PropTypes.func.isRequired,
   onPasswordInputChange: PropTypes.func.isRequired,
   onSubmitClick: PropTypes.func.isRequired

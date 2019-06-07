@@ -9,3 +9,6 @@ export const getAuthorizationStatus = (state) => {
 export const getUser = (state) => {
   return state[NAME_SPACE].user;
 };
+export const getError = (state) => {
+  return state[NAME_SPACE].errorMessage;
+};
