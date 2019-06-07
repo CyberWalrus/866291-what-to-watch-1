@@ -33,7 +33,7 @@ const Card = ({
         {!isActive ? (
           <h3 className="small-movie-card__title">
             <Link
-              to={`${RoutePath.FILM}/${id}`}
+              to={RoutePath.FILM.replace(`:id`, id)}
               className="small-movie-card__link"
             >
               {title}
@@ -56,7 +56,7 @@ Card.propTypes = {
   isActive: PropTypes.bool.isRequired,
   onMouseLeaveCard: PropTypes.func.isRequired,
   onMouseEnterCard: PropTypes.func.isRequired,
-  onClickToRedirect: PropTypes.func.isRequired,
+  onClickToRedirect: PropTypes.func.isRequired
 };
 
 export default Card;

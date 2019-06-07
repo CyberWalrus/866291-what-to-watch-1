@@ -9,6 +9,8 @@ const Header = ({
   isAuthorizationRequired,
   isUserClass = false,
   isShowIcon = true,
+  filmTitle = ``,
+  filmId = 0,
   user,
   title
 }) => {
@@ -33,7 +35,25 @@ const Header = ({
       ) : (
         <Fragment />
       )}
-
+      {filmTitle && filmId ? (
+        <nav className="breadcrumbs">
+          <ul className="breadcrumbs__list">
+            <li className="breadcrumbs__item">
+              <Link
+                to={RoutePath.FILM.replace(`:id`, filmId)}
+                className="breadcrumbs__link"
+              >
+                {filmTitle}
+              </Link>
+            </li>
+            <li className="breadcrumbs__item">
+              <a className="breadcrumbs__link">Add review</a>
+            </li>
+          </ul>
+        </nav>
+      ) : (
+        <Fragment />
+      )}
       {!isShowIcon ? (
         <Fragment />
       ) : (
@@ -64,6 +84,8 @@ Header.propTypes = {
   isAuthorizationRequired: PropTypes.bool.isRequired,
   isUserClass: PropTypes.bool,
   isShowIcon: PropTypes.bool,
+  filmTitle: PropTypes.string,
+  filmId: PropTypes.number,
   title: PropTypes.string,
   user: PropTypes.shape({
     id: PropTypes.number,

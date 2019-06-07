@@ -1,6 +1,7 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import {Link} from "react-router-dom";
 import {getFilm} from "../../store/data/selectors.js";
 import Footer from "../footer/footer.jsx";
 import HiddenIcon from "../hidden-icon/hidden-icon.jsx";
@@ -12,6 +13,7 @@ import FilmNav from "../film-nav/film-nav.jsx";
 import {FilmRoute} from "../../mock/constants.js";
 import CardList from "../card-list/card-list.jsx";
 import withActiveFilm from "../../hocs/with-active-film/with-active-film.js";
+import RoutePath from "../../routes.js";
 
 const CardListActiveFilm = withActiveFilm(CardList);
 
@@ -76,9 +78,12 @@ const FilmScreen = ({film, changeFilmRoute, route}) => {
                     </svg>
                     <span>My list</span>
                   </button>
-                  <a href="add-review.html" className="btn movie-card__button">
+                  <Link
+                    to={RoutePath.ADD_REVIEW.replace(`:id`, id)}
+                    className="btn movie-card__button"
+                  >
                     Add review
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -118,9 +123,7 @@ const FilmScreen = ({film, changeFilmRoute, route}) => {
                         starrings={starrings}
                       />
                     ),
-                    [FilmRoute.REVIEWS]: (
-                      <FilmReview filmId={id}/>
-                    )
+                    [FilmRoute.REVIEWS]: <FilmReview filmId={id} />
                   }[route]
                 }
               </div>
@@ -131,7 +134,7 @@ const FilmScreen = ({film, changeFilmRoute, route}) => {
         <div className="page-content">
           <section className="catalog catalog--like-this">
             <h2 className="catalog__title">More like this</h2>
-            <CardListActiveFilm genreFilm={genre} filmId={id}/>
+            <CardListActiveFilm genreFilm={genre} filmId={id} />
           </section>
           <Footer />
         </div>

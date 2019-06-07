@@ -56,7 +56,9 @@ const withActiveFilm = (Component) => {
     }
     render() {
       if (this.state.redirectId) {
-        return <Redirect to={`${RoutePath.FILM}/${this.state.redirectId}`} />;
+        return (
+          <Redirect to={RoutePath.FILM.replace(`:id`, this.state.redirectId)} />
+        );
       }
       return (
         <Component
