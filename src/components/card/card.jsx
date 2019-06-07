@@ -1,6 +1,7 @@
-import React from "react";
+import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import VideoPlayer from "../video-player/video-player.jsx";
+import {SizeMin} from "../../mock/constants.js";
 
 const Card = ({
   onClickComponent,
@@ -18,18 +19,25 @@ const Card = ({
       onMouseLeave={onMouseLeaveCard}
       className="small-movie-card catalog__movies-card"
     >
-      {!isActive ? (
-        <>
-          <div className="small-movie-card__image">
-            <img src={srcPreviewImage} alt={title} width="280" height="175" />
-          </div>
+      <div className="small-movie-card__image">
+        <VideoPlayer
+          options={{
+            width: SizeMin.WIDTH,
+            height: SizeMin.HEIGHT
+          }}
+          videoSrc={preview}
+          posterSrc={srcPreviewImage}
+          muted={true}
+          isPlaying={isActive}
+        />
+        {!isActive ? (
           <h3 className="small-movie-card__title">
             <a className="small-movie-card__link">{title}</a>
           </h3>
-        </>
-      ) : (
-        <VideoPlayer poster={srcPreviewImage} preview={preview} />
-      )}
+        ) : (
+          <Fragment />
+        )}
+      </div>
     </article>
   );
 };

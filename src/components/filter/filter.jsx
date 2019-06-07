@@ -5,35 +5,30 @@ import {getGeners} from "../../store/data/selectors.js";
 import {getGenreSelected} from "../../store/filter/selectors.js";
 import PropTypes from "prop-types";
 
-class Filter extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <ul className="catalog__genres-list">
-        {this.props.genres &&
-          this.props.genres.map((item, i) => (
-            <li
-              key={i}
-              className={
-                this.props.genreSelected === item
-                  ? `catalog__genres-item catalog__genres-item--active`
-                  : `catalog__genres-item`
-              }
+const Filter = ({genres, genreSelected, changeFilter}) => {
+  return (
+    <ul className="catalog__genres-list">
+      {genres &&
+        genres.map((item, i) => (
+          <li
+            key={i}
+            className={
+              genreSelected === item
+                ? `catalog__genres-item catalog__genres-item--active`
+                : `catalog__genres-item`
+            }
+          >
+            <a
+              className="catalog__genres-link"
+              onClick={() => changeFilter(item)}
             >
-              <a
-                className="catalog__genres-link"
-                onClick={() => this.props.changeFilter(item)}
-              >
-                {item}
-              </a>
-            </li>
-          ))}
-      </ul>
-    );
-  }
-}
+              {item}
+            </a>
+          </li>
+        ))}
+    </ul>
+  );
+};
 
 Filter.propTypes = {
   genreSelected: PropTypes.string.isRequired,

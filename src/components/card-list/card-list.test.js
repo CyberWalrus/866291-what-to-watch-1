@@ -12,6 +12,7 @@ it(`CardList component renders correctly with props`, () => {
           films={FILMS}
           numberFilm={NUMBER_FILM}
           onShowMoreClick={handleClick}
+          activeFilm={0}
         />
     )
     .toJSON();
@@ -20,7 +21,13 @@ it(`CardList component renders correctly with props`, () => {
 it(`CardList component renders correctly with empty props`, () => {
   const handleClick = jest.fn();
   const tree = renderer
-    .create(<CardList numberFilm={NUMBER_FILM} onShowMoreClick={handleClick} />)
+    .create(
+        <CardList
+          numberFilm={NUMBER_FILM}
+          onShowMoreClick={handleClick}
+          activeFilm={0}
+        />
+    )
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

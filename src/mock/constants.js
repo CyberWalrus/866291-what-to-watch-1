@@ -5,6 +5,9 @@ const FilmRoute = {
 };
 const GENRE_DEFOULT = `All genres`;
 const NUMBER_FILM = 20;
-
-export {FilmRoute, GENRE_DEFOULT, NUMBER_FILM};
+const SizeMin = {
+  WIDTH: 280,
+  HEIGHT: 175
+};
+export {FilmRoute, GENRE_DEFOULT, NUMBER_FILM, SizeMin};
 

@@ -13,9 +13,9 @@ it(`Card correctly renders after relaunch`, () => {
           srcPreviewImage={FILM.srcPreviewImage}
           genre={FILM.genre}
           preview={FILM.preview}
-          isPlay={false}
-          onCardMouseOver={handleClick}
-          onCardMouseLeave={handleClick}
+          isActive={false}
+          onMouseLeaveCard={handleClick}
+          onMouseEnterCard={handleClick}
           onClickComponent={handleClick}
         />
     )
