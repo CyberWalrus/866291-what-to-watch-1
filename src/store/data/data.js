@@ -1,15 +1,21 @@
-import {FilmDataAdapter, getGenerFromData} from "../../api/data-adapter.js";
+import {
+  FilmDataAdapter,
+  getGenerFromData,
+  ReviewDataAdapter
+} from "../../api/data-adapter.js";
 
 const initialState = {
   films: [],
   favorites: [],
-  genres: []
+  genres: [],
+  reviews: []
 };
 
 const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_GENRE: `LOAD_GENRE`,
-  LOAD_FAVORITES: `LOAD_GENRE`
+  LOAD_FAVORITES: `LOAD_FAVORITES`,
+  LOAD_REVIEWS: `LOAD_REVIEWS`
 };
 
 const ActionCreator = {
@@ -23,6 +29,12 @@ const ActionCreator = {
     return {
       type: ActionType.LOAD_FAVORITES,
       payload: favorites
+    };
+  },
+  loadReviews: (reviews) => {
+    return {
+      type: ActionType.LOAD_REVIEWS,
+      payload: reviews
     };
   },
   loadGenre: (films) => {
@@ -44,6 +56,11 @@ const Operation = {
     return api.get(`/favorite`).then((response) => {
       dispatch(ActionCreator.loadFavorites(response.data));
     });
+  },
+  loadReviews: (filmId) => (dispatch, _getState, api) => {
+    return api.get(`/comments/${filmId}`).then((response) => {
+      dispatch(ActionCreator.loadReviews(response.data));
+    });
   }
 };
 
@@ -56,6 +73,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_FAVORITES:
       return Object.assign({}, state, {
         favorites: action.payload.map(FilmDataAdapter)
+      });
+    case ActionType.LOAD_REVIEWS:
+      return Object.assign({}, state, {
+        reviews: action.payload.map(ReviewDataAdapter)
       });
     case ActionType.LOAD_GENRE:
       return Object.assign({}, state, {

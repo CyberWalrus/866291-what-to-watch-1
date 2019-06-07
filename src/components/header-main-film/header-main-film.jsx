@@ -77,7 +77,7 @@ HeaderMainFilm.propTypes = {
     genre: PropTypes.string.isRequired,
     released: PropTypes.number.isRequired,
     preview: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
+    rating: PropTypes.string.isRequired,
     scoresCount: PropTypes.number.isRequired,
     ratingLevel: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,

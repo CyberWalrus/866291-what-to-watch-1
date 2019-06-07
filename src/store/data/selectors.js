@@ -33,6 +33,10 @@ const getFavorites = (state, number = NUMBER_FILM) => {
   return favorites;
 };
 
+const getReviews = (state) => {
+  return state[NAME_SPACE].reviews.slice();
+};
+
 const getFilm = (state, id) => {
   const film = state[NAME_SPACE].films.find((item) => item.id === id);
   return film;
@@ -42,4 +46,4 @@ const getGeners = (state) => {
   return state[NAME_SPACE].genres;
 };
 
-export {getFilms, getFilm, getGeners, getFavorites};
+export {getFilms, getFilm, getGeners, getFavorites, getReviews};

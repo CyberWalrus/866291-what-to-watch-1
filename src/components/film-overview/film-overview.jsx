@@ -13,10 +13,7 @@ const FilmOverview = ({
     <Fragment>
       <div className="movie-rating">
         <div className="movie-rating__score">
-          {parseFloat(Math.round(rating * 100) / 100)
-            .toFixed(1)
-            .toString()
-            .replace(`.`, `,`)}
+          {rating}
         </div>
         <p className="movie-rating__meta">
           <span className="movie-rating__level">{ratingLevel}</span>
@@ -44,7 +41,7 @@ const FilmOverview = ({
   );
 };
 FilmOverview.propTypes = {
-  rating: PropTypes.number.isRequired,
+  rating: PropTypes.string.isRequired,
   ratingLevel: PropTypes.string.isRequired,
   scoresCount: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,

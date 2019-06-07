@@ -13,13 +13,24 @@ const FilmDataAdapter = (data) => {
     srcPosterImage: data.poster_image,
     srcPreviewImage: data.preview_image,
     previewVideo: data.preview_video_link,
-    rating: data.rating,
+    rating: ratingToString(data.rating),
     released: data.released,
     runTime: data.run_time,
     scoresCount: data.scores_count,
     starrings: data.starring,
     preview: data.video_link,
     ratingLevel: setRatingLevel(data.rating)
+  };
+};
+const ReviewDataAdapter = (data) => {
+  return {
+    comment: data.comment,
+    date: dateToString(data.date),
+    dateHTML: dateToStringHTML(data.date),
+    id: data.id,
+    rating: ratingToString(data.rating),
+    userId: data.user.id,
+    userName: data.user.name
   };
 };
 const userDataAdapter = (data) => {
@@ -38,7 +49,25 @@ const getGenerFromData = (data) => {
   }
   return uniqueGeners;
 };
-
+const ratingToString = (rating) => {
+  return parseFloat(Math.round(rating * 100) / 100)
+    .toFixed(1)
+    .toString()
+    .replace(`.`, `,`);
+};
+const dateToString = (date) => {
+  const dateNew = new Date(date);
+  let dateString = dateNew.toDateString();
+  dateString = dateString.slice(dateString.indexOf(` `) + 1);
+  const dateMonth = dateString.slice(0, dateString.indexOf(` `));
+  const dateReturn = `${dateMonth} ${dateNew.getDate()}, ${dateNew.getFullYear()}`;
+  return dateReturn;
+};
+const dateToStringHTML = (date) => {
+  const dateNew = new Date(date);
+  const dateReturn = dateNew.toISOString().substring(0, 10);
+  return dateReturn;
+};
 const setRatingLevel = (rating) => {
   switch (true) {
     case rating < 3:
@@ -54,4 +83,4 @@ const setRatingLevel = (rating) => {
   }
   return `Bad`;
 };
-export {FilmDataAdapter, getGenerFromData, userDataAdapter};
+export {FilmDataAdapter, ReviewDataAdapter, getGenerFromData, userDataAdapter};

@@ -7,6 +7,7 @@ import HiddenIcon from "../hidden-icon/hidden-icon.jsx";
 import Header from "../header/header.jsx";
 import FilmOverview from "../film-overview/film-overview.jsx";
 import FilmDetails from "../film-details/film-details.jsx";
+import FilmReview from "../film-review/film-review.jsx";
 import FilmNav from "../film-nav/film-nav.jsx";
 import {FilmRoute} from "../../mock/constants.js";
 import CardList from "../card-list/card-list.jsx";
@@ -117,7 +118,9 @@ const FilmScreen = ({film, changeFilmRoute, route}) => {
                         starrings={starrings}
                       />
                     ),
-                    [FilmRoute.REVIEWS]: null
+                    [FilmRoute.REVIEWS]: (
+                      <FilmReview filmId={id}/>
+                    )
                   }[route]
                 }
               </div>
@@ -151,7 +154,7 @@ FilmScreen.propTypes = {
     genre: PropTypes.string.isRequired,
     released: PropTypes.number.isRequired,
     preview: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
+    rating: PropTypes.string.isRequired,
     scoresCount: PropTypes.number.isRequired,
     ratingLevel: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
