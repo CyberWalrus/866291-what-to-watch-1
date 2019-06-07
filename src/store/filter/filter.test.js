@@ -1,9 +1,10 @@
 import {reducer} from "./filter.js";
+import {GENRE_DEFOULT} from "../../mock/constants.js";
 
 describe(`Reducer works correctly`, () => {
   it(`Reducer without additional parameters should return inital state`, () => {
     expect(reducer(undefined, {})).toEqual({
-      genreFilter: `all`
+      genreSelected: GENRE_DEFOULT
     });
   });
 
@@ -11,29 +12,29 @@ describe(`Reducer works correctly`, () => {
     expect(
         reducer(
             {
-              genreFilter: `comedy`,
+              genreSelected: `comedy`,
             },
             {
               type: `RESET`
             }
         )
     ).toEqual({
-      genreFilter: `all`
+      genreSelected: GENRE_DEFOULT
     });
   });
   it(`Reducer test change genre`, () => {
     expect(
         reducer(
             {
-              genreFilter: `all`
+              genreSelected: GENRE_DEFOULT
             },
             {
               type: `CHANGE_GENRE`,
-              genreNew: `comedy`
+              payload: `comedy`
             }
         )
     ).toEqual({
-      genreFilter: `comedy`
+      genreSelected: `comedy`
     });
   });
 });

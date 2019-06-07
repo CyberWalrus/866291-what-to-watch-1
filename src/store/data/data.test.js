@@ -12,7 +12,7 @@ describe(`Reducer works correctly`, () => {
     apiMock.onGet(`/films`).reply(200, [{fake: true}]);
 
     return questionLoader(dispatch, jest.fn(), api).then(() => {
-      expect(dispatch).toHaveBeenCalledTimes(1);
+      expect(dispatch).toHaveBeenCalledTimes(2);
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: ActionType.LOAD_FILMS,
         payload: [{fake: true}]

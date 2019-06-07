@@ -12,7 +12,7 @@ exports[`CardList component renders correctly with props 1`] = `
 >
   <article
     className="small-movie-card catalog__movies-card"
-    onMouseEnter={[Function]}
+    onClick={[Function]}
     onMouseLeave={[Function]}
     onMouseOver={[Function]}
   >
@@ -20,9 +20,9 @@ exports[`CardList component renders correctly with props 1`] = `
       className="small-movie-card__image"
     >
       <img
-        alt="Aviator"
+        alt="Shutter Island"
         height="175"
-        src="img/aviator.jpg"
+        src="https://es31-server.appspot.com/wtw/static/film/preview/shutter-island.jpg"
         width="280"
       />
     </div>
@@ -32,13 +32,13 @@ exports[`CardList component renders correctly with props 1`] = `
       <a
         className="small-movie-card__link"
       >
-        Aviator
+        Shutter Island
       </a>
     </h3>
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onMouseEnter={[Function]}
+    onClick={[Function]}
     onMouseLeave={[Function]}
     onMouseOver={[Function]}
   >
@@ -48,7 +48,7 @@ exports[`CardList component renders correctly with props 1`] = `
       <img
         alt="Macbeth"
         height="175"
-        src="img/macbeth.jpg"
+        src="https://es31-server.appspot.com/wtw/static/film/preview/macbeth.jpg"
         width="280"
       />
     </div>

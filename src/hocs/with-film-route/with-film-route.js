@@ -6,7 +6,7 @@ const withFilmRoute = (Component) => {
   class WithFilmRoute extends React.PureComponent {
     constructor(props) {
       super(props);
-      
+
       this.state = {
         route: FilmRoute.OVERVIEW
       };

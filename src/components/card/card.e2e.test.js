@@ -2,6 +2,7 @@ import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Card from "./card.jsx";
+import {FILM} from "../../mock/mock-test.js";
 
 Enzyme.configure({adapter: new Adapter()});
 describe(`<Card />`, () => {
@@ -9,18 +10,20 @@ describe(`<Card />`, () => {
   it(`test opening film card`, () => {
     const app = shallow(
         <Card
-          id={1}
-          genre="comedy"
-          title="What We Do in the Shadows"
-          src="img/what-we-do-in-the-shadows.jpg"
-          preview="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+          id={FILM.id}
+          title={FILM.title}
+          srcPreviewImage={FILM.srcPreviewImage}
+          genre={FILM.genre}
+          preview={FILM.preview}
           isPlay={false}
-          onMouseEnter={handleClick}
+          onCardMouseOver={handleClick}
+          onCardMouseLeave={handleClick}
+          onClickComponent={handleClick}
         />
     );
     const card = app.find(`.small-movie-card`);
 
-    card.simulate(`mouseenter`);
+    card.simulate(`click`);
     expect(handleClick).toHaveBeenCalledWith(1);
   });
 });
