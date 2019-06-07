@@ -52,8 +52,8 @@ VideoPlayer.propTypes = {
   videoSrc: PropTypes.string.isRequired,
   posterSrc: PropTypes.string,
   options: PropTypes.shape({
-    width: PropTypes.number.isRequired || PropTypes.string.isRequired,
-    height: PropTypes.number.isRequired || PropTypes.string.isRequired,
+    width: PropTypes.string.isRequired,
+    height: PropTypes.string.isRequired,
     isMuted: PropTypes.bool,
     isLoop: PropTypes.bool,
     isControls: PropTypes.bool

@@ -4,9 +4,9 @@ import VideoPlayer from "../video-player/video-player.jsx";
 import {OptionsVideoMin} from "../../mock/constants.js";
 import {Link} from "react-router-dom";
 import RoutePath from "../../routes.js";
-import {LINK_STYLE} from "../../mock/constants.js";
 
 const Card = ({
+  onClickToRedirect,
   onMouseLeaveCard,
   onMouseEnterCard,
   isActive,
@@ -16,12 +16,11 @@ const Card = ({
   id
 }) => {
   return (
-    <Link
-      to={`${RoutePath.FILM}/${id}`}
+    <article
+      onClick={onClickToRedirect}
       onMouseOver={onMouseEnterCard}
       onMouseLeave={onMouseLeaveCard}
       className="small-movie-card catalog__movies-card"
-      style={{color: LINK_STYLE, textDecoration: LINK_STYLE}}
     >
       <div className="small-movie-card__image">
         <VideoPlayer
@@ -33,13 +32,18 @@ const Card = ({
         />
         {!isActive ? (
           <h3 className="small-movie-card__title">
-            <a className="small-movie-card__link">{title}</a>
+            <Link
+              to={`${RoutePath.FILM}/${id}`}
+              className="small-movie-card__link"
+            >
+              {title}
+            </Link>
           </h3>
         ) : (
           <Fragment />
         )}
       </div>
-    </Link>
+    </article>
   );
 };
 
@@ -51,7 +55,8 @@ Card.propTypes = {
   preview: PropTypes.string.isRequired,
   isActive: PropTypes.bool.isRequired,
   onMouseLeaveCard: PropTypes.func.isRequired,
-  onMouseEnterCard: PropTypes.func.isRequired
+  onMouseEnterCard: PropTypes.func.isRequired,
+  onClickToRedirect: PropTypes.func.isRequired,
 };
 
 export default Card;

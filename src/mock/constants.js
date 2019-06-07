@@ -9,8 +9,8 @@ const NUMBER_FILM_GENRE = 4;
 const SERVER_URL = `https://es31-server.appspot.com/wtw`;
 const SERVER_URL_USER = `https://es31-server.appspot.com/`;
 const OptionsVideoMin = {
-  width: 280,
-  height: 175,
+  width: `280`,
+  height: `175`,
   isMuted: true,
   isLoop: true,
   isControls: false

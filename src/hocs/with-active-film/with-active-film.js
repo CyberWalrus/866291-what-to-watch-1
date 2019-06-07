@@ -1,5 +1,7 @@
 import React, {PureComponent} from "react";
 import {NUMBER_FILM} from "../../mock/constants.js";
+import {Redirect} from "react-router-dom";
+import RoutePath from "../../routes.js";
 
 const withActiveFilm = (Component) => {
   class WithActiveFilm extends PureComponent {
@@ -7,12 +9,14 @@ const withActiveFilm = (Component) => {
       super(props);
       this.state = {
         activeFilm: 0,
-        numberFilm: NUMBER_FILM
+        numberFilm: NUMBER_FILM,
+        redirectId: 0
       };
       this.timeOutList = {};
       this.setActiveFilm = this.setActiveFilm.bind(this);
       this.removeActiveFilm = this.removeActiveFilm.bind(this);
       this.onShowMoreClick = this.onShowMoreClick.bind(this);
+      this.onClickToRedirect = this.onClickToRedirect.bind(this);
     }
 
     setActiveFilm(id) {
@@ -38,8 +42,22 @@ const withActiveFilm = (Component) => {
         numberFilm: this.state.countFilm + NUMBER_FILM
       });
     }
-
+    onClickToRedirect(id) {
+      this.setState({
+        redirectId: id
+      });
+    }
+    componentDidUpdate() {
+      if (this.state.redirectId) {
+        this.setState({
+          redirectId: 0
+        });
+      }
+    }
     render() {
+      if (this.state.redirectId) {
+        return <Redirect to={`${RoutePath.FILM}/${this.state.redirectId}`} />;
+      }
       return (
         <Component
           {...this.props}
@@ -48,7 +66,7 @@ const withActiveFilm = (Component) => {
           removeActiveFilm={this.removeActiveFilm}
           numberFilm={this.state.numberFilm}
           onShowMoreClick={this.onShowMoreClick}
-          onClickComponent={this.onClickComponent}
+          onClickToRedirect={this.onClickToRedirect}
         />
       );
     }

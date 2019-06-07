@@ -10,6 +10,7 @@ const CardList = ({
   activeFilm,
   setActiveFilm,
   removeActiveFilm,
+  onClickToRedirect,
   films,
   genreFilm
 }) => {
@@ -29,6 +30,7 @@ const CardList = ({
               isActive={activeFilm === id}
               onMouseEnterCard={() => setActiveFilm(id)}
               onMouseLeaveCard={() => removeActiveFilm(id)}
+              onClickToRedirect={() => onClickToRedirect(id)}
             />
           ))}
       </div>
@@ -58,7 +60,7 @@ CardList.propTypes = {
   activeFilm: PropTypes.number.isRequired,
   setActiveFilm: PropTypes.func,
   removeActiveFilm: PropTypes.func,
-  onClickComponent: PropTypes.func,
+  onClickToRedirect: PropTypes.func.isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
@@ -73,7 +75,12 @@ const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
     films: ownProps.isFavorite
       ? getFavorites(state, ownProps.numberFilm)
-      : getFilms(state, ownProps.numberFilm, ownProps.genreFilm, ownProps.filmId)
+      : getFilms(
+          state,
+          ownProps.numberFilm,
+          ownProps.genreFilm,
+          ownProps.filmId
+      )
   });
 
 export {CardList};
