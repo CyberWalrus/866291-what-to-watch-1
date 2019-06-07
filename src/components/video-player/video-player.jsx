@@ -24,7 +24,7 @@ class VideoPlayer extends PureComponent {
   }
   render() {
     const {videoSrc, posterSrc, options} = this.props;
-    const {width, height, isMuted = true, isLoop = true} = options;
+    const {width, height, isMuted = true, isLoop = true, isControls = false} = options;
     return (
       <video
         ref={this._videoRef}
@@ -34,6 +34,8 @@ class VideoPlayer extends PureComponent {
         height={height}
         loop={isLoop}
         muted={isMuted}
+        controls={isControls}
+        className={`player__video`}
       />
     );
   }
@@ -50,10 +52,11 @@ VideoPlayer.propTypes = {
   videoSrc: PropTypes.string.isRequired,
   posterSrc: PropTypes.string,
   options: PropTypes.shape({
-    width: PropTypes.number.isRequired,
-    height: PropTypes.number.isRequired,
+    width: PropTypes.number.isRequired || PropTypes.string.isRequired,
+    height: PropTypes.number.isRequired || PropTypes.string.isRequired,
     isMuted: PropTypes.bool,
-    isLoop: PropTypes.bool
+    isLoop: PropTypes.bool,
+    isControls: PropTypes.bool
   }).isRequired,
   isPlaying: PropTypes.bool
 };

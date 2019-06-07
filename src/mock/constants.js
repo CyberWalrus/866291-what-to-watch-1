@@ -5,9 +5,29 @@ const FilmRoute = {
 };
 const GENRE_DEFOULT = `All genres`;
 const NUMBER_FILM = 20;
-const SizeMin = {
-  WIDTH: 280,
-  HEIGHT: 175
+const OptionsVideoMin = {
+  width: 280,
+  height: 175,
+  isMuted: true,
+  isLoop: true,
+  isControls: false
 };
-export {FilmRoute, GENRE_DEFOULT, NUMBER_FILM, SizeMin};
-
+const OptionsVideoFull = {
+  width: `100%`,
+  height: `100%`,
+  isMuted: false,
+  isLoop: false,
+  isControls: true
+};
+const BodyOverflow = {
+  VISIBLE: `visible`,
+  HIDDEN: `hidden`
+};
+export {
+  FilmRoute,
+  GENRE_DEFOULT,
+  NUMBER_FILM,
+  OptionsVideoMin,
+  OptionsVideoFull,
+  BodyOverflow
+};

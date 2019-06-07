@@ -4,7 +4,7 @@ import Header from "../header/header.jsx";
 import {connect} from "react-redux";
 import {getFilm} from "../../store/data/selectors.js";
 
-const HeaderMainFilm = ({film}) => {
+const HeaderMainFilm = ({film, onVideoScreenOpen}) => {
   if (film) {
     return (
       <Fragment>
@@ -39,6 +39,7 @@ const HeaderMainFilm = ({film}) => {
                   <button
                     className="btn btn--play movie-card__button"
                     type="button"
+                    onClick={onVideoScreenOpen}
                   >
                     <svg viewBox="0 0 19 19" width="19" height="19">
                       <use xlinkHref="#play-s" />
@@ -65,6 +66,7 @@ const HeaderMainFilm = ({film}) => {
   return <Header />;
 };
 HeaderMainFilm.propTypes = {
+  onVideoScreenOpen: PropTypes.func.isRequired,
   film: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,

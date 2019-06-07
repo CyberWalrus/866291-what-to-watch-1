@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import VideoPlayer from "../video-player/video-player.jsx";
-import {SizeMin} from "../../mock/constants.js";
+import {OptionsVideoMin} from "../../mock/constants.js";
 
 const Card = ({
   onClickComponent,
@@ -21,10 +21,7 @@ const Card = ({
     >
       <div className="small-movie-card__image">
         <VideoPlayer
-          options={{
-            width: SizeMin.WIDTH,
-            height: SizeMin.HEIGHT
-          }}
+          options={OptionsVideoMin}
           videoSrc={preview}
           posterSrc={srcPreviewImage}
           muted={true}
