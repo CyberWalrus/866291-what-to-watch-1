@@ -9,6 +9,10 @@ import FilmOverview from "../film-overview/film-overview.jsx";
 import FilmDetails from "../film-details/film-details.jsx";
 import FilmNav from "../film-nav/film-nav.jsx";
 import {FilmRoute} from "../../mock/constants.js";
+import CardList from "../card-list/card-list.jsx";
+import withActiveFilm from "../../hocs/with-active-film/with-active-film.js";
+
+const CardListActiveFilm = withActiveFilm(CardList);
 
 const FilmScreen = ({film, changeFilmRoute, route}) => {
   if (film) {
@@ -25,7 +29,8 @@ const FilmScreen = ({film, changeFilmRoute, route}) => {
       description,
       director,
       starrings,
-      runTime
+      runTime,
+      id
     } = film;
     return (
       <Fragment>
@@ -121,6 +126,10 @@ const FilmScreen = ({film, changeFilmRoute, route}) => {
         </section>
 
         <div className="page-content">
+          <section className="catalog catalog--like-this">
+            <h2 className="catalog__title">More like this</h2>
+            <CardListActiveFilm genreFilm={genre} filmId={id}/>
+          </section>
           <Footer />
         </div>
       </Fragment>

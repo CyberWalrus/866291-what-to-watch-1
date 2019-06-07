@@ -10,9 +10,10 @@ const CardList = ({
   activeFilm,
   setActiveFilm,
   removeActiveFilm,
-  onClickComponent,
-  films
+  films,
+  genreFilm
 }) => {
+  const isShow = genreFilm ? false : true;
   return (
     <Fragment>
       <div className="catalog__movies-list">
@@ -28,11 +29,10 @@ const CardList = ({
               isActive={activeFilm === id}
               onMouseEnterCard={() => setActiveFilm(id)}
               onMouseLeaveCard={() => removeActiveFilm(id)}
-              onClickComponent={() => onClickComponent(id)}
             />
           ))}
       </div>
-      {films && films.length >= numberFilm ? (
+      {films && isShow && films.length >= numberFilm ? (
         <div className="catalog__more">
           <button
             className="catalog__button"
@@ -50,7 +50,9 @@ const CardList = ({
 };
 
 CardList.propTypes = {
-  isFavorite: PropTypes.bool.isRequired,
+  isFavorite: PropTypes.bool,
+  genreFilm: PropTypes.string,
+  filmId: PropTypes.number,
   numberFilm: PropTypes.number.isRequired,
   onShowMoreClick: PropTypes.func.isRequired,
   activeFilm: PropTypes.number.isRequired,
@@ -71,7 +73,7 @@ const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
     films: ownProps.isFavorite
       ? getFavorites(state, ownProps.numberFilm)
-      : getFilms(state, ownProps.numberFilm)
+      : getFilms(state, ownProps.numberFilm, ownProps.genreFilm, ownProps.filmId)
   });
 
 export {CardList};

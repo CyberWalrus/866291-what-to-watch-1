@@ -1,17 +1,21 @@
 import NameSpace from "./../name-spaces.js";
-import {GENRE_DEFOULT, NUMBER_FILM} from "../../mock/constants.js";
+import {GENRE_DEFOULT, NUMBER_FILM, NUMBER_FILM_GENRE} from "../../mock/constants.js";
 import {getGenreSelected} from "../filter/selectors.js";
 
 const NAME_SPACE = NameSpace.DATA;
 
-const getFilms = (state, number = NUMBER_FILM) => {
+const getFilms = (state, number = NUMBER_FILM, genreFilm, filmId) => {
   let films = [];
-  const genre = getGenreSelected(state);
+  let genre = getGenreSelected(state);
+  if (genreFilm) {
+    genre = genreFilm;
+    number = NUMBER_FILM_GENRE;
+  }
   if (genre === GENRE_DEFOULT) {
     films = state[NAME_SPACE].films.slice();
   } else {
     state[NAME_SPACE].films.map((item) => {
-      if (item.genre === genre) {
+      if (item.genre === genre && item.id !== filmId) {
         films.push(item);
       }
     });

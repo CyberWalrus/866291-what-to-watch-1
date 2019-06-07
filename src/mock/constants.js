@@ -5,6 +5,7 @@ const FilmRoute = {
 };
 const GENRE_DEFOULT = `All genres`;
 const NUMBER_FILM = 20;
+const NUMBER_FILM_GENRE = 4;
 const SERVER_URL = `https://es31-server.appspot.com/wtw`;
 const SERVER_URL_USER = `https://es31-server.appspot.com/`;
 const OptionsVideoMin = {
@@ -25,6 +26,7 @@ const BodyOverflow = {
   VISIBLE: `visible`,
   HIDDEN: `hidden`
 };
+const LINK_STYLE = `inherit`;
 export {
   FilmRoute,
   GENRE_DEFOULT,
@@ -33,5 +35,7 @@ export {
   SERVER_URL_USER,
   OptionsVideoMin,
   OptionsVideoFull,
-  BodyOverflow
+  BodyOverflow,
+  NUMBER_FILM_GENRE,
+  LINK_STYLE
 };
