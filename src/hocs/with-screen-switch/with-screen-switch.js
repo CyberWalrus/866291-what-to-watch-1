@@ -5,13 +5,16 @@ import {BrowserRouter, Switch, Route} from "react-router-dom";
 import {compose} from "recompose";
 import {getAuthorizationStatus} from "../../store/user/selectors.js";
 import RoutePath from "../../routes.js";
+import {Operation} from "../../store/user/user.js";
 import SignIn from "../../components/sign-in/sign-in.jsx";
 import MyList from "../../components/my-list/my-list.jsx";
 import FilmScreen from "../../components/film-screen/film-screen.jsx";
 import withFilmRoute from "../with-film-route/with-film-route.js";
+import withAuthorizationState from "../with-authorization-state/with-authorization-state.js";
 import WithPrivateRoute from "../with-private-route/with-private-route.js";
 
 const FilmScreenRoute = withFilmRoute(FilmScreen);
+const SignInWithState = withAuthorizationState(SignIn);
 
 const withScreenSwitch = (Component) => {
   class WithScreenSwitch extends PureComponent {
@@ -44,14 +47,21 @@ const withScreenSwitch = (Component) => {
                 <FilmScreenRoute id={parseInt(props.match.params.id, 10)} />
               )}
             />
-            <Route exact path={RoutePath.LOGIN} component={SignIn} />
+            <Route
+              exact
+              path={RoutePath.LOGIN}
+              render={() => (
+                <SignInWithState onSubmitClick={this.props.signIn} />
+              )}
+            />
           </Switch>
         </BrowserRouter>
       );
     }
   }
   WithScreenSwitch.propTypes = {
-    isAuthorizationRequired: PropTypes.bool.isRequired
+    isAuthorizationRequired: PropTypes.bool.isRequired,
+    signIn: PropTypes.func.isRequired
   };
   return WithScreenSwitch;
 };
@@ -60,8 +70,15 @@ const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
     isAuthorizationRequired: getAuthorizationStatus(state)
   });
-
+const mapDispatchToProps = (dispatch) => ({
+  signIn: (email, password) => {
+    dispatch(Operation.signIn(email, password));
+  }
+});
 export default compose(
-    connect(mapStateToProps),
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    ),
     withScreenSwitch
 );

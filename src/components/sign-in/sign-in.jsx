@@ -1,40 +1,24 @@
-import React from "react";
+import React, {Fragment} from "react";
 import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {getUser} from "../../store/user/selectors.js";
-import {Operation} from "../../store/user/user.js";
-import Footer from "../footer/footer.jsx";
 import Header from "../header/header.jsx";
+import Footer from "../footer/footer.jsx";
 
-class SignIn extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: ``,
-      password: ``
-    };
-    this.handleItemChange = this.handleItemChange.bind(this);
-    this.sendUser = this.sendUser.bind(this);
-  }
-  sendUser(evt) {
-    const {email, password} = this.state;
+const SignInPage = (props) => {
+  const {
+    email,
+    password,
+    onEmailInputChange,
+    onPasswordInputChange,
+    onSubmitClick
+  } = props;
 
-    evt.preventDefault();
-
-    if (email && password) {
-      this.props.signIn(email, password);
-    }
-  }
-  handleItemChange(key, event) {
-    this.setState({[key]: event.target.value});
-  }
-  render() {
-    return (
+  return (
+    <Fragment>
       <div className="user-page">
-        <Header isSignin={true}/>
+        <Header isSignin={true} />
 
         <div className="sign-in user-page__content">
-          <form onSubmit={this.sendUser} action="#" className="sign-in__form">
+          <form onSubmit={onSubmitClick} className="sign-in__form">
             <div className="sign-in__fields">
               <div className="sign-in__field">
                 <input
@@ -43,8 +27,8 @@ class SignIn extends React.PureComponent {
                   placeholder="Email address"
                   name="email"
                   id="user-email"
-                  value={this.state.email}
-                  onChange={this.handleItemChange.bind(this, `email`)}
+                  value={email}
+                  onChange={onEmailInputChange}
                 />
                 <label
                   className="sign-in__label visually-hidden"
@@ -60,8 +44,8 @@ class SignIn extends React.PureComponent {
                   placeholder="Password"
                   name="user-password"
                   id="user-password"
-                  value={this.state.password}
-                  onChange={this.handleItemChange.bind(this, `password`)}
+                  value={password}
+                  onChange={onPasswordInputChange}
                 />
                 <label
                   className="sign-in__label visually-hidden"
@@ -81,28 +65,16 @@ class SignIn extends React.PureComponent {
 
         <Footer />
       </div>
-    );
-  }
-}
-
-SignIn.propTypes = {
-  signIn: PropTypes.func.isRequired
+    </Fragment>
+  );
 };
 
-const mapStateToProps = (state, ownProps) =>
-  Object.assign({}, ownProps, {
-    user: getUser(state)
-  });
+SignInPage.propTypes = {
+  email: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  onEmailInputChange: PropTypes.func.isRequired,
+  onPasswordInputChange: PropTypes.func.isRequired,
+  onSubmitClick: PropTypes.func.isRequired
+};
 
-const mapDispachToProps = (dispatch) => ({
-  signIn: (email, password) => {
-    dispatch(Operation.signIn(email, password));
-  }
-});
-
-export {SignIn};
-
-export default connect(
-    mapStateToProps,
-    mapDispachToProps
-)(SignIn);
+export default SignInPage;

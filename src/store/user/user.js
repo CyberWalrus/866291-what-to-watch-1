@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 const initialState = {
   isAuthorizationRequired: false,
   user: {}
@@ -40,11 +41,19 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.signIn(response.data));
         dispatch(ActionCreator.requireAuthorization(true));
+        dispatch(Cookies.set(`authToken`, response.data));
       })
       .catch(() => {
         dispatch(ActionCreator.logOut());
         dispatch(ActionCreator.requireAuthorization(false));
       });
+  },
+  checkAothorization: () => (dispatch) => {
+    const isAuth = Cookies.get(`authToken`);
+    if (isAuth) {
+      return dispatch(ActionCreator.requireAuthorization(true));
+    }
+    return false;
   },
 
   logOut: () => {
