@@ -1,4 +1,4 @@
-import Cookies from "js-cookie";
+import {userDataAdapter} from "../../api/data-adapter.js";
 const initialState = {
   isAuthorizationRequired: false,
   user: {}
@@ -41,19 +41,11 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.signIn(response.data));
         dispatch(ActionCreator.requireAuthorization(true));
-        dispatch(Cookies.set(`authToken`, response.data));
       })
       .catch(() => {
         dispatch(ActionCreator.logOut());
         dispatch(ActionCreator.requireAuthorization(false));
       });
-  },
-  checkAothorization: () => (dispatch) => {
-    const isAuth = Cookies.get(`authToken`);
-    if (isAuth) {
-      return dispatch(ActionCreator.requireAuthorization(true));
-    }
-    return false;
   },
 
   logOut: () => {
@@ -71,7 +63,7 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.SIGN_IN:
       return Object.assign({}, state, {
-        user: action.payload
+        user: userDataAdapter(action.payload)
       });
 
     case ActionType.LOG_OUT:

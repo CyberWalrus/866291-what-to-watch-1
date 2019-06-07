@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import RoutePath from "../../routes.js";
-import {getAuthorizationStatus} from "../../store/user/selectors.js";
+import {SERVER_URL} from "../../mock/constants.js";
+import {getAuthorizationStatus, getUser} from "../../store/user/selectors.js";
 
-const Header = ({isAuthorizationRequired, isSignin}) => {
+const Header = ({isAuthorizationRequired, isSignin, user}) => {
   return (
     <header
       className={
@@ -34,7 +35,7 @@ const Header = ({isAuthorizationRequired, isSignin}) => {
             <div className="user-block__avatar">
               <Link to={RoutePath.MY_LIST}>
                 <img
-                  src="img/avatar.jpg"
+                  src={user.srcAvatar}
                   alt="User avatar"
                   width="63"
                   height="63"
@@ -50,11 +51,18 @@ const Header = ({isAuthorizationRequired, isSignin}) => {
 
 Header.propTypes = {
   isAuthorizationRequired: PropTypes.bool.isRequired,
-  isSignin: PropTypes.bool
+  isSignin: PropTypes.bool,
+  user: PropTypes.shape({
+    id: PropTypes.number,
+    email: PropTypes.string,
+    name: PropTypes.string,
+    srcAvatar: PropTypes.string
+  }).isRequired
 };
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
-    isAuthorizationRequired: getAuthorizationStatus(state)
+    isAuthorizationRequired: getAuthorizationStatus(state),
+    user: getUser(state)
   });
 
 export {Header};

@@ -26,15 +26,7 @@ const withScreenSwitch = (Component) => {
       return (
         <BrowserRouter>
           <Switch>
-            <Route
-              path={RoutePath.INDEX}
-              exact
-              render={() => (
-                <Component
-                  isAuthorizationRequired={this.props.isAuthorizationRequired}
-                />
-              )}
-            />
+            <Route path={RoutePath.INDEX} exact render={() => <Component />} />
             <WithPrivateRoute
               exact
               path={RoutePath.MY_LIST}
@@ -47,10 +39,12 @@ const withScreenSwitch = (Component) => {
                 <FilmScreenRoute id={parseInt(props.match.params.id, 10)} />
               )}
             />
-            <Route
+            <WithPrivateRoute
               exact
               path={RoutePath.LOGIN}
-              render={() => (
+              redirectPath={RoutePath.INDEX}
+              isAuthor={false}
+              component={() => (
                 <SignInWithState onSubmitClick={this.props.signIn} />
               )}
             />

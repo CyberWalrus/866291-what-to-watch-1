@@ -1,4 +1,4 @@
-import {FilmDataAdapter, getGenerFromData} from "../../api/film-data-adapter";
+import {FilmDataAdapter, getGenerFromData} from "../../api/data-adapter.js";
 
 const initialState = {
   films: [],

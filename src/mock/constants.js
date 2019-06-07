@@ -5,6 +5,8 @@ const FilmRoute = {
 };
 const GENRE_DEFOULT = `All genres`;
 const NUMBER_FILM = 20;
+const SERVER_URL = `https://es31-server.appspot.com/wtw`;
+const SERVER_URL_USER = `https://es31-server.appspot.com/`;
 const OptionsVideoMin = {
   width: 280,
   height: 175,
@@ -27,6 +29,8 @@ export {
   FilmRoute,
   GENRE_DEFOULT,
   NUMBER_FILM,
+  SERVER_URL,
+  SERVER_URL_USER,
   OptionsVideoMin,
   OptionsVideoFull,
   BodyOverflow

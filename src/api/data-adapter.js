@@ -1,4 +1,4 @@
-import {GENRE_DEFOULT} from "../mock/constants.js";
+import {GENRE_DEFOULT, SERVER_URL_USER} from "../mock/constants.js";
 const FilmDataAdapter = (data) => {
   return {
     bgColor: data.background_color,
@@ -20,6 +20,14 @@ const FilmDataAdapter = (data) => {
     starrings: data.starring,
     preview: data.video_link,
     ratingLevel: setRatingLevel(data.rating)
+  };
+};
+const userDataAdapter = (data) => {
+  return {
+    id: data.id,
+    email: data.email,
+    name: data.name,
+    srcAvatar: `${SERVER_URL_USER}${data.avatar_url}`
   };
 };
 const getGenerFromData = (data) => {
@@ -46,4 +54,4 @@ const setRatingLevel = (rating) => {
   }
   return `Bad`;
 };
-export {FilmDataAdapter, getGenerFromData};
+export {FilmDataAdapter, getGenerFromData, userDataAdapter};

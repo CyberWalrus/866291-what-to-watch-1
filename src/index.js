@@ -7,7 +7,6 @@ import {compose} from "recompose";
 import {createAPI} from "./api/api";
 import reducer from "./store";
 import {Operation as OperationData} from "./store/data/data.js";
-import {Operation as OperationUser} from "./store/user/user.js";
 import App from "./components/app/app.jsx";
 import withScreenSwitch from "./hocs/with-screen-switch/with-screen-switch";
 
@@ -24,7 +23,6 @@ const init = () => {
       )
   );
   store.dispatch(OperationData.loadFilms());
-  store.dispatch(OperationUser.checkAothorization());
   ReactDOM.render(
       <Provider store={store}>
         <AppWrapped/>
