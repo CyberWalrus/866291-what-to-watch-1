@@ -1,5 +1,9 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {compose} from "recompose";
+import {getError} from "../../store/user/selectors.js";
+import {Operation} from "../../store/user/user.js";
 
 const withAuthorizationState = (Component) => {
   class WithAuthorizationState extends PureComponent {
@@ -11,7 +15,9 @@ const withAuthorizationState = (Component) => {
       };
 
       this.handleEmailInputChange = this.handleEmailInputChange.bind(this);
-      this.handlePasswordInputChange = this.handlePasswordInputChange.bind(this);
+      this.handlePasswordInputChange = this.handlePasswordInputChange.bind(
+          this
+      );
       this.onSubmitClick = this.onSubmitClick.bind(this);
     }
 
@@ -30,7 +36,7 @@ const withAuthorizationState = (Component) => {
     onSubmitClick(event) {
       const {email, password} = this.state;
       event.preventDefault();
-      this.props.onSubmitClick(email, password);
+      this.props.signIn(email, password);
     }
 
     render() {
@@ -49,12 +55,30 @@ const withAuthorizationState = (Component) => {
   }
 
   WithAuthorizationState.propTypes = {
-    onSubmitClick: PropTypes.func.isRequired,
+    signIn: PropTypes.func.isRequired,
     errorMessage: PropTypes.string.isRequired
   };
 
   return WithAuthorizationState;
 };
 
+const mapStateToProps = (state, ownProps) =>
+  Object.assign({}, ownProps, {
+    errorMessage: getError(state)
+  });
 
-export default withAuthorizationState;
+const mapDispatchToProps = (dispatch) => ({
+  signIn: (email, password) => {
+    dispatch(Operation.signIn(email, password));
+  }
+});
+
+export {withAuthorizationState};
+
+export default compose(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    ),
+    withAuthorizationState
+);

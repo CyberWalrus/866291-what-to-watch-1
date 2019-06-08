@@ -9,7 +9,7 @@ Enzyme.configure({adapter: new Adapter()});
 const WithActiveFilmWrapper = withActiveFilm(() => (<div/>));
 
 describe(`<withActiveFilm/>`, () => {
-  it(`Should default state activeFilm === null`, () => {
+  it(`Should default state`, () => {
     const tree = mount(<WithActiveFilmWrapper/>);
     expect(tree.state(`activeFilm`)).toEqual(0);
     expect(tree.state(`numberFilm`)).toEqual(NUMBER_FILM);

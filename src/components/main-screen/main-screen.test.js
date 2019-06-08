@@ -1,16 +1,19 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./app.jsx";
+import MainScreen from "./main-screen.jsx";
 import reducer from "../../store";
 import {createStore} from "redux";
 import {Provider} from "react-redux";
+import {BrowserRouter} from "react-router-dom";
 
-it(`App correctly renders after relaunch`, () => {
+it(`MainScreen correctly renders after relaunch`, () => {
   const store = createStore(reducer);
   const tree = renderer
     .create(
         <Provider store={store}>
-          <App />
+          <BrowserRouter>
+            <MainScreen />
+          </BrowserRouter>
         </Provider>
     )
     .toJSON();

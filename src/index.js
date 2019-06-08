@@ -8,9 +8,6 @@ import {createAPI} from "./api/api";
 import reducer from "./store";
 import {Operation as OperationData} from "./store/data/data.js";
 import App from "./components/app/app.jsx";
-import withScreenSwitch from "./hocs/with-screen-switch/with-screen-switch";
-
-const AppWrapped = withScreenSwitch(App);
 
 const init = () => {
   const api = createAPI(() => history.pushState(null, null, `/login`));
@@ -25,7 +22,7 @@ const init = () => {
   store.dispatch(OperationData.loadFilms());
   ReactDOM.render(
       <Provider store={store}>
-        <AppWrapped/>
+        <App />
       </Provider>,
       document.querySelector(`#root`)
   );

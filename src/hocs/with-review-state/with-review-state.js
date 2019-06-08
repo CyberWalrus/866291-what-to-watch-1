@@ -49,7 +49,7 @@ const withReviewState = (Component) => {
     }
   }
   WithReviewState.propTypes = {
-    id: PropTypes.number,
+    id: PropTypes.number.isRequired,
     errorMessage: PropTypes.string.isRequired,
     sendReview: PropTypes.func.isRequired
   };

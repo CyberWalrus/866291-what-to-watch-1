@@ -1,29 +1,55 @@
-import React, {Fragment} from "react";
-import CardList from "../card-list/card-list.jsx";
-import Filter from "../filter/filter.jsx";
-import Footer from "../footer/footer.jsx";
-import HiddenIcon from "../hidden-icon/hidden-icon.jsx";
-import HeaderMainFilm from "../header-main-film/header-main-film.jsx";
-import withActiveFilm from "../../hocs/with-active-film/with-active-film.js";
-import withVideoScreen from "../../hocs/with-video-screen/with-video-screen.jsx";
+import React, {PureComponent} from "react";
+import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
+import RoutePath from "../../routes.js";
+import MainScreen from "../main-screen/main-screen.jsx";
+import SignIn from "../sign-in/sign-in.jsx";
+import MyList from "../my-list/my-list.jsx";
+import FilmScreen from "../film-screen/film-screen.jsx";
+import FilmAddReview from "../film-add-review/film-add-review.jsx";
+import PrivateRoute from "../private-route/private-route.jsx";
+import withFilmRoute from "../../hocs/with-film-route/with-film-route.js";
+import withAuthorizationState from "../../hocs/with-authorization-state/with-authorization-state.js";
+import withReviewState from "../../hocs/with-review-state/with-review-state.js";
 
-const CardListActiveFilm = withActiveFilm(CardList);
-const HeaderVideoScren = withVideoScreen(HeaderMainFilm);
+const FilmScreenRoute = withFilmRoute(FilmScreen);
+const SignInWithState = withAuthorizationState(SignIn);
+const FilmAddReviewState = withReviewState(FilmAddReview);
 
-const App = () => {
-  return (
-    <Fragment>
-      <HiddenIcon />
-      <HeaderVideoScren />
-      <div className="page-content">
-        <section className="catalog">
-          <h2 className="catalog__title visually-hidden">Catalog</h2>
-          <Filter />
-          <CardListActiveFilm/>
-        </section>
-        <Footer />
-      </div>
-    </Fragment>
-  );
-};
+class App extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route path={RoutePath.INDEX} exact render={() => <MainScreen />} />
+          <Route
+            exact
+            path={RoutePath.FILM}
+            render={(props) => (
+              <FilmScreenRoute id={parseInt(props.match.params.id, 10)} />
+            )}
+          />
+          <PrivateRoute exact path={RoutePath.MY_LIST} component={MyList} />
+          <PrivateRoute
+            exact
+            path={RoutePath.ADD_REVIEW}
+            component={(props) => (
+              <FilmAddReviewState id={parseInt(props.match.params.id, 10)} />
+            )}
+          />
+          <PrivateRoute
+            exact
+            path={RoutePath.LOGIN}
+            redirectPath={RoutePath.INDEX}
+            isAuthor={false}
+            component={SignInWithState}
+          />
+          <Redirect to={RoutePath.INDEX} />
+        </Switch>
+      </BrowserRouter>
+    );
+  }
+}
 export default App;
