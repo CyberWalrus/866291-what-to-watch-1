@@ -7,9 +7,9 @@ const FILMS = [
     id: 1,
     isFavorite: false,
     pageUrl: `Shutter Island`,
-    preview: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
-    previewVideo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-    rating: 8.1,
+    srcVideo: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+    srcPreviewVideo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    rating: `8,1`,
     ratingLevel: `Very good`,
     released: 2010,
     runTime: 138,
@@ -28,9 +28,9 @@ const FILMS = [
     id: 2,
     isFavorite: false,
     pageUrl: `Macbeth`,
-    preview: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
-    previewVideo: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-    rating: 6.6,
+    srcVideo: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+    srcPreviewVideo: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    rating: `6,6`,
     ratingLevel: `Good`,
     released: 2015,
     runTime: 113,
@@ -50,9 +50,9 @@ const FILM = {
   id: 1,
   isFavorite: false,
   pageUrl: `Shutter Island`,
-  preview: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
-  previewVideo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-  rating: 8.1,
+  srcVideo: `http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4`,
+  srcPreviewVideo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  rating: `8,1`,
   ratingLevel: `Very good`,
   released: 2010,
   runTime: 138,
@@ -63,6 +63,26 @@ const FILM = {
   starrings: [(`Leonardo DiCaprio`, `Emily Mortimer`, `Mark Ruffalo`)],
   title: `Shutter Island`
 };
+const REVIEWS = [
+  {
+    comment: `test test test test test test test test test test test test test`,
+    date: `2019-05-11`,
+    dateHTML: `May 11, 2019`,
+    id: 1,
+    rating: `8,1`,
+    userId: 1,
+    userName: `Walrus`
+  },
+  {
+    comment: `test test test test test test test test test test test test test`,
+    date: `2019-05-11`,
+    dateHTML: `May 11, 2019`,
+    id: 1,
+    rating: `8,1`,
+    userId: 1,
+    userName: `Walrus`
+  }
+];
 
 const GENRES = [
   `All genres`,
@@ -74,4 +94,4 @@ const GENRES = [
   `Action`,
   `Fantasy`
 ];
-export {FILMS, FILM, GENRES};
+export {FILMS, FILM, GENRES, REVIEWS};

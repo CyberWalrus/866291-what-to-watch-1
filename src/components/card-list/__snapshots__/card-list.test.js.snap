@@ -19,22 +19,28 @@ exports[`CardList component renders correctly with props 1`] = `
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Shutter Island"
+      <video
+        className="player__video"
+        controls={false}
         height="175"
-        src="https://es31-server.appspot.com/wtw/static/film/preview/shutter-island.jpg"
+        loop={true}
+        muted={true}
+        poster="https://es31-server.appspot.com/wtw/static/film/preview/shutter-island.jpg"
+        src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
         width="280"
       />
-    </div>
-    <h3
-      className="small-movie-card__title"
-    >
-      <a
-        className="small-movie-card__link"
+      <h3
+        className="small-movie-card__title"
       >
-        Shutter Island
-      </a>
-    </h3>
+        <a
+          className="small-movie-card__link"
+          href="/film/1"
+          onClick={[Function]}
+        >
+          Shutter Island
+        </a>
+      </h3>
+    </div>
   </article>
   <article
     className="small-movie-card catalog__movies-card"
@@ -45,22 +51,28 @@ exports[`CardList component renders correctly with props 1`] = `
     <div
       className="small-movie-card__image"
     >
-      <img
-        alt="Macbeth"
+      <video
+        className="player__video"
+        controls={false}
         height="175"
-        src="https://es31-server.appspot.com/wtw/static/film/preview/macbeth.jpg"
+        loop={true}
+        muted={true}
+        poster="https://es31-server.appspot.com/wtw/static/film/preview/macbeth.jpg"
+        src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
         width="280"
       />
-    </div>
-    <h3
-      className="small-movie-card__title"
-    >
-      <a
-        className="small-movie-card__link"
+      <h3
+        className="small-movie-card__title"
       >
-        Macbeth
-      </a>
-    </h3>
+        <a
+          className="small-movie-card__link"
+          href="/film/2"
+          onClick={[Function]}
+        >
+          Macbeth
+        </a>
+      </h3>
+    </div>
   </article>
 </div>
 `;

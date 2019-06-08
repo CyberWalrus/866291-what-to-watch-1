@@ -13,7 +13,6 @@ describe(`<withActiveFilm/>`, () => {
     const tree = mount(<WithActiveFilmWrapper/>);
     expect(tree.state(`activeFilm`)).toEqual(0);
     expect(tree.state(`numberFilm`)).toEqual(NUMBER_FILM);
-    expect(tree.state(`redirect`)).toEqual(false);
     expect(tree.state(`redirectId`)).toEqual(0);
   });
 });

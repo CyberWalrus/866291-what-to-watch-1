@@ -19,14 +19,14 @@ const CardList = ({
     <Fragment>
       <div className="catalog__movies-list">
         {films &&
-          films.map(({id, title, srcPreviewImage, genre, preview}) => (
+          films.map(({id, title, srcPreviewImage, genre, srcPreviewVideo}) => (
             <Card
               key={id}
               id={id}
               title={title}
               srcPreviewImage={srcPreviewImage}
               genre={genre}
-              preview={preview}
+              srcPreviewVideo={srcPreviewVideo}
               isActive={activeFilm === id}
               onMouseEnterCard={() => setActiveFilm(id)}
               onMouseLeaveCard={() => removeActiveFilm(id)}
@@ -58,8 +58,8 @@ CardList.propTypes = {
   numberFilm: PropTypes.number.isRequired,
   onShowMoreClick: PropTypes.func.isRequired,
   activeFilm: PropTypes.number.isRequired,
-  setActiveFilm: PropTypes.func,
-  removeActiveFilm: PropTypes.func,
+  setActiveFilm: PropTypes.func.isRequired,
+  removeActiveFilm: PropTypes.func.isRequired,
   onClickToRedirect: PropTypes.func.isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape({
@@ -67,7 +67,7 @@ CardList.propTypes = {
         title: PropTypes.string.isRequired,
         srcPreviewImage: PropTypes.string.isRequired,
         genre: PropTypes.string.isRequired,
-        preview: PropTypes.string.isRequired
+        srcPreviewVideo: PropTypes.string.isRequired
       })
   )
 };

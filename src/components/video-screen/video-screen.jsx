@@ -16,7 +16,7 @@ const VideoScreen = ({onVideoScreenClose, isPlaying, film}) => {
       >
         <VideoPlayer
           options={OptionsVideoFull}
-          videoSrc={film.preview}
+          videoSrc={film.srcVideo}
           posterSrc={film.srcBgImage}
           isPlaying={isPlaying}
         />
@@ -45,7 +45,7 @@ VideoScreen.propTypes = {
     srcBgImage: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     released: PropTypes.number.isRequired,
-    preview: PropTypes.string.isRequired,
+    srcVideo: PropTypes.string.isRequired,
     rating: PropTypes.string.isRequired,
     scoresCount: PropTypes.number.isRequired,
     ratingLevel: PropTypes.string.isRequired,

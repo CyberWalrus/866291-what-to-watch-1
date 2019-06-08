@@ -19,8 +19,8 @@ class FilmReview extends PureComponent {
           <div className="movie-card__reviews-col">
             {this.props.reviews &&
               this.props.reviews.map(
-                  ({id, comment, rating, userName, date, dateHTML}) => (
-                    <div className="review" key={id}>
+                  ({comment, rating, userName, date, dateHTML}, index) => (
+                    <div className="review" key={index}>
                       <blockquote className="review__quote">
                         <p className="review__text">{comment}</p>
 

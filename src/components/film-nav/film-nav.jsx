@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {FilmRoute} from "../../mock/constants.js";
 
-const FilmDetails = ({changeFilmRoute, route}) => {
+const FilmNav = ({changeFilmRoute, route}) => {
   return (
     <nav className="movie-nav movie-card__nav">
       <ul className="movie-nav__list">
@@ -55,8 +55,8 @@ const FilmDetails = ({changeFilmRoute, route}) => {
     </nav>
   );
 };
-FilmDetails.propTypes = {
+FilmNav.propTypes = {
   route: PropTypes.string.isRequired,
   changeFilmRoute: PropTypes.func.isRequired
 };
-export default FilmDetails;
+export default FilmNav;

@@ -15,13 +15,13 @@ const _filmDataAdapter = (data) => {
     pageUrl: data.name,
     srcPosterImage: data.poster_image,
     srcPreviewImage: data.preview_image,
-    previewVideo: data.preview_video_link,
+    srcPreviewVideo: data.preview_video_link,
     rating: ratingToString(data.rating),
     released: data.released,
     runTime: data.run_time,
     scoresCount: data.scores_count,
     starrings: data.starring,
-    preview: data.video_link,
+    srcVideo: data.video_link,
     ratingLevel: setRatingLevel(data.rating)
   };
 };

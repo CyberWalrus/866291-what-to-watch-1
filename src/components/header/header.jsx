@@ -58,7 +58,7 @@ const Header = ({
         <Fragment />
       ) : (
         <div className="user-block">
-          {!isAuthorizationRequired ? (
+          {!isAuthorizationRequired && user ? (
             <Link className="user-block__link" to={RoutePath.LOGIN}>
               Sign In
             </Link>

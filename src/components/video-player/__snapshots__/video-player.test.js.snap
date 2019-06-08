@@ -2,15 +2,13 @@
 
 exports[`VideoPlayer correctly renders after relaunch 1`] = `
 <video
-  autoPlay={true}
-  muted={true}
-  poster="img/what-we-do-in-the-shadows.jpg"
-  src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
-  style={
-    Object {
-      "height": "100%",
-      "width": "100%",
-    }
-  }
+  className="player__video"
+  controls={true}
+  height="100%"
+  loop={false}
+  muted={false}
+  poster="https://es31-server.appspot.com/wtw/static/film/poster/Shutter_Island.jpg"
+  src="http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4"
+  width="100%"
 />
 `;

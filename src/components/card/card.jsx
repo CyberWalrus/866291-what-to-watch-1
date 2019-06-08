@@ -12,7 +12,7 @@ const Card = ({
   isActive,
   srcPreviewImage,
   title,
-  preview,
+  srcPreviewVideo,
   id
 }) => {
   return (
@@ -25,7 +25,7 @@ const Card = ({
       <div className="small-movie-card__image">
         <VideoPlayer
           options={OptionsVideoMin}
-          videoSrc={preview}
+          videoSrc={srcPreviewVideo}
           posterSrc={srcPreviewImage}
           muted={true}
           isPlaying={isActive}
@@ -52,7 +52,7 @@ Card.propTypes = {
   title: PropTypes.string.isRequired,
   srcPreviewImage: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
-  preview: PropTypes.string.isRequired,
+  srcPreviewVideo: PropTypes.string.isRequired,
   isActive: PropTypes.bool.isRequired,
   onMouseLeaveCard: PropTypes.func.isRequired,
   onMouseEnterCard: PropTypes.func.isRequired,

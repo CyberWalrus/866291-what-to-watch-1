@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App correctly renders after relaunch 1`] = `
+exports[`VideoScreen correctly renders after relaunch 1`] = `
 Array [
   <div
     className="visually-hidden"
@@ -144,100 +144,33 @@ Array [
       </symbol>
     </svg>
   </div>,
-  <header
-    className="page-header movie-card__head"
-  >
-    <div
-      className="logo"
-    >
-      <a
-        className="logo__link"
-        href="/"
-        onClick={[Function]}
-      >
-        <span
-          className="logo__letter logo__letter--1"
-        >
-          W
-        </span>
-        <span
-          className="logo__letter logo__letter--2"
-        >
-          T
-        </span>
-        <span
-          className="logo__letter logo__letter--3"
-        >
-          W
-        </span>
-      </a>
-    </div>
-    <div
-      className="user-block"
-    >
-      <a
-        className="user-block__link"
-        href="/login"
-        onClick={[Function]}
-      >
-        Sign In
-      </a>
-    </div>
-  </header>,
   <div
-    className="page-content"
+    className="player"
+    style={
+      Object {
+        "background": "url(https://es31-server.appspot.com/wtw/static/film/background/Shutter_Island.jpg) no-repeat center center fixed",
+        "backgroundSize": "cover",
+        "zIndex": 10,
+      }
+    }
   >
-    <section
-      className="catalog"
+    <video
+      className="player__video"
+      controls={true}
+      height="100%"
+      loop={false}
+      muted={false}
+      poster="https://es31-server.appspot.com/wtw/static/film/background/Shutter_Island.jpg"
+      src="http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4"
+      width="100%"
+    />
+    <button
+      className="player__exit"
+      onClick={[MockFunction]}
+      type="button"
     >
-      <h2
-        className="catalog__title visually-hidden"
-      >
-        Catalog
-      </h2>
-      <ul
-        className="catalog__genres-list"
-      />
-      <div
-        className="catalog__movies-list"
-      />
-    </section>
-    <footer
-      className="page-footer"
-    >
-      <div
-        className="logo"
-      >
-        <a
-          className="logo__link logo__link--light"
-          href="/"
-          onClick={[Function]}
-        >
-          <span
-            className="logo__letter logo__letter--1"
-          >
-            W
-          </span>
-          <span
-            className="logo__letter logo__letter--2"
-          >
-            T
-          </span>
-          <span
-            className="logo__letter logo__letter--3"
-          >
-            W
-          </span>
-        </a>
-      </div>
-      <div
-        className="copyright"
-      >
-        <p>
-          © 2019 What to watch Ltd.
-        </p>
-      </div>
-    </footer>
+      Exit
+    </button>
   </div>,
 ]
 `;
