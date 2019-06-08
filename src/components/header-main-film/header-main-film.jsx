@@ -51,7 +51,7 @@ const HeaderMainFilm = ({film, onVideoScreenOpen}) => {
                     type="button"
                   >
                     <svg viewBox="0 0 19 20" width="19" height="20">
-                      <use xlinkHref="#add" />
+                      <use xlinkHref="#remove" />
                     </svg>
                     <span>My list</span>
                   </button>

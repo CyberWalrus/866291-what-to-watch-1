@@ -1,7 +1,8 @@
 import {
   FilmDataAdapter,
   getGenerFromData,
-  ReviewDataAdapter
+  ReviewDataAdapter,
+  updateFilmAdapter
 } from "../../api/data-adapter.js";
 
 const initialState = {
@@ -16,7 +17,8 @@ const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_GENRE: `LOAD_GENRE`,
   LOAD_FAVORITES: `LOAD_FAVORITES`,
-  RESET_REVIEWS: `RESET_REVIEWS`
+  RESET_REVIEWS: `RESET_REVIEWS`,
+  UPDATE_FILM: `UPDATE_FILM`
 };
 
 const ActionCreator = {
@@ -24,6 +26,12 @@ const ActionCreator = {
     return {
       type: ActionType.LOAD_FILMS,
       payload: films
+    };
+  },
+  updateFilm: (film) => {
+    return {
+      type: ActionType.UPDATE_FILM,
+      payload: film
     };
   },
   loadFavorites: (favorites) => {
@@ -68,10 +76,10 @@ const Operation = {
     return api
       .post(`/favorite/${filmId}/${status}`, {})
       .then((response) => {
-        console.log(response);
+        dispatch(Operation.loadFavorites());
+        dispatch(ActionCreator.updateFilm(response.data));
       })
-      .catch(() => {
-      });
+      .catch(() => {});
   },
   loadReviews: (filmId) => (dispatch, _getState, api) => {
     return api
@@ -115,6 +123,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_GENRE:
       return Object.assign({}, state, {
         genres: getGenerFromData(action.payload)
+      });
+    case ActionType.UPDATE_FILM:
+      return Object.assign({}, state, {
+        films: updateFilmAdapter(state.films, action.payload)
       });
     case ActionType.RESET_REVIEWS:
       return Object.assign({}, state, {

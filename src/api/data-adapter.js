@@ -1,5 +1,8 @@
 import {GENRE_DEFOULT, SERVER_URL_USER} from "../mock/constants.js";
 const FilmDataAdapter = (data) => {
+  return _filmDataAdapter(data);
+};
+const _filmDataAdapter = (data) => {
   return {
     bgColor: data.background_color,
     srcBgImage: data.background_image,
@@ -7,7 +10,7 @@ const FilmDataAdapter = (data) => {
     director: data.director,
     genre: data.genre,
     id: data.id,
-    isFavourite: data.is_favorite,
+    isFavorite: data.is_favorite,
     title: data.name,
     pageUrl: data.name,
     srcPosterImage: data.poster_image,
@@ -49,6 +52,16 @@ const getGenerFromData = (data) => {
   }
   return uniqueGeners;
 };
+const updateFilmAdapter = (array, film) => {
+  const filmNew = _filmDataAdapter(film);
+  const elementPos = array
+    .map((item) => {
+      return item.id;
+    })
+    .indexOf(filmNew.id);
+  array[elementPos] = filmNew;
+  return array;
+};
 const ratingToString = (rating) => {
   return parseFloat(Math.round(rating * 100) / 100)
     .toFixed(1)
@@ -83,4 +96,10 @@ const setRatingLevel = (rating) => {
   }
   return `Bad`;
 };
-export {FilmDataAdapter, ReviewDataAdapter, getGenerFromData, userDataAdapter};
+export {
+  FilmDataAdapter,
+  ReviewDataAdapter,
+  getGenerFromData,
+  userDataAdapter,
+  updateFilmAdapter
+};

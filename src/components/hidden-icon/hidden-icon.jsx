@@ -21,6 +21,23 @@ const HiddenIcon = () => {
             />
           </g>
         </symbol>
+        <symbol id="remove" viewBox="0 0 19 20">
+          <title>-</title>
+          <desc>Created with Sketch.</desc>
+          <g
+            id="remove-1"
+            stroke="none"
+            strokeWidth="1"
+            fill="none"
+            fillRule="evenodd"
+          >
+            <polygon
+              id="-"
+              fill="#EEE5B5"
+              points="10.777832 11.2880859 0.627929688 11.2880859 0.627929688 8.92675781 10.777832 8.92675781 18.5664062 8.92675781 18.5664062 11.2880859"
+            />
+          </g>
+        </symbol>
         <symbol id="full-screen" viewBox="0 0 27 27">
           <path
             fillRule="evenodd"

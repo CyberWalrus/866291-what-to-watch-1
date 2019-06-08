@@ -26,6 +26,10 @@ const BodyOverflow = {
   VISIBLE: `visible`,
   HIDDEN: `hidden`
 };
+const FavoriteStatus = {
+  ADD: 1,
+  REMOVE: 0
+};
 const LINK_STYLE = `inherit`;
 export {
   FilmRoute,
@@ -37,5 +41,6 @@ export {
   OptionsVideoFull,
   BodyOverflow,
   NUMBER_FILM_GENRE,
-  LINK_STYLE
+  LINK_STYLE,
+  FavoriteStatus
 };

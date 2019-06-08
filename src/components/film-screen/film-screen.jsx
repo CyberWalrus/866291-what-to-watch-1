@@ -1,7 +1,6 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {Link} from "react-router-dom";
 import {getFilm} from "../../store/data/selectors.js";
 import Footer from "../footer/footer.jsx";
 import HiddenIcon from "../hidden-icon/hidden-icon.jsx";
@@ -10,10 +9,10 @@ import FilmOverview from "../film-overview/film-overview.jsx";
 import FilmDetails from "../film-details/film-details.jsx";
 import FilmReview from "../film-review/film-review.jsx";
 import FilmNav from "../film-nav/film-nav.jsx";
+import FilmButtonDiv from "../film-button-div/film-button-div.jsx";
 import {FilmRoute} from "../../mock/constants.js";
 import CardList from "../card-list/card-list.jsx";
 import withActiveFilm from "../../hocs/with-active-film/with-active-film.js";
-import RoutePath from "../../routes.js";
 
 const CardListActiveFilm = withActiveFilm(CardList);
 
@@ -33,7 +32,8 @@ const FilmScreen = ({film, changeFilmRoute, route}) => {
       director,
       starrings,
       runTime,
-      id
+      id,
+      isFavorite
     } = film;
     return (
       <Fragment>
@@ -58,33 +58,7 @@ const FilmScreen = ({film, changeFilmRoute, route}) => {
                   <span className="movie-card__genre">{genre}</span>
                   <span className="movie-card__year">{released}</span>
                 </p>
-
-                <div className="movie-card__buttons">
-                  <button
-                    className="btn btn--play movie-card__button"
-                    type="button"
-                  >
-                    <svg viewBox="0 0 19 19" width="19" height="19">
-                      <use xlinkHref="#play-s" />
-                    </svg>
-                    <span>Play</span>
-                  </button>
-                  <button
-                    className="btn btn--list movie-card__button"
-                    type="button"
-                  >
-                    <svg viewBox="0 0 19 20" width="19" height="20">
-                      <use xlinkHref="#add" />
-                    </svg>
-                    <span>My list</span>
-                  </button>
-                  <Link
-                    to={RoutePath.ADD_REVIEW.replace(`:id`, id)}
-                    className="btn movie-card__button"
-                  >
-                    Add review
-                  </Link>
-                </div>
+                <FilmButtonDiv id={id} isFavorite={isFavorite}/>
               </div>
             </div>
           </div>
@@ -162,6 +136,7 @@ FilmScreen.propTypes = {
     ratingLevel: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     director: PropTypes.string.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
     starrings: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     runTime: PropTypes.number.isRequired
   })
