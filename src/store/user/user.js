@@ -44,6 +44,7 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.signIn(response.data));
         dispatch(ActionCreator.requireAuthorization(true));
+        dispatch(OperationData.loadFilms());
         dispatch(OperationData.loadFavorites());
       })
       .catch((error) => {
