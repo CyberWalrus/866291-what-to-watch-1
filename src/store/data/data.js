@@ -8,14 +8,15 @@ const initialState = {
   films: [],
   favorites: [],
   genres: [],
-  reviews: []
+  reviews: [],
+  errorMessage: ``
 };
 
 const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_GENRE: `LOAD_GENRE`,
   LOAD_FAVORITES: `LOAD_FAVORITES`,
-  LOAD_REVIEWS: `LOAD_REVIEWS`
+  RESET_REVIEWS: `RESET_REVIEWS`
 };
 
 const ActionCreator = {
@@ -42,6 +43,12 @@ const ActionCreator = {
       type: ActionType.LOAD_GENRE,
       payload: films
     };
+  },
+  resetReviews: () => {
+    return {
+      type: ActionType.RESET_REVIEWS,
+      payload: []
+    };
   }
 };
 
@@ -57,10 +64,37 @@ const Operation = {
       dispatch(ActionCreator.loadFavorites(response.data));
     });
   },
+  sendFavorite: (status, filmId) => (dispatch, _getState, api) => {
+    return api
+      .post(`/favorite/${filmId}/${status}`, {})
+      .then((response) => {
+        console.log(response);
+      })
+      .catch(() => {
+      });
+  },
   loadReviews: (filmId) => (dispatch, _getState, api) => {
-    return api.get(`/comments/${filmId}`).then((response) => {
-      dispatch(ActionCreator.loadReviews(response.data));
-    });
+    return api
+      .get(`/comments/${filmId}`)
+      .then((response) => {
+        dispatch(ActionCreator.loadReviews(response.data));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.resetReviews());
+      });
+  },
+  sendReview: (rating, comment, filmId) => (dispatch, _getState, api) => {
+    return api
+      .post(`/comments/${filmId}`, {
+        rating,
+        comment
+      })
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        return error;
+      });
   }
 };
 
@@ -81,6 +115,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_GENRE:
       return Object.assign({}, state, {
         genres: getGenerFromData(action.payload)
+      });
+    case ActionType.RESET_REVIEWS:
+      return Object.assign({}, state, {
+        reviews: action.payload
       });
   }
 

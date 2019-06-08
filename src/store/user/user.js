@@ -2,7 +2,7 @@ import {userDataAdapter} from "../../api/data-adapter.js";
 import {Operation as OperationData} from "../data/data.js";
 
 const initialState = {
-  isAuthorizationRequired: true,
+  isAuthorizationRequired: false,
   user: {},
   errorMessage: ``
 };
@@ -51,7 +51,6 @@ const Operation = {
         dispatch(ActionCreator.requireAuthorization(false));
       });
   },
-
   logOut: () => {
     ActionCreator.logOut();
     ActionCreator.requireAuthorization(false);

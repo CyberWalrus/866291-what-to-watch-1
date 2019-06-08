@@ -1,5 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {compose} from "recompose";
+import {getError} from "../../store/data/selectors.js";
+import {Operation} from "../../store/data/data.js";
 
 const withReviewState = (Component) => {
   class WithReviewState extends React.PureComponent {
@@ -24,7 +28,11 @@ const withReviewState = (Component) => {
       });
     }
     handleFormSubmit(event) {
+      const rating = this.state.ratingSelected;
+      const comment = this.state.text;
+      const filmId = this.props.id;
       event.preventDefault();
+      this.props.sendReview(rating, comment, filmId);
     }
 
     render() {
@@ -41,9 +49,27 @@ const withReviewState = (Component) => {
     }
   }
   WithReviewState.propTypes = {
-    id: PropTypes.number
+    id: PropTypes.number,
+    errorMessage: PropTypes.string.isRequired,
+    sendReview: PropTypes.func.isRequired
   };
   return WithReviewState;
 };
 
-export default withReviewState;
+const mapStateToProps = (state, ownProps) =>
+  Object.assign({}, ownProps, {
+    errorMessage: getError(state)
+  });
+const mapDispatchToProps = (dispatch) => ({
+  sendReview: (rating, comment, filmId) =>
+    dispatch(Operation.sendReview(rating, comment, filmId))
+});
+export {withReviewState};
+
+export default compose(
+    connect(
+        mapStateToProps,
+        mapDispatchToProps
+    ),
+    withReviewState
+);

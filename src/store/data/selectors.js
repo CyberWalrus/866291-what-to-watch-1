@@ -46,4 +46,8 @@ const getGeners = (state) => {
   return state[NAME_SPACE].genres;
 };
 
-export {getFilms, getFilm, getGeners, getFavorites, getReviews};
+
+const getError = (state) => {
+  return state[NAME_SPACE].errorMessage;
+};
+export {getFilms, getFilm, getGeners, getFavorites, getReviews, getError};
