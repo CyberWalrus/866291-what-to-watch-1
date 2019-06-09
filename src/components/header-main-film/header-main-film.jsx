@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import Header from "../header/header.jsx";
 import {connect} from "react-redux";
 import {getFilm} from "../../store/data/selectors.js";
+import FilmButtonDiv from "../film-button-div/film-button-div.jsx";
 
-const HeaderMainFilm = ({film, onVideoScreenOpen}) => {
+const HeaderMainFilm = ({film}) => {
   if (film) {
     return (
       <Fragment>
@@ -35,27 +36,10 @@ const HeaderMainFilm = ({film, onVideoScreenOpen}) => {
                   <span className="movie-card__year">{film.released}</span>
                 </p>
 
-                <div className="movie-card__buttons">
-                  <button
-                    className="btn btn--play movie-card__button"
-                    type="button"
-                    onClick={onVideoScreenOpen}
-                  >
-                    <svg viewBox="0 0 19 19" width="19" height="19">
-                      <use xlinkHref="#play-s" />
-                    </svg>
-                    <span>Play</span>
-                  </button>
-                  <button
-                    className="btn btn--list movie-card__button"
-                    type="button"
-                  >
-                    <svg viewBox="0 0 19 20" width="19" height="20">
-                      <use xlinkHref="#remove" />
-                    </svg>
-                    <span>My list</span>
-                  </button>
-                </div>
+                <FilmButtonDiv
+                  id={film.id}
+                  isFavorite={film.isFavorite}
+                />
               </div>
             </div>
           </div>
@@ -66,7 +50,6 @@ const HeaderMainFilm = ({film, onVideoScreenOpen}) => {
   return <Header />;
 };
 HeaderMainFilm.propTypes = {
-  onVideoScreenOpen: PropTypes.func.isRequired,
   film: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,

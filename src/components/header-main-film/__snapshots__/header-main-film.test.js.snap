@@ -100,7 +100,7 @@ exports[`HeaderMainFilm correctly renders after relaunch 1`] = `
         >
           <button
             className="btn btn--play movie-card__button"
-            onClick={[MockFunction]}
+            onClick={[Function]}
             type="button"
           >
             <svg
@@ -116,9 +116,10 @@ exports[`HeaderMainFilm correctly renders after relaunch 1`] = `
               Play
             </span>
           </button>
-          <button
+          <a
             className="btn btn--list movie-card__button"
-            type="button"
+            href="/login"
+            onClick={[Function]}
           >
             <svg
               height="20"
@@ -126,13 +127,13 @@ exports[`HeaderMainFilm correctly renders after relaunch 1`] = `
               width="19"
             >
               <use
-                xlinkHref="#remove"
+                xlinkHref="#add"
               />
             </svg>
             <span>
               My list
             </span>
-          </button>
+          </a>
         </div>
       </div>
     </div>

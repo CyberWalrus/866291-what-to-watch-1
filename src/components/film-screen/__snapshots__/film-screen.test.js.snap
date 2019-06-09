@@ -238,6 +238,7 @@ Array [
           >
             <button
               className="btn btn--play movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -253,10 +254,10 @@ Array [
                 Play
               </span>
             </button>
-            <button
+            <a
               className="btn btn--list movie-card__button"
+              href="/login"
               onClick={[Function]}
-              type="button"
             >
               <svg
                 height="20"
@@ -270,7 +271,7 @@ Array [
               <span>
                 My list
               </span>
-            </button>
+            </a>
             <a
               className="btn movie-card__button"
               href="/film/1/review"

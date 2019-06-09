@@ -1,19 +1,20 @@
 import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import withVideoScreen from "./with-video-screen.js";
+import {withVideoScreenState} from "./with-video-screen-state.js";
 
 Enzyme.configure({adapter: new Adapter()});
 
-const WithVideoScreen = withVideoScreen(() => <div />);
+const WithVideoScreenState = withVideoScreenState(() => <div />);
 
-describe(`<WithVideoScreen/>`, () => {
+describe(`<WithVideoScreenState/>`, () => {
+  const handlClick = jest.fn();
   it(`Should default state`, () => {
     const tree = mount(
-        <WithVideoScreen
-        />
+        <WithVideoScreenState playFilmId={0} resetPlayFilmId={handlClick} />
     );
     expect(tree.state(`isOpen`)).toEqual(false);
     expect(tree.state(`isPlaying`)).toEqual(false);
+    expect(tree.state(`filmId`)).toEqual(0);
   });
 });

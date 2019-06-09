@@ -150,7 +150,7 @@ Array [
       Object {
         "background": "url(https://es31-server.appspot.com/wtw/static/film/background/Shutter_Island.jpg) no-repeat center center fixed",
         "backgroundSize": "cover",
-        "zIndex": 10,
+        "zIndex": "100",
       }
     }
   >

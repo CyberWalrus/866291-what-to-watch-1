@@ -8,6 +8,7 @@ it(`VideoScreen correctly renders after relaunch`, () => {
   const tree = renderer
     .create(
         <VideoScreen
+          filmId={FILM.id}
           isPlaying={false}
           onPlayChange={handleClick}
           onVideoScreenClose={handleClick}

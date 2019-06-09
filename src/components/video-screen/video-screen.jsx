@@ -12,7 +12,11 @@ const VideoScreen = ({onVideoScreenClose, isPlaying, film}) => {
       <HiddenIcon />
       <div
         className="player"
-        style={{zIndex: 10, background: `url(${film.srcBgImage}) no-repeat center center fixed`, backgroundSize: `cover`}}
+        style={{
+          zIndex: `100`,
+          background: `url(${film.srcBgImage}) no-repeat center center fixed`,
+          backgroundSize: `cover`
+        }}
       >
         <VideoPlayer
           options={OptionsVideoFull}
@@ -33,6 +37,7 @@ const VideoScreen = ({onVideoScreenClose, isPlaying, film}) => {
   );
 };
 VideoScreen.propTypes = {
+  filmId: PropTypes.number.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   onPlayChange: PropTypes.func.isRequired,
   onVideoScreenClose: PropTypes.func.isRequired,
@@ -57,7 +62,7 @@ VideoScreen.propTypes = {
 };
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
-    film: getFilm(state, 1)
+    film: getFilm(state, ownProps.filmId)
   });
 
 export {VideoScreen};

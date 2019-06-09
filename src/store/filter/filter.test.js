@@ -4,7 +4,8 @@ import {GENRE_DEFOULT} from "../../mock/constants.js";
 describe(`Reducer works correctly`, () => {
   it(`Reducer without additional parameters should return inital state`, () => {
     expect(reducer(undefined, {})).toEqual({
-      genreSelected: GENRE_DEFOULT
+      genreSelected: GENRE_DEFOULT,
+      playFilmId: 0,
     });
   });
 
@@ -19,7 +20,8 @@ describe(`Reducer works correctly`, () => {
             }
         )
     ).toEqual({
-      genreSelected: GENRE_DEFOULT
+      genreSelected: GENRE_DEFOULT,
+      playFilmId: 0,
     });
   });
   it(`Reducer test change genre`, () => {
@@ -34,7 +36,7 @@ describe(`Reducer works correctly`, () => {
             }
         )
     ).toEqual({
-      genreSelected: `comedy`
+      genreSelected: `comedy`,
     });
   });
 });

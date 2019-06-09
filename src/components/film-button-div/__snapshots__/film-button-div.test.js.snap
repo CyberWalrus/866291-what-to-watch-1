@@ -6,6 +6,7 @@ exports[`FilmButtonDiv correctly renders after relaunch 1`] = `
 >
   <button
     className="btn btn--play movie-card__button"
+    onClick={[Function]}
     type="button"
   >
     <svg
@@ -21,10 +22,10 @@ exports[`FilmButtonDiv correctly renders after relaunch 1`] = `
       Play
     </span>
   </button>
-  <button
+  <a
     className="btn btn--list movie-card__button"
+    href="/login"
     onClick={[Function]}
-    type="button"
   >
     <svg
       height="20"
@@ -38,13 +39,6 @@ exports[`FilmButtonDiv correctly renders after relaunch 1`] = `
     <span>
       My list
     </span>
-  </button>
-  <a
-    className="btn movie-card__button"
-    href="/film/1/review"
-    onClick={[Function]}
-  >
-    Add review
   </a>
 </div>
 `;

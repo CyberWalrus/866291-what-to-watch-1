@@ -5,21 +5,23 @@ import Footer from "../footer/footer.jsx";
 import HiddenIcon from "../hidden-icon/hidden-icon.jsx";
 import HeaderMainFilm from "../header-main-film/header-main-film.jsx";
 import withActiveFilm from "../../hocs/with-active-film/with-active-film.js";
-import withVideoScreen from "../../hocs/with-video-screen/with-video-screen.js";
+import VideScreen from "../video-screen/video-screen.jsx";
+import withVideoScreenState from "../../hocs/with-video-screen-state/with-video-screen-state.js";
 
 const CardListActiveFilm = withActiveFilm(CardList);
-const HeaderVideoScren = withVideoScreen(HeaderMainFilm);
+const VideScreenState = withVideoScreenState(VideScreen);
 
 const MainScreen = () => {
   return (
     <Fragment>
       <HiddenIcon />
-      <HeaderVideoScren />
+      <VideScreenState />
+      <HeaderMainFilm />
       <div className="page-content">
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <Filter />
-          <CardListActiveFilm/>
+          <CardListActiveFilm />
         </section>
         <Footer />
       </div>

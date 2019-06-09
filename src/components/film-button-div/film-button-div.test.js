@@ -13,6 +13,8 @@ it(`FilmButtonDiv correctly renders after relaunch`, () => {
             id={FILM.id}
             isFavorite={false}
             sendFavorite={handleClick}
+            isAuthorizationRequired={false}
+            onVideoScreenOpen={handleClick}
           />
         </BrowserRouter>
     )

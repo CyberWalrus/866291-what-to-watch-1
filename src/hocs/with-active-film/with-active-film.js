@@ -54,6 +54,9 @@ const withActiveFilm = (Component) => {
         });
       }
     }
+    componentWillUnmount() {
+      this.timeOutList = {};
+    }
     render() {
       if (this.state.redirectId) {
         return (

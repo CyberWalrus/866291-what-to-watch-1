@@ -12,9 +12,12 @@ import FilmNav from "../film-nav/film-nav.jsx";
 import FilmButtonDiv from "../film-button-div/film-button-div.jsx";
 import {FilmRoute} from "../../mock/constants.js";
 import CardList from "../card-list/card-list.jsx";
+import VideScreen from "../video-screen/video-screen.jsx";
 import withActiveFilm from "../../hocs/with-active-film/with-active-film.js";
+import withVideoScreenState from "../../hocs/with-video-screen-state/with-video-screen-state.js";
 
 const CardListActiveFilm = withActiveFilm(CardList);
+const VideScreenState = withVideoScreenState(VideScreen);
 
 const FilmScreen = ({film, changeFilmRoute, route}) => {
   if (film) {
@@ -38,6 +41,7 @@ const FilmScreen = ({film, changeFilmRoute, route}) => {
     return (
       <Fragment>
         <HiddenIcon />
+        <VideScreenState />
         <section
           className="movie-card movie-card--full"
           style={{backgroundColor: bgColor}}
@@ -58,7 +62,11 @@ const FilmScreen = ({film, changeFilmRoute, route}) => {
                   <span className="movie-card__genre">{genre}</span>
                   <span className="movie-card__year">{released}</span>
                 </p>
-                <FilmButtonDiv id={id} isFavorite={isFavorite}/>
+                <FilmButtonDiv
+                  id={id}
+                  isFavorite={isFavorite}
+                  isShowReview={true}
+                />
               </div>
             </div>
           </div>
