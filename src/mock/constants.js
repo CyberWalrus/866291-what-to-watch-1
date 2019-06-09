@@ -31,6 +31,11 @@ const FavoriteStatus = {
   REMOVE: 0
 };
 const LINK_STYLE = `inherit`;
+const DisabledStyle = {
+  opacity: `0.4`,
+  border: `1px solid rgba(217,205,141,.3)`,
+  cursor: `not-allowed`
+};
 export {
   FilmRoute,
   GENRE_DEFOULT,
@@ -42,5 +47,6 @@ export {
   BodyOverflow,
   NUMBER_FILM_GENRE,
   LINK_STYLE,
-  FavoriteStatus
+  FavoriteStatus,
+  DisabledStyle
 };

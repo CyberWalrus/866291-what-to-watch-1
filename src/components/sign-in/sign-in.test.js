@@ -17,9 +17,11 @@ it(`SignInPage correctly renders after relaunch`, () => {
               email={``}
               password={``}
               errorMessage={``}
-              onEmailInputChange={handleClick}
-              onPasswordInputChange={handleClick}
+              handleUserInput={handleClick}
               onSubmitClick={handleClick}
+              formErrors={{}}
+              formValid={false}
+
             />
           </BrowserRouter>
         </Provider>

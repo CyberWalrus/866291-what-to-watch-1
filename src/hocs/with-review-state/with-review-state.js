@@ -10,8 +10,12 @@ const withReviewState = (Component) => {
     constructor(props) {
       super(props);
       this.state = {
-        ratingSelected: `1`,
-        text: ``
+        ratingSelected: `0`,
+        text: ``,
+        formErrors: {ratingSelected: ``, text: ``},
+        ratingValid: false,
+        textValid: false,
+        formValid: false
       };
       this.handleTextChange = this.handleTextChange.bind(this);
       this.handleFormSubmit = this.handleFormSubmit.bind(this);

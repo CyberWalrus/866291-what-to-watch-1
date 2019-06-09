@@ -18,7 +18,7 @@ describe(`<WithReviewState/>`, () => {
           sendReview={handleClick}
         />
     );
-    expect(tree.state(`ratingSelected`)).toEqual(`1`);
+    expect(tree.state(`ratingSelected`)).toEqual(`0`);
     expect(tree.state(`text`)).toEqual(``);
   });
 });

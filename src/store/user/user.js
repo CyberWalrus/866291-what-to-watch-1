@@ -31,6 +31,12 @@ const ActionCreator = {
       type: ActionType.SET_ERROR,
       payload: error
     };
+  },
+  resetError: () => {
+    return {
+      type: ActionType.SET_ERROR,
+      payload: initialState.errorMessage
+    };
   }
 };
 

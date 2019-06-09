@@ -11,7 +11,7 @@ describe(`<WithAuthorizationState/>`, () => {
   it(`Should default state`, () => {
     const handleClick = jest.fn();
     const tree = mount(
-        <WithAuthorizationState errorMessage={``} signIn={handleClick} />
+        <WithAuthorizationState errorMessage={``} signIn={handleClick} resetError={handleClick} />
     );
     expect(tree.state(`email`)).toEqual(``);
     expect(tree.state(`password`)).toEqual(``);

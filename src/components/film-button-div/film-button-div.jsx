@@ -12,14 +12,14 @@ import {FavoriteStatus} from "../../mock/constants.js";
 class FilmButtonDiv extends PureComponent {
   constructor(props) {
     super(props);
-    this._handlOnClickFavorite = this._handlOnClickFavorite.bind(this);
-    this._handlOnClickPlay = this._handlOnClickPlay.bind(this);
+    this._handleOnClickFavorite = this._handleOnClickFavorite.bind(this);
+    this._handleOnClickPlay = this._handleOnClickPlay.bind(this);
   }
-  _handlOnClickPlay() {
+  _handleOnClickPlay() {
     const {id} = this.props;
     this.props.onVideoScreenOpen(id);
   }
-  _handlOnClickFavorite() {
+  _handleOnClickFavorite() {
     const {id, isFavorite} = this.props;
     const status = isFavorite ? FavoriteStatus.REMOVE : FavoriteStatus.ADD;
     this.props.sendFavorite(status, id);
@@ -36,7 +36,7 @@ class FilmButtonDiv extends PureComponent {
         <button
           className="btn btn--play movie-card__button"
           type="button"
-          onClick={this._handlOnClickPlay}
+          onClick={this._handleOnClickPlay}
         >
           <svg viewBox="0 0 19 19" width="19" height="19">
             <use xlinkHref="#play-s" />
@@ -47,7 +47,7 @@ class FilmButtonDiv extends PureComponent {
           <button
             className="btn btn--list movie-card__button"
             type="button"
-            onClick={this._handlOnClickFavorite}
+            onClick={this._handleOnClickFavorite}
           >
             <svg viewBox="0 0 19 20" width="19" height="20">
               <use xlinkHref={isFavorite ? `#remove` : `#add`} />

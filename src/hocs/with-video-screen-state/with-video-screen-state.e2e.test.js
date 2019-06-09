@@ -8,10 +8,10 @@ Enzyme.configure({adapter: new Adapter()});
 const WithVideoScreenState = withVideoScreenState(() => <div />);
 
 describe(`<WithVideoScreenState/>`, () => {
-  const handlClick = jest.fn();
+  const handleClick = jest.fn();
   it(`Should default state`, () => {
     const tree = mount(
-        <WithVideoScreenState playFilmId={0} resetPlayFilmId={handlClick} />
+        <WithVideoScreenState playFilmId={0} resetPlayFilmId={handleClick} />
     );
     expect(tree.state(`isOpen`)).toEqual(false);
     expect(tree.state(`isPlaying`)).toEqual(false);

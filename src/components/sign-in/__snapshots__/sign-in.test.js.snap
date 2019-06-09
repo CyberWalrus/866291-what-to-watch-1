@@ -47,11 +47,7 @@ exports[`SignInPage correctly renders after relaunch 1`] = `
     >
       <div
         className="sign-in__message"
-      >
-        <p>
-          
-        </p>
-      </div>
+      />
       <div
         className="sign-in__fields"
       >
@@ -80,7 +76,7 @@ exports[`SignInPage correctly renders after relaunch 1`] = `
           <input
             className="sign-in__input"
             id="user-password"
-            name="user-password"
+            name="password"
             onChange={[MockFunction]}
             placeholder="Password"
             type="password"
@@ -98,7 +94,15 @@ exports[`SignInPage correctly renders after relaunch 1`] = `
         className="sign-in__submit"
       >
         <button
-          className="sign-in__btn"
+          className="sign-in__btn sign-in__btn--disavled"
+          disabled={true}
+          style={
+            Object {
+              "border": "1px solid rgba(217,205,141,.3)",
+              "cursor": "not-allowed",
+              "opacity": "0.4",
+            }
+          }
           type="submit"
         >
           Sign in
