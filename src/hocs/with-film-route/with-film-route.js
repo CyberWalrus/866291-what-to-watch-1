@@ -1,9 +1,9 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {FilmRoute} from "../../mock/constants.js";
 
 const withFilmRoute = (Component) => {
-  class WithFilmRoute extends React.PureComponent {
+  class WithFilmRoute extends PureComponent {
     constructor(props) {
       super(props);
 
