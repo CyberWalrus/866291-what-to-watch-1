@@ -47,7 +47,7 @@ const getGeners = (state) => {
 };
 
 
-const getError = (state) => {
-  return state[NAME_SPACE].errorMessage;
+const getReviewMessage = (state) => {
+  return state[NAME_SPACE].reviewMessage;
 };
-export {getFilms, getFilm, getGeners, getFavorites, getReviews, getError};
+export {getFilms, getFilm, getGeners, getFavorites, getReviews, getReviewMessage};

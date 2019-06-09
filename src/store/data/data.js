@@ -4,21 +4,24 @@ import {
   ReviewDataAdapter,
   updateFilmAdapter
 } from "../../api/data-adapter.js";
+import {REVIEW_MESSAGE} from "../../mock/constants.js";
 
 const initialState = {
   films: [],
   favorites: [],
   genres: [],
   reviews: [],
-  errorMessage: ``
+  reviewMessage: ``
 };
 
 const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_GENRE: `LOAD_GENRE`,
   LOAD_FAVORITES: `LOAD_FAVORITES`,
+  LOAD_REVIEWS: `LOAD_REVIEWS`,
   RESET_REVIEWS: `RESET_REVIEWS`,
-  UPDATE_FILM: `UPDATE_FILM`
+  UPDATE_FILM: `UPDATE_FILM`,
+  SET_REVIEW_MESSAGE: `SET_REVIEW_MESSAGE`
 };
 
 const ActionCreator = {
@@ -56,6 +59,18 @@ const ActionCreator = {
     return {
       type: ActionType.RESET_REVIEWS,
       payload: []
+    };
+  },
+  setReviewMessage: (message) => {
+    return {
+      type: ActionType.SET_REVIEW_MESSAGE,
+      payload: message
+    };
+  },
+  resetReviewMessage: () => {
+    return {
+      type: ActionType.SET_REVIEW_MESSAGE,
+      payload: initialState.reviewMessage
     };
   }
 };
@@ -97,11 +112,11 @@ const Operation = {
         rating,
         comment
       })
-      .then((response) => {
-        return response;
+      .then(() => {
+        dispatch(ActionCreator.setReviewMessage(REVIEW_MESSAGE));
       })
       .catch((error) => {
-        return error;
+        dispatch(ActionCreator.setReviewMessage(error.toString()));
       });
   }
 };
@@ -127,6 +142,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.UPDATE_FILM:
       return Object.assign({}, state, {
         films: updateFilmAdapter(state.films, action.payload)
+      });
+    case ActionType.SET_REVIEW_MESSAGE:
+      return Object.assign({}, state, {
+        reviewMessage: action.payload
       });
     case ActionType.RESET_REVIEWS:
       return Object.assign({}, state, {

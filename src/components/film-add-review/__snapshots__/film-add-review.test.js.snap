@@ -249,6 +249,8 @@ Array [
     </div>
     <div
       className="add-review"
+      disabled={false}
+      style={Object {}}
     >
       <form
         className="add-review__form"
@@ -264,7 +266,7 @@ Array [
               checked={true}
               className="rating__input"
               id="star-1"
-              name="rating"
+              name="ratingSelected"
               onChange={[MockFunction]}
               type="radio"
               value="1"
@@ -279,7 +281,7 @@ Array [
               checked={false}
               className="rating__input"
               id="star-2"
-              name="rating"
+              name="ratingSelected"
               onChange={[MockFunction]}
               type="radio"
               value="2"
@@ -294,7 +296,7 @@ Array [
               checked={false}
               className="rating__input"
               id="star-3"
-              name="rating"
+              name="ratingSelected"
               onChange={[MockFunction]}
               type="radio"
               value="3"
@@ -309,7 +311,7 @@ Array [
               checked={false}
               className="rating__input"
               id="star-4"
-              name="rating"
+              name="ratingSelected"
               onChange={[MockFunction]}
               type="radio"
               value="4"
@@ -324,7 +326,7 @@ Array [
               checked={false}
               className="rating__input"
               id="star-5"
-              name="rating"
+              name="ratingSelected"
               onChange={[MockFunction]}
               type="radio"
               value="5"
@@ -345,7 +347,7 @@ Array [
             id="review-text"
             maxLength="300"
             minLength="50"
-            name="review-text"
+            name="text"
             onChange={[MockFunction]}
             placeholder="Review text"
             value=""
@@ -355,6 +357,14 @@ Array [
           >
             <button
               className="add-review__btn"
+              disabled={true}
+              style={
+                Object {
+                  "border": "inherit",
+                  "cursor": "not-allowed",
+                  "opacity": "0.4",
+                }
+              }
               type="submit"
             >
               Post

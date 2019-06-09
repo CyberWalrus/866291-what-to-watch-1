@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {getFilm} from "../../store/data/selectors.js";
 import HiddenIcon from "../hidden-icon/hidden-icon.jsx";
 import Header from "../header/header.jsx";
+import {DisabledStyle} from "../../mock/constants.js";
 
 const ratinRadioValues = [`1`, `2`, `3`, `4`, `5`];
 const FilmAddReview = ({
@@ -11,8 +12,9 @@ const FilmAddReview = ({
   text,
   ratingSelected,
   handleFormSubmit,
-  handleOptionChange,
-  handleTextChange
+  handleUserInput,
+  formValid,
+  isActive
 }) => {
   if (film) {
     return (
@@ -41,7 +43,11 @@ const FilmAddReview = ({
             </div>
           </div>
 
-          <div className="add-review">
+          <div
+            className="add-review"
+            disabled={!isActive}
+            style={!isActive ? DisabledStyle : {}}
+          >
             <form onSubmit={handleFormSubmit} className="add-review__form">
               <div className="rating">
                 <div className="rating__stars">
@@ -52,10 +58,10 @@ const FilmAddReview = ({
                           className="rating__input"
                           id={`star-${item}`}
                           type="radio"
-                          name="rating"
+                          name="ratingSelected"
                           value={item}
                           checked={ratingSelected === item}
-                          onChange={handleOptionChange}
+                          onChange={handleUserInput}
                         />
                         <label
                           className="rating__label"
@@ -71,16 +77,21 @@ const FilmAddReview = ({
               <div className="add-review__text">
                 <textarea
                   className="add-review__textarea"
-                  name="review-text"
+                  name="text"
                   id="review-text"
                   placeholder="Review text"
                   maxLength="300"
                   minLength="50"
                   value={text}
-                  onChange={handleTextChange}
+                  onChange={handleUserInput}
                 />
                 <div className="add-review__submit">
-                  <button className="add-review__btn" type="submit">
+                  <button
+                    className="add-review__btn"
+                    type="submit"
+                    disabled={!formValid}
+                    style={!formValid ? DisabledStyle : {}}
+                  >
                     Post
                   </button>
                 </div>
@@ -98,8 +109,9 @@ FilmAddReview.propTypes = {
   id: PropTypes.number.isRequired,
   ratingSelected: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  handleTextChange: PropTypes.func.isRequired,
-  handleOptionChange: PropTypes.func.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  formValid: PropTypes.bool.isRequired,
+  handleUserInput: PropTypes.func.isRequired,
   handleFormSubmit: PropTypes.func.isRequired,
   film: PropTypes.shape({
     id: PropTypes.number.isRequired,

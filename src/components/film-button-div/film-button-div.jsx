@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import RoutePath from "../../routes.js";
-import {getError} from "../../store/data/selectors.js";
 import {getAuthorizationStatus} from "../../store/user/selectors.js";
 import {Operation} from "../../store/data/data.js";
 import {ActionCreator} from "../../store/filter/filter.js";
@@ -90,7 +89,6 @@ FilmButtonDiv.propTypes = {
 };
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
-    errorMessage: getError(state),
     isAuthorizationRequired: getAuthorizationStatus(state)
   });
 const mapDispatchToProps = (dispatch) => ({

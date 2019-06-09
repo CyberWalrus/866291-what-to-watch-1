@@ -33,9 +33,10 @@ const FavoriteStatus = {
 const LINK_STYLE = `inherit`;
 const DisabledStyle = {
   opacity: `0.4`,
-  border: `1px solid rgba(217,205,141,.3)`,
+  border: `inherit`,
   cursor: `not-allowed`
 };
+const REVIEW_MESSAGE = `OK`;
 export {
   FilmRoute,
   GENRE_DEFOULT,
@@ -48,5 +49,6 @@ export {
   NUMBER_FILM_GENRE,
   LINK_STYLE,
   FavoriteStatus,
-  DisabledStyle
+  DisabledStyle,
+  REVIEW_MESSAGE
 };

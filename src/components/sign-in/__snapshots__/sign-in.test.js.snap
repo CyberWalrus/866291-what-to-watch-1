@@ -98,7 +98,7 @@ exports[`SignInPage correctly renders after relaunch 1`] = `
           disabled={true}
           style={
             Object {
-              "border": "1px solid rgba(217,205,141,.3)",
+              "border": "inherit",
               "cursor": "not-allowed",
               "opacity": "0.4",
             }

@@ -19,8 +19,9 @@ it(`FilmAddReview correctly renders after relaunch`, () => {
               id={FILM.id}
               ratingSelected={`1`}
               text={``}
-              handleTextChange={handleClick}
-              handleOptionChange={handleClick}
+              isActive={true}
+              formValid={false}
+              handleUserInput={handleClick}
               handleFormSubmit={handleClick}
             />
           </BrowserRouter>

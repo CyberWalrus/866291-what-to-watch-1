@@ -14,11 +14,16 @@ describe(`<WithReviewState/>`, () => {
     const tree = mount(
         <WithReviewState
           id={FILM.id}
-          errorMessage={``}
+          reviewMessage={``}
           sendReview={handleClick}
+          resetReviewMessage={handleClick}
         />
     );
     expect(tree.state(`ratingSelected`)).toEqual(`0`);
-    expect(tree.state(`text`)).toEqual(``);
+    expect(tree.state(`ratingValid`)).toEqual(false);
+    expect(tree.state(`textValid`)).toEqual(false);
+    expect(tree.state(`formValid`)).toEqual(false);
+    expect(tree.state(`isActive`)).toEqual(true);
+    expect(tree.state(`redirect`)).toEqual(false);
   });
 });
