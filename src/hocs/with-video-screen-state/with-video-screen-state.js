@@ -13,7 +13,6 @@ const checkHeiht = (pointerPosition = 0, widthElement, padding = 25, video) => {
   }
   const pointerReturn = valueChange;
   const time = video.duration * (valueChange / 100);
-  // Update the video time
   video.currentTime = time;
   return pointerReturn;
 };
