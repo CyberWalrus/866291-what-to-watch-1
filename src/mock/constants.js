@@ -20,7 +20,7 @@ const OptionsVideoFull = {
   height: `100%`,
   isMuted: false,
   isLoop: false,
-  isControls: true
+  isControls: false
 };
 const BodyOverflow = {
   VISIBLE: `visible`,

@@ -55,7 +55,8 @@ const withActiveFilm = (Component) => {
       }
     }
     componentWillUnmount() {
-      this.timeOutList = {};
+      const id = this.state.activeFilm;
+      clearTimeout(this.timeOutList[id]);
     }
     render() {
       if (this.state.redirectId) {
