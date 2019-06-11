@@ -125,7 +125,7 @@ exports[`VideoScreen correctly renders after relaunch 1`] = `
       <div
         className="player__name"
       >
-        Transpotting
+        Shutter Island
       </div>
       <button
         className="player__full-screen"
