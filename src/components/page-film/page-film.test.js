@@ -18,7 +18,7 @@ it(`PageFilm correctly renders after relaunch`, () => {
             <PageFilm
               id={FILM.id}
               route={FilmRoute.OVERVIEW}
-              changeFilmRoute={handleClick}
+              onChangeFilmRoute={handleClick}
               film={FILM}
             />
           </BrowserRouter>

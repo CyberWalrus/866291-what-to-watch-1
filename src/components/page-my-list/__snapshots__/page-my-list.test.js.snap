@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MainScreen correctly renders after relaunch 1`] = `
+exports[`PageMyList correctly renders after relaunch 1`] = `
 Array [
   <div
     className="visually-hidden"
@@ -144,49 +144,54 @@ Array [
       </symbol>
     </svg>
   </div>,
-  <header
-    className="page-header movie-card__head"
-  >
-    <div
-      className="logo"
-    >
-      <a
-        className="logo__link"
-        href="/"
-        onClick={[Function]}
-      >
-        <span
-          className="logo__letter logo__letter--1"
-        >
-          W
-        </span>
-        <span
-          className="logo__letter logo__letter--2"
-        >
-          T
-        </span>
-        <span
-          className="logo__letter logo__letter--3"
-        >
-          W
-        </span>
-      </a>
-    </div>
-    <div
-      className="user-block"
-    >
-      <a
-        className="user-block__link"
-        href="/login"
-        onClick={[Function]}
-      >
-        Sign In
-      </a>
-    </div>
-  </header>,
   <div
-    className="page-content"
+    className="user-page"
   >
+    <header
+      className="page-header user-page__head"
+    >
+      <div
+        className="logo"
+      >
+        <a
+          className="logo__link"
+          href="/"
+          onClick={[Function]}
+        >
+          <span
+            className="logo__letter logo__letter--1"
+          >
+            W
+          </span>
+          <span
+            className="logo__letter logo__letter--2"
+          >
+            T
+          </span>
+          <span
+            className="logo__letter logo__letter--3"
+          >
+            W
+          </span>
+        </a>
+      </div>
+      <h1
+        className="page-title user-page__title"
+      >
+        My list
+      </h1>
+      <div
+        className="user-block"
+      >
+        <a
+          className="user-block__link"
+          href="/login"
+          onClick={[Function]}
+        >
+          Sign In
+        </a>
+      </div>
+    </header>
     <section
       className="catalog"
     >
@@ -195,9 +200,6 @@ Array [
       >
         Catalog
       </h2>
-      <ul
-        className="catalog__genres-list"
-      />
       <div
         className="catalog__movies-list"
       />

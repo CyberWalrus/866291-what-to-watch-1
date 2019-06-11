@@ -18,7 +18,7 @@ it(`PageSignIn correctly renders after relaunch`, () => {
               password={``}
               errorMessage={``}
               onChangeUserInput={handleClick}
-              onSubmitClick={handleClick}
+              onClickSubmit={handleClick}
               formErrors={{}}
               formValid={false}
             />

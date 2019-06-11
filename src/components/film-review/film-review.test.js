@@ -9,7 +9,7 @@ it(`FilmReview correctly renders after relaunch`, () => {
     .create(
         <FilmReview
           filmId={FILM.id}
-          loadReviews={handleClick}
+          onLoadReviews={handleClick}
           reviews={REVIEWS}
         />
     )

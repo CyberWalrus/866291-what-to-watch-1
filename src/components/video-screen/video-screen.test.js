@@ -9,9 +9,14 @@ it(`VideoScreen correctly renders after relaunch`, () => {
     .create(
         <VideoScreen
           filmId={FILM.id}
+          time={`00:00`}
+          progressValue={0}
           isPlaying={false}
-          onPlayChange={handleClick}
-          onVideoScreenClose={handleClick}
+          onChangePlay={handleClick}
+          onClickClose={handleClick}
+          onClickFullScreen={handleClick}
+          onSendVideoRef={handleClick}
+          onSendProgressRef={handleClick}
           film={FILM}
         />
     )

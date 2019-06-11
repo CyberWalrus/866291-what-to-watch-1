@@ -51,7 +51,7 @@ exports[`FilmDetails correctly renders after relaunch 1`] = `
       <span
         className="movie-card__details-value"
       >
-        2h 18m
+        1h 44m
       </span>
     </p>
     <p

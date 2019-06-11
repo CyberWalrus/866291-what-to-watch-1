@@ -6,7 +6,7 @@ it(`FilmNav correctly renders after relaunch`, () => {
   const handleClick = jest.fn();
   const tree = renderer
     .create(
-        <FilmNav route={FilmRoute.OVERVIEW} changeFilmRoute={handleClick} />
+        <FilmNav route={FilmRoute.OVERVIEW} onChangeFilmRoute={handleClick} />
     )
     .toJSON();
   expect(tree).toMatchSnapshot();

@@ -15,8 +15,8 @@ describe(`<WithReviewState/>`, () => {
         <WithReviewState
           id={FILM.id}
           reviewMessage={``}
-          sendReview={handleClick}
-          resetReviewMessage={handleClick}
+          onSendReview={handleClick}
+          onResetReviewMessage={handleClick}
         />
     );
     expect(tree.state(`ratingSelected`)).toEqual(`0`);

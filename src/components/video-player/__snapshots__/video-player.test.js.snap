@@ -3,7 +3,7 @@
 exports[`VideoPlayer correctly renders after relaunch 1`] = `
 <video
   className="player__video"
-  controls={true}
+  controls={false}
   height="100%"
   loop={false}
   muted={false}

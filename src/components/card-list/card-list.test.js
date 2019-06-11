@@ -13,11 +13,11 @@ it(`CardList component renders correctly with props`, () => {
           <CardList
             films={FILMS}
             numberFilm={NUMBER_FILM}
-            onShowMoreClick={handleClick}
-            onClickToRedirect={handleClick}
-            setActiveFilm={handleClick}
-            removeActiveFilm={handleClick}
             activeFilm={0}
+            onClickShowMore={handleClick}
+            onMouseEnterCard={handleClick}
+            onMouseLeaveCard={handleClick}
+            onClickToRedirect={handleClick}
           />
         </BrowserRouter>
     )

@@ -11,7 +11,7 @@ describe(`<WithVideoScreenState/>`, () => {
   const handleClick = jest.fn();
   it(`Should default state`, () => {
     const tree = mount(
-        <WithVideoScreenState playFilmId={0} resetPlayFilmId={handleClick} />
+        <WithVideoScreenState playFilmId={0} onResetPlayFilmId={handleClick} />
     );
     expect(tree.state(`isOpen`)).toEqual(false);
     expect(tree.state(`isPlaying`)).toEqual(false);

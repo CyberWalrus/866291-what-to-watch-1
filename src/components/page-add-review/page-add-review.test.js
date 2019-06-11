@@ -21,8 +21,8 @@ it(`PageAddReview correctly renders after relaunch`, () => {
               text={``}
               isActive={true}
               formValid={false}
-              handleUserInput={handleClick}
-              handleFormSubmit={handleClick}
+              onChageUserInput={handleClick}
+              onSubmitSend={handleClick}
             />
           </BrowserRouter>
         </Provider>

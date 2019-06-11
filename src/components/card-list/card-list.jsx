@@ -57,9 +57,9 @@ CardList.propTypes = {
   filmId: PropTypes.number,
   numberFilm: PropTypes.number.isRequired,
   activeFilm: PropTypes.number.isRequired,
-  onClickShowMore: PropTypes.func.isRequired,
-  onMouseEnterCard: PropTypes.func.isRequired,
-  onMouseLeaveCard: PropTypes.func.isRequired,
+  onClickShowMore: PropTypes.func,
+  onMouseEnterCard: PropTypes.func,
+  onMouseLeaveCard: PropTypes.func,
   onClickToRedirect: PropTypes.func.isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape({
