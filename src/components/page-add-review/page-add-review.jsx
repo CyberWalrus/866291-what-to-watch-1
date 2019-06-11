@@ -1,18 +1,17 @@
-import React, {Fragment} from "react";
-import PropTypes from "prop-types";
-import {connect} from "react-redux";
+import React, {Fragment} from "./node_modules/react";
+import PropTypes from "./node_modules/prop-types";
+import {connect} from "./node_modules/react-redux";
 import {getFilm} from "../../store/data/selectors.js";
 import HiddenIcon from "../hidden-icon/hidden-icon.jsx";
 import Header from "../header/header.jsx";
-import {DisabledStyle} from "../../mock/constants.js";
+import {DisabledStyle, TextLength, ratingRadioValues} from "../../mock/constants.js";
 
-const ratinRadioValues = [`1`, `2`, `3`, `4`, `5`];
-const FilmAddReview = ({
+const PageAddReview = ({
   film,
   text,
   ratingSelected,
-  handleFormSubmit,
-  handleUserInput,
+  onUserInput,
+  onFormSubmit,
   formValid,
   isActive
 }) => {
@@ -48,11 +47,11 @@ const FilmAddReview = ({
             disabled={!isActive}
             style={!isActive ? DisabledStyle : {}}
           >
-            <form onSubmit={handleFormSubmit} className="add-review__form">
+            <form onSubmit={onFormSubmit} className="add-review__form">
               <div className="rating">
                 <div className="rating__stars">
-                  {ratinRadioValues &&
-                    ratinRadioValues.map((item, index) => (
+                  {ratingRadioValues &&
+                    ratingRadioValues.map((item, index) => (
                       <Fragment key={index}>
                         <input
                           className="rating__input"
@@ -61,7 +60,7 @@ const FilmAddReview = ({
                           name="ratingSelected"
                           value={item}
                           checked={ratingSelected === item}
-                          onChange={handleUserInput}
+                          onChange={onUserInput}
                         />
                         <label
                           className="rating__label"
@@ -80,10 +79,10 @@ const FilmAddReview = ({
                   name="text"
                   id="review-text"
                   placeholder="Review text"
-                  maxLength="300"
-                  minLength="50"
+                  maxLength={TextLength.MAX}
+                  minLength={TextLength.MIN}
                   value={text}
-                  onChange={handleUserInput}
+                  onChange={onUserInput}
                 />
                 <div className="add-review__submit">
                   <button
@@ -105,14 +104,14 @@ const FilmAddReview = ({
   return <div />;
 };
 
-FilmAddReview.propTypes = {
+PageAddReview.propTypes = {
   id: PropTypes.number.isRequired,
   ratingSelected: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   isActive: PropTypes.bool.isRequired,
   formValid: PropTypes.bool.isRequired,
-  handleUserInput: PropTypes.func.isRequired,
-  handleFormSubmit: PropTypes.func.isRequired,
+  onUserInput: PropTypes.func.isRequired,
+  onFormSubmit: PropTypes.func.isRequired,
   film: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -129,7 +128,7 @@ FilmAddReview.propTypes = {
     description: PropTypes.string.isRequired,
     director: PropTypes.string.isRequired,
     starrings: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    runTime: PropTypes.number.isRequired
+    runTime: PropTypes.string.isRequired
   })
 };
 const mapStateToProps = (state, ownProps) =>
@@ -137,6 +136,6 @@ const mapStateToProps = (state, ownProps) =>
     film: getFilm(state, ownProps.id)
   });
 
-export {FilmAddReview};
+export {PageAddReview};
 
-export default connect(mapStateToProps)(FilmAddReview);
+export default connect(mapStateToProps)(PageAddReview);

@@ -37,6 +37,13 @@ const DisabledStyle = {
   cursor: `not-allowed`
 };
 const REVIEW_MESSAGE = `OK`;
+const TextLength = {
+  MIN: 50,
+  MAX: 400
+};
+
+const ratingRadioValues = [`1`, `2`, `3`, `4`, `5`];
+const MAIN_FILM_ID = 1;
 export {
   FilmRoute,
   GENRE_DEFOULT,
@@ -50,5 +57,8 @@ export {
   LINK_STYLE,
   FavoriteStatus,
   DisabledStyle,
-  REVIEW_MESSAGE
+  REVIEW_MESSAGE,
+  ratingRadioValues,
+  TextLength,
+  MAIN_FILM_ID
 };

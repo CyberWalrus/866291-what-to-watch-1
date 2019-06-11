@@ -5,13 +5,13 @@ import Footer from "../footer/footer.jsx";
 import HiddenIcon from "../hidden-icon/hidden-icon.jsx";
 import HeaderMainFilm from "../header-main-film/header-main-film.jsx";
 import withActiveFilm from "../../hocs/with-active-film/with-active-film.js";
-import VideScreen from "../video-screen/video-screen.jsx";
+import VideScreen from "../video-screen/video-screen.jsx.js";
 import withVideoScreenState from "../../hocs/with-video-screen-state/with-video-screen-state.js";
 
 const CardListActiveFilm = withActiveFilm(CardList);
 const VideScreenState = withVideoScreenState(VideScreen);
 
-const MainScreen = () => {
+const PageMain = () => {
   return (
     <Fragment>
       <HiddenIcon />
@@ -28,4 +28,4 @@ const MainScreen = () => {
     </Fragment>
   );
 };
-export default MainScreen;
+export default PageMain;

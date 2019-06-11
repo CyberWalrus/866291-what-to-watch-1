@@ -1,18 +1,18 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import MainScreen from "./main-screen.jsx";
+import PageMain from "./page-main.jsx";
 import reducer from "../../store";
 import {createStore} from "redux";
 import {Provider} from "react-redux";
 import {BrowserRouter} from "react-router-dom";
 
-it(`MainScreen correctly renders after relaunch`, () => {
+it(`PageMain correctly renders after relaunch`, () => {
   const store = createStore(reducer);
   const tree = renderer
     .create(
         <Provider store={store}>
           <BrowserRouter>
-            <MainScreen />
+            <PageMain />
           </BrowserRouter>
         </Provider>
     )

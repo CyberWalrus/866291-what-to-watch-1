@@ -6,7 +6,7 @@ import {getReviewMessage} from "../../store/data/selectors.js";
 import {Operation, ActionCreator} from "../../store/data/data.js";
 import {REVIEW_MESSAGE} from "../../mock/constants.js";
 import {Redirect} from "react-router-dom";
-import RoutePath from "../../routes.js";
+import {routeToFilm} from "../../routes.js";
 
 const withReviewState = (Component) => {
   class WithReviewState extends React.PureComponent {
@@ -91,9 +91,7 @@ const withReviewState = (Component) => {
 
     render() {
       if (this.state.redirect) {
-        return (
-          <Redirect to={RoutePath.FILM.replace(`:id`, this.props.id)} />
-        );
+        return <Redirect to={routeToFilm(this.props.id)} />;
       }
       return (
         <Component

@@ -27,7 +27,7 @@ const FilmDetails = ({runTime, genre, released, director, starrings}) => {
           <p className="movie-card__details-item">
             <strong className="movie-card__details-name">Run Time</strong>
             <span className="movie-card__details-value">
-              {timeConvert(runTime)}
+              {runTime}
             </span>
           </p>
           <p className="movie-card__details-item">
@@ -44,14 +44,8 @@ const FilmDetails = ({runTime, genre, released, director, starrings}) => {
   );
 };
 
-const timeConvert = (num) => {
-  const hours = Math.floor(num / 60);
-  const minutes = num % 60;
-  return `${hours}h ${minutes}m`;
-};
-
 FilmDetails.propTypes = {
-  runTime: PropTypes.number.isRequired,
+  runTime: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   released: PropTypes.number.isRequired,
   director: PropTypes.string.isRequired,

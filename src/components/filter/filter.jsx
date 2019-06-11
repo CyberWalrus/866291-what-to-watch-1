@@ -5,7 +5,7 @@ import {getGeners} from "../../store/data/selectors.js";
 import {getGenreSelected} from "../../store/filter/selectors.js";
 import PropTypes from "prop-types";
 
-const Filter = ({genres, genreSelected, changeFilter}) => {
+const Filter = ({genres, genreSelected, onChangeFilter}) => {
   return (
     <ul className="catalog__genres-list">
       {genres &&
@@ -20,7 +20,7 @@ const Filter = ({genres, genreSelected, changeFilter}) => {
           >
             <a
               className="catalog__genres-link"
-              onClick={() => changeFilter(item)}
+              onClick={() => onChangeFilter(item)}
             >
               {item}
             </a>
@@ -33,7 +33,7 @@ const Filter = ({genres, genreSelected, changeFilter}) => {
 Filter.propTypes = {
   genreSelected: PropTypes.string.isRequired,
   genres: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  changeFilter: PropTypes.func.isRequired
+  onChangeFilter: PropTypes.func.isRequired
 };
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
@@ -41,7 +41,7 @@ const mapStateToProps = (state, ownProps) =>
     genreSelected: getGenreSelected(state)
   });
 const mapDispatchToProps = (dispatch) => ({
-  changeFilter: (value) => dispatch(ActionCreator.changeGenre(value))
+  onChangeFilter: (value) => dispatch(ActionCreator.changeGenre(value))
 });
 
 export {Filter};

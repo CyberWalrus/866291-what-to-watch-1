@@ -18,7 +18,7 @@ const _filmDataAdapter = (data) => {
     srcPreviewVideo: data.preview_video_link,
     rating: ratingToString(data.rating),
     released: data.released,
-    runTime: data.run_time,
+    runTime: timeConvert(data.run_time),
     scoresCount: data.scores_count,
     starrings: data.starring,
     srcVideo: data.video_link,
@@ -61,6 +61,12 @@ const updateFilmAdapter = (array, film) => {
     .indexOf(filmNew.id);
   array[elementPos] = filmNew;
   return array;
+};
+
+const timeConvert = (num) => {
+  const hours = Math.floor(num / 60);
+  const minutes = num % 60;
+  return `${hours}h ${minutes}m`;
 };
 const ratingToString = (rating) => {
   return parseFloat(Math.round(rating * 100) / 100)

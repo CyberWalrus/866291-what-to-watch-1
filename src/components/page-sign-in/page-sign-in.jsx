@@ -4,11 +4,11 @@ import Header from "../header/header.jsx";
 import Footer from "../footer/footer.jsx";
 import {DisabledStyle} from "../../mock/constants.js";
 
-const SignInPage = (props) => {
+const PageSignIn = (props) => {
   const {
     email,
     password,
-    handleUserInput,
+    onChangeUserInput,
     onSubmitClick,
     formErrors,
     formValid
@@ -39,7 +39,7 @@ const SignInPage = (props) => {
                   name="email"
                   id="user-email"
                   value={email}
-                  onChange={handleUserInput}
+                  onChange={onChangeUserInput}
                 />
                 <label
                   className="sign-in__label visually-hidden"
@@ -56,7 +56,7 @@ const SignInPage = (props) => {
                   name="password"
                   id="user-password"
                   value={password}
-                  onChange={handleUserInput}
+                  onChange={onChangeUserInput}
                 />
                 <label
                   className="sign-in__label visually-hidden"
@@ -85,13 +85,13 @@ const SignInPage = (props) => {
   );
 };
 
-SignInPage.propTypes = {
+PageSignIn.propTypes = {
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   formErrors: PropTypes.object.isRequired,
   formValid: PropTypes.bool.isRequired,
-  handleUserInput: PropTypes.func.isRequired,
+  onChangeUserInput: PropTypes.func.isRequired,
   onSubmitClick: PropTypes.func.isRequired
 };
 
-export default SignInPage;
+export default PageSignIn;

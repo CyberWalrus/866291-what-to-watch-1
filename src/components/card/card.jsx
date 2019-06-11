@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import VideoPlayer from "../video-player/video-player.jsx";
 import {OptionsVideoMin} from "../../mock/constants.js";
 import {Link} from "react-router-dom";
-import RoutePath from "../../routes.js";
+import {routeToFilm} from "../../routes.js";
 
 const Card = ({
   onClickToRedirect,
@@ -32,10 +32,7 @@ const Card = ({
         />
         {!isActive ? (
           <h3 className="small-movie-card__title">
-            <Link
-              to={RoutePath.FILM.replace(`:id`, id)}
-              className="small-movie-card__link"
-            >
+            <Link to={routeToFilm(id)} className="small-movie-card__link">
               {title}
             </Link>
           </h3>

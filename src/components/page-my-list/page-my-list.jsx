@@ -6,7 +6,7 @@ import CardList from "../card-list/card-list.jsx";
 import withActiveFilm from "../../hocs/with-active-film/with-active-film.js";
 
 const CardListActiveFilm = withActiveFilm(CardList);
-const MyList = () => {
+const PageMyList = () => {
   return (
     <Fragment>
       <HiddenIcon />
@@ -22,4 +22,4 @@ const MyList = () => {
     </Fragment>
   );
 };
-export default MyList;
+export default PageMyList;

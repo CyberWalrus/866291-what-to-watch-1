@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import {NUMBER_FILM} from "../../mock/constants.js";
 import {Redirect} from "react-router-dom";
-import RoutePath from "../../routes.js";
+import {routeToFilm} from "../../routes.js";
 
 const withActiveFilm = (Component) => {
   class WithActiveFilm extends PureComponent {
@@ -60,9 +60,7 @@ const withActiveFilm = (Component) => {
     }
     render() {
       if (this.state.redirectId) {
-        return (
-          <Redirect to={RoutePath.FILM.replace(`:id`, this.state.redirectId)} />
-        );
+        return <Redirect to={routeToFilm(this.state.redirectId)} />;
       }
       return (
         <Component

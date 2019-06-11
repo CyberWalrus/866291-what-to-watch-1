@@ -12,22 +12,22 @@ class VideoScreen extends PureComponent {
     this._progressRef = React.createRef();
   }
   componentDidMount() {
-    if (this.props.sendProgressRef) {
-      this.props.sendProgressRef(this._progressRef.current);
+    if (this.props.onSendProgressRef) {
+      this.props.onSendProgressRef(this._progressRef.current);
     }
   }
   render() {
     const {
-      onVideoScreenClose,
       isPlaying,
       film,
-      sendVideoRef,
-      onPlayChange,
-      onFullScreen,
       time,
       progressValue,
-      divPointerDown,
-      divPointerUp
+      onClickClose,
+      onSendVideoRef,
+      onChangePlay,
+      onClickFullScreen,
+      onMouseTogglerDown,
+      onMouseTogglerUp
     } = this.props;
     return (
       <Fragment>
@@ -43,14 +43,14 @@ class VideoScreen extends PureComponent {
             options={OptionsVideoFull}
             videoSrc={film.srcVideo}
             posterSrc={film.srcBgImage}
-            sendVideoRef={sendVideoRef}
+            onSendVideoRef={onSendVideoRef}
             isPlaying={isPlaying}
           />
 
           <button
             type="button"
             className="player__exit"
-            onClick={onVideoScreenClose}
+            onClick={onClickClose}
           >
             Exit
           </button>
@@ -65,8 +65,8 @@ class VideoScreen extends PureComponent {
                 />
                 <div
                   className="player__toggler"
-                  onMouseDown={divPointerDown}
-                  onMouseUp={divPointerUp}
+                  onMouseDown={onMouseTogglerDown}
+                  onMouseUp={onMouseTogglerUp}
                   style={{left: `${progressValue}%`}}
                 >
                   Toggler
@@ -80,7 +80,7 @@ class VideoScreen extends PureComponent {
                 <button
                   type="button"
                   className="player__play"
-                  onClick={onPlayChange}
+                  onClick={onChangePlay}
                 >
                   <svg viewBox="0 0 14 21" width="14" height="21">
                     <use xlinkHref="#pause" />
@@ -91,7 +91,7 @@ class VideoScreen extends PureComponent {
                 <button
                   type="button"
                   className="player__play"
-                  onClick={onPlayChange}
+                  onClick={onChangePlay}
                 >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s" />
@@ -105,7 +105,7 @@ class VideoScreen extends PureComponent {
               <button
                 type="button"
                 className="player__full-screen"
-                onClick={onFullScreen}
+                onClick={onClickFullScreen}
               >
                 <svg viewBox="0 0 27 27" width="27" height="27">
                   <use xlinkHref="#full-screen" />
@@ -121,17 +121,16 @@ class VideoScreen extends PureComponent {
 }
 VideoScreen.propTypes = {
   filmId: PropTypes.number.isRequired,
-  time: PropTypes.any,
-  progressValue: PropTypes.any,
+  time: PropTypes.string.isRequired,
+  progressValue: PropTypes.number.isRequired,
   isPlaying: PropTypes.bool.isRequired,
-  onPlayChange: PropTypes.func.isRequired,
-  onVideoScreenClose: PropTypes.func.isRequired,
-  onFullScreen: PropTypes.func.isRequired,
-  divPointerDown: PropTypes.func,
-  divPointerUp: PropTypes.func,
-  sendVideoRef: PropTypes.func.isRequired,
-  sendProgressRef: PropTypes.func.isRequired,
-  video: PropTypes.object,
+  onChangePlay: PropTypes.func.isRequired,
+  onClickClose: PropTypes.func.isRequired,
+  onClickFullScreen: PropTypes.func.isRequired,
+  onMouseTogglerDown: PropTypes.func,
+  onMouseTogglerUp: PropTypes.func,
+  onSendVideoRef: PropTypes.func.isRequired,
+  onSendProgressRef: PropTypes.func.isRequired,
   film: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -148,7 +147,7 @@ VideoScreen.propTypes = {
     description: PropTypes.string.isRequired,
     director: PropTypes.string.isRequired,
     starrings: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    runTime: PropTypes.number.isRequired
+    runTime: PropTypes.string.isRequired
   })
 };
 const mapStateToProps = (state, ownProps) =>

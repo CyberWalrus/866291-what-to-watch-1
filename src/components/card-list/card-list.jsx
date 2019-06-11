@@ -8,8 +8,8 @@ const CardList = ({
   numberFilm,
   onShowMoreClick,
   activeFilm,
-  setActiveFilm,
-  removeActiveFilm,
+  onMouseEnterCard,
+  onMouseLeaveCard,
   onClickToRedirect,
   films,
   genreFilm
@@ -28,8 +28,8 @@ const CardList = ({
               genre={genre}
               srcPreviewVideo={srcPreviewVideo}
               isActive={activeFilm === id}
-              onMouseEnterCard={() => setActiveFilm(id)}
-              onMouseLeaveCard={() => removeActiveFilm(id)}
+              onMouseEnterCard={() => onMouseEnterCard(id)}
+              onMouseLeaveCard={() => onMouseLeaveCard(id)}
               onClickToRedirect={() => onClickToRedirect(id)}
             />
           ))}
@@ -56,10 +56,10 @@ CardList.propTypes = {
   genreFilm: PropTypes.string,
   filmId: PropTypes.number,
   numberFilm: PropTypes.number.isRequired,
-  onShowMoreClick: PropTypes.func.isRequired,
   activeFilm: PropTypes.number.isRequired,
-  setActiveFilm: PropTypes.func.isRequired,
-  removeActiveFilm: PropTypes.func.isRequired,
+  onShowMoreClick: PropTypes.func.isRequired,
+  onMouseEnterCard: PropTypes.func.isRequired,
+  onMouseLeaveCard: PropTypes.func.isRequired,
   onClickToRedirect: PropTypes.func.isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape({

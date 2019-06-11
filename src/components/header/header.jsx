@@ -2,7 +2,7 @@ import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import RoutePath from "../../routes.js";
+import RoutePath, {routeToFilm} from "../../routes.js";
 import {getAuthorizationStatus, getUser} from "../../store/user/selectors.js";
 
 const Header = ({
@@ -40,7 +40,7 @@ const Header = ({
           <ul className="breadcrumbs__list">
             <li className="breadcrumbs__item">
               <Link
-                to={RoutePath.FILM.replace(`:id`, filmId)}
+                to={routeToFilm(filmId)}
                 className="breadcrumbs__link"
               >
                 {filmTitle}

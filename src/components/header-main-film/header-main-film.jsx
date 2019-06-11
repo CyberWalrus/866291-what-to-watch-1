@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Header from "../header/header.jsx";
 import {connect} from "react-redux";
 import {getFilm} from "../../store/data/selectors.js";
+import {MAIN_FILM_ID} from "../../mock/constants.js";
 import FilmButtonDiv from "../film-button-div/film-button-div.jsx";
 
 const HeaderMainFilm = ({film}) => {
@@ -66,12 +67,12 @@ HeaderMainFilm.propTypes = {
     description: PropTypes.string.isRequired,
     director: PropTypes.string.isRequired,
     starrings: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    runTime: PropTypes.number.isRequired
+    runTime: PropTypes.string.isRequired
   })
 };
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
-    film: getFilm(state, 1)
+    film: getFilm(state, MAIN_FILM_ID)
   });
 
 export {HeaderMainFilm};

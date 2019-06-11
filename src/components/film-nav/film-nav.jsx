@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {FilmRoute} from "../../mock/constants.js";
 
-const FilmNav = ({changeFilmRoute, route}) => {
+const FilmNav = ({onChangeFilmRoute, route}) => {
   return (
     <nav className="movie-nav movie-card__nav">
       <ul className="movie-nav__list">
@@ -14,11 +14,11 @@ const FilmNav = ({changeFilmRoute, route}) => {
           }
         >
           <a
-            onClick={changeFilmRoute}
+            onClick={onChangeFilmRoute}
             text={FilmRoute.OVERVIEW}
             className="movie-nav__link"
           >
-            Overview
+            {FilmRoute.OVERVIEW}
           </a>
         </li>
         <li
@@ -29,11 +29,11 @@ const FilmNav = ({changeFilmRoute, route}) => {
           }
         >
           <a
-            onClick={changeFilmRoute}
+            onClick={onChangeFilmRoute}
             text={FilmRoute.DETAILS}
             className="movie-nav__link"
           >
-            Details
+            {FilmRoute.DETAILS}
           </a>
         </li>
         <li
@@ -44,11 +44,11 @@ const FilmNav = ({changeFilmRoute, route}) => {
           }
         >
           <a
-            onClick={changeFilmRoute}
+            onClick={onChangeFilmRoute}
             text={FilmRoute.REVIEWS}
             className="movie-nav__link"
           >
-            Reviews
+            {FilmRoute.REVIEWS}
           </a>
         </li>
       </ul>
@@ -57,6 +57,6 @@ const FilmNav = ({changeFilmRoute, route}) => {
 };
 FilmNav.propTypes = {
   route: PropTypes.string.isRequired,
-  changeFilmRoute: PropTypes.func.isRequired
+  onChangeFilmRoute: PropTypes.func.isRequired
 };
 export default FilmNav;

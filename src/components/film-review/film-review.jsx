@@ -10,7 +10,7 @@ class FilmReview extends PureComponent {
   }
 
   componentWillMount() {
-    this.props.loadReviews(this.props.filmId);
+    this.props.onLoadReviews(this.props.filmId);
   }
   render() {
     return (
@@ -45,7 +45,7 @@ class FilmReview extends PureComponent {
 
 FilmReview.propTypes = {
   filmId: PropTypes.number.isRequired,
-  loadReviews: PropTypes.func.isRequired,
+  onLoadReviews: PropTypes.func.isRequired,
   reviews: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
@@ -64,7 +64,7 @@ const mapStateToProps = (state, ownProps) =>
   });
 
 const mapDispatchToProps = (dispatch) => ({
-  loadReviews: (filmId) => dispatch(OperationData.loadReviews(filmId))
+  onLoadReviews: (filmId) => dispatch(OperationData.loadReviews(filmId))
 });
 export {FilmReview};
 

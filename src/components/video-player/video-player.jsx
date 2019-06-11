@@ -8,12 +8,12 @@ class VideoPlayer extends PureComponent {
     this._videoRef = React.createRef();
   }
   componentDidMount() {
-    if (this.props.sendVideoRef) {
-      this.props.sendVideoRef(this._videoRef.current);
+    if (this.props.onSendVideoRef) {
+      this.props.onSendVideoRef(this._videoRef.current);
     }
   }
   componentDidUpdate() {
-    if (!this.props.sendVideoRef) {
+    if (!this.props.onSendVideoRef) {
       const video = this._videoRef.current;
       if (this.props.isPlaying) {
         video.play();
@@ -41,7 +41,6 @@ class VideoPlayer extends PureComponent {
         loop={isLoop}
         muted={isMuted}
         controls={isControls}
-        preload={`auto`}
         className={`player__video`}
       />
     );
@@ -59,7 +58,7 @@ VideoPlayer.propTypes = {
     isControls: PropTypes.bool
   }).isRequired,
   isPlaying: PropTypes.bool,
-  sendVideoRef: PropTypes.func,
+  onSendVideoRef: PropTypes.func,
 };
 
 export default VideoPlayer;

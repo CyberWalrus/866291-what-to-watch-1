@@ -1,6 +1,6 @@
-import React, {Fragment} from "react";
-import PropTypes from "prop-types";
-import {connect} from "react-redux";
+import React, {Fragment} from "./node_modules/react";
+import PropTypes from "./node_modules/prop-types";
+import {connect} from "./node_modules/react-redux";
 import {getFilm} from "../../store/data/selectors.js";
 import Footer from "../footer/footer.jsx";
 import HiddenIcon from "../hidden-icon/hidden-icon.jsx";
@@ -12,14 +12,14 @@ import FilmNav from "../film-nav/film-nav.jsx";
 import FilmButtonDiv from "../film-button-div/film-button-div.jsx";
 import {FilmRoute} from "../../mock/constants.js";
 import CardList from "../card-list/card-list.jsx";
-import VideScreen from "../video-screen/video-screen.jsx";
+import VideScreen from "../video-screen/video-screen.jsx.js";
 import withActiveFilm from "../../hocs/with-active-film/with-active-film.js";
 import withVideoScreenState from "../../hocs/with-video-screen-state/with-video-screen-state.js";
 
 const CardListActiveFilm = withActiveFilm(CardList);
 const VideScreenState = withVideoScreenState(VideScreen);
 
-const FilmScreen = ({film, changeFilmRoute, route}) => {
+const PageFilm = ({film, onChangeFilmRoute, route}) => {
   if (film) {
     const {
       title,
@@ -83,7 +83,7 @@ const FilmScreen = ({film, changeFilmRoute, route}) => {
               </div>
 
               <div className="movie-card__desc">
-                <FilmNav changeFilmRoute={changeFilmRoute} route={route} />
+                <FilmNav changeFilmRoute={onChangeFilmRoute} route={route} />
                 {
                   {
                     [FilmRoute.OVERVIEW]: (
@@ -125,10 +125,10 @@ const FilmScreen = ({film, changeFilmRoute, route}) => {
   }
   return <div />;
 };
-FilmScreen.propTypes = {
+PageFilm.propTypes = {
   id: PropTypes.number.isRequired,
   route: PropTypes.string.isRequired,
-  changeFilmRoute: PropTypes.func.isRequired,
+  onChangeFilmRoute: PropTypes.func.isRequired,
   film: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
@@ -146,7 +146,7 @@ FilmScreen.propTypes = {
     director: PropTypes.string.isRequired,
     isFavorite: PropTypes.bool.isRequired,
     starrings: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    runTime: PropTypes.number.isRequired
+    runTime: PropTypes.string.isRequired
   })
 };
 const mapStateToProps = (state, ownProps) =>
@@ -154,6 +154,6 @@ const mapStateToProps = (state, ownProps) =>
     film: getFilm(state, ownProps.id)
   });
 
-export {FilmScreen};
+export {PageFilm};
 
-export default connect(mapStateToProps)(FilmScreen);
+export default connect(mapStateToProps)(PageFilm);
