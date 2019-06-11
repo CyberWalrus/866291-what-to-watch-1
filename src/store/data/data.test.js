@@ -14,7 +14,7 @@ describe(`Reducer works correctly`, () => {
     return questionLoader(dispatch, jest.fn(), api).then(() => {
       expect(dispatch).toHaveBeenCalledTimes(2);
       expect(dispatch).toHaveBeenNthCalledWith(1, {
-        type: ActionType.LOAD_FILMS,
+        type: ActionType.SET_FILMS,
         payload: [{fake: true}]
       });
     });

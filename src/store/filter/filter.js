@@ -7,8 +7,7 @@ const intialState = {
 
 const ActionType = {
   CHANGE_GENRE: `CHANGE_GENRE`,
-  SET_PLAY_FILM: `SET_PLAY_FILM`,
-  RESET: `RESET`
+  SET_PLAY_FILM: `SET_PLAY_FILM`
 };
 
 const ActionCreator = {
@@ -43,8 +42,6 @@ const reducer = (state = intialState, action) => {
       return Object.assign({}, state, {
         playFilmId: action.payload
       });
-    case ActionType.RESET:
-      return Object.assign({}, intialState);
   }
   return state;
 };

@@ -50,4 +50,5 @@ const getGeners = (state) => {
 const getReviewMessage = (state) => {
   return state[NAME_SPACE].reviewMessage;
 };
+
 export {getFilms, getFilm, getGeners, getFavorites, getReviews, getReviewMessage};

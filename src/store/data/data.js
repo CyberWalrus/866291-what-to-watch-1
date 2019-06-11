@@ -4,7 +4,7 @@ import {
   ReviewDataAdapter,
   updateFilmAdapter
 } from "../../api/data-adapter.js";
-import {REVIEW_MESSAGE} from "../../constants.js";
+import {REVIEW_MESSAGE, SendUrl} from "../../constants.js";
 
 const initialState = {
   films: [],
@@ -77,19 +77,19 @@ const ActionCreator = {
 
 const Operation = {
   loadFilms: () => (dispatch, _getState, api) => {
-    return api.get(`/films`).then((response) => {
+    return api.get(SendUrl.FILMS).then((response) => {
       dispatch(ActionCreator.loadFilms(response.data));
       dispatch(ActionCreator.loadGenre(response.data));
     });
   },
   loadFavorites: () => (dispatch, _getState, api) => {
-    return api.get(`/favorite`).then((response) => {
+    return api.get(SendUrl.FAVORITE).then((response) => {
       dispatch(ActionCreator.loadFavorites(response.data));
     });
   },
   sendFavorite: (status, filmId) => (dispatch, _getState, api) => {
     return api
-      .post(`/favorite/${filmId}/${status}`, {})
+      .post(`${SendUrl.FAVORITE}/${filmId}/${status}`, {})
       .then((response) => {
         dispatch(Operation.loadFavorites());
         dispatch(ActionCreator.updateFilm(response.data));
@@ -98,7 +98,7 @@ const Operation = {
   },
   loadReviews: (filmId) => (dispatch, _getState, api) => {
     return api
-      .get(`/comments/${filmId}`)
+      .get(`${SendUrl.COMMENTS}/${filmId}`)
       .then((response) => {
         dispatch(ActionCreator.loadReviews(response.data));
       })
@@ -108,7 +108,7 @@ const Operation = {
   },
   sendReview: (rating, comment, filmId) => (dispatch, _getState, api) => {
     return api
-      .post(`/comments/${filmId}`, {
+      .post(`${SendUrl.COMMENTS}/${filmId}`, {
         rating,
         comment
       })

@@ -45,6 +45,11 @@ const RatingValue = {
   MIN: 1,
   MAX: 5
 };
+const SendUrl = {
+  FILMS: `/films`,
+  FAVORITE: `/favorite`,
+  COMMENTS: `/comments`
+};
 
 const DisabledStyle = {
   opacity: `0.4`,
@@ -86,5 +91,6 @@ export {
   FavoriteStatus,
   DisabledStyle,
   TextLength,
-  RatingValue
+  RatingValue,
+  SendUrl
 };

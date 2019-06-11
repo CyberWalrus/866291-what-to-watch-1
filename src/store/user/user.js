@@ -57,10 +57,6 @@ const Operation = {
         dispatch(ActionCreator.setError(error.toString()));
         dispatch(ActionCreator.requireAuthorization(false));
       });
-  },
-  logOut: () => {
-    ActionCreator.logOut();
-    ActionCreator.requireAuthorization(false);
   }
 };
 
