@@ -98,7 +98,7 @@ class VideoScreen extends PureComponent {
                 </button>
               )}
 
-              <div className="player__name">Transpotting</div>
+              <div className="player__name">{film.title}</div>
 
               <button
                 type="button"

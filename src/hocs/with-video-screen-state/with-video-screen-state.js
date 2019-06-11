@@ -38,7 +38,13 @@ const withVideoScreenState = (Component) => {
       if (this.props.playFilmId) {
         this.setState({
           isOpen: true,
-          filmId: this.props.playFilmId
+          filmId: this.props.playFilmId,
+          isPlaying: false,
+          togglerValue: 0,
+          time: `00:00`,
+          progressValue: 0,
+          progressRef: undefined,
+          videoRef: undefined
         });
         document.body.style.overflow = BodyOverflow.HIDDEN;
         this.props.onResetPlayFilmId();
@@ -74,34 +80,41 @@ const withVideoScreenState = (Component) => {
     }
     handleChangePlay() {
       const video = this.state.videoRef;
-      if (this.state.isPlaying === false) {
-        video.play();
-        this.setState({
-          isPlaying: true
-        });
-      } else {
-        video.pause();
-        this.setState({
-          isPlaying: false
-        });
+      if (video) {
+        if (this.state.isPlaying === false) {
+          video.play();
+          this.setState({
+            isPlaying: true
+          });
+        } else {
+          video.pause();
+          this.setState({
+            isPlaying: false
+          });
+        }
       }
     }
     handleFullScreen() {
       const video = this.state.videoRef;
-      if (video.requestFullscreen) {
-        video.requestFullscreen();
-      } else if (video.mozRequestFullScreen) {
-        video.mozRequestFullScreen();
-      } else if (video.webkitRequestFullscreen) {
-        video.webkitRequestFullscreen();
+      if (video) {
+        if (video.requestFullscreen) {
+          video.requestFullscreen();
+        } else if (video.mozRequestFullScreen) {
+          video.mozRequestFullScreen();
+        } else if (video.webkitRequestFullscreen) {
+          video.webkitRequestFullscreen();
+        }
       }
     }
     handlePointerDown(event) {
-      window.addEventListener(`pointerup`, this._handlePointerUp);
-      window.addEventListener(`pointermove`, this._handlePointerMove);
-      this.setState({
-        widthProgress: event.target
-      });
+      const video = this.state.videoRef;
+      if (video) {
+        window.addEventListener(`pointerup`, this._handlePointerUp);
+        window.addEventListener(`pointermove`, this._handlePointerMove);
+        this.setState({
+          widthProgress: event.target
+        });
+      }
     }
     _handlePointerUp() {
       window.removeEventListener(`pointerup`, this._handlePointerUp);
