@@ -10,6 +10,20 @@ const REVIEW_MESSAGE = `OK`;
 
 const ratingRadioValues = [`1`, `2`, `3`, `4`, `5`];
 
+const RatingName = {
+  BAD: `Bad`,
+  NORMAL: `Normal`,
+  GOOD: `Good`,
+  VERY_GOOD: `Very good`,
+  AWESOME: `Awesome`
+};
+const RatingInterval = {
+  BAD: 3,
+  NORMAL: 5,
+  GOOD: 8,
+  VERY_GOOD: 10,
+  AWESOME: 10
+};
 const FilmRoute = {
   OVERVIEW: `Overview`,
   DETAILS: `Details`,
@@ -63,6 +77,8 @@ export {
   REVIEW_MESSAGE,
   MAIN_FILM_ID,
   ratingRadioValues,
+  RatingName,
+  RatingInterval,
   FilmRoute,
   OptionsVideoMin,
   OptionsVideoFull,
