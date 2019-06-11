@@ -5,6 +5,7 @@ import {
   updateFilmAdapter
 } from "../../api/data-adapter.js";
 import {REVIEW_MESSAGE, SendUrl} from "../../constants.js";
+import NameSpace from "../name-spaces.js";
 
 const initialState = {
   films: [],
@@ -15,44 +16,42 @@ const initialState = {
 };
 
 const ActionType = {
-  LOAD_FILMS: `LOAD_FILMS`,
-  LOAD_GENRE: `LOAD_GENRE`,
-  LOAD_FAVORITES: `LOAD_FAVORITES`,
-  LOAD_REVIEWS: `LOAD_REVIEWS`,
-  RESET_REVIEWS: `RESET_REVIEWS`,
-  UPDATE_FILM: `UPDATE_FILM`,
+  SET_FILMS: `SET_FILMS`,
+  SET_GENERS: `SET_GENERS`,
+  SET_FAVORITES: `SET_FAVORITES`,
+  SET_REVIEWS: `SET_REVIEWS`,
   SET_REVIEW_MESSAGE: `SET_REVIEW_MESSAGE`
 };
 
 const ActionCreator = {
   loadFilms: (films) => {
     return {
-      type: ActionType.LOAD_FILMS,
-      payload: films
+      type: ActionType.SET_FILMS,
+      payload: films.map(FilmDataAdapter)
     };
   },
-  updateFilm: (film) => {
+  updateFilms: (films, film) => {
     return {
-      type: ActionType.UPDATE_FILM,
-      payload: film
+      type: ActionType.SET_FILMS,
+      payload: updateFilmAdapter(films, film)
     };
   },
   loadFavorites: (favorites) => {
     return {
-      type: ActionType.LOAD_FAVORITES,
-      payload: favorites
+      type: ActionType.SET_FAVORITES,
+      payload: favorites.map(FilmDataAdapter)
     };
   },
   loadReviews: (reviews) => {
     return {
-      type: ActionType.LOAD_REVIEWS,
-      payload: reviews
+      type: ActionType.SET_REVIEWS,
+      payload: reviews.map(ReviewDataAdapter)
     };
   },
   loadGenre: (films) => {
     return {
-      type: ActionType.LOAD_GENRE,
-      payload: films
+      type: ActionType.SET_GENERS,
+      payload: getGenerFromData(films)
     };
   },
   resetReviews: () => {
@@ -92,7 +91,7 @@ const Operation = {
       .post(`${SendUrl.FAVORITE}/${filmId}/${status}`, {})
       .then((response) => {
         dispatch(Operation.loadFavorites());
-        dispatch(ActionCreator.updateFilm(response.data));
+        dispatch(ActionCreator.updateFilms(_getState()[NameSpace.DATA].films, response.data));
       })
       .catch(() => {});
   },
@@ -123,33 +122,25 @@ const Operation = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.LOAD_FILMS:
+    case ActionType.SET_FILMS:
       return Object.assign({}, state, {
-        films: action.payload.map(FilmDataAdapter)
+        films: action.payload
       });
-    case ActionType.LOAD_FAVORITES:
+    case ActionType.SET_FAVORITES:
       return Object.assign({}, state, {
-        favorites: action.payload.map(FilmDataAdapter)
+        favorites: action.payload
       });
-    case ActionType.LOAD_REVIEWS:
+    case ActionType.SET_REVIEWS:
       return Object.assign({}, state, {
-        reviews: action.payload.map(ReviewDataAdapter)
+        reviews: action.payload
       });
-    case ActionType.LOAD_GENRE:
+    case ActionType.SET_GENERS:
       return Object.assign({}, state, {
-        genres: getGenerFromData(action.payload)
-      });
-    case ActionType.UPDATE_FILM:
-      return Object.assign({}, state, {
-        films: updateFilmAdapter(state.films, action.payload)
+        genres: action.payload
       });
     case ActionType.SET_REVIEW_MESSAGE:
       return Object.assign({}, state, {
         reviewMessage: action.payload
-      });
-    case ActionType.RESET_REVIEWS:
-      return Object.assign({}, state, {
-        reviews: action.payload
       });
   }
 

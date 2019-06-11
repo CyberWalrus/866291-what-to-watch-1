@@ -23,7 +23,7 @@ const ActionCreator = {
   signIn: (user) => {
     return {
       type: ActionType.SIGN_IN,
-      payload: user
+      payload: userDataAdapter(user)
     };
   },
   setError: (error) => {
@@ -69,7 +69,7 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.SIGN_IN:
       return Object.assign({}, state, {
-        user: userDataAdapter(action.payload)
+        user: action.payload
       });
 
     case ActionType.SET_ERROR:
