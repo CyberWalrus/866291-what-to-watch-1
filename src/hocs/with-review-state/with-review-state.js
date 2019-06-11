@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {compose} from "recompose";
 import {getReviewMessage} from "../../store/data/selectors.js";
 import {Operation, ActionCreator} from "../../store/data/data.js";
-import {REVIEW_MESSAGE, TextLength, RatingValue} from "../../mock/constants.js";
+import {REVIEW_MESSAGE, TextLength, RatingValue} from "../../constants.js";
 import {Redirect} from "react-router-dom";
 import {routeToFilm} from "../../routes.js";
 

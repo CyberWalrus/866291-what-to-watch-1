@@ -4,7 +4,7 @@ import {
   ReviewDataAdapter,
   updateFilmAdapter
 } from "../../api/data-adapter.js";
-import {REVIEW_MESSAGE} from "../../mock/constants.js";
+import {REVIEW_MESSAGE} from "../../constants.js";
 
 const initialState = {
   films: [],

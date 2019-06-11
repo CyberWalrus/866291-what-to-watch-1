@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {getFilm} from "../../store/data/selectors.js";
 import HiddenIcon from "../hidden-icon/hidden-icon.jsx";
 import Header from "../header/header.jsx";
-import {DisabledStyle, TextLength, ratingRadioValues} from "../../mock/constants.js";
+import {DisabledStyle, TextLength, ratingRadioValues} from "../../constants.js";
 
 const PageAddReview = ({
   film,

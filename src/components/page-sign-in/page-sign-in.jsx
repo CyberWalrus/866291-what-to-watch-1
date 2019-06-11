@@ -2,7 +2,7 @@ import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import Header from "../header/header.jsx";
 import Footer from "../footer/footer.jsx";
-import {DisabledStyle} from "../../mock/constants.js";
+import {DisabledStyle} from "../../constants.js";
 
 const PageSignIn = (props) => {
   const {

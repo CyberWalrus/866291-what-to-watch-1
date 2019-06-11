@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import {NUMBER_FILM} from "../../mock/constants.js";
+import {NUMBER_FILM} from "../../constants.js";
 import {Redirect} from "react-router-dom";
 import {routeToFilm} from "../../routes.js";
 

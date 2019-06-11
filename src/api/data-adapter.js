@@ -1,4 +1,4 @@
-import {GENRE_DEFOULT, SERVER_URL_USER} from "../mock/constants.js";
+import {GENRE_DEFOULT, SERVER_URL_USER} from "../constants.js";
 const FilmDataAdapter = (data) => {
   return _filmDataAdapter(data);
 };

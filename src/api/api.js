@@ -1,5 +1,5 @@
 import axios from "axios";
-import {SERVER_URL} from "../mock/constants.js";
+import {SERVER_URL} from "../constants.js";
 
 export const createAPI = (onLoginFail) => {
   const api = axios.create({

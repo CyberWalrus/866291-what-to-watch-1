@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {FilmRoute} from "../../mock/constants.js";
+import {FilmRoute} from "../../constants.js";
 
 const FilmNav = ({onChangeFilmRoute, route}) => {
   return (

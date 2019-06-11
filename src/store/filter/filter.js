@@ -1,4 +1,4 @@
-import {GENRE_DEFOULT} from "../../mock/constants.js";
+import {GENRE_DEFOULT} from "../../constants.js";
 
 const intialState = {
   genreSelected: GENRE_DEFOULT,

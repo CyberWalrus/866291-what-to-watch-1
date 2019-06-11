@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Header from "../header/header.jsx";
 import {connect} from "react-redux";
 import {getFilm} from "../../store/data/selectors.js";
-import {MAIN_FILM_ID} from "../../mock/constants.js";
+import {MAIN_FILM_ID} from "../../constants.js";
 import FilmButtonDiv from "../film-button-div/film-button-div.jsx";
 
 const HeaderMainFilm = ({film}) => {

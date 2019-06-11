@@ -6,7 +6,7 @@ import RoutePath, {routeToReview} from "../../routes.js";
 import {getAuthorizationStatus} from "../../store/user/selectors.js";
 import {Operation} from "../../store/data/data.js";
 import {ActionCreator} from "../../store/filter/filter.js";
-import {FavoriteStatus} from "../../mock/constants.js";
+import {FavoriteStatus} from "../../constants.js";
 
 class FilmButtonDiv extends PureComponent {
   constructor(props) {

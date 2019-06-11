@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {compose} from "recompose";
 import {getPlayFilmId} from "../../store/filter/selectors.js";
 import {ActionCreator} from "../../store/filter/filter.js";
-import {BodyOverflow, PADDING_VIDEO} from "../../mock/constants.js";
+import {BodyOverflow, PADDING_VIDEO} from "../../constants.js";
 
 const _timeConvert = (num) => {
   const minutes = Math.floor(num / 60);

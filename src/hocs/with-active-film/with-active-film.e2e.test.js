@@ -2,7 +2,7 @@ import React from 'react';
 import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import withActiveFilm from './with-active-film.js';
-import {NUMBER_FILM} from "../../mock/constants.js";
+import {NUMBER_FILM} from "../../constants.js";
 
 Enzyme.configure({adapter: new Adapter()});
 

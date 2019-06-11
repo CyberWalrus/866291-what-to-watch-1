@@ -1,7 +1,7 @@
 import React, {Fragment, PureComponent} from "react";
 import PropTypes from "prop-types";
 import VideoPlayer from "../video-player/video-player.jsx";
-import {OptionsVideoFull} from "../../mock/constants.js";
+import {OptionsVideoFull} from "../../constants.js";
 import {connect} from "react-redux";
 import {getFilm} from "../../store/data/selectors.js";
 

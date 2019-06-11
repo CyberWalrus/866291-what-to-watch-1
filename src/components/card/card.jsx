@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import VideoPlayer from "../video-player/video-player.jsx";
-import {OptionsVideoMin} from "../../mock/constants.js";
+import {OptionsVideoMin} from "../../constants.js";
 import {Link} from "react-router-dom";
 import {routeToFilm} from "../../routes.js";
 

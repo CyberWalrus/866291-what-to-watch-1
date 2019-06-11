@@ -1,5 +1,5 @@
 import NameSpace from "./../name-spaces.js";
-import {GENRE_DEFOULT, NUMBER_FILM, NUMBER_FILM_GENRE} from "../../mock/constants.js";
+import {GENRE_DEFOULT, NUMBER_FILM, NUMBER_FILM_GENRE} from "../../constants.js";
 import {getGenreSelected} from "../filter/selectors.js";
 
 const NAME_SPACE = NameSpace.DATA;

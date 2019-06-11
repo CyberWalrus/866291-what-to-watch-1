@@ -10,7 +10,7 @@ import FilmDetails from "../film-details/film-details.jsx";
 import FilmReview from "../film-review/film-review.jsx";
 import FilmNav from "../film-nav/film-nav.jsx";
 import FilmButtonDiv from "../film-button-div/film-button-div.jsx";
-import {FilmRoute} from "../../mock/constants.js";
+import {FilmRoute} from "../../constants.js";
 import CardList from "../card-list/card-list.jsx";
 import VideScreen from "../video-screen/video-screen.jsx";
 import withActiveFilm from "../../hocs/with-active-film/with-active-film.js";

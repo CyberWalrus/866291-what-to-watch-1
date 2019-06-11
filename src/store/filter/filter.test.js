@@ -1,5 +1,5 @@
 import {reducer} from "./filter.js";
-import {GENRE_DEFOULT} from "../../mock/constants.js";
+import {GENRE_DEFOULT} from "../../constants.js";
 
 describe(`Reducer works correctly`, () => {
   it(`Reducer without additional parameters should return inital state`, () => {

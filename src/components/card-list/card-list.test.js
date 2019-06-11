@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 import {BrowserRouter} from "react-router-dom";
 import {CardList} from "./card-list.jsx";
 import {FILMS} from "../../mock/mock-test.js";
-import {NUMBER_FILM} from "../../mock/constants.js";
+import {NUMBER_FILM} from "../../constants.js";
 
 it(`CardList component renders correctly with props`, () => {
   const handleClick = jest.fn();
