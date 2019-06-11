@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import {NUMBER_FILM} from "../../constants.js";
+import {NUMBER_FILM, TIMEOUT_INTERVAL} from "../../constants.js";
 import {Redirect} from "react-router-dom";
 import {routeToFilm} from "../../routes.js";
 
@@ -10,9 +10,10 @@ const withActiveFilm = (Component) => {
       this.state = {
         activeFilm: 0,
         numberFilm: NUMBER_FILM,
-        redirectId: 0
+        redirectId: 0,
+        timeOutId: 0,
       };
-      this.timeOutList = {};
+      this._timeOutList = {};
       this.handleSetActiveFilm = this.handleSetActiveFilm.bind(this);
       this.handleRemoveActiveFilm = this.handleRemoveActiveFilm.bind(this);
       this.handleShowMore = this.handleShowMore.bind(this);
@@ -26,25 +27,29 @@ const withActiveFilm = (Component) => {
       }
     }
     componentWillUnmount() {
-      const id = this.state.activeFilm;
-      clearTimeout(this.timeOutList[id]);
+      clearTimeout(this._timeOutList[this.state.timeOutId]);
     }
 
     handleSetActiveFilm(id) {
-      this.timeOutList[id] = setTimeout(() => {
+      this.setState({
+        timeOutId: id
+      });
+      this._timeOutList[id] = setTimeout(() => {
         this.setState({
-          activeFilm: id
+          activeFilm: id,
+          timeOutId: 0
         });
-        clearTimeout(this.timeOutList[id]);
-        delete this.timeOutList[id];
-      }, 1000);
+        clearTimeout(this._timeOutList[id]);
+        delete this._timeOutList[id];
+      }, TIMEOUT_INTERVAL);
     }
 
     handleRemoveActiveFilm(id) {
-      clearTimeout(this.timeOutList[id]);
-      delete this.timeOutList[id];
+      clearTimeout(this._timeOutList[id]);
+      delete this._timeOutList[id];
       this.setState({
-        activeFilm: 0
+        activeFilm: 0,
+        timeOutId: 0
       });
     }
 

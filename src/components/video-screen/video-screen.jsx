@@ -9,11 +9,11 @@ class VideoScreen extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._progressRef = React.createRef();
+    this.progressRef = React.createRef();
   }
   componentDidMount() {
     if (this.props.onSendProgressRef) {
-      this.props.onSendProgressRef(this._progressRef.current);
+      this.props.onSendProgressRef(this.progressRef.current);
     }
   }
   render() {
@@ -57,7 +57,7 @@ class VideoScreen extends PureComponent {
             <div className="player__controls-row">
               <div className="player__time">
                 <progress
-                  ref={this._progressRef}
+                  ref={this.progressRef}
                   className="player__progress"
                   value={progressValue}
                   max="100"

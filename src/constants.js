@@ -7,6 +7,7 @@ const LINK_STYLE = `inherit`;
 const MAIN_FILM_ID = 1;
 const PADDING_VIDEO = 25;
 const REVIEW_MESSAGE = `OK`;
+const TIMEOUT_INTERVAL = 2000;
 
 const ratingRadioValues = [`1`, `2`, `3`, `4`, `5`];
 
@@ -81,6 +82,7 @@ export {
   PADDING_VIDEO,
   REVIEW_MESSAGE,
   MAIN_FILM_ID,
+  TIMEOUT_INTERVAL,
   ratingRadioValues,
   RatingName,
   RatingInterval,

@@ -5,16 +5,16 @@ class VideoPlayer extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._videoRef = React.createRef();
+    this.videoRef = React.createRef();
   }
   componentDidMount() {
     if (this.props.onSendVideoRef) {
-      this.props.onSendVideoRef(this._videoRef.current);
+      this.props.onSendVideoRef(this.videoRef.current);
     }
   }
   componentDidUpdate() {
     if (!this.props.onSendVideoRef) {
-      const video = this._videoRef.current;
+      const video = this.videoRef.current;
       if (this.props.isPlaying) {
         video.play();
       } else {
@@ -33,7 +33,7 @@ class VideoPlayer extends PureComponent {
     } = options;
     return (
       <video
-        ref={this._videoRef}
+        ref={this.videoRef}
         src={videoSrc}
         poster={posterSrc}
         width={width}
