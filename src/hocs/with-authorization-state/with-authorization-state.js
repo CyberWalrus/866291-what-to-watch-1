@@ -19,9 +19,9 @@ const withAuthorizationState = (Component) => {
       };
 
       this.handleUserInput = this.handleUserInput.bind(this);
-      this.onSubmitClick = this.onSubmitClick.bind(this);
-      this._validateField = this._validateField.bind(this);
-      this._validateForm = this._validateForm.bind(this);
+      this.handleSendSubmit = this.handleSendSubmit.bind(this);
+      this._handleValidateField = this._handleValidateField.bind(this);
+      this._handleValidateForm = this._handleValidateForm.bind(this);
     }
     componentDidUpdate() {
       if (this.props.errorMessage) {
@@ -30,22 +30,22 @@ const withAuthorizationState = (Component) => {
         this.setState({
           fieldValidationErrors
         });
-        this.props.resetError();
+        this.props.onResetError();
       }
     }
     handleUserInput(event) {
       const name = event.target.name;
       const value = event.target.value;
       this.setState({[name]: value}, () => {
-        this._validateField(name, value);
+        this._handleValidateField(name, value);
       });
     }
-    onSubmitClick(event) {
+    handleSendSubmit(event) {
       const {email, password} = this.state;
       event.preventDefault();
-      this.props.signIn(email, password);
+      this.props.onSignIn(email, password);
     }
-    _validateField(fieldName, value) {
+    _handleValidateField(fieldName, value) {
       const fieldValidationErrors = this.state.formErrors;
       let emailValid = this.state.emailValid;
       switch (fieldName) {
@@ -63,10 +63,10 @@ const withAuthorizationState = (Component) => {
             formErrors: fieldValidationErrors,
             emailValid
           },
-          this._validateForm
+          this._handleValidateForm
       );
     }
-    _validateForm() {
+    _handleValidateForm() {
       this.setState({
         formValid: this.state.emailValid && this.state.passwordValid
       });
@@ -78,10 +78,10 @@ const withAuthorizationState = (Component) => {
           {...this.props}
           email={this.state.email}
           password={this.state.password}
-          handleUserInput={this.handleUserInput}
-          onSubmitClick={this.onSubmitClick}
           formErrors={this.state.formErrors}
           formValid={this.state.formValid}
+          onChangeUserInput={this.handleUserInput}
+          onClickSubmit={this.handleSendSubmit}
         />
       );
     }
@@ -89,8 +89,8 @@ const withAuthorizationState = (Component) => {
 
   WithAuthorizationState.propTypes = {
     errorMessage: PropTypes.string.isRequired,
-    signIn: PropTypes.func.isRequired,
-    resetError: PropTypes.func.isRequired
+    onSignIn: PropTypes.func.isRequired,
+    onResetError: PropTypes.func.isRequired
   };
 
   return WithAuthorizationState;
@@ -102,10 +102,10 @@ const mapStateToProps = (state, ownProps) =>
   });
 
 const mapDispatchToProps = (dispatch) => ({
-  signIn: (email, password) => {
+  onSignIn: (email, password) => {
     dispatch(Operation.signIn(email, password));
   },
-  resetError: () => {
+  onResetError: () => {
     dispatch(ActionCreator.resetError());
   }
 });

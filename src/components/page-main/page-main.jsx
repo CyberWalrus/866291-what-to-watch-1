@@ -5,7 +5,7 @@ import Footer from "../footer/footer.jsx";
 import HiddenIcon from "../hidden-icon/hidden-icon.jsx";
 import HeaderMainFilm from "../header-main-film/header-main-film.jsx";
 import withActiveFilm from "../../hocs/with-active-film/with-active-film.js";
-import VideScreen from "../video-screen/video-screen.jsx.js";
+import VideScreen from "../video-screen/video-screen.jsx";
 import withVideoScreenState from "../../hocs/with-video-screen-state/with-video-screen-state.js";
 
 const CardListActiveFilm = withActiveFilm(CardList);

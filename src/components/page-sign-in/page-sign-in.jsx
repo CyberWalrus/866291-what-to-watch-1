@@ -8,10 +8,10 @@ const PageSignIn = (props) => {
   const {
     email,
     password,
-    onChangeUserInput,
-    onSubmitClick,
     formErrors,
-    formValid
+    formValid,
+    onChangeUserInput,
+    onClickSubmit
   } = props;
 
   return (
@@ -20,7 +20,7 @@ const PageSignIn = (props) => {
         <Header isUserClass={true} isShowIcon={false} title={`Sign In`} />
 
         <div className="sign-in user-page__content">
-          <form onSubmit={onSubmitClick} className="sign-in__form">
+          <form onSubmit={onClickSubmit} className="sign-in__form">
             <div className="sign-in__message">
               {formErrors && Object.keys(formErrors).map((fieldName, i) => {
                 if (formErrors[fieldName].length > 0) {
@@ -91,7 +91,7 @@ PageSignIn.propTypes = {
   formErrors: PropTypes.object.isRequired,
   formValid: PropTypes.bool.isRequired,
   onChangeUserInput: PropTypes.func.isRequired,
-  onSubmitClick: PropTypes.func.isRequired
+  onClickSubmit: PropTypes.func.isRequired
 };
 
 export default PageSignIn;

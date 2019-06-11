@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import {compose} from "recompose";
 import {getReviewMessage} from "../../store/data/selectors.js";
 import {Operation, ActionCreator} from "../../store/data/data.js";
-import {REVIEW_MESSAGE} from "../../mock/constants.js";
+import {REVIEW_MESSAGE, TextLength, RatingValue} from "../../mock/constants.js";
 import {Redirect} from "react-router-dom";
 import {routeToFilm} from "../../routes.js";
 
@@ -23,8 +23,8 @@ const withReviewState = (Component) => {
       };
       this.handleFormSubmit = this.handleFormSubmit.bind(this);
       this.handleUserInput = this.handleUserInput.bind(this);
-      this._validateField = this._validateField.bind(this);
-      this._validateForm = this._validateForm.bind(this);
+      this._handleValidateField = this._handleValidateField.bind(this);
+      this._handleValidateForm = this._handleValidateForm.bind(this);
     }
     componentDidUpdate() {
       if (this.props.reviewMessage) {
@@ -37,7 +37,7 @@ const withReviewState = (Component) => {
             isActive: true
           });
         }
-        this.props.resetReviewMessage();
+        this.props.onResetReviewMessage();
       }
       if (this.state.redirect) {
         this.setState({
@@ -49,7 +49,7 @@ const withReviewState = (Component) => {
       const name = event.target.name;
       const value = event.target.value;
       this.setState({[name]: value}, () => {
-        this._validateField(name, value);
+        this._handleValidateField(name, value);
       });
     }
     handleFormSubmit(event) {
@@ -60,17 +60,17 @@ const withReviewState = (Component) => {
       this.setState({
         isActive: false
       });
-      this.props.sendReview(rating, comment, filmId);
+      this.props.onSendReview(rating, comment, filmId);
     }
-    _validateField(fieldName, value) {
+    _handleValidateField(fieldName, value) {
       let textValid = this.state.textValid;
       let ratingValid = this.state.ratingValid;
       switch (fieldName) {
         case `text`:
-          textValid = value.length >= 50 && value.length <= 400;
+          textValid = value.length >= TextLength.MIN && value.length <= TextLength.MAX;
           break;
         case `ratingSelected`:
-          ratingValid = parseInt(value, 10) >= 1 && parseInt(value, 10) <= 5;
+          ratingValid = parseInt(value, 10) >= RatingValue.MIN && parseInt(value, 10) <= RatingValue.MAX;
           break;
         default:
           break;
@@ -80,10 +80,10 @@ const withReviewState = (Component) => {
             textValid,
             ratingValid
           },
-          this._validateForm
+          this._handleValidateForm
       );
     }
-    _validateForm() {
+    _handleValidateForm() {
       this.setState({
         formValid: this.state.textValid && this.state.ratingValid
       });
@@ -100,8 +100,8 @@ const withReviewState = (Component) => {
           isActive={this.state.isActive}
           ratingSelected={this.state.ratingSelected}
           formValid={this.state.formValid}
-          handleUserInput={this.handleUserInput}
-          handleFormSubmit={this.handleFormSubmit}
+          onChageUserInput={this.handleUserInput}
+          onSubmitSend={this.handleFormSubmit}
         />
       );
     }
@@ -109,8 +109,8 @@ const withReviewState = (Component) => {
   WithReviewState.propTypes = {
     id: PropTypes.number.isRequired,
     reviewMessage: PropTypes.string.isRequired,
-    sendReview: PropTypes.func.isRequired,
-    resetReviewMessage: PropTypes.func.isRequired
+    onSendReview: PropTypes.func.isRequired,
+    onResetReviewMessage: PropTypes.func.isRequired
   };
   return WithReviewState;
 };
@@ -120,9 +120,9 @@ const mapStateToProps = (state, ownProps) =>
     reviewMessage: getReviewMessage(state)
   });
 const mapDispatchToProps = (dispatch) => ({
-  sendReview: (rating, comment, filmId) =>
+  onSendReview: (rating, comment, filmId) =>
     dispatch(Operation.sendReview(rating, comment, filmId)),
-  resetReviewMessage: () => dispatch(ActionCreator.resetReviewMessage())
+  onResetReviewMessage: () => dispatch(ActionCreator.resetReviewMessage())
 });
 export {withReviewState};
 

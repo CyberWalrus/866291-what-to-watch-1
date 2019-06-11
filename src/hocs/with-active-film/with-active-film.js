@@ -13,39 +13,10 @@ const withActiveFilm = (Component) => {
         redirectId: 0
       };
       this.timeOutList = {};
-      this.setActiveFilm = this.setActiveFilm.bind(this);
-      this.removeActiveFilm = this.removeActiveFilm.bind(this);
-      this.onShowMoreClick = this.onShowMoreClick.bind(this);
-      this.onClickToRedirect = this.onClickToRedirect.bind(this);
-    }
-
-    setActiveFilm(id) {
-      this.timeOutList[id] = setTimeout(() => {
-        this.setState({
-          activeFilm: id
-        });
-        clearTimeout(this.timeOutList[id]);
-        delete this.timeOutList[id];
-      }, 1000);
-    }
-
-    removeActiveFilm(id) {
-      clearTimeout(this.timeOutList[id]);
-      delete this.timeOutList[id];
-      this.setState({
-        activeFilm: 0
-      });
-    }
-
-    onShowMoreClick() {
-      this.setState({
-        numberFilm: this.state.countFilm + NUMBER_FILM
-      });
-    }
-    onClickToRedirect(id) {
-      this.setState({
-        redirectId: id
-      });
+      this.handleSetActiveFilm = this.handleSetActiveFilm.bind(this);
+      this.handleRemoveActiveFilm = this.handleRemoveActiveFilm.bind(this);
+      this.handleShowMore = this.handleShowMore.bind(this);
+      this.handleToRedirect = this.handleToRedirect.bind(this);
     }
     componentDidUpdate() {
       if (this.state.redirectId) {
@@ -58,6 +29,35 @@ const withActiveFilm = (Component) => {
       const id = this.state.activeFilm;
       clearTimeout(this.timeOutList[id]);
     }
+
+    handleSetActiveFilm(id) {
+      this.timeOutList[id] = setTimeout(() => {
+        this.setState({
+          activeFilm: id
+        });
+        clearTimeout(this.timeOutList[id]);
+        delete this.timeOutList[id];
+      }, 1000);
+    }
+
+    handleRemoveActiveFilm(id) {
+      clearTimeout(this.timeOutList[id]);
+      delete this.timeOutList[id];
+      this.setState({
+        activeFilm: 0
+      });
+    }
+
+    handleShowMore() {
+      this.setState({
+        numberFilm: this.state.countFilm + NUMBER_FILM
+      });
+    }
+    handleToRedirect(id) {
+      this.setState({
+        redirectId: id
+      });
+    }
     render() {
       if (this.state.redirectId) {
         return <Redirect to={routeToFilm(this.state.redirectId)} />;
@@ -66,17 +66,15 @@ const withActiveFilm = (Component) => {
         <Component
           {...this.props}
           activeFilm={this.state.activeFilm}
-          setActiveFilm={this.setActiveFilm}
-          removeActiveFilm={this.removeActiveFilm}
           numberFilm={this.state.numberFilm}
-          onShowMoreClick={this.onShowMoreClick}
-          onClickToRedirect={this.onClickToRedirect}
+          onMouseEnterCard={this.handleSetActiveFilm}
+          onMouseLeaveCard={this.handleRemoveActiveFilm}
+          onClickShowMore={this.handleShowMore}
+          onClickToRedirect={this.handleToRedirect}
         />
       );
     }
   }
-
-  WithActiveFilm.propTypes = {};
   return WithActiveFilm;
 };
 

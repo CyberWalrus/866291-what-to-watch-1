@@ -11,9 +11,9 @@ const withFilmRoute = (Component) => {
         route: FilmRoute.OVERVIEW
       };
 
-      this.changeFilmRoute = this.changeFilmRoute.bind(this);
+      this.handleChangeFilmRoute = this.handleChangeFilmRoute.bind(this);
     }
-    changeFilmRoute(evt) {
+    handleChangeFilmRoute(evt) {
       this.setState({
         route: evt.target.text
       });
@@ -24,7 +24,7 @@ const withFilmRoute = (Component) => {
         <Component
           id={this.props.id}
           route={this.state.route}
-          changeFilmRoute={this.changeFilmRoute}
+          onChangeFilmRoute={this.handleChangeFilmRoute}
         />
       );
     }

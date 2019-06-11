@@ -26,8 +26,7 @@ class VideoScreen extends PureComponent {
       onSendVideoRef,
       onChangePlay,
       onClickFullScreen,
-      onMouseTogglerDown,
-      onMouseTogglerUp
+      onMouseTogglerDown
     } = this.props;
     return (
       <Fragment>
@@ -66,13 +65,12 @@ class VideoScreen extends PureComponent {
                 <div
                   className="player__toggler"
                   onMouseDown={onMouseTogglerDown}
-                  onMouseUp={onMouseTogglerUp}
                   style={{left: `${progressValue}%`}}
                 >
                   Toggler
                 </div>
               </div>
-              <div className="player__time-value">{time ? time : `0`}</div>
+              <div className="player__time-value">{time}</div>
             </div>
 
             <div className="player__controls-row">
@@ -128,7 +126,6 @@ VideoScreen.propTypes = {
   onClickClose: PropTypes.func.isRequired,
   onClickFullScreen: PropTypes.func.isRequired,
   onMouseTogglerDown: PropTypes.func,
-  onMouseTogglerUp: PropTypes.func,
   onSendVideoRef: PropTypes.func.isRequired,
   onSendProgressRef: PropTypes.func.isRequired,
   film: PropTypes.shape({

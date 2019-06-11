@@ -1,6 +1,6 @@
-import React, {Fragment} from "./node_modules/react";
-import PropTypes from "./node_modules/prop-types";
-import {connect} from "./node_modules/react-redux";
+import React, {Fragment} from "react";
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
 import {getFilm} from "../../store/data/selectors.js";
 import Footer from "../footer/footer.jsx";
 import HiddenIcon from "../hidden-icon/hidden-icon.jsx";
@@ -12,7 +12,7 @@ import FilmNav from "../film-nav/film-nav.jsx";
 import FilmButtonDiv from "../film-button-div/film-button-div.jsx";
 import {FilmRoute} from "../../mock/constants.js";
 import CardList from "../card-list/card-list.jsx";
-import VideScreen from "../video-screen/video-screen.jsx.js";
+import VideScreen from "../video-screen/video-screen.jsx";
 import withActiveFilm from "../../hocs/with-active-film/with-active-film.js";
 import withVideoScreenState from "../../hocs/with-video-screen-state/with-video-screen-state.js";
 
@@ -83,7 +83,7 @@ const PageFilm = ({film, onChangeFilmRoute, route}) => {
               </div>
 
               <div className="movie-card__desc">
-                <FilmNav changeFilmRoute={onChangeFilmRoute} route={route} />
+                <FilmNav onChangeFilmRoute={onChangeFilmRoute} route={route} />
                 {
                   {
                     [FilmRoute.OVERVIEW]: (

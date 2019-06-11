@@ -6,8 +6,8 @@ import {getFilms, getFavorites} from "../../store/data/selectors.js";
 
 const CardList = ({
   numberFilm,
-  onShowMoreClick,
   activeFilm,
+  onClickShowMore,
   onMouseEnterCard,
   onMouseLeaveCard,
   onClickToRedirect,
@@ -39,7 +39,7 @@ const CardList = ({
           <button
             className="catalog__button"
             type="button"
-            onClick={onShowMoreClick}
+            onClick={onClickShowMore}
           >
             Show more
           </button>
@@ -57,7 +57,7 @@ CardList.propTypes = {
   filmId: PropTypes.number,
   numberFilm: PropTypes.number.isRequired,
   activeFilm: PropTypes.number.isRequired,
-  onShowMoreClick: PropTypes.func.isRequired,
+  onClickShowMore: PropTypes.func.isRequired,
   onMouseEnterCard: PropTypes.func.isRequired,
   onMouseLeaveCard: PropTypes.func.isRequired,
   onClickToRedirect: PropTypes.func.isRequired,

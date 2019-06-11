@@ -1,6 +1,6 @@
-import React, {Fragment} from "./node_modules/react";
-import PropTypes from "./node_modules/prop-types";
-import {connect} from "./node_modules/react-redux";
+import React, {Fragment} from "react";
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
 import {getFilm} from "../../store/data/selectors.js";
 import HiddenIcon from "../hidden-icon/hidden-icon.jsx";
 import Header from "../header/header.jsx";
@@ -10,8 +10,8 @@ const PageAddReview = ({
   film,
   text,
   ratingSelected,
-  onUserInput,
-  onFormSubmit,
+  onChageUserInput,
+  onSubmitSend,
   formValid,
   isActive
 }) => {
@@ -47,7 +47,7 @@ const PageAddReview = ({
             disabled={!isActive}
             style={!isActive ? DisabledStyle : {}}
           >
-            <form onSubmit={onFormSubmit} className="add-review__form">
+            <form onSubmit={onSubmitSend} className="add-review__form">
               <div className="rating">
                 <div className="rating__stars">
                   {ratingRadioValues &&
@@ -60,7 +60,7 @@ const PageAddReview = ({
                           name="ratingSelected"
                           value={item}
                           checked={ratingSelected === item}
-                          onChange={onUserInput}
+                          onChange={onChageUserInput}
                         />
                         <label
                           className="rating__label"
@@ -82,7 +82,7 @@ const PageAddReview = ({
                   maxLength={TextLength.MAX}
                   minLength={TextLength.MIN}
                   value={text}
-                  onChange={onUserInput}
+                  onChange={onChageUserInput}
                 />
                 <div className="add-review__submit">
                   <button
@@ -110,8 +110,8 @@ PageAddReview.propTypes = {
   text: PropTypes.string.isRequired,
   isActive: PropTypes.bool.isRequired,
   formValid: PropTypes.bool.isRequired,
-  onUserInput: PropTypes.func.isRequired,
-  onFormSubmit: PropTypes.func.isRequired,
+  onChageUserInput: PropTypes.func.isRequired,
+  onSubmitSend: PropTypes.func.isRequired,
   film: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,

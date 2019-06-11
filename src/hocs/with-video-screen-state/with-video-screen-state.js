@@ -4,20 +4,9 @@ import {connect} from "react-redux";
 import {compose} from "recompose";
 import {getPlayFilmId} from "../../store/filter/selectors.js";
 import {ActionCreator} from "../../store/filter/filter.js";
-import {BodyOverflow} from "../../mock/constants.js";
+import {BodyOverflow, PADDING_VIDEO} from "../../mock/constants.js";
 
-const checkHeiht = (pointerPosition = 0, widthElement, padding = 25, video) => {
-  let valueChange = (100 / widthElement) * (pointerPosition - padding);
-  if (valueChange >= 100) {
-    valueChange = 100;
-  }
-  const pointerReturn = valueChange;
-  const time = video.duration * (valueChange / 100);
-  video.currentTime = time;
-  return pointerReturn;
-};
-
-const timeConvert = (num) => {
+const _timeConvert = (num) => {
   const minutes = Math.floor(num / 60);
   const seconds = Math.floor(num % 60);
   return `${minutes}:${seconds}`;
@@ -28,22 +17,22 @@ const withVideoScreenState = (Component) => {
       super(props);
       this.state = {
         isOpen: false,
+        isPlaying: false,
         filmId: 0,
         togglerValue: 0,
-        time: 0,
+        time: `00:00`,
         progressValue: 0,
         progressRef: undefined,
-        isPlaying: false,
         videoRef: undefined
       };
-      this.onVideoScreenClose = this.onVideoScreenClose.bind(this);
-      this.onPlayChange = this.onPlayChange.bind(this);
-      this.sendVideoRef = this.sendVideoRef.bind(this);
-      this.sendProgressRef = this.sendProgressRef.bind(this);
-      this.onFullScreen = this.onFullScreen.bind(this);
-      this.divPointerDown = this.divPointerDown.bind(this);
-      this.divPointerUp = this.divPointerUp.bind(this);
-      this.divPointerMove = this.divPointerMove.bind(this);
+      this.handleClose = this.handleClose.bind(this);
+      this.handleChangePlay = this.handleChangePlay.bind(this);
+      this.handleSendVideoRef = this.handleSendVideoRef.bind(this);
+      this.handleSendProgressRef = this.handleSendProgressRef.bind(this);
+      this.handleFullScreen = this.handleFullScreen.bind(this);
+      this.handlePointerDown = this.handlePointerDown.bind(this);
+      this._handlePointerUp = this._handlePointerUp.bind(this);
+      this._handlePointerMove = this._handlePointerMove.bind(this);
     }
     componentDidUpdate() {
       if (this.props.playFilmId) {
@@ -52,38 +41,38 @@ const withVideoScreenState = (Component) => {
           filmId: this.props.playFilmId
         });
         document.body.style.overflow = BodyOverflow.HIDDEN;
-        this.props.resetPlayFilmId();
+        this.props.onResetPlayFilmId();
       }
     }
-    divPointerDown(event) {
-      window.addEventListener(`pointerup`, this.divPointerUp);
-      window.addEventListener(`pointermove`, this.divPointerMove);
+    handleSendVideoRef(ref) {
+      const video = ref;
+      video.onloadedmetadata = () => {
+        video.ontimeupdate = () => {
+          const value = (100 / video.duration) * video.currentTime;
+
+          this.setState({
+            progressValue: value
+          });
+        };
+        this.setState({
+          videoRef: video,
+          time: _timeConvert(video.duration)
+        });
+      };
+    }
+
+    handleSendProgressRef(ref) {
       this.setState({
-        widthProgress: event.target
+        progressRef: ref
       });
     }
-    divPointerUp() {
-      window.removeEventListener(`pointerup`, this.divPointerUp);
-      window.removeEventListener(`pointermove`, this.divPointerMove);
-    }
-    divPointerMove(event) {
-      const pointerPosition = checkHeiht(
-          event.clientX,
-          this.state.progressRef.clientWidth,
-          25,
-          this.state.videoRef
-      );
-      this.setState({
-        progressValue: pointerPosition
-      });
-    }
-    onVideoScreenClose() {
+    handleClose() {
       this.setState({
         isOpen: false
       });
       document.body.style.overflow = BodyOverflow.VISIBLE;
     }
-    onPlayChange() {
+    handleChangePlay() {
       const video = this.state.videoRef;
       if (this.state.isPlaying === false) {
         video.play();
@@ -97,7 +86,7 @@ const withVideoScreenState = (Component) => {
         });
       }
     }
-    onFullScreen() {
+    handleFullScreen() {
       const video = this.state.videoRef;
       if (video.requestFullscreen) {
         video.requestFullscreen();
@@ -107,26 +96,29 @@ const withVideoScreenState = (Component) => {
         video.webkitRequestFullscreen();
       }
     }
-    sendVideoRef(ref) {
-      const video = ref;
-      video.onloadedmetadata = () => {
-        video.ontimeupdate = () => {
-          const value = (100 / video.duration) * video.currentTime;
-
-          this.setState({
-            progressValue: value
-          });
-        };
-        this.setState({
-          videoRef: video,
-          time: timeConvert(video.duration)
-        });
-      };
-    }
-
-    sendProgressRef(ref) {
+    handlePointerDown(event) {
+      window.addEventListener(`pointerup`, this._handlePointerUp);
+      window.addEventListener(`pointermove`, this._handlePointerMove);
       this.setState({
-        progressRef: ref
+        widthProgress: event.target
+      });
+    }
+    _handlePointerUp() {
+      window.removeEventListener(`pointerup`, this._handlePointerUp);
+      window.removeEventListener(`pointermove`, this._handlePointerMove);
+    }
+    _handlePointerMove(event) {
+      const video = this.state.videoRef;
+      let progressValue =
+        (100 / this.state.progressRef.clientWidth) *
+        (event.clientX - PADDING_VIDEO);
+      if (progressValue >= 100) {
+        progressValue = 100;
+      }
+      const time = video.duration * (progressValue / 100);
+      video.currentTime = time;
+      this.setState({
+        progressValue
       });
     }
     render() {
@@ -134,17 +126,15 @@ const withVideoScreenState = (Component) => {
         return (
           <Component
             time={this.state.time}
-            onVideoScreenClose={this.onVideoScreenClose}
-            onPlayChange={this.onPlayChange}
             isPlaying={this.state.isPlaying}
             filmId={this.state.filmId}
-            sendVideoRef={this.sendVideoRef}
-            onFullScreen={this.onFullScreen}
-            video={this.state.videoRef}
             progressValue={this.state.progressValue}
-            divPointerDown={this.divPointerDown}
-            divPointerUp={this.divPointerUp}
-            sendProgressRef={this.sendProgressRef}
+            onClickClose={this.handleClose}
+            onChangePlay={this.handleChangePlay}
+            onClickFullScreen={this.handleFullScreen}
+            onMouseTogglerDown={this.handlePointerDown}
+            onSendVideoRef={this.handleSendVideoRef}
+            onSendProgressRef={this.handleSendProgressRef}
           />
         );
       }
@@ -154,7 +144,7 @@ const withVideoScreenState = (Component) => {
 
   WithVideoScreenState.propTypes = {
     playFilmId: PropTypes.number.isRequired,
-    resetPlayFilmId: PropTypes.func.isRequired
+    onResetPlayFilmId: PropTypes.func.isRequired
   };
   return WithVideoScreenState;
 };
@@ -164,7 +154,7 @@ const mapStateToProps = (state, ownProps) =>
     playFilmId: getPlayFilmId(state)
   });
 const mapDispatchToProps = (dispatch) => ({
-  resetPlayFilmId: () => dispatch(ActionCreator.resetPlayFilmId())
+  onResetPlayFilmId: () => dispatch(ActionCreator.resetPlayFilmId())
 });
 export {withVideoScreenState};
 

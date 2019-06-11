@@ -41,9 +41,14 @@ const TextLength = {
   MIN: 50,
   MAX: 400
 };
+const RatingValue = {
+  MIN: 1,
+  MAX: 5
+};
 
 const ratingRadioValues = [`1`, `2`, `3`, `4`, `5`];
 const MAIN_FILM_ID = 1;
+const PADDING_VIDEO = 25;
 export {
   FilmRoute,
   GENRE_DEFOULT,
@@ -60,5 +65,7 @@ export {
   REVIEW_MESSAGE,
   ratingRadioValues,
   TextLength,
-  MAIN_FILM_ID
+  RatingValue,
+  MAIN_FILM_ID,
+  PADDING_VIDEO
 };
