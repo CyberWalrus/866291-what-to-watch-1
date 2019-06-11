@@ -1,4 +1,5 @@
 import {userDataAdapter} from "../../api/data-adapter.js";
+import {SendUrl} from "../../constants.js";
 import {Operation as OperationData} from "../data/data.js";
 
 const initialState = {
@@ -43,7 +44,7 @@ const ActionCreator = {
 const Operation = {
   signIn: (email, password) => (dispatch, _getState, api) => {
     return api
-      .post(`/login`, {
+      .post(SendUrl.FILMS, {
         email,
         password
       })

@@ -16,5 +16,10 @@ describe(`<WithVideoScreenState/>`, () => {
     expect(tree.state(`isOpen`)).toEqual(false);
     expect(tree.state(`isPlaying`)).toEqual(false);
     expect(tree.state(`filmId`)).toEqual(0);
+    expect(tree.state(`togglerValue`)).toEqual(0);
+    expect(tree.state(`time`)).toEqual(`00:00`);
+    expect(tree.state(`progressValue`)).toEqual(0);
+    expect(tree.state(`progressRef`)).toEqual(undefined);
+    expect(tree.state(`videoRef`)).toEqual(undefined);
   });
 });

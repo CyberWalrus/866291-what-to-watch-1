@@ -14,5 +14,6 @@ describe(`<withActiveFilm/>`, () => {
     expect(tree.state(`activeFilm`)).toEqual(0);
     expect(tree.state(`numberFilm`)).toEqual(NUMBER_FILM);
     expect(tree.state(`redirectId`)).toEqual(0);
+    expect(tree.state(`timeOutId`)).toEqual(0);
   });
 });

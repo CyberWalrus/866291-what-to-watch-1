@@ -56,8 +56,8 @@ const ActionCreator = {
   },
   resetReviews: () => {
     return {
-      type: ActionType.RESET_REVIEWS,
-      payload: []
+      type: ActionType.SET_REVIEWS,
+      payload: initialState.reviews
     };
   },
   setReviewMessage: (message) => {
@@ -90,10 +90,14 @@ const Operation = {
     return api
       .post(`${SendUrl.FAVORITE}/${filmId}/${status}`, {})
       .then((response) => {
+        dispatch(
+            ActionCreator.updateFilms(
+                _getState()[NameSpace.DATA].films,
+                response.data
+            )
+        );
         dispatch(Operation.loadFavorites());
-        dispatch(ActionCreator.updateFilms(_getState()[NameSpace.DATA].films, response.data));
-      })
-      .catch(() => {});
+      });
   },
   loadReviews: (filmId) => (dispatch, _getState, api) => {
     return api

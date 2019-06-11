@@ -1,6 +1,6 @@
 import {GENRE_DEFOULT} from "../../constants.js";
 
-const intialState = {
+const initialState = {
   genreSelected: GENRE_DEFOULT,
   playFilmId: 0
 };
@@ -26,12 +26,12 @@ const ActionCreator = {
   resetPlayFilmId: () => {
     return {
       type: ActionType.SET_PLAY_FILM,
-      payload: intialState.playFilmId
+      payload: initialState.playFilmId
     };
   }
 };
 
-const reducer = (state = intialState, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.CHANGE_GENRE:
       return Object.assign({}, state, {
@@ -46,4 +46,4 @@ const reducer = (state = intialState, action) => {
   return state;
 };
 
-export {ActionCreator, reducer};
+export {ActionCreator, ActionType, reducer};

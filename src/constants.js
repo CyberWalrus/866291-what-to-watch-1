@@ -49,7 +49,8 @@ const RatingValue = {
 const SendUrl = {
   FILMS: `/films`,
   FAVORITE: `/favorite`,
-  COMMENTS: `/comments`
+  COMMENTS: `/comments`,
+  LOGIN: `/login`
 };
 
 const DisabledStyle = {

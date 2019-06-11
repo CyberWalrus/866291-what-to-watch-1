@@ -1,4 +1,9 @@
-import {GENRE_DEFOULT, SERVER_URL_USER, RatingInterval, RatingName} from "../constants.js";
+import {
+  GENRE_DEFOULT,
+  SERVER_URL_USER,
+  RatingInterval,
+  RatingName
+} from "../constants.js";
 const FilmDataAdapter = (data) => {
   return _filmDataAdapter(data);
 };
@@ -9,8 +14,8 @@ const ReviewDataAdapter = (data) => {
     dateHTML: _dateToStringHTML(data.date),
     id: data.id,
     rating: _ratingToString(data.rating),
-    userId: data.user.id,
-    userName: data.user.name
+    userId: data.user && data.user.id ? data.user.id : 0,
+    userName: data.user && data.user.name ? data.user.name : ``
   };
 };
 const getGenerFromData = (data) => {
@@ -39,7 +44,6 @@ const updateFilmAdapter = (array, film) => {
   array[elementPos] = filmNew;
   return array;
 };
-
 
 const _filmDataAdapter = (data) => {
   return {
@@ -76,6 +80,9 @@ const _ratingToString = (rating) => {
     .replace(`.`, `,`);
 };
 const _dateToString = (date) => {
+  if (!date) {
+    return ``;
+  }
   const dateNew = new Date(date);
   let dateString = dateNew.toDateString();
   dateString = dateString.slice(dateString.indexOf(` `) + 1);
@@ -84,6 +91,9 @@ const _dateToString = (date) => {
   return dateReturn;
 };
 const _dateToStringHTML = (date) => {
+  if (!date) {
+    return ``;
+  }
   const dateNew = new Date(date);
   const dateReturn = dateNew.toISOString().substring(0, 10);
   return dateReturn;
