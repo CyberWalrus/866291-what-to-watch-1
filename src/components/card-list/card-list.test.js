@@ -1,13 +1,44 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {BrowserRouter} from "react-router-dom";
 import {CardList} from "./card-list.jsx";
-import films from "../../mock/films-test";
+import {FILMS} from "../../mock/mock-test.js";
+import {NUMBER_FILM} from "../../constants.js";
 
 it(`CardList component renders correctly with props`, () => {
-  const tree = renderer.create(<CardList films={films}/>).toJSON();
+  const handleClick = jest.fn();
+  const tree = renderer
+    .create(
+        <BrowserRouter>
+          <CardList
+            films={FILMS}
+            numberFilm={NUMBER_FILM}
+            activeFilm={0}
+            onClickShowMore={handleClick}
+            onMouseEnterCard={handleClick}
+            onMouseLeaveCard={handleClick}
+            onClickToRedirect={handleClick}
+          />
+        </BrowserRouter>
+    )
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });
 it(`CardList component renders correctly with empty props`, () => {
-  const tree = renderer.create(<CardList/>).toJSON();
+  const handleClick = jest.fn();
+  const tree = renderer
+    .create(
+        <BrowserRouter>
+          <CardList
+            numberFilm={NUMBER_FILM}
+            onShowMoreClick={handleClick}
+            onClickToRedirect={handleClick}
+            setActiveFilm={handleClick}
+            removeActiveFilm={handleClick}
+            activeFilm={0}
+          />
+        </BrowserRouter>
+    )
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });

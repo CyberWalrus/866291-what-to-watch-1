@@ -1,13 +1,17 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import VideoPlayer from "./video-player.jsx";
+import {FILM} from "../../mock/mock-test.js";
+import {OptionsVideoFull} from "../../constants.js";
 
 it(`VideoPlayer correctly renders after relaunch`, () => {
   const tree = renderer
     .create(
         <VideoPlayer
-          poster="img/what-we-do-in-the-shadows.jpg"
-          preview="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+          videoSrc={FILM.srcVideo}
+          posterSrc={FILM.srcPosterImage}
+          options={OptionsVideoFull}
+          isPlaying={false}
         />
     )
     .toJSON();

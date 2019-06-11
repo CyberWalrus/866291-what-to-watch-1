@@ -1,8 +1,9 @@
 import axios from "axios";
+import {SERVER_URL} from "../constants.js";
 
 export const createAPI = (onLoginFail) => {
   const api = axios.create({
-    baseURL: `https://es31-server.appspot.com/wtw`,
+    baseURL: SERVER_URL,
     timeout: 1000 * 5,
     withCredentials: true
   });

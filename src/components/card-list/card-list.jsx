@@ -1,52 +1,86 @@
-import React from "react";
+import React, {Fragment} from "react";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import Card from "../card/card.jsx";
-import withPlayCard from "../../hocs/with-play-card/with-play-card.js";
+import {getFilms, getFavorites} from "../../store/data/selectors.js";
 
-const CardPlay = withPlayCard(Card);
-
-class CardList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  componentDidMount() {
-  }
-  onCardMouseEnter() {}
-  render() {
-    return (
+const CardList = ({
+  numberFilm,
+  activeFilm,
+  onClickShowMore,
+  onMouseEnterCard,
+  onMouseLeaveCard,
+  onClickToRedirect,
+  films,
+  genreFilm
+}) => {
+  const isShow = genreFilm ? false : true;
+  return (
+    <Fragment>
       <div className="catalog__movies-list">
-        {this.props.films &&
-          this.props.films.map(({id, title, src, genre, preview}) => (
-            <CardPlay
+        {films &&
+          films.map(({id, title, srcPreviewImage, genre, srcPreviewVideo}) => (
+            <Card
               key={id}
               id={id}
               title={title}
-              src={src}
+              srcPreviewImage={srcPreviewImage}
               genre={genre}
-              preview={preview}
-              onMouseEnter={this.onCardMouseEnter}
+              srcPreviewVideo={srcPreviewVideo}
+              isActive={activeFilm === id}
+              onMouseEnterCard={() => onMouseEnterCard(id)}
+              onMouseLeaveCard={() => onMouseLeaveCard(id)}
+              onClickToRedirect={() => onClickToRedirect(id)}
             />
           ))}
       </div>
-    );
-  }
-}
+      {films && isShow && films.length >= numberFilm ? (
+        <div className="catalog__more">
+          <button
+            className="catalog__button"
+            type="button"
+            onClick={onClickShowMore}
+          >
+            Show more
+          </button>
+        </div>
+      ) : (
+        <Fragment />
+      )}
+    </Fragment>
+  );
+};
 
 CardList.propTypes = {
+  isFavorite: PropTypes.bool,
+  genreFilm: PropTypes.string,
+  filmId: PropTypes.number,
+  numberFilm: PropTypes.number.isRequired,
+  activeFilm: PropTypes.number.isRequired,
+  onClickShowMore: PropTypes.func,
+  onMouseEnterCard: PropTypes.func,
+  onMouseLeaveCard: PropTypes.func,
+  onClickToRedirect: PropTypes.func.isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
-        src: PropTypes.string.isRequired,
+        srcPreviewImage: PropTypes.string.isRequired,
         genre: PropTypes.string.isRequired,
-        preview: PropTypes.string.isRequired
+        srcPreviewVideo: PropTypes.string.isRequired
       })
   )
 };
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
-    films: state.DATA.films
+    films: ownProps.isFavorite
+      ? getFavorites(state, ownProps.numberFilm)
+      : getFilms(
+          state,
+          ownProps.numberFilm,
+          ownProps.genreFilm,
+          ownProps.filmId
+      )
   });
 
 export {CardList};

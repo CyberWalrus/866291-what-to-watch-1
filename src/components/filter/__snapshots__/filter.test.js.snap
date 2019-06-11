@@ -9,10 +9,9 @@ exports[`Filter correctly renders after relaunch 1`] = `
   >
     <a
       className="catalog__genres-link"
-      href="#"
       onClick={[Function]}
     >
-      All geners
+      All genres
     </a>
   </li>
   <li
@@ -20,10 +19,9 @@ exports[`Filter correctly renders after relaunch 1`] = `
   >
     <a
       className="catalog__genres-link"
-      href="#"
       onClick={[Function]}
     >
-      Comedies
+      Thriller
     </a>
   </li>
   <li
@@ -31,7 +29,36 @@ exports[`Filter correctly renders after relaunch 1`] = `
   >
     <a
       className="catalog__genres-link"
-      href="#"
+      onClick={[Function]}
+    >
+      Drama
+    </a>
+  </li>
+  <li
+    className="catalog__genres-item"
+  >
+    <a
+      className="catalog__genres-link"
+      onClick={[Function]}
+    >
+      Adventure
+    </a>
+  </li>
+  <li
+    className="catalog__genres-item"
+  >
+    <a
+      className="catalog__genres-link"
+      onClick={[Function]}
+    >
+      Comedy
+    </a>
+  </li>
+  <li
+    className="catalog__genres-item"
+  >
+    <a
+      className="catalog__genres-link"
       onClick={[Function]}
     >
       Crime
@@ -42,10 +69,9 @@ exports[`Filter correctly renders after relaunch 1`] = `
   >
     <a
       className="catalog__genres-link"
-      href="#"
       onClick={[Function]}
     >
-      Documentary
+      Action
     </a>
   </li>
   <li
@@ -53,65 +79,9 @@ exports[`Filter correctly renders after relaunch 1`] = `
   >
     <a
       className="catalog__genres-link"
-      href="#"
       onClick={[Function]}
     >
-      Dramas
-    </a>
-  </li>
-  <li
-    className="catalog__genres-item"
-  >
-    <a
-      className="catalog__genres-link"
-      href="#"
-      onClick={[Function]}
-    >
-      Horror
-    </a>
-  </li>
-  <li
-    className="catalog__genres-item"
-  >
-    <a
-      className="catalog__genres-link"
-      href="#"
-      onClick={[Function]}
-    >
-      Kids & Family
-    </a>
-  </li>
-  <li
-    className="catalog__genres-item"
-  >
-    <a
-      className="catalog__genres-link"
-      href="#"
-      onClick={[Function]}
-    >
-      Romance
-    </a>
-  </li>
-  <li
-    className="catalog__genres-item"
-  >
-    <a
-      className="catalog__genres-link"
-      href="#"
-      onClick={[Function]}
-    >
-      Sci-Fi
-    </a>
-  </li>
-  <li
-    className="catalog__genres-item"
-  >
-    <a
-      className="catalog__genres-link"
-      href="#"
-      onClick={[Function]}
-    >
-      Thrillers
+      Fantasy
     </a>
   </li>
 </ul>

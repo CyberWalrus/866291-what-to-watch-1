@@ -1,49 +1,59 @@
-import React from "react";
+import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import VideoPlayer from "../video-player/video-player.jsx";
+import {OptionsVideoMin} from "../../constants.js";
+import {Link} from "react-router-dom";
+import {routeToFilm} from "../../routes.js";
 
-export default class Card extends React.PureComponent {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <article
-        onMouseEnter={() => this.props.onMouseEnter(this.props.id)}
-        onMouseOver={this.props.onCardMouseOver}
-        onMouseLeave={this.props.onCardMouseLeave}
-        className="small-movie-card catalog__movies-card"
-      >
-        {!this.props.isPlay ? (
-          <>
-            <div className="small-movie-card__image">
-              <img
-                src={this.props.src}
-                alt={this.props.title}
-                width="280"
-                height="175"
-              />
-            </div>
-            <h3 className="small-movie-card__title">
-              <a className="small-movie-card__link">{this.props.title}</a>
-            </h3>
-          </>
+const Card = ({
+  onClickToRedirect,
+  onMouseLeaveCard,
+  onMouseEnterCard,
+  isActive,
+  srcPreviewImage,
+  title,
+  srcPreviewVideo,
+  id
+}) => {
+  return (
+    <article
+      onClick={onClickToRedirect}
+      onMouseOver={onMouseEnterCard}
+      onMouseLeave={onMouseLeaveCard}
+      className="small-movie-card catalog__movies-card"
+    >
+      <div className="small-movie-card__image">
+        <VideoPlayer
+          options={OptionsVideoMin}
+          videoSrc={srcPreviewVideo}
+          posterSrc={srcPreviewImage}
+          muted={true}
+          isPlaying={isActive}
+        />
+        {!isActive ? (
+          <h3 className="small-movie-card__title">
+            <Link to={routeToFilm(id)} className="small-movie-card__link">
+              {title}
+            </Link>
+          </h3>
         ) : (
-          <VideoPlayer poster={this.props.src} preview={this.props.preview} />
+          <Fragment />
         )}
-      </article>
-    );
-  }
-}
+      </div>
+    </article>
+  );
+};
 
 Card.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired,
+  srcPreviewImage: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
-  preview: PropTypes.string.isRequired,
-  isPlay: PropTypes.bool.isRequired,
-  onMouseEnter: PropTypes.func,
-  onCardMouseOver: PropTypes.func,
-  onCardMouseLeave: PropTypes.func,
+  srcPreviewVideo: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  onMouseLeaveCard: PropTypes.func.isRequired,
+  onMouseEnterCard: PropTypes.func.isRequired,
+  onClickToRedirect: PropTypes.func.isRequired
 };
+
+export default Card;

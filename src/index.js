@@ -4,11 +4,10 @@ import {createStore, applyMiddleware} from "redux";
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import {compose} from "recompose";
-import {createAPI} from './api/api';
-import reducer from "./reducer";
-import {Operation} from "./reducer/data/data";
+import {createAPI} from "./api/api";
+import reducer from "./store";
+import {Operation as OperationData} from "./store/data/data.js";
 import App from "./components/app/app.jsx";
-
 
 const init = () => {
   const api = createAPI(() => history.pushState(null, null, `/login`));
@@ -20,7 +19,7 @@ const init = () => {
         window.__REDUX_DEVTOOLS_EXTENSION__()
       )
   );
-  store.dispatch(Operation.loadFilms());
+  store.dispatch(OperationData.loadFilms());
   ReactDOM.render(
       <Provider store={store}>
         <App />

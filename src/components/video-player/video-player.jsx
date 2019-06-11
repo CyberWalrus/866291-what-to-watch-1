@@ -1,27 +1,64 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
-export default class VideoPlayer extends React.Component {
+class VideoPlayer extends PureComponent {
   constructor(props) {
     super(props);
+
+    this.videoRef = React.createRef();
+  }
+  componentDidMount() {
+    if (this.props.onSendVideoRef) {
+      this.props.onSendVideoRef(this.videoRef.current);
+    }
+  }
+  componentDidUpdate() {
+    if (!this.props.onSendVideoRef) {
+      const video = this.videoRef.current;
+      if (this.props.isPlaying) {
+        video.play();
+      } else {
+        video.load();
+      }
+    }
   }
   render() {
+    const {videoSrc, posterSrc, options} = this.props;
+    const {
+      width,
+      height,
+      isMuted = true,
+      isLoop = true,
+      isControls = false
+    } = options;
     return (
       <video
-        src={this.props.preview}
-        poster={this.props.poster}
-        style={{
-          width: `100%`,
-          height: `100%`
-        }}
-        muted
-        autoPlay
+        ref={this.videoRef}
+        src={videoSrc}
+        poster={posterSrc}
+        width={width}
+        height={height}
+        loop={isLoop}
+        muted={isMuted}
+        controls={isControls}
+        className={`player__video`}
       />
     );
   }
 }
 
 VideoPlayer.propTypes = {
-  poster: PropTypes.string.isRequired,
-  preview: PropTypes.string.isRequired
+  videoSrc: PropTypes.string.isRequired,
+  posterSrc: PropTypes.string,
+  options: PropTypes.shape({
+    width: PropTypes.string.isRequired,
+    height: PropTypes.string.isRequired,
+    isMuted: PropTypes.bool,
+    isLoop: PropTypes.bool,
+    isControls: PropTypes.bool
+  }).isRequired,
+  isPlaying: PropTypes.bool,
+  onSendVideoRef: PropTypes.func,
 };
+
+export default VideoPlayer;
