@@ -1,7 +1,15 @@
-import React, {Fragment} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import {Fragment} from "react";
 
-const FilmDetails = ({runTime, genre, released, director, starrings}) => {
+interface Props{
+  runTime: string,
+  genre: string,
+  released: number,
+  director: string,
+  starrings: string[]
+}
+
+const FilmDetails = ({runTime, genre, released, director, starrings}: Props) => {
   return (
     <Fragment>
       <div className="movie-card__text movie-card__row">
@@ -44,11 +52,4 @@ const FilmDetails = ({runTime, genre, released, director, starrings}) => {
   );
 };
 
-FilmDetails.propTypes = {
-  runTime: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  released: PropTypes.number.isRequired,
-  director: PropTypes.string.isRequired,
-  starrings: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
-};
 export default FilmDetails;

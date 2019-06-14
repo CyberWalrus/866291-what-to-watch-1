@@ -1,10 +1,18 @@
-import React from "react";
+import * as React from "react";
 import {Redirect, Route} from "react-router-dom";
-import PropTypes from "prop-types";
-import {getAuthorizationStatus} from "../../store/user/selectors.js";
+import {getAuthorizationStatus} from "../../store/user/selectors";
 import {connect} from "react-redux";
-import RoutePath from "../../routes.js";
+import RoutePath from "../../routes";
 
+interface Props {
+  rest: any,
+  path: string,
+  component: any,
+  isAuthorizationRequired: boolean,
+  location: object,
+  isAuthor: boolean,
+  redirectPath: string
+}
 const PrivateRoute = ({
   component: Component,
   isAuthorizationRequired,
@@ -12,7 +20,7 @@ const PrivateRoute = ({
   redirectPath = RoutePath.LOGIN,
   isAuthor = true,
   path
-}) => {
+}: Props) => {
   return (
     <Route
       {...rest}
@@ -31,18 +39,6 @@ const PrivateRoute = ({
       }
     />
   );
-};
-PrivateRoute.propTypes = {
-  rest: PropTypes.any,
-  path: PropTypes.string,
-  component: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.func
-  ]).isRequired,
-  isAuthorizationRequired: PropTypes.bool.isRequired,
-  location: PropTypes.object.isRequired,
-  isAuthor: PropTypes.bool,
-  redirectPath: PropTypes.string
 };
 
 const mapStateToProps = (state, ownProps) =>

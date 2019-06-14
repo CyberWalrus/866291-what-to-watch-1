@@ -1,8 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {BrowserRouter} from "react-router-dom";
-import Card from "./card.jsx";
-import {FILM} from "../../mock/mock-test.js";
+import Card from "./card";
+import {FILM} from "../../mock/mock-test";
 
 it(`Card correctly renders after relaunch`, () => {
   const handleClick = jest.fn();

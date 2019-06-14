@@ -1,5 +1,14 @@
-import React, {Fragment} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import {Fragment} from "react";
+
+interface Props{
+  rating: string,
+  ratingLevel: string,
+  scoresCount: number,
+  description: string,
+  director: string,
+  starrings: string[]
+}
 
 const FilmOverview = ({
   rating,
@@ -8,7 +17,7 @@ const FilmOverview = ({
   description,
   director,
   starrings
-}) => {
+}: Props) => {
   return (
     <Fragment>
       <div className="movie-rating">
@@ -39,13 +48,5 @@ const FilmOverview = ({
       </div>
     </Fragment>
   );
-};
-FilmOverview.propTypes = {
-  rating: PropTypes.string.isRequired,
-  ratingLevel: PropTypes.string.isRequired,
-  scoresCount: PropTypes.number.isRequired,
-  description: PropTypes.string.isRequired,
-  director: PropTypes.string.isRequired,
-  starrings: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
 };
 export default FilmOverview;

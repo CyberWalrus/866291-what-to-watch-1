@@ -1,9 +1,20 @@
-import React, {Fragment} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import {Fragment} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import RoutePath, {routeToFilm} from "../../routes.js";
-import {getAuthorizationStatus, getUser} from "../../store/user/selectors.js";
+import RoutePath, {routeToFilm} from "../../routes";
+import {getAuthorizationStatus, getUser} from "../../store/user/selectors";
+import {User} from "../../type";
+
+interface Props {
+  isAuthorizationRequired: boolean;
+  isUserClass: boolean;
+  isShowIcon: boolean;
+  filmTitle: string;
+  filmId: number;
+  title: string;
+  user: User
+}
 
 const Header = ({
   isAuthorizationRequired,
@@ -13,7 +24,7 @@ const Header = ({
   filmId = 0,
   user,
   title
-}) => {
+}: Props) => {
   return (
     <header
       className={
@@ -39,10 +50,7 @@ const Header = ({
         <nav className="breadcrumbs">
           <ul className="breadcrumbs__list">
             <li className="breadcrumbs__item">
-              <Link
-                to={routeToFilm(filmId)}
-                className="breadcrumbs__link"
-              >
+              <Link to={routeToFilm(filmId)} className="breadcrumbs__link">
                 {filmTitle}
               </Link>
             </li>
@@ -80,20 +88,6 @@ const Header = ({
   );
 };
 
-Header.propTypes = {
-  isAuthorizationRequired: PropTypes.bool.isRequired,
-  isUserClass: PropTypes.bool,
-  isShowIcon: PropTypes.bool,
-  filmTitle: PropTypes.string,
-  filmId: PropTypes.number,
-  title: PropTypes.string,
-  user: PropTypes.shape({
-    id: PropTypes.number,
-    email: PropTypes.string,
-    name: PropTypes.string,
-    srcAvatar: PropTypes.string
-  }).isRequired
-};
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
     isAuthorizationRequired: getAuthorizationStatus(state),

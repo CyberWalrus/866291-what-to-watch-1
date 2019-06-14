@@ -6,8 +6,8 @@ import thunk from "redux-thunk";
 import {compose} from "recompose";
 import {createAPI} from "./api/api";
 import reducer from "./store";
-import {Operation as OperationData} from "./store/data/data.js";
-import App from "./components/app/app.jsx";
+import {Operation as OperationData} from "./store/data/data";
+import App from "./components/app/app";
 
 declare const __REDUX_DEVTOOLS_EXTENSION__: () => any;
 

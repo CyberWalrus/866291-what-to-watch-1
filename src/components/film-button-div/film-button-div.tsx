@@ -2,11 +2,11 @@ import * as React from "react";
 import {PureComponent, Fragment} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import RoutePath, {routeToReview} from "../../routes.js";
-import {getAuthorizationStatus} from "../../store/user/selectors.js";
-import {Operation} from "../../store/data/data.js";
-import {ActionCreator} from "../../store/filter/filter.js";
-import {FavoriteStatus} from "../../constants.js";
+import RoutePath, {routeToReview} from "../../routes";
+import {getAuthorizationStatus} from "../../store/user/selectors";
+import {Operation} from "../../store/data/data";
+import {ActionCreator} from "../../store/filter/filter";
+import {FavoriteStatus} from "../../constants";
 
 interface Props {
   id: number,

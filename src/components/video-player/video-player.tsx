@@ -1,7 +1,23 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import {PureComponent} from "react";
 
-class VideoPlayer extends PureComponent {
+interface Props {
+  videoSrc: string,
+  posterSrc: string,
+  options: Option
+  isPlaying: boolean
+  onSendVideoRef: (value: any) => void,
+}
+
+interface Option {
+  width: string,
+  height: string,
+  isMuted: boolean,
+  isLoop: boolean
+  isControls: boolean
+}
+class VideoPlayer extends PureComponent<Props, null> {
+  private videoRef: any;
   constructor(props) {
     super(props);
 
@@ -46,19 +62,5 @@ class VideoPlayer extends PureComponent {
     );
   }
 }
-
-VideoPlayer.propTypes = {
-  videoSrc: PropTypes.string.isRequired,
-  posterSrc: PropTypes.string,
-  options: PropTypes.shape({
-    width: PropTypes.string.isRequired,
-    height: PropTypes.string.isRequired,
-    isMuted: PropTypes.bool,
-    isLoop: PropTypes.bool,
-    isControls: PropTypes.bool
-  }).isRequired,
-  isPlaying: PropTypes.bool,
-  onSendVideoRef: PropTypes.func,
-};
 
 export default VideoPlayer;

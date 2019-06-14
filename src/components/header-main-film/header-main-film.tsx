@@ -1,12 +1,17 @@
-import React, {Fragment} from "react";
-import PropTypes from "prop-types";
-import Header from "../header/header.jsx";
+import * as React from "react";
+import {Fragment} from "react";
+import Header from "../header/header";
 import {connect} from "react-redux";
-import {getFilm} from "../../store/data/selectors.js";
-import {MAIN_FILM_ID} from "../../constants.js";
-import FilmButtonDiv from "../film-button-div/film-button-div.jsx";
+import {getFilm} from "../../store/data/selectors";
+import {MAIN_FILM_ID} from "../../constants";
+import FilmButtonDiv from "../film-button-div/film-button-div";
+import {Film} from "../../type";
 
-const HeaderMainFilm = ({film}) => {
+interface Props {
+  film: Film
+}
+
+const HeaderMainFilm = ({film}: Props) => {
   if (film) {
     return (
       <Fragment>
@@ -49,26 +54,6 @@ const HeaderMainFilm = ({film}) => {
     );
   }
   return <Header />;
-};
-HeaderMainFilm.propTypes = {
-  film: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    bgColor: PropTypes.string.isRequired,
-    srcPreviewImage: PropTypes.string.isRequired,
-    srcPosterImage: PropTypes.string.isRequired,
-    srcBgImage: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    released: PropTypes.number.isRequired,
-    srcVideo: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
-    scoresCount: PropTypes.number.isRequired,
-    ratingLevel: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    starrings: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    runTime: PropTypes.string.isRequired
-  })
 };
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {

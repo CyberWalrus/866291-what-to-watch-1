@@ -1,25 +1,34 @@
-import React, {Fragment} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import {Fragment} from "react";
 import {connect} from "react-redux";
-import {getFilm} from "../../store/data/selectors.js";
-import Footer from "../footer/footer.jsx";
-import HiddenIcon from "../hidden-icon/hidden-icon.jsx";
-import Header from "../header/header.jsx";
-import FilmOverview from "../film-overview/film-overview.jsx";
-import FilmDetails from "../film-details/film-details.jsx";
-import FilmReview from "../film-review/film-review.jsx";
-import FilmNav from "../film-nav/film-nav.jsx";
-import FilmButtonDiv from "../film-button-div/film-button-div.jsx";
-import {FilmRoute} from "../../constants.js";
-import CardList from "../card-list/card-list.jsx";
-import VideScreen from "../video-screen/video-screen.jsx";
-import withActiveFilm from "../../hocs/with-active-film/with-active-film.js";
-import withVideoScreenState from "../../hocs/with-video-screen-state/with-video-screen-state.js";
+import {getFilm} from "../../store/data/selectors";
+import Footer from "../footer/footer";
+import HiddenIcon from "../hidden-icon/hidden-icon";
+import Header from "../header/header";
+import FilmOverview from "../film-overview/film-overview";
+import FilmDetails from "../film-details/film-details";
+import FilmReview from "../film-review/film-review";
+import FilmNav from "../film-nav/film-nav";
+import FilmButtonDiv from "../film-button-div/film-button-div";
+import {FilmRoute} from "../../constants";
+import CardList from "../card-list/card-list";
+import VideScreen from "../video-screen/video-screen";
+import withActiveFilm from "../../hocs/with-active-film/with-active-film";
+import withVideoScreenState from "../../hocs/with-video-screen-state/with-video-screen-state";
+import {Film} from "../../type";
 
 const CardListActiveFilm = withActiveFilm(CardList);
 const VideScreenState = withVideoScreenState(VideScreen);
 
-const PageFilm = ({film, onChangeFilmRoute, route}) => {
+interface Props {
+  film: Film,
+  id: number,
+  route: string,
+  onChangeFilmRoute: () => void,
+
+}
+
+const PageFilm = ({film, onChangeFilmRoute, route}: Props) => {
   if (film) {
     const {
       title,
@@ -125,31 +134,8 @@ const PageFilm = ({film, onChangeFilmRoute, route}) => {
   }
   return <div />;
 };
-PageFilm.propTypes = {
-  id: PropTypes.number.isRequired,
-  route: PropTypes.string.isRequired,
-  onChangeFilmRoute: PropTypes.func.isRequired,
-  film: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    bgColor: PropTypes.string.isRequired,
-    srcPreviewImage: PropTypes.string.isRequired,
-    srcPosterImage: PropTypes.string.isRequired,
-    srcBgImage: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    released: PropTypes.number.isRequired,
-    srcVideo: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
-    scoresCount: PropTypes.number.isRequired,
-    ratingLevel: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    isFavorite: PropTypes.bool.isRequired,
-    starrings: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    runTime: PropTypes.string.isRequired
-  })
-};
-const mapStateToProps = (state, ownProps) =>
+
+const mapStateToProps = (state, ownProps: Props) =>
   Object.assign({}, ownProps, {
     film: getFilm(state, ownProps.id)
   });

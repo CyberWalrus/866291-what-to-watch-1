@@ -1,10 +1,22 @@
-import React, {Fragment} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import {Fragment} from "react";
 import {connect} from "react-redux";
-import {getFilm} from "../../store/data/selectors.js";
-import HiddenIcon from "../hidden-icon/hidden-icon.jsx";
-import Header from "../header/header.jsx";
-import {DisabledStyle, TextLength, ratingRadioValues} from "../../constants.js";
+import {getFilm} from "../../store/data/selectors";
+import HiddenIcon from "../hidden-icon/hidden-icon";
+import Header from "../header/header";
+import {DisabledStyle, TextLength, ratingRadioValues} from "../../constants";
+import {Film} from "../../type";
+
+interface Props {  
+  id: number,
+  ratingSelected: string,
+  text: string,
+  isActive: boolean,
+  formValid: boolean,
+  film: Film,
+  onChageUserInput: () => void,
+  onSubmitSend: () => void
+}
 
 const PageAddReview = ({
   film,
@@ -14,7 +26,7 @@ const PageAddReview = ({
   onSubmitSend,
   formValid,
   isActive
-}) => {
+}: Props) => {
   if (film) {
     return (
       <Fragment>
@@ -44,7 +56,6 @@ const PageAddReview = ({
 
           <div
             className="add-review"
-            disabled={!isActive}
             style={!isActive ? DisabledStyle : {}}
           >
             <form onSubmit={onSubmitSend} className="add-review__form">
@@ -104,33 +115,6 @@ const PageAddReview = ({
   return <div />;
 };
 
-PageAddReview.propTypes = {
-  id: PropTypes.number.isRequired,
-  ratingSelected: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
-  isActive: PropTypes.bool.isRequired,
-  formValid: PropTypes.bool.isRequired,
-  onChageUserInput: PropTypes.func.isRequired,
-  onSubmitSend: PropTypes.func.isRequired,
-  film: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    bgColor: PropTypes.string.isRequired,
-    srcPreviewImage: PropTypes.string.isRequired,
-    srcPosterImage: PropTypes.string.isRequired,
-    srcBgImage: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    released: PropTypes.number.isRequired,
-    srcVideo: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
-    scoresCount: PropTypes.number.isRequired,
-    ratingLevel: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    starrings: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    runTime: PropTypes.string.isRequired
-  })
-};
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
     film: getFilm(state, ownProps.id)

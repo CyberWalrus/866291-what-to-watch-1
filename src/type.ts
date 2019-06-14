@@ -20,4 +20,21 @@ interface Film {
   ratingLevel: string;
 }
 
-export {Film};
+interface Review {
+  id: number,
+  comment: string,
+  rating: string,
+  userId: number,
+  userName: string,
+  date: string,
+  dateHTML: string
+}
+
+interface User {  
+  id: number,
+  email: string,
+  name: string,
+  srcAvatar: string
+}
+
+export {Film, Review, User};

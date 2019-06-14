@@ -1,11 +1,26 @@
-import React, {Fragment, PureComponent} from "react";
-import PropTypes from "prop-types";
-import VideoPlayer from "../video-player/video-player.jsx";
-import {OptionsVideoFull} from "../../constants.js";
+import * as React from "react";
+import {PureComponent, Fragment} from "react";
+import VideoPlayer from "../video-player/video-player";
+import {OptionsVideoFull} from "../../constants";
 import {connect} from "react-redux";
-import {getFilm} from "../../store/data/selectors.js";
+import {getFilm} from "../../store/data/selectors";
+import {Film} from "../../type";
 
-class VideoScreen extends PureComponent {
+interface Props {  
+  filmId: number,
+  time: string,
+  progressValue: number,
+  isPlaying: boolean,
+  onChangePlay: () => void,
+  onClickClose: () => void,
+  onClickFullScreen: () => void,
+  onMouseTogglerDown: () => void,
+  onSendVideoRef: () => void,
+  onSendProgressRef: (value: any) => void,
+  film: Film
+}
+class VideoScreen extends PureComponent<Props, null> {
+  private progressRef: any;
   constructor(props) {
     super(props);
 
@@ -33,7 +48,6 @@ class VideoScreen extends PureComponent {
         <div
           className="player"
           style={{
-            zIndex: `100`,
             background: `url(${film.srcBgImage}) no-repeat center center fixed`,
             backgroundSize: `cover`
           }}
@@ -117,36 +131,7 @@ class VideoScreen extends PureComponent {
     );
   }
 }
-VideoScreen.propTypes = {
-  filmId: PropTypes.number.isRequired,
-  time: PropTypes.string.isRequired,
-  progressValue: PropTypes.number.isRequired,
-  isPlaying: PropTypes.bool.isRequired,
-  onChangePlay: PropTypes.func.isRequired,
-  onClickClose: PropTypes.func.isRequired,
-  onClickFullScreen: PropTypes.func.isRequired,
-  onMouseTogglerDown: PropTypes.func,
-  onSendVideoRef: PropTypes.func.isRequired,
-  onSendProgressRef: PropTypes.func.isRequired,
-  film: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    bgColor: PropTypes.string.isRequired,
-    srcPreviewImage: PropTypes.string.isRequired,
-    srcPosterImage: PropTypes.string.isRequired,
-    srcBgImage: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    released: PropTypes.number.isRequired,
-    srcVideo: PropTypes.string.isRequired,
-    rating: PropTypes.string.isRequired,
-    scoresCount: PropTypes.number.isRequired,
-    ratingLevel: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    starrings: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    runTime: PropTypes.string.isRequired
-  })
-};
+
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
     film: getFilm(state, ownProps.filmId)

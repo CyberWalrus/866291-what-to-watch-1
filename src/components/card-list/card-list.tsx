@@ -1,9 +1,9 @@
 import * as React from "react";
 import {Fragment} from "react";
 import {connect} from "react-redux";
-import Card from "../card/card.jsx";
-import {getFilms, getFavorites} from "../../store/data/selectors.js";
-import {Film} from "../../type.js";
+import Card from "../card/card";
+import {getFilms, getFavorites} from "../../store/data/selectors";
+import {Film} from "../../type";
 
 interface Props {
   filmId: number,

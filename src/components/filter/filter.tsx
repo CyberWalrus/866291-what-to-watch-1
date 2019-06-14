@@ -1,11 +1,16 @@
-import React from "react";
+import * as React from "react";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../store/filter/filter.js";
-import {getGeners} from "../../store/data/selectors.js";
-import {getGenreSelected} from "../../store/filter/selectors.js";
-import PropTypes from "prop-types";
+import {ActionCreator} from "../../store/filter/filter";
+import {getGeners} from "../../store/data/selectors";
+import {getGenreSelected} from "../../store/filter/selectors";
 
-const Filter = ({genres, genreSelected, onChangeFilter}) => {
+interface Props {
+  genreSelected: string,
+  genres: string[],
+  onChangeFilter: (value: string) => void
+}
+
+const Filter = ({genres, genreSelected, onChangeFilter}: Props) => {
   return (
     <ul className="catalog__genres-list">
       {genres &&
@@ -30,11 +35,6 @@ const Filter = ({genres, genreSelected, onChangeFilter}) => {
   );
 };
 
-Filter.propTypes = {
-  genreSelected: PropTypes.string.isRequired,
-  genres: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  onChangeFilter: PropTypes.func.isRequired
-};
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
     genres: getGeners(state),

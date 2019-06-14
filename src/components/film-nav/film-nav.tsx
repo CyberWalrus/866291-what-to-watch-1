@@ -1,8 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import {FilmRoute} from "../../constants.js";
+import * as React from "react";
+import {FilmRoute} from "../../constants";
 
-const FilmNav = ({onChangeFilmRoute, route}) => {
+interface Props {
+  route: string;
+  onChangeFilmRoute: (value: string) => void;
+}
+
+const FilmNav = ({onChangeFilmRoute, route}: Props) => {
   return (
     <nav className="movie-nav movie-card__nav">
       <ul className="movie-nav__list">
@@ -14,8 +18,7 @@ const FilmNav = ({onChangeFilmRoute, route}) => {
           }
         >
           <a
-            onClick={onChangeFilmRoute}
-            text={FilmRoute.OVERVIEW}
+            onClick={() => onChangeFilmRoute(FilmRoute.OVERVIEW)}
             className="movie-nav__link"
           >
             {FilmRoute.OVERVIEW}
@@ -29,8 +32,7 @@ const FilmNav = ({onChangeFilmRoute, route}) => {
           }
         >
           <a
-            onClick={onChangeFilmRoute}
-            text={FilmRoute.DETAILS}
+            onClick={() => onChangeFilmRoute(FilmRoute.DETAILS)}
             className="movie-nav__link"
           >
             {FilmRoute.DETAILS}
@@ -44,8 +46,7 @@ const FilmNav = ({onChangeFilmRoute, route}) => {
           }
         >
           <a
-            onClick={onChangeFilmRoute}
-            text={FilmRoute.REVIEWS}
+            onClick={() => onChangeFilmRoute(FilmRoute.REVIEWS)}
             className="movie-nav__link"
           >
             {FilmRoute.REVIEWS}
@@ -55,8 +56,5 @@ const FilmNav = ({onChangeFilmRoute, route}) => {
     </nav>
   );
 };
-FilmNav.propTypes = {
-  route: PropTypes.string.isRequired,
-  onChangeFilmRoute: PropTypes.func.isRequired
-};
+
 export default FilmNav;

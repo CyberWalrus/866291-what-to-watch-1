@@ -1,10 +1,17 @@
-import React, {Fragment, PureComponent} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import {PureComponent, Fragment} from "react";
 import {connect} from "react-redux";
-import {getReviews} from "../../store/data/selectors.js";
-import {Operation as OperationData} from "../../store/data/data.js";
+import {getReviews} from "../../store/data/selectors";
+import {Operation as OperationData} from "../../store/data/data";
+import {Review} from "../../type";
 
-class FilmReview extends PureComponent {
+interface Props {
+  filmId: number;
+  onLoadReviews: (filmId: number) => void;
+  reviews: Review[];
+}
+
+class FilmReview extends PureComponent<Props, null> {
   constructor(props) {
     super(props);
   }
@@ -43,21 +50,6 @@ class FilmReview extends PureComponent {
   }
 }
 
-FilmReview.propTypes = {
-  filmId: PropTypes.number.isRequired,
-  onLoadReviews: PropTypes.func.isRequired,
-  reviews: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        comment: PropTypes.string.isRequired,
-        rating: PropTypes.string.isRequired,
-        userId: PropTypes.number.isRequired,
-        userName: PropTypes.string.isRequired,
-        date: PropTypes.string.isRequired,
-        dateHTML: PropTypes.string.isRequired
-      })
-  )
-};
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
     reviews: getReviews(state)

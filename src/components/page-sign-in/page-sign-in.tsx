@@ -1,19 +1,26 @@
-import React, {Fragment} from "react";
-import PropTypes from "prop-types";
-import Header from "../header/header.jsx";
-import Footer from "../footer/footer.jsx";
-import {DisabledStyle} from "../../constants.js";
+import * as React from "react";
+import {Fragment} from "react";
+import Header from "../header/header";
+import Footer from "../footer/footer";
+import {DisabledStyle} from "../../constants";
 
-const PageSignIn = (props) => {
-  const {
-    email,
-    password,
-    formErrors,
-    formValid,
-    onChangeUserInput,
-    onClickSubmit
-  } = props;
+interface Props {
+  email: string;
+  password: string;
+  formErrors: object;
+  formValid: boolean;
+  onChangeUserInput: () => void;
+  onClickSubmit: () => void;
+}
 
+const PageSignIn = ({
+  email,
+  password,
+  formErrors,
+  formValid,
+  onChangeUserInput,
+  onClickSubmit
+}: Props) => {
   return (
     <Fragment>
       <div className="user-page">
@@ -22,13 +29,14 @@ const PageSignIn = (props) => {
         <div className="sign-in user-page__content">
           <form onSubmit={onClickSubmit} className="sign-in__form">
             <div className="sign-in__message">
-              {formErrors && Object.keys(formErrors).map((fieldName, i) => {
-                if (formErrors[fieldName].length > 0) {
-                  return <p key={i}>{formErrors[fieldName]}</p>;
-                } else {
-                  return ``;
-                }
-              })}
+              {formErrors &&
+                Object.keys(formErrors).map((fieldName, i) => {
+                  if (formErrors[fieldName].length > 0) {
+                    return <p key={i}>{formErrors[fieldName]}</p>;
+                  } else {
+                    return ``;
+                  }
+                })}
             </div>
             <div className="sign-in__fields">
               <div className="sign-in__field">
@@ -83,15 +91,6 @@ const PageSignIn = (props) => {
       </div>
     </Fragment>
   );
-};
-
-PageSignIn.propTypes = {
-  email: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
-  formErrors: PropTypes.object.isRequired,
-  formValid: PropTypes.bool.isRequired,
-  onChangeUserInput: PropTypes.func.isRequired,
-  onClickSubmit: PropTypes.func.isRequired
 };
 
 export default PageSignIn;

@@ -1,9 +1,9 @@
 import * as React from "react";
 import {Fragment} from "react";
-import VideoPlayer from "../video-player/video-player.jsx";
-import {OptionsVideoMin} from "../../constants.js";
+import VideoPlayer from "../video-player/video-player";
+import {OptionsVideoMin} from "../../constants";
 import {Link} from "react-router-dom";
-import {routeToFilm} from "../../routes.js";
+import {routeToFilm} from "../../routes";
 
 interface Props {
   id: number,
