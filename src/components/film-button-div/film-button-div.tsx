@@ -1,5 +1,5 @@
-import React, {PureComponent, Fragment} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import {PureComponent, Fragment} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import RoutePath, {routeToReview} from "../../routes.js";
@@ -8,7 +8,15 @@ import {Operation} from "../../store/data/data.js";
 import {ActionCreator} from "../../store/filter/filter.js";
 import {FavoriteStatus} from "../../constants.js";
 
-class FilmButtonDiv extends PureComponent {
+interface Props {
+  id: number,
+  isFavorite: boolean,
+  isAuthorizationRequired: boolean,
+  isShowReview: boolean,
+  onSendFavorite: (status: number, id: number) => void,
+  onVideoScreenOpen: (id: number) => void,
+}
+class FilmButtonDiv extends PureComponent<Props, null> {
   constructor(props) {
     super(props);
     this._handleClickFavorite = this._handleClickFavorite.bind(this);
@@ -74,14 +82,7 @@ class FilmButtonDiv extends PureComponent {
     );
   }
 }
-FilmButtonDiv.propTypes = {
-  id: PropTypes.number.isRequired,
-  isFavorite: PropTypes.bool.isRequired,
-  isAuthorizationRequired: PropTypes.bool.isRequired,
-  isShowReview: PropTypes.bool,
-  onSendFavorite: PropTypes.func.isRequired,
-  onVideoScreenOpen: PropTypes.func.isRequired
-};
+
 const mapStateToProps = (state, ownProps) =>
   Object.assign({}, ownProps, {
     isAuthorizationRequired: getAuthorizationStatus(state)
@@ -91,6 +92,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(Operation.sendFavorite(status, filmId)),
   onVideoScreenOpen: (filmId) => dispatch(ActionCreator.setPlayFilmId(filmId))
 });
+
 export {FilmButtonDiv};
 
 export default connect(

@@ -1,19 +1,33 @@
-import React, {Fragment} from "react";
+import * as React from "react";
+import {Fragment} from "react";
 import {connect} from "react-redux";
-import PropTypes from "prop-types";
 import Card from "../card/card.jsx";
 import {getFilms, getFavorites} from "../../store/data/selectors.js";
+import {Film} from "../../type.js";
+
+interface Props {
+  filmId: number,
+  films: Film[]
+  numberFilm: number,
+  activeFilm: number,
+  genreFilm: string,
+  isFavorite: boolean,
+  onClickShowMore: () => void,
+  onMouseEnterCard: (id:number) => void,
+  onMouseLeaveCard: (id:number) => void,
+  onClickToRedirect: (id:number) => void
+}
 
 const CardList = ({
+  films,
   numberFilm,
   activeFilm,
   onClickShowMore,
   onMouseEnterCard,
   onMouseLeaveCard,
   onClickToRedirect,
-  films,
   genreFilm
-}) => {
+}: Props) => {
   const isShow = genreFilm ? false : true;
   return (
     <Fragment>
@@ -25,7 +39,6 @@ const CardList = ({
               id={id}
               title={title}
               srcPreviewImage={srcPreviewImage}
-              genre={genre}
               srcPreviewVideo={srcPreviewVideo}
               isActive={activeFilm === id}
               onMouseEnterCard={() => onMouseEnterCard(id)}
@@ -51,27 +64,7 @@ const CardList = ({
   );
 };
 
-CardList.propTypes = {
-  isFavorite: PropTypes.bool,
-  genreFilm: PropTypes.string,
-  filmId: PropTypes.number,
-  numberFilm: PropTypes.number.isRequired,
-  activeFilm: PropTypes.number.isRequired,
-  onClickShowMore: PropTypes.func,
-  onMouseEnterCard: PropTypes.func,
-  onMouseLeaveCard: PropTypes.func,
-  onClickToRedirect: PropTypes.func.isRequired,
-  films: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        srcPreviewImage: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        srcPreviewVideo: PropTypes.string.isRequired
-      })
-  )
-};
-const mapStateToProps = (state, ownProps) =>
+const mapStateToProps = (state, ownProps: Props) =>
   Object.assign({}, ownProps, {
     films: ownProps.isFavorite
       ? getFavorites(state, ownProps.numberFilm)

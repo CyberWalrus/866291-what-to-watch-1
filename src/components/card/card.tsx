@@ -1,20 +1,31 @@
-import React, {Fragment} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import {Fragment} from "react";
 import VideoPlayer from "../video-player/video-player.jsx";
 import {OptionsVideoMin} from "../../constants.js";
 import {Link} from "react-router-dom";
 import {routeToFilm} from "../../routes.js";
 
+interface Props {
+  id: number,
+  title: string,
+  srcPreviewImage: string,
+  srcPreviewVideo: string,
+  isActive: boolean,
+  onClickToRedirect: () => void,
+  onMouseLeaveCard: () => void,
+  onMouseEnterCard: () => void,
+}
+
 const Card = ({
+  id,
+  title,
+  srcPreviewImage,
+  srcPreviewVideo,
+  isActive,
   onClickToRedirect,
   onMouseLeaveCard,
-  onMouseEnterCard,
-  isActive,
-  srcPreviewImage,
-  title,
-  srcPreviewVideo,
-  id
-}) => {
+  onMouseEnterCard
+}: Props) => {
   return (
     <article
       onClick={onClickToRedirect}
@@ -42,18 +53,6 @@ const Card = ({
       </div>
     </article>
   );
-};
-
-Card.propTypes = {
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  srcPreviewImage: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  srcPreviewVideo: PropTypes.string.isRequired,
-  isActive: PropTypes.bool.isRequired,
-  onMouseLeaveCard: PropTypes.func.isRequired,
-  onMouseEnterCard: PropTypes.func.isRequired,
-  onClickToRedirect: PropTypes.func.isRequired
 };
 
 export default Card;
