@@ -19,5 +19,8 @@ settings:
     version: '16'
 rules:
   indent: [error, 2, { "SwitchCase": 1 }]
+  quotes: ["error", "double", { "allowTemplateLiterals": true }]
   '@typescript-eslint/indent': [error, 2]
   '@typescript-eslint/no-explicit-any': 0
+  '@typescript-eslint/member-delimiter-style': 0
+  

@@ -5,18 +5,17 @@ import {State as StateFilter, Action as ActionFilter} from "../store/filter/filt
 import {State as StateUser, Action as ActionUser} from "../store/user/user";
 import NameSpace from "../store/name-spaces";
 
-interface StateApp {
+export interface StateApp {
   [NameSpace.DATA]: StateData;
   [NameSpace.FILTER]: StateFilter;
   [NameSpace.USER]: StateUser;
 }
 
-type ActionApp = ActionData | ActionFilter | ActionUser;
-type ThunkDispatch = ReduxThunkDispatch<StateApp, AxiosInstance, ActionApp>;
-type ThunkAction = ReduxThunkAction<
+export type ActionApp = ActionData | ActionFilter | ActionUser;
+export type ThunkDispatch = ReduxThunkDispatch<StateApp, AxiosInstance, ActionApp>;
+export type ThunkAction = ReduxThunkAction<
 Promise<void>,
 StateApp,
 AxiosInstance,
 ActionApp
 >;
-export {StateApp, ActionApp, ThunkDispatch, ThunkAction};
