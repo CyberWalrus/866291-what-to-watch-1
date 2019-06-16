@@ -22,9 +22,6 @@ describe(`Action filter correctly`, () => {
 });
 
 describe(`Reducer filter correctly`, () => {
-  it(`Reducer without additional parameters should return inital state`, () => {
-    expect(reducer(undefined, undefined)).toEqual(initialState);
-  });
 
   it(`Reducer test set play film`, () => {
     expect(

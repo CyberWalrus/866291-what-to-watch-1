@@ -22,12 +22,12 @@ enum ActionType {
   SET_ACTIVE = "SET_ACTIVE"
 }
 export interface State {
-  films: Film[],
-  favorites: Film[],
-  genres: string[],
-  reviews: Review[],
-  reviewMessage: string,
-  isActive: boolean
+  films: Film[];
+  favorites: Film[];
+  genres: string[];
+  reviews: Review[];
+  reviewMessage: string;
+  isActive: boolean;
 }
 interface UpdateFilms extends ReduxAction {
   type: ActionType;
@@ -49,7 +49,12 @@ interface UpdateActive extends ReduxAction {
   type: ActionType;
   payload: boolean;
 }
-export type Action = UpdateFilms | UpdateReviews | UpdateGenres | UpdateMessage | UpdateActive;
+export type Action =
+  | UpdateFilms
+  | UpdateReviews
+  | UpdateGenres
+  | UpdateMessage
+  | UpdateActive;
 
 const initialState: State = {
   films: [],
@@ -133,9 +138,11 @@ const Operation = {
             dispatch(ActionCreator.updateActive(true));
           }
         )
-        .catch((): void => {
-          dispatch(ActionCreator.updateActive(false));
-        });
+        .catch(
+          (): void => {
+            dispatch(ActionCreator.updateActive(false));
+          }
+        );
     };
   },
   loadFavorites: (): ThunkAction => {

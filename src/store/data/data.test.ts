@@ -80,7 +80,7 @@ describe(`Operation data correctly`, () => {
     apiMock.onGet(SendUrl.FILMS).reply(200, FILMS_RESPONSE);
 
     return loadFilms(dispatch, jest.fn(), api).then(() => {
-      expect(dispatch).toHaveBeenCalledTimes(2);
+      expect(dispatch).toHaveBeenCalledTimes(3);
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: ActionType.SET_FILMS,
         payload: FILMS_RESPONSE.map(FilmDataAdapter)
@@ -171,24 +171,17 @@ describe(`Operation data correctly`, () => {
 });
 
 describe(`Reducer data correctly`, () => {
-  it(`Reducer without additional parameters should return inital state`, () => {
-    expect(reducer(undefined, undefined)).toEqual(initialState);
-  });
-
   it(`Reducer test set films`, () => {
     expect(
       reducer(initialState, {
         type: ActionType.SET_FILMS,
         payload: FILMS
       })
-    ).toEqual({
-      films: FILMS,
-      favorites: [],
-      genres: [],
-      reviews: [],
-      reviewMessage: ``,
-      isActive: false
-    });
+    ).toEqual(
+      Object.assign({}, initialState, {
+        films: FILMS
+      })
+    );
   });
   it(`Reducer test set favorites`, () => {
     expect(
@@ -196,14 +189,11 @@ describe(`Reducer data correctly`, () => {
         type: ActionType.SET_FAVORITES,
         payload: FILMS
       })
-    ).toEqual({
-      films: [],
-      favorites: FILMS,
-      genres: [],
-      reviews: [],
-      reviewMessage: ``,
-      isActive: false
-    });
+    ).toEqual(
+      Object.assign({}, initialState, {
+        favorites: FILMS
+      })
+    );
   });
   it(`Reducer test set reviews`, () => {
     expect(
@@ -211,14 +201,11 @@ describe(`Reducer data correctly`, () => {
         type: ActionType.SET_REVIEWS,
         payload: REVIEWS
       })
-    ).toEqual({
-      films: [],
-      favorites: [],
-      genres: [],
-      reviews: REVIEWS,
-      reviewMessage: ``,
-      isActive: false
-    });
+    ).toEqual(
+      Object.assign({}, initialState, {
+        reviews: REVIEWS
+      })
+    );
   });
   it(`Reducer test set geners`, () => {
     expect(
@@ -226,14 +213,11 @@ describe(`Reducer data correctly`, () => {
         type: ActionType.SET_GENERS,
         payload: GENRES
       })
-    ).toEqual({
-      films: [],
-      favorites: [],
-      genres: GENRES,
-      reviews: [],
-      reviewMessage: ``,
-      isActive: false
-    });
+    ).toEqual(
+      Object.assign({}, initialState, {
+        genres: GENRES
+      })
+    );
   });
   it(`Reducer test set review message`, () => {
     expect(
@@ -241,13 +225,10 @@ describe(`Reducer data correctly`, () => {
         type: ActionType.SET_REVIEW_MESSAGE,
         payload: `test`
       })
-    ).toEqual({
-      films: [],
-      favorites: [],
-      genres: [],
-      reviews: [],
-      reviewMessage: `test`,
-      isActive: false
-    });
+    ).toEqual(
+      Object.assign({}, initialState, {
+        reviewMessage: `test`
+      })
+    );
   });
 });

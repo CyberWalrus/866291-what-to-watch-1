@@ -47,22 +47,23 @@ describe(`Operation user correctly`, () => {
         email,
         password
       })
-      .reply(200, {fake: true});
+      .reply(200, USER_RESPONSE);
 
     return signIn(dispatch, jest.fn(), api).then(() => {
-      expect(dispatch).toHaveBeenCalledTimes(2);
+      expect(dispatch).toHaveBeenCalledTimes(4);
       expect(dispatch).toHaveBeenNthCalledWith(1, {
-        type: ActionType.SET_ERROR,
-        payload: `Error: Request failed with status code 404`
+        type: ActionType.SIGN_IN,
+        payload: userDataAdapter(USER_RESPONSE)
+      });
+      expect(dispatch).toHaveBeenNthCalledWith(2, {
+        type: ActionType.REQUIRED_AUTHORIZATION,
+        payload: true
       });
     });
   });
 });
 
 describe(`Reducer user correctly`, () => {
-  it(`Reducer without additional parameters should return inital state`, () => {
-    expect(reducer(undefined, undefined)).toEqual(initialState);
-  });
 
   it(`Reducer test set authorization`, () => {
     expect(
@@ -70,11 +71,10 @@ describe(`Reducer user correctly`, () => {
         type: ActionType.REQUIRED_AUTHORIZATION,
         payload: true
       })
-    ).toEqual({
-      isAuthorizationRequired: true,
-      user: {},
-      errorMessage: ``
-    });
+    ).toEqual(
+      Object.assign({}, initialState, {
+        isAuthorizationRequired: true
+      }));
   });
   it(`Reducer test change SIGN_IN`, () => {
     expect(
@@ -82,11 +82,11 @@ describe(`Reducer user correctly`, () => {
         type: ActionType.SIGN_IN,
         payload: USER
       })
-    ).toEqual({
-      isAuthorizationRequired: false,
-      user: USER,
-      errorMessage: ``
-    });
+    ).toEqual(
+      Object.assign({}, initialState, {
+        user: USER
+      })
+    );
   });
   it(`Reducer test set error`, () => {
     expect(
@@ -94,10 +94,10 @@ describe(`Reducer user correctly`, () => {
         type: ActionType.SET_ERROR,
         payload: `error`
       })
-    ).toEqual({
-      isAuthorizationRequired: false,
-      user: {},
-      errorMessage: `error`
-    });
+    ).toEqual(
+      Object.assign({}, initialState, {
+        errorMessage: `error`
+      })
+    );
   });
 });
