@@ -6,12 +6,12 @@ import RoutePath from "../../routes";
 import {StateApp} from "../../type/reducer";
 
 interface PropsInsert {
-  rest: any,
-  path: string,
+  rest?: any,
+  path?: string,
   component: any,
   location: object,
-  isAuthor: boolean,
-  redirectPath: string
+  isAuthor?: boolean,
+  redirectPath?: string
 }
 interface PropsState {
   isAuthorizationRequired: boolean,

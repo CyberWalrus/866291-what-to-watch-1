@@ -3,7 +3,6 @@ import {AxiosInstance} from "axios";
 import {State as StateData, Action as ActionData} from "../store/data/data";
 import {State as StateFilter, Action as ActionFilter} from "../store/filter/filter";
 import {State as StateUser, Action as ActionUser} from "../store/user/user";
-
 import NameSpace from "../store/name-spaces";
 
 interface StateApp {

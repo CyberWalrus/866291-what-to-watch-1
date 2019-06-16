@@ -1,29 +1,19 @@
-import React from "react";
+import * as React from "react";
 import renderer from "react-test-renderer";
 import {createStore} from "redux";
 import {Provider} from "react-redux";
 import {BrowserRouter} from "react-router-dom";
-import {PageAddReview} from "./page-add-review.jsx";
+import {HeaderMainFilm} from "./header-main-film";
 import {FILM} from "../../mock/mock-test.js";
 import reducer from "../../store";
 
-it(`PageAddReview correctly renders after relaunch`, () => {
+it(`HeaderMainFilm correctly renders after relaunch`, () => {
   const store = createStore(reducer);
-  const handleClick = jest.fn();
   const tree = renderer
     .create(
       <Provider store={store}>
         <BrowserRouter>
-          <PageAddReview
-            film={FILM}
-            id={FILM.id}
-            ratingSelected={`1`}
-            text={``}
-            isActive={true}
-            formValid={false}
-            onChageUserInput={handleClick}
-            onSubmitSend={handleClick}
-          />
+          <HeaderMainFilm film={FILM} />
         </BrowserRouter>
       </Provider>
     )

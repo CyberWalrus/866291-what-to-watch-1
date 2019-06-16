@@ -3,12 +3,8 @@ import {createAPI} from "../../api/api";
 import {SendUrl} from "../../constants";
 import {userDataAdapter} from "../../api/data-adapter";
 import {ActionCreator, ActionType, Operation, reducer} from "./user";
-
-const initialState = {
-  isAuthorizationRequired: false,
-  user: {},
-  errorMessage: ``
-};
+import {initialState} from "./user";
+import {USER, USER_RESPONSE} from "../../mock/mock-test";
 
 describe(`Action user correctly`, () => {
   it(`Should return a correct status of authorization`, () => {
@@ -18,9 +14,9 @@ describe(`Action user correctly`, () => {
     });
   });
   it(`Should return a correct signIn`, () => {
-    expect(ActionCreator.signIn({fake: true})).toEqual({
+    expect(ActionCreator.signIn(USER_RESPONSE)).toEqual({
       type: ActionType.SIGN_IN,
-      payload: userDataAdapter({fake: true})
+      payload: userDataAdapter(USER_RESPONSE)
     });
   });
   it(`Should return a correct setError`, () => {
@@ -30,7 +26,7 @@ describe(`Action user correctly`, () => {
     });
   });
   it(`Should return a correct resetError`, () => {
-    expect(ActionCreator.resetError(true)).toEqual({
+    expect(ActionCreator.resetError()).toEqual({
       type: ActionType.SET_ERROR,
       payload: initialState.errorMessage
     });
@@ -65,15 +61,15 @@ describe(`Operation user correctly`, () => {
 
 describe(`Reducer user correctly`, () => {
   it(`Reducer without additional parameters should return inital state`, () => {
-    expect(reducer(undefined, {})).toEqual(initialState);
+    expect(reducer(undefined, undefined)).toEqual(initialState);
   });
 
   it(`Reducer test set authorization`, () => {
     expect(
-        reducer(initialState, {
-          type: ActionType.REQUIRED_AUTHORIZATION,
-          payload: true
-        })
+      reducer(initialState, {
+        type: ActionType.REQUIRED_AUTHORIZATION,
+        payload: true
+      })
     ).toEqual({
       isAuthorizationRequired: true,
       user: {},
@@ -82,22 +78,22 @@ describe(`Reducer user correctly`, () => {
   });
   it(`Reducer test change SIGN_IN`, () => {
     expect(
-        reducer(initialState, {
-          type: ActionType.SIGN_IN,
-          payload: {test: `test`}
-        })
+      reducer(initialState, {
+        type: ActionType.SIGN_IN,
+        payload: USER
+      })
     ).toEqual({
       isAuthorizationRequired: false,
-      user: {test: `test`},
+      user: USER,
       errorMessage: ``
     });
   });
   it(`Reducer test set error`, () => {
     expect(
-        reducer(initialState, {
-          type: ActionType.SET_ERROR,
-          payload: `error`
-        })
+      reducer(initialState, {
+        type: ActionType.SET_ERROR,
+        payload: `error`
+      })
     ).toEqual({
       isAuthorizationRequired: false,
       user: {},

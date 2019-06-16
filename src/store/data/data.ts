@@ -255,4 +255,4 @@ const reducer = (state: State = initialState, action: Action) => {
   return state;
 };
 
-export {State, Action, ActionCreator, ActionType, Operation, reducer};
+export {State, Action, initialState, ActionCreator, ActionType, Operation, reducer};

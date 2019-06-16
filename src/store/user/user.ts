@@ -116,4 +116,4 @@ const reducer = (state: State = initialState, action: Action) => {
   }
 };
 
-export {State, Action, ActionCreator, ActionType, Operation, reducer};
+export {State, Action, initialState, ActionCreator, ActionType, Operation, reducer};

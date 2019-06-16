@@ -1,6 +1,6 @@
-import React from "react";
+import * as React from "react";
 import renderer from "react-test-renderer";
-import HiddenIcon from "./hidden-icon.jsx";
+import HiddenIcon from "./hidden-icon";
 
 it(`HiddenIcon correctly renders after relaunch`, () => {
   const tree = renderer
