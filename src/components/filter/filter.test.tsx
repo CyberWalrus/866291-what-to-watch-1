@@ -5,7 +5,7 @@ import toJson from "enzyme-to-json";
 import {shallow} from "enzyme";
 import {Filter} from "./filter";
 import {GENRE_DEFOULT} from "../../constants";
-import {GENRES} from "../../mock/mock-test";
+import {GENRES} from "../../mock/data-mock";
 Enzyme.configure({adapter: new Adapter()});
 
 it(`Filter correctly renders after relaunch`, () => {

@@ -4,7 +4,7 @@ import * as Adapter from "enzyme-adapter-react-16";
 import {mount} from "enzyme";
 import withFilmRoute from "./with-film-route";
 import {FilmRoute} from "../../constants";
-import {FILM} from "../../mock/mock-test";
+import {FILM} from "../../mock/data-mock";
 
 Enzyme.configure({adapter: new Adapter()});
 

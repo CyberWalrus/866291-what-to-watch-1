@@ -4,7 +4,7 @@ import * as Adapter from "enzyme-adapter-react-16";
 import toJson from "enzyme-to-json";
 import {shallow} from "enzyme";
 import FilmOverview from "./film-overview";
-import {FILM} from "../../mock/mock-test";
+import {FILM} from "../../mock/data-mock";
 
 Enzyme.configure({adapter: new Adapter()});
 it(`FilmOverview correctly renders after relaunch`, () => {

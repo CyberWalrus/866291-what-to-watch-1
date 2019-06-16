@@ -5,7 +5,7 @@ import toJson from "enzyme-to-json";
 import {shallow} from "enzyme";
 import {BrowserRouter} from "react-router-dom";
 import {Header} from "./header";
-import {USER} from "../../mock/mock-test";
+import {USER} from "../../mock/data-mock";
 Enzyme.configure({adapter: new Adapter()});
 
 it(`Header correctly renders after relaunch`, () => {

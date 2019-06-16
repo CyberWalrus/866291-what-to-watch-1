@@ -3,7 +3,7 @@ import * as Enzyme from "enzyme";
 import * as Adapter from "enzyme-adapter-react-16";
 import {mount} from "enzyme";
 import {withReviewState} from "./with-review-state";
-import {FILM} from "../../mock/mock-test";
+import {FILM} from "../../mock/data-mock";
 
 Enzyme.configure({adapter: new Adapter()});
 

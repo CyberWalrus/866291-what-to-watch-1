@@ -8,7 +8,7 @@ import {createStore} from "redux";
 import {Provider} from "react-redux";
 import {BrowserRouter} from "react-router-dom";
 import {PageFilm} from "./page-film";
-import {FILM} from "../../mock/mock-test";
+import {FILM} from "../../mock/data-mock";
 import {FilmRoute} from "../../constants";
 Enzyme.configure({adapter: new Adapter()});
 

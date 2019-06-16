@@ -16,7 +16,7 @@ import {
   FILM_RESPONSE,
   REVIEWS_RESPONSE,
   STATE
-} from "../../mock/mock-test";
+} from "../../mock/data-mock";
 import {initialState} from "./data";
 
 describe(`Action data correctly`, () => {

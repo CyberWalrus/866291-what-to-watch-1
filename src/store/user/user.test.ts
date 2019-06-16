@@ -4,7 +4,7 @@ import {SendUrl} from "../../constants";
 import {userDataAdapter} from "../../api/data-adapter";
 import {ActionCreator, ActionType, Operation, reducer} from "./user";
 import {initialState} from "./user";
-import {USER, USER_RESPONSE} from "../../mock/mock-test";
+import {USER, USER_RESPONSE} from "../../mock/data-mock";
 
 describe(`Action user correctly`, () => {
   it(`Should return a correct status of authorization`, () => {

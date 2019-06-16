@@ -5,7 +5,7 @@ import toJson from "enzyme-to-json";
 import {shallow} from "enzyme";
 import {BrowserRouter} from "react-router-dom";
 import Card from "./card";
-import {FILM} from "../../mock/mock-test";
+import {FILM} from "../../mock/data-mock";
 
 Enzyme.configure({adapter: new Adapter()});
 

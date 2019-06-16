@@ -4,7 +4,7 @@ import * as Adapter from "enzyme-adapter-react-16";
 import toJson from "enzyme-to-json";
 import {shallow} from "enzyme";
 import {VideoScreen} from "./video-screen";
-import {FILM} from "../../mock/mock-test";
+import {FILM} from "../../mock/data-mock";
 Enzyme.configure({adapter: new Adapter()});
 
 it(`VideoScreen correctly renders after relaunch`, () => {

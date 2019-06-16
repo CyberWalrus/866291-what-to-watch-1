@@ -5,7 +5,7 @@ import toJson from "enzyme-to-json";
 import {shallow} from "enzyme";
 import {BrowserRouter} from "react-router-dom";
 import {FilmButtonDiv} from "./film-button-div";
-import {FILM} from "../../mock/mock-test";
+import {FILM} from "../../mock/data-mock";
 
 Enzyme.configure({adapter: new Adapter()});
 it(`FilmButtonDiv correctly renders after relaunch`, () => {

@@ -4,7 +4,7 @@ import * as Adapter from "enzyme-adapter-react-16";
 import toJson from "enzyme-to-json";
 import {shallow} from "enzyme";
 import {FilmReview} from "./film-review";
-import {FILM, REVIEWS} from "../../mock/mock-test";
+import {FILM, REVIEWS} from "../../mock/data-mock";
 
 Enzyme.configure({adapter: new Adapter()});
 it(`FilmReview correctly renders after relaunch`, () => {
