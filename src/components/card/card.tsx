@@ -38,7 +38,6 @@ const Card = ({
           options={OptionsVideoMin}
           videoSrc={srcPreviewVideo}
           posterSrc={srcPreviewImage}
-          muted={true}
           isPlaying={isActive}
         />
         {!isActive ? (

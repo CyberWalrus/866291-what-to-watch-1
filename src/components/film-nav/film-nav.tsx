@@ -3,7 +3,7 @@ import {FilmRoute} from "../../constants";
 
 interface Props {
   route: string;
-  onChangeFilmRoute: (value: string) => void;
+  onChangeFilmRoute: (value: FilmRoute) => void;
 }
 
 const FilmNav = ({onChangeFilmRoute, route}: Props) => {

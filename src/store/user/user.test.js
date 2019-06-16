@@ -1,8 +1,8 @@
 import MockAdapter from "axios-mock-adapter";
-import {createAPI} from "../../api/api.js";
-import {SendUrl} from "../../constants.js";
-import {userDataAdapter} from "../../api/data-adapter.js";
-import {ActionCreator, ActionType, Operation, reducer} from "./user.js";
+import {createAPI} from "../../api/api";
+import {SendUrl} from "../../constants";
+import {userDataAdapter} from "../../api/data-adapter";
+import {ActionCreator, ActionType, Operation, reducer} from "./user";
 
 const initialState = {
   isAuthorizationRequired: false,

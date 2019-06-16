@@ -20,7 +20,7 @@ interface Props {
   film: Film
 }
 class VideoScreen extends PureComponent<Props, null> {
-  private progressRef: any;
+  public progressRef: any;
   constructor(props) {
     super(props);
 

@@ -1,17 +1,27 @@
-import React, {PureComponent} from "react";
-import {NUMBER_FILM, TIMEOUT_INTERVAL} from "../../constants.js";
+import * as React from "react";
+import {PureComponent} from "react";
+import {NUMBER_FILM, TIMEOUT_INTERVAL} from "../../constants";
 import {Redirect} from "react-router-dom";
-import {routeToFilm} from "../../routes.js";
+import {routeToFilm} from "../../routes";
+
+interface State {
+  activeFilm: number;
+  numberFilm: number;
+  redirectId: number;
+  timeOutId: number;
+}
 
 const withActiveFilm = (Component) => {
-  class WithActiveFilm extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  class WithActiveFilm extends PureComponent<P, State> {
+    private _timeOutList: object;
     constructor(props) {
       super(props);
       this.state = {
         activeFilm: 0,
         numberFilm: NUMBER_FILM,
         redirectId: 0,
-        timeOutId: 0,
+        timeOutId: 0
       };
       this._timeOutList = {};
       this.handleSetActiveFilm = this.handleSetActiveFilm.bind(this);
@@ -19,18 +29,18 @@ const withActiveFilm = (Component) => {
       this.handleShowMore = this.handleShowMore.bind(this);
       this.handleToRedirect = this.handleToRedirect.bind(this);
     }
-    componentDidUpdate() {
+    componentDidUpdate(): void {
       if (this.state.redirectId) {
         this.setState({
           redirectId: 0
         });
       }
     }
-    componentWillUnmount() {
+    componentWillUnmount(): void {
       clearTimeout(this._timeOutList[this.state.timeOutId]);
     }
 
-    handleSetActiveFilm(id) {
+    handleSetActiveFilm(id: number): void {
       this.setState({
         timeOutId: id
       });
@@ -44,7 +54,7 @@ const withActiveFilm = (Component) => {
       }, TIMEOUT_INTERVAL);
     }
 
-    handleRemoveActiveFilm(id) {
+    handleRemoveActiveFilm(id: number): void {
       clearTimeout(this._timeOutList[id]);
       delete this._timeOutList[id];
       this.setState({
@@ -53,12 +63,12 @@ const withActiveFilm = (Component) => {
       });
     }
 
-    handleShowMore() {
+    handleShowMore(): void {
       this.setState({
-        numberFilm: this.state.countFilm + NUMBER_FILM
+        numberFilm: this.state.numberFilm + NUMBER_FILM
       });
     }
-    handleToRedirect(id) {
+    handleToRedirect(id: number): void {
       this.setState({
         redirectId: id
       });

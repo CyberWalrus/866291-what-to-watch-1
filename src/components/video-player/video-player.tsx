@@ -6,7 +6,7 @@ interface Props {
   posterSrc: string,
   options: Option
   isPlaying: boolean
-  onSendVideoRef: (value: any) => void,
+  onSendVideoRef?: (value: any) => void,
 }
 
 interface Option {

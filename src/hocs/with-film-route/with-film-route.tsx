@@ -1,9 +1,15 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
-import {FilmRoute} from "../../constants.js";
+import * as React from "react";
+import {PureComponent} from "react";
+import {FilmRoute} from "../../constants";
 
+interface Props {
+  id: number
+}
+interface State {
+  route: FilmRoute
+}
 const withFilmRoute = (Component) => {
-  class WithFilmRoute extends PureComponent {
+  class WithFilmRoute extends PureComponent<Props, State> {
     constructor(props) {
       super(props);
 
@@ -13,9 +19,9 @@ const withFilmRoute = (Component) => {
 
       this.handleChangeFilmRoute = this.handleChangeFilmRoute.bind(this);
     }
-    handleChangeFilmRoute(evt) {
+    handleChangeFilmRoute(route: FilmRoute): void {
       this.setState({
-        route: evt.target.text
+        route
       });
     }
 
@@ -29,9 +35,6 @@ const withFilmRoute = (Component) => {
       );
     }
   }
-  WithFilmRoute.propTypes = {
-    id: PropTypes.number.isRequired
-  };
   return WithFilmRoute;
 };
 

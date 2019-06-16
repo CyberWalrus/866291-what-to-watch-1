@@ -3,7 +3,7 @@ import {
   SERVER_URL_USER,
   RatingInterval,
   RatingName
-} from "../constants.js";
+} from "../constants";
 const FilmDataAdapter = (data) => {
   return _filmDataAdapter(data);
 };

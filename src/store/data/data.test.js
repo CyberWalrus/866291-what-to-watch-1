@@ -1,13 +1,13 @@
 import MockAdapter from "axios-mock-adapter";
-import {createAPI} from "../../api/api.js";
+import {createAPI} from "../../api/api";
 import {
   FilmDataAdapter,
   updateFilmAdapter,
   ReviewDataAdapter,
   getGenerFromData
-} from "../../api/data-adapter.js";
-import {REVIEW_MESSAGE, SendUrl} from "../../constants.js";
-import {ActionType, ActionCreator, Operation, reducer} from "./data.js";
+} from "../../api/data-adapter";
+import {REVIEW_MESSAGE, SendUrl} from "../../constants";
+import {ActionType, ActionCreator, Operation, reducer} from "./data";
 
 const initialState = {
   films: [],

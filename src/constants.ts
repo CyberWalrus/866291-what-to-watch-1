@@ -25,10 +25,10 @@ const RatingInterval = {
   VERY_GOOD: 10,
   AWESOME: 10
 };
-const FilmRoute = {
-  OVERVIEW: `Overview`,
-  DETAILS: `Details`,
-  REVIEWS: `Reviews`
+enum FilmRoute {
+  OVERVIEW = "Overview",
+  DETAILS = "Details",
+  REVIEWS = "Reviews"
 };
 const BodyOverflow = {
   VISIBLE: `visible`,
@@ -54,7 +54,7 @@ const SendUrl = {
 };
 
 const DisabledStyle = {
-  opacity: `0.4`,
+  opacity: 0.4,
   border: `inherit`,
   cursor: `not-allowed`
 };

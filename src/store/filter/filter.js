@@ -1,4 +1,4 @@
-import {GENRE_DEFOULT} from "../../constants.js";
+import {GENRE_DEFOULT} from "../../constants";
 
 const initialState = {
   genreSelected: GENRE_DEFOULT,

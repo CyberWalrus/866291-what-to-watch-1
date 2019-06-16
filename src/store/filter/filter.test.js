@@ -1,5 +1,5 @@
-import {reducer, ActionCreator, ActionType} from "./filter.js";
-import {GENRE_DEFOULT} from "../../constants.js";
+import {reducer, ActionCreator, ActionType} from "./filter";
+import {GENRE_DEFOULT} from "../../constants";
 const initialState = {
   genreSelected: GENRE_DEFOULT,
   playFilmId: 0

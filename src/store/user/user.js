@@ -1,6 +1,6 @@
-import {userDataAdapter} from "../../api/data-adapter.js";
-import {SendUrl} from "../../constants.js";
-import {Operation as OperationData} from "../data/data.js";
+import {userDataAdapter} from "../../api/data-adapter";
+import {SendUrl} from "../../constants";
+import {Operation as OperationData} from "../data/data";
 
 const initialState = {
   isAuthorizationRequired: false,
@@ -44,7 +44,7 @@ const ActionCreator = {
 const Operation = {
   signIn: (email, password) => (dispatch, _getState, api) => {
     return api
-      .post(SendUrl.FILMS, {
+      .post(SendUrl.LOGIN, {
         email,
         password
       })

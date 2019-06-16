@@ -1,15 +1,30 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import {PureComponent} from "react";
 import {connect} from "react-redux";
 import {compose} from "recompose";
-import {getReviewMessage} from "../../store/data/selectors.js";
-import {Operation, ActionCreator} from "../../store/data/data.js";
-import {REVIEW_MESSAGE, TextLength, RatingValue} from "../../constants.js";
+import {getReviewMessage} from "../../store/data/selectors";
+import {Operation, ActionCreator} from "../../store/data/data";
+import {REVIEW_MESSAGE, TextLength, RatingValue} from "../../constants";
 import {Redirect} from "react-router-dom";
-import {routeToFilm} from "../../routes.js";
+import {routeToFilm} from "../../routes";
 
+interface State {
+  ratingSelected: string;
+  text: string;
+  ratingValid: boolean;
+  textValid: boolean;
+  formValid: boolean;
+  isActive: boolean;
+  redirect: boolean;
+}
+interface Props {
+  id: number;
+  reviewMessage: string;
+  onSendReview: (rating: string, comment: string, filmId: number) => void;
+  onResetReviewMessage: () => void;
+}
 const withReviewState = (Component) => {
-  class WithReviewState extends React.PureComponent {
+  class WithReviewState extends PureComponent<Props, State> {
     constructor(props) {
       super(props);
       this.state = {
@@ -26,7 +41,7 @@ const withReviewState = (Component) => {
       this._handleValidateField = this._handleValidateField.bind(this);
       this._handleValidateForm = this._handleValidateForm.bind(this);
     }
-    componentDidUpdate() {
+    componentDidUpdate(): void {
       if (this.props.reviewMessage) {
         if (this.props.reviewMessage === REVIEW_MESSAGE) {
           this.setState({
@@ -41,18 +56,18 @@ const withReviewState = (Component) => {
       }
       if (this.state.redirect) {
         this.setState({
-          redirect: 0
+          redirect: false
         });
       }
     }
-    handleUserInput(event) {
-      const name = event.target.name;
-      const value = event.target.value;
-      this.setState({[name]: value}, () => {
-        this._handleValidateField(name, value);
+    handleUserInput(event: React.ChangeEvent<HTMLInputElement>): void {
+      const key = event.target.name as keyof State;
+      const value = event.target.value as string;
+      this.setState<never>({[key]: value}, () => {
+        this._handleValidateField(key, value);
       });
     }
-    handleFormSubmit(event) {
+    handleFormSubmit(event: React.ChangeEvent<HTMLInputElement>): void {
       const rating = this.state.ratingSelected;
       const comment = this.state.text;
       const filmId = this.props.id;
@@ -62,15 +77,18 @@ const withReviewState = (Component) => {
       });
       this.props.onSendReview(rating, comment, filmId);
     }
-    _handleValidateField(fieldName, value) {
+    _handleValidateField(fieldName: keyof State, value: string): void {
       let textValid = this.state.textValid;
       let ratingValid = this.state.ratingValid;
       switch (fieldName) {
         case `text`:
-          textValid = value.length >= TextLength.MIN && value.length <= TextLength.MAX;
+          textValid =
+            value.length >= TextLength.MIN && value.length <= TextLength.MAX;
           break;
         case `ratingSelected`:
-          ratingValid = parseInt(value, 10) >= RatingValue.MIN && parseInt(value, 10) <= RatingValue.MAX;
+          ratingValid =
+            parseInt(value, 10) >= RatingValue.MIN &&
+            parseInt(value, 10) <= RatingValue.MAX;
           break;
         default:
           break;
@@ -83,7 +101,7 @@ const withReviewState = (Component) => {
           this._handleValidateForm
       );
     }
-    _handleValidateForm() {
+    _handleValidateForm(): void {
       this.setState({
         formValid: this.state.textValid && this.state.ratingValid
       });
@@ -106,12 +124,6 @@ const withReviewState = (Component) => {
       );
     }
   }
-  WithReviewState.propTypes = {
-    id: PropTypes.number.isRequired,
-    reviewMessage: PropTypes.string.isRequired,
-    onSendReview: PropTypes.func.isRequired,
-    onResetReviewMessage: PropTypes.func.isRequired
-  };
   return WithReviewState;
 };
 
@@ -120,9 +132,9 @@ const mapStateToProps = (state, ownProps) =>
     reviewMessage: getReviewMessage(state)
   });
 const mapDispatchToProps = (dispatch) => ({
-  onSendReview: (rating, comment, filmId) =>
+  onSendReview: (rating: string, comment: string, filmId: number): void =>
     dispatch(Operation.sendReview(rating, comment, filmId)),
-  onResetReviewMessage: () => dispatch(ActionCreator.resetReviewMessage())
+  onResetReviewMessage: (): void => dispatch(ActionCreator.resetReviewMessage())
 });
 export {withReviewState};
 

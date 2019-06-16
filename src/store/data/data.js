@@ -3,9 +3,9 @@ import {
   getGenerFromData,
   ReviewDataAdapter,
   updateFilmAdapter
-} from "../../api/data-adapter.js";
-import {REVIEW_MESSAGE, SendUrl} from "../../constants.js";
-import NameSpace from "../name-spaces.js";
+} from "../../api/data-adapter";
+import {REVIEW_MESSAGE, SendUrl} from "../../constants";
+import NameSpace from "../name-spaces";
 
 const initialState = {
   films: [],

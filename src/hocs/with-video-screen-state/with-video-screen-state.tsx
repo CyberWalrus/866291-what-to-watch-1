@@ -1,10 +1,25 @@
-import React, {PureComponent, Fragment} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import {PureComponent, Fragment} from "react";
 import {connect} from "react-redux";
 import {compose} from "recompose";
-import {getPlayFilmId} from "../../store/filter/selectors.js";
-import {ActionCreator} from "../../store/filter/filter.js";
-import {BodyOverflow, PADDING_VIDEO} from "../../constants.js";
+import {getPlayFilmId} from "../../store/filter/selectors";
+import {ActionCreator} from "../../store/filter/filter";
+import {BodyOverflow, PADDING_VIDEO} from "../../constants";
+
+interface State {
+  isOpen: boolean;
+  isPlaying: boolean;
+  filmId: number;
+  togglerValue: number;
+  time: string;
+  progressValue: number;
+  progressRef: HTMLProgressElement;
+  videoRef: HTMLVideoElement;
+}
+interface Props {
+  playFilmId: number;
+  onResetPlayFilmId: () => void;
+}
 
 const _timeConvert = (num) => {
   const minutes = Math.floor(num / 60);
@@ -12,7 +27,7 @@ const _timeConvert = (num) => {
   return `${minutes}:${seconds}`;
 };
 const withVideoScreenState = (Component) => {
-  class WithVideoScreenState extends PureComponent {
+  class WithVideoScreenState extends PureComponent<Props, State> {
     constructor(props) {
       super(props);
       this.state = {
@@ -34,7 +49,7 @@ const withVideoScreenState = (Component) => {
       this._handlePointerUp = this._handlePointerUp.bind(this);
       this._handlePointerMove = this._handlePointerMove.bind(this);
     }
-    componentDidUpdate() {
+    componentDidUpdate(): void {
       if (this.props.playFilmId) {
         this.setState({
           isOpen: true,
@@ -50,7 +65,7 @@ const withVideoScreenState = (Component) => {
         this.props.onResetPlayFilmId();
       }
     }
-    handleSendVideoRef(ref) {
+    handleSendVideoRef(ref: HTMLVideoElement): void {
       const video = ref;
       video.onloadedmetadata = () => {
         video.ontimeupdate = () => {
@@ -67,7 +82,7 @@ const withVideoScreenState = (Component) => {
       };
     }
 
-    handleSendProgressRef(ref) {
+    handleSendProgressRef(ref: HTMLProgressElement): void {
       this.setState({
         progressRef: ref
       });
@@ -78,7 +93,7 @@ const withVideoScreenState = (Component) => {
       });
       document.body.style.overflow = BodyOverflow.VISIBLE;
     }
-    handleChangePlay() {
+    handleChangePlay(): void {
       const video = this.state.videoRef;
       if (video) {
         if (this.state.isPlaying === false) {
@@ -94,33 +109,24 @@ const withVideoScreenState = (Component) => {
         }
       }
     }
-    handleFullScreen() {
+    handleFullScreen(): void {
       const video = this.state.videoRef;
-      if (video) {
-        if (video.requestFullscreen) {
-          video.requestFullscreen();
-        } else if (video.mozRequestFullScreen) {
-          video.mozRequestFullScreen();
-        } else if (video.webkitRequestFullscreen) {
-          video.webkitRequestFullscreen();
-        }
+      if (video && video.requestFullscreen) {
+        video.requestFullscreen();
       }
     }
-    handlePointerDown(event) {
+    handlePointerDown(event: React.MouseEvent<HTMLDivElement>): void {
       const video = this.state.videoRef;
       if (video) {
         window.addEventListener(`pointerup`, this._handlePointerUp);
         window.addEventListener(`pointermove`, this._handlePointerMove);
-        this.setState({
-          widthProgress: event.target
-        });
       }
     }
     _handlePointerUp() {
       window.removeEventListener(`pointerup`, this._handlePointerUp);
       window.removeEventListener(`pointermove`, this._handlePointerMove);
     }
-    _handlePointerMove(event) {
+    _handlePointerMove(event): void {
       const video = this.state.videoRef;
       let progressValue =
         (100 / this.state.progressRef.clientWidth) *
@@ -155,10 +161,6 @@ const withVideoScreenState = (Component) => {
     }
   }
 
-  WithVideoScreenState.propTypes = {
-    playFilmId: PropTypes.number.isRequired,
-    onResetPlayFilmId: PropTypes.func.isRequired
-  };
   return WithVideoScreenState;
 };
 
