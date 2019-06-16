@@ -115,7 +115,7 @@ const PageAddReview = ({
   return <div />;
 };
 
-const mapStateToProps = (state, ownProps) =>
+const mapStateToProps = (state, ownProps: Props) =>
   Object.assign({}, ownProps, {
     film: getFilm(state, ownProps.id)
   });
