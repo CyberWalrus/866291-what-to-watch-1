@@ -88,9 +88,9 @@ const mapStateToProps = (state, ownProps) =>
     isAuthorizationRequired: getAuthorizationStatus(state)
   });
 const mapDispatchToProps = (dispatch) => ({
-  onSendFavorite: (status, filmId) =>
+  onSendFavorite: (status: number, filmId: number) =>
     dispatch(Operation.sendFavorite(status, filmId)),
-  onVideoScreenOpen: (filmId) => dispatch(ActionCreator.setPlayFilmId(filmId))
+  onVideoScreenOpen: (filmId: number) => dispatch(ActionCreator.setPlayFilmId(filmId))
 });
 
 export {FilmButtonDiv};

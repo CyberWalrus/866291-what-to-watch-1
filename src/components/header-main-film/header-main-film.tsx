@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {getFilm} from "../../store/data/selectors";
 import {MAIN_FILM_ID} from "../../constants";
 import FilmButtonDiv from "../film-button-div/film-button-div";
-import {Film} from "../../type";
+import {Film} from "../../type/data";
 
 interface Props {
   film: Film

@@ -8,12 +8,13 @@ import {createAPI} from "./api/api";
 import reducer from "./store";
 import {Operation as OperationData} from "./store/data/data";
 import App from "./components/app/app";
+import {StateApp} from "./type/reducer";
 
 declare const __REDUX_DEVTOOLS_EXTENSION__: () => any;
 
 const init = () => {
   const api = createAPI(() => history.pushState(null, null, `/login`));
-  const store = createStore(
+  const store: StateApp = createStore(
       reducer,
       compose(
           applyMiddleware(thunk.withExtraArgument(api)),
@@ -21,7 +22,6 @@ const init = () => {
         __REDUX_DEVTOOLS_EXTENSION__()
       )
   );
-  store.dispatch(OperationData.loadFilms());
   ReactDOM.render(
       <Provider store={store}>
         <App />
@@ -31,3 +31,4 @@ const init = () => {
 };
 
 init();
+``

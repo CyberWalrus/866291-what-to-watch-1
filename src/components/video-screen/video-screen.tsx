@@ -4,7 +4,7 @@ import VideoPlayer from "../video-player/video-player";
 import {OptionsVideoFull, VideoScreenStyle} from "../../constants";
 import {connect} from "react-redux";
 import {getFilm} from "../../store/data/selectors";
-import {Film} from "../../type";
+import {Film} from "../../type/data";
 
 interface Props {
   filmId: number;

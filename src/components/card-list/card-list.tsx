@@ -3,7 +3,7 @@ import {Fragment} from "react";
 import {connect} from "react-redux";
 import Card from "../card/card";
 import {getFilms, getFavorites} from "../../store/data/selectors";
-import {Film} from "../../type";
+import {Film} from "../../type/data";
 
 interface Props {
   filmId: number,

@@ -3,7 +3,7 @@ import {PureComponent, Fragment} from "react";
 import {connect} from "react-redux";
 import {getReviews} from "../../store/data/selectors";
 import {Operation as OperationData} from "../../store/data/data";
-import {Review} from "../../type";
+import {Review} from "../../type/data";
 
 interface Props {
   filmId: number;

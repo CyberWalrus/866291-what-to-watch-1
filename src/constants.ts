@@ -11,12 +11,12 @@ const TIMEOUT_INTERVAL = 2000;
 
 const ratingRadioValues = [`1`, `2`, `3`, `4`, `5`];
 
-const RatingName = {
-  BAD: `Bad`,
-  NORMAL: `Normal`,
-  GOOD: `Good`,
-  VERY_GOOD: `Very good`,
-  AWESOME: `Awesome`
+enum RatingName {
+  BAD = "Bad",
+  NORMAL = "Normal",
+  GOOD = "Good",
+  VERY_GOOD = "Very good",
+  AWESOME = "Awesome"
 };
 const RatingInterval = {
   BAD: 3,

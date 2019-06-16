@@ -15,7 +15,7 @@ import CardList from "../card-list/card-list";
 import VideScreen from "../video-screen/video-screen";
 import withActiveFilm from "../../hocs/with-active-film/with-active-film";
 import withVideoScreenState from "../../hocs/with-video-screen-state/with-video-screen-state";
-import {Film} from "../../type";
+import {Film} from "../../type/data";
 
 const CardListActiveFilm = withActiveFilm(CardList);
 const VideScreenState = withVideoScreenState(VideScreen);

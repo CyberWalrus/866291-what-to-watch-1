@@ -5,7 +5,7 @@ import {getFilm} from "../../store/data/selectors";
 import HiddenIcon from "../hidden-icon/hidden-icon";
 import Header from "../header/header";
 import {DisabledStyle, TextLength, ratingRadioValues} from "../../constants";
-import {Film} from "../../type";
+import {Film} from "../../type/data";
 
 interface Props {  
   id: number,

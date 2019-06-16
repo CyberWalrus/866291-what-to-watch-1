@@ -4,14 +4,14 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import RoutePath, {routeToFilm} from "../../routes";
 import {getAuthorizationStatus, getUser} from "../../store/user/selectors";
-import {User} from "../../type";
+import {User} from "../../type/data";
 
 interface Props {
   isAuthorizationRequired: boolean;
-  isUserClass: boolean;
-  isShowIcon: boolean;
-  filmTitle: string;
-  filmId: number;
+  isUserClass?: boolean;
+  isShowIcon?: boolean;
+  filmTitle?: string;
+  filmId?: number;
   title: string;
   user: User
 }
@@ -66,7 +66,7 @@ const Header = ({
         <Fragment />
       ) : (
         <div className="user-block">
-          {!isAuthorizationRequired && user ? (
+          {!isAuthorizationRequired ? (
             <Link className="user-block__link" to={RoutePath.LOGIN}>
               Sign In
             </Link>
@@ -74,7 +74,7 @@ const Header = ({
             <div className="user-block__avatar">
               <Link to={RoutePath.MY_LIST}>
                 <img
-                  src={user.srcAvatar}
+                  src={user && user.srcAvatar ? user.srcAvatar : ``}
                   alt="User avatar"
                   width="63"
                   height="63"
