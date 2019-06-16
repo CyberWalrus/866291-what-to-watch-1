@@ -186,7 +186,8 @@ describe(`Reducer data correctly`, () => {
       favorites: [],
       genres: [],
       reviews: [],
-      reviewMessage: ``
+      reviewMessage: ``,
+      isActive: false
     });
   });
   it(`Reducer test set favorites`, () => {
@@ -200,7 +201,8 @@ describe(`Reducer data correctly`, () => {
       favorites: FILMS,
       genres: [],
       reviews: [],
-      reviewMessage: ``
+      reviewMessage: ``,
+      isActive: false
     });
   });
   it(`Reducer test set reviews`, () => {
@@ -214,7 +216,8 @@ describe(`Reducer data correctly`, () => {
       favorites: [],
       genres: [],
       reviews: REVIEWS,
-      reviewMessage: ``
+      reviewMessage: ``,
+      isActive: false
     });
   });
   it(`Reducer test set geners`, () => {
@@ -228,7 +231,8 @@ describe(`Reducer data correctly`, () => {
       favorites: [],
       genres: GENRES,
       reviews: [],
-      reviewMessage: ``
+      reviewMessage: ``,
+      isActive: false
     });
   });
   it(`Reducer test set review message`, () => {
@@ -242,7 +246,8 @@ describe(`Reducer data correctly`, () => {
       favorites: [],
       genres: [],
       reviews: [],
-      reviewMessage: `test`
+      reviewMessage: `test`,
+      isActive: false
     });
   });
 });

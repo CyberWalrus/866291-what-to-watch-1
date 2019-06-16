@@ -5,7 +5,7 @@ enum ActionType {
   CHANGE_GENRE = "CHANGE_GENRE",
   SET_PLAY_FILM = "SET_PLAY_FILM"
 }
-interface State {
+export interface State {
   genreSelected: string;
   playFilmId: number;
 }
@@ -21,7 +21,7 @@ interface ResetPlayFilmId extends ReduxAction {
   type: ActionType;
   payload: number;
 }
-type Action = ChangeGenre | SetPlayFilmId | ResetPlayFilmId;
+export type Action = ChangeGenre | SetPlayFilmId | ResetPlayFilmId;
 
 const initialState: State = {
   genreSelected: GENRE_DEFOULT,
@@ -64,4 +64,4 @@ const reducer = (state: State = initialState, action: Action) => {
   return state;
 };
 
-export {State, Action, initialState, ActionCreator, ActionType, reducer};
+export {initialState, ActionCreator, ActionType, reducer};

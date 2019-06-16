@@ -102,6 +102,6 @@ const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
 export {FilmButtonDiv};
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(FilmButtonDiv);

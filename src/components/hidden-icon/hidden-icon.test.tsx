@@ -1,10 +1,12 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as Enzyme from "enzyme";
+import * as Adapter from "enzyme-adapter-react-16";
+import toJson from "enzyme-to-json";
+import {shallow} from "enzyme";
 import HiddenIcon from "./hidden-icon";
+Enzyme.configure({adapter: new Adapter()});
 
 it(`HiddenIcon correctly renders after relaunch`, () => {
-  const tree = renderer
-    .create(<HiddenIcon />)
-    .toJSON();
+  const tree = toJson(shallow(<HiddenIcon />));
   expect(tree).toMatchSnapshot();
 });

@@ -13,9 +13,9 @@ interface PropsInsert {
   genreFilm: string,
   isFavorite: boolean,
   onClickShowMore: () => void,
-  onMouseEnterCard: (id:number) => void,
-  onMouseLeaveCard: (id:number) => void,
-  onClickToRedirect: (id:number) => void
+  onMouseEnterCard: (id: number) => void,
+  onMouseLeaveCard: (id: number) => void,
+  onClickToRedirect: (id: number) => void
 }
 interface PropsState {
   films: Film[]
@@ -38,7 +38,7 @@ const CardList = ({
     <Fragment>
       <div className="catalog__movies-list">
         {films &&
-          films.map(({id, title, srcPreviewImage, genre, srcPreviewVideo}) => (
+          films.map(({id, title, srcPreviewImage, srcPreviewVideo}) => (
             <Card
               key={id}
               id={id}
@@ -74,10 +74,10 @@ const mapStateToProps = (state: StateApp, ownProps: Props): Props =>
     films: ownProps.isFavorite
       ? getFavorites(state, ownProps.numberFilm)
       : getFilms(
-          state,
-          ownProps.numberFilm,
-          ownProps.genreFilm,
-          ownProps.filmId
+        state,
+        ownProps.numberFilm,
+        ownProps.genreFilm,
+        ownProps.filmId
       )
   });
 

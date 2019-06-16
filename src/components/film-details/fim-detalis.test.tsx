@@ -1,11 +1,15 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as Enzyme from "enzyme";
+import * as Adapter from "enzyme-adapter-react-16";
+import toJson from "enzyme-to-json";
+import {shallow} from "enzyme";
 import FilmDetails from "./film-details";
 import {FILM} from "../../mock/mock-test";
 
+Enzyme.configure({adapter: new Adapter()});
 it(`FilmDetails correctly renders after relaunch`, () => {
-  const tree = renderer
-    .create(
+  const tree = toJson(
+    shallow(
       <FilmDetails
         released={FILM.released}
         runTime={FILM.runTime}
@@ -14,6 +18,6 @@ it(`FilmDetails correctly renders after relaunch`, () => {
         starrings={FILM.starrings}
       />
     )
-    .toJSON();
+  );
   expect(tree).toMatchSnapshot();
 });

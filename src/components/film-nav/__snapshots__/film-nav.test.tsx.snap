@@ -9,33 +9,33 @@ exports[`FilmNav correctly renders after relaunch 1`] = `
   >
     <li
       className="movie-nav__item movie-nav__item--active"
+      key="0"
     >
       <a
         className="movie-nav__link"
-        onClick={[MockFunction]}
-        text="Overview"
+        onClick={[Function]}
       >
         Overview
       </a>
     </li>
     <li
       className="movie-nav__item"
+      key="1"
     >
       <a
         className="movie-nav__link"
-        onClick={[MockFunction]}
-        text="Details"
+        onClick={[Function]}
       >
         Details
       </a>
     </li>
     <li
       className="movie-nav__item"
+      key="2"
     >
       <a
         className="movie-nav__link"
-        onClick={[MockFunction]}
-        text="Reviews"
+        onClick={[Function]}
       >
         Reviews
       </a>

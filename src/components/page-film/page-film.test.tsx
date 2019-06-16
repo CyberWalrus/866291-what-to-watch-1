@@ -1,5 +1,8 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as Enzyme from "enzyme";
+import * as Adapter from "enzyme-adapter-react-16";
+import toJson from "enzyme-to-json";
+import {shallow} from "enzyme";
 import reducer from "../../store";
 import {createStore} from "redux";
 import {Provider} from "react-redux";
@@ -7,12 +10,13 @@ import {BrowserRouter} from "react-router-dom";
 import {PageFilm} from "./page-film";
 import {FILM} from "../../mock/mock-test";
 import {FilmRoute} from "../../constants";
+Enzyme.configure({adapter: new Adapter()});
 
 it(`PageFilm correctly renders after relaunch`, () => {
   const handleClick = jest.fn();
   const store = createStore(reducer);
-  const tree = renderer
-    .create(
+  const tree = toJson(
+    shallow(
       <Provider store={store}>
         <BrowserRouter>
           <PageFilm
@@ -24,6 +28,6 @@ it(`PageFilm correctly renders after relaunch`, () => {
         </BrowserRouter>
       </Provider>
     )
-    .toJSON();
+  );
   expect(tree).toMatchSnapshot();
 });

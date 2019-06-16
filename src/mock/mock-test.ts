@@ -127,9 +127,9 @@ const REVIEWS_RESPONSE: ReviewResponse[] = [
 const USER_RESPONSE: UserResponse = {
   id: 1
 };
-const STATE: StateApp ={
+const STATE: StateApp = {
   [NameSpace.DATA]: initialStateData,
   [NameSpace.FILTER]: initialStateFilter,
   [NameSpace.USER]: initialStateUser
-}
+};
 export {FILMS, FILM, GENRES, REVIEWS, USER, FILMS_RESPONSE, FILM_RESPONSE, REVIEWS_RESPONSE, USER_RESPONSE, STATE};

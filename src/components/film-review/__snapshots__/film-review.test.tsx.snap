@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilmReview correctly renders after relaunch 1`] = `
+<Fragment>
+  <div
+    className="movie-card__reviews movie-card__row"
+  >
+    <div
+      className="movie-card__reviews-col"
+    >
+      <div
+        className="review"
+        key="0"
+      >
+        <blockquote
+          className="review__quote"
+        >
+          <p
+            className="review__text"
+          >
+            test test test test test test test test test test test test test
+          </p>
+          <footer
+            className="review__details"
+          >
+            <cite
+              className="review__author"
+            >
+              Walrus
+            </cite>
+            <time
+              className="review__date"
+              dateTime="May 11, 2019"
+            >
+              2019-05-11
+            </time>
+          </footer>
+        </blockquote>
+        <div
+          className="review__rating"
+        >
+          8,1
+        </div>
+      </div>
+    </div>
+    <div
+      className="movie-card__reviews-col"
+    >
+      <div
+        className="review"
+        key="1"
+      >
+        <blockquote
+          className="review__quote"
+        >
+          <p
+            className="review__text"
+          >
+            test test test test test test test test test test test test test
+          </p>
+          <footer
+            className="review__details"
+          >
+            <cite
+              className="review__author"
+            >
+              Walrus
+            </cite>
+            <time
+              className="review__date"
+              dateTime="May 11, 2019"
+            >
+              2019-05-11
+            </time>
+          </footer>
+        </blockquote>
+        <div
+          className="review__rating"
+        >
+          8,1
+        </div>
+      </div>
+    </div>
+  </div>
+</Fragment>
+`;

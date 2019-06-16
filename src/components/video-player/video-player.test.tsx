@@ -1,19 +1,23 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as Enzyme from "enzyme";
+import * as Adapter from "enzyme-adapter-react-16";
+import toJson from "enzyme-to-json";
+import {shallow} from "enzyme";
 import VideoPlayer from "./video-player";
 import {FILM} from "../../mock/mock-test";
 import {OptionsVideoFull} from "../../constants";
+Enzyme.configure({adapter: new Adapter()});
 
 it(`VideoPlayer correctly renders after relaunch`, () => {
-  const tree = renderer
-    .create(
-        <VideoPlayer
-          videoSrc={FILM.srcVideo}
-          posterSrc={FILM.srcPosterImage}
-          options={OptionsVideoFull}
-          isPlaying={false}
-        />
+  const tree = toJson(
+    shallow(
+      <VideoPlayer
+        videoSrc={FILM.srcVideo}
+        posterSrc={FILM.srcPosterImage}
+        options={OptionsVideoFull}
+        isPlaying={false}
+      />
     )
-    .toJSON();
+  );
   expect(tree).toMatchSnapshot();
 });

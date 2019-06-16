@@ -6,6 +6,7 @@ exports[`Filter correctly renders after relaunch 1`] = `
 >
   <li
     className="catalog__genres-item catalog__genres-item--active"
+    key="0"
   >
     <a
       className="catalog__genres-link"
@@ -16,6 +17,7 @@ exports[`Filter correctly renders after relaunch 1`] = `
   </li>
   <li
     className="catalog__genres-item"
+    key="1"
   >
     <a
       className="catalog__genres-link"
@@ -26,6 +28,7 @@ exports[`Filter correctly renders after relaunch 1`] = `
   </li>
   <li
     className="catalog__genres-item"
+    key="2"
   >
     <a
       className="catalog__genres-link"
@@ -36,6 +39,7 @@ exports[`Filter correctly renders after relaunch 1`] = `
   </li>
   <li
     className="catalog__genres-item"
+    key="3"
   >
     <a
       className="catalog__genres-link"
@@ -46,6 +50,7 @@ exports[`Filter correctly renders after relaunch 1`] = `
   </li>
   <li
     className="catalog__genres-item"
+    key="4"
   >
     <a
       className="catalog__genres-link"
@@ -56,6 +61,7 @@ exports[`Filter correctly renders after relaunch 1`] = `
   </li>
   <li
     className="catalog__genres-item"
+    key="5"
   >
     <a
       className="catalog__genres-link"
@@ -66,6 +72,7 @@ exports[`Filter correctly renders after relaunch 1`] = `
   </li>
   <li
     className="catalog__genres-item"
+    key="6"
   >
     <a
       className="catalog__genres-link"
@@ -76,6 +83,7 @@ exports[`Filter correctly renders after relaunch 1`] = `
   </li>
   <li
     className="catalog__genres-item"
+    key="7"
   >
     <a
       className="catalog__genres-link"

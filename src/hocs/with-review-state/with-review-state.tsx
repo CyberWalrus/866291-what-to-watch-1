@@ -101,11 +101,11 @@ const withReviewState = (Component) => {
           break;
       }
       this.setState(
-          {
-            textValid,
-            ratingValid
-          },
-          this._handleValidateForm
+        {
+          textValid,
+          ratingValid
+        },
+        this._handleValidateForm
       );
     }
     _handleValidateForm(): void {
@@ -146,9 +146,9 @@ const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
 export {withReviewState};
 
 export default compose(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps
-    ),
-    withReviewState
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  withReviewState
 );

@@ -21,7 +21,7 @@ enum ActionType {
   SET_REVIEW_MESSAGE = "SET_REVIEW_MESSAGE",
   SET_ACTIVE = "SET_ACTIVE"
 }
-interface State {
+export interface State {
   films: Film[],
   favorites: Film[],
   genres: string[],
@@ -49,7 +49,7 @@ interface UpdateActive extends ReduxAction {
   type: ActionType;
   payload: boolean;
 }
-type Action = UpdateFilms | UpdateReviews | UpdateGenres | UpdateMessage | UpdateActive;
+export type Action = UpdateFilms | UpdateReviews | UpdateGenres | UpdateMessage | UpdateActive;
 
 const initialState: State = {
   films: [],
@@ -255,4 +255,4 @@ const reducer = (state: State = initialState, action: Action) => {
   return state;
 };
 
-export {State, Action, initialState, ActionCreator, ActionType, Operation, reducer};
+export {initialState, ActionCreator, ActionType, Operation, reducer};

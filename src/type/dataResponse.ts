@@ -1,10 +1,10 @@
-interface UserResponse {
+export interface UserResponse {
   id?: number;
   email?: string;
   name?: string;
   avatar_url?: string;
 }
-interface FilmResponse {
+export interface FilmResponse {
   background_color?: string;
   background_image?: string;
   description?: string;
@@ -24,7 +24,7 @@ interface FilmResponse {
   video_link?: string;
 }
 
-interface ReviewResponse {
+export interface ReviewResponse {
   comment?: string;
   date?: string;
   id?: number;
@@ -34,5 +34,3 @@ interface ReviewResponse {
     name?: string;
   };
 }
-
-export {UserResponse, FilmResponse, ReviewResponse};

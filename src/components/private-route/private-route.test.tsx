@@ -1,24 +1,28 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as Enzyme from "enzyme";
+import * as Adapter from "enzyme-adapter-react-16";
+import toJson from "enzyme-to-json";
+import {shallow} from "enzyme";
 import {PrivateRoute} from "./private-route";
 import {BrowserRouter, Switch} from "react-router-dom";
+Enzyme.configure({adapter: new Adapter()});
 
 it(`PrivateRoute correctly renders after relaunch`, () => {
   const TestComponent = () => {
     return <div />;
   };
-  const tree = renderer
-    .create(
-        <BrowserRouter>
-          <Switch>
-            <PrivateRoute
-              component={TestComponent}
-              isAuthorizationRequired={true}
-              location={{}}
-            />
-          </Switch>
-        </BrowserRouter>
+  const tree = toJson(
+    shallow(
+      <BrowserRouter>
+        <Switch>
+          <PrivateRoute
+            component={TestComponent}
+            isAuthorizationRequired={true}
+            location={{}}
+          />
+        </Switch>
+      </BrowserRouter>
     )
-    .toJSON();
+  );
   expect(tree).toMatchSnapshot();
 });

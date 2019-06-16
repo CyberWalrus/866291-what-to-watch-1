@@ -120,7 +120,7 @@ const withVideoScreenState = (Component) => {
         video.requestFullscreen();
       }
     }
-    handlePointerDown(event: React.MouseEvent<HTMLDivElement>): void {
+    handlePointerDown(): void {
       const video = this.state.videoRef;
       if (video) {
         window.addEventListener(`pointerup`, this._handlePointerUp);

@@ -1,6 +1,5 @@
 import * as React from "react";
 import {PureComponent} from "react";
-import {Assign} from "utility-types";
 import {connect} from "react-redux";
 import {compose} from "recompose";
 import {getError} from "../../store/user/selectors";
@@ -85,11 +84,11 @@ const withAuthorizationState = (Component) => {
           break;
       }
       this.setState(
-          {
-            formErrors: fieldValidationErrors,
-            emailValid
-          },
-          this._handleValidateForm
+        {
+          formErrors: fieldValidationErrors,
+          emailValid
+        },
+        this._handleValidateForm
       );
     }
     _handleValidateForm(): void {
@@ -132,9 +131,9 @@ const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
 export {withAuthorizationState};
 
 export default compose(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps
-    ),
-    withAuthorizationState
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  withAuthorizationState
 );

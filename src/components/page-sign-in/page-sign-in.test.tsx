@@ -1,16 +1,20 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as Enzyme from "enzyme";
+import * as Adapter from "enzyme-adapter-react-16";
+import toJson from "enzyme-to-json";
+import {shallow} from "enzyme";
 import {createStore} from "redux";
 import {Provider} from "react-redux";
 import {BrowserRouter} from "react-router-dom";
 import PageSignIn from "./page-sign-in";
 import reducer from "../../store";
+Enzyme.configure({adapter: new Adapter()});
 
 it(`PageSignIn correctly renders after relaunch`, () => {
   const store = createStore(reducer);
   const handleClick = jest.fn();
-  const tree = renderer
-    .create(
+  const tree = toJson(
+    shallow(
       <Provider store={store}>
         <BrowserRouter>
           <PageSignIn
@@ -24,6 +28,6 @@ it(`PageSignIn correctly renders after relaunch`, () => {
         </BrowserRouter>
       </Provider>
     )
-    .toJSON();
+  );
   expect(tree).toMatchSnapshot();
 });

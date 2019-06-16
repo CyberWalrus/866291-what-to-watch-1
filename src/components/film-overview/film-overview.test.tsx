@@ -1,10 +1,15 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as Enzyme from "enzyme";
+import * as Adapter from "enzyme-adapter-react-16";
+import toJson from "enzyme-to-json";
+import {shallow} from "enzyme";
 import FilmOverview from "./film-overview";
 import {FILM} from "../../mock/mock-test";
+
+Enzyme.configure({adapter: new Adapter()});
 it(`FilmOverview correctly renders after relaunch`, () => {
-  const tree = renderer
-    .create(
+  const tree = toJson(
+    shallow(
       <FilmOverview
         rating={FILM.rating}
         ratingLevel={FILM.ratingLevel}
@@ -14,6 +19,6 @@ it(`FilmOverview correctly renders after relaunch`, () => {
         starrings={FILM.starrings}
       />
     )
-    .toJSON();
+  );
   expect(tree).toMatchSnapshot();
 });

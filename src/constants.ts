@@ -17,7 +17,7 @@ enum RatingName {
   GOOD = "Good",
   VERY_GOOD = "Very good",
   AWESOME = "Awesome"
-};
+}
 const RatingInterval = {
   BAD: 3,
   NORMAL: 5,
@@ -29,7 +29,7 @@ enum FilmRoute {
   OVERVIEW = "Overview",
   DETAILS = "Details",
   REVIEWS = "Reviews"
-};
+}
 const BodyOverflow = {
   VISIBLE: `visible`,
   HIDDEN: `hidden`
@@ -72,11 +72,11 @@ const OptionsVideoFull = {
   isLoop: false,
   isControls: false
 };
-const VideoScreenStyle = {  
+const VideoScreenStyle = {
   zIndex: 100,
   background: `url() no-repeat center center fixed`,
   backgroundSize: `cover`
-}
+};
 
 export {
   GENRE_DEFOULT,

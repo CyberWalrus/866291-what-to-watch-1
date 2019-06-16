@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import RoutePath, {routeToFilm} from "../../routes";
 import {getAuthorizationStatus, getUser} from "../../store/user/selectors";
 import {User} from "../../type/data";
-import {StateApp, ThunkDispatch} from "../../type/reducer";
+import {StateApp} from "../../type/reducer";
 
 interface PropsInsert {
   isUserClass?: boolean;

@@ -66,8 +66,8 @@ class FilmReview extends PureComponent<Props, null> {
     return (
       <Fragment>
         <div className="movie-card__reviews movie-card__row">
-          <div className="movie-card__reviews-col">{colFirst && colFirst.map((item, index) => item)}</div>
-          <div className="movie-card__reviews-col">{colSecond && colSecond.map((item, index) => item)}</div>
+          <div className="movie-card__reviews-col">{colFirst && colFirst.map((item) => item)}</div>
+          <div className="movie-card__reviews-col">{colSecond && colSecond.map((item) => item)}</div>
         </div>
       </Fragment>
     );

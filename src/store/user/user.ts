@@ -12,7 +12,7 @@ enum ActionType {
   SIGN_IN = "SIGN_IN",
   SET_ERROR = "SET_ERROR"
 }
-interface State {
+export interface State {
   isAuthorizationRequired: boolean;
   user: User;
   errorMessage: string;
@@ -29,7 +29,7 @@ interface SetError extends ReduxAction {
   type: ActionType;
   payload: string;
 }
-type Action = RequireAuthorization | SignIn | SetError;
+export type Action = RequireAuthorization | SignIn | SetError;
 
 const initialState: State = {
   isAuthorizationRequired: false,
@@ -116,4 +116,10 @@ const reducer = (state: State = initialState, action: Action) => {
   }
 };
 
-export {State, Action, initialState, ActionCreator, ActionType, Operation, reducer};
+export {
+  ActionType,
+  initialState,
+  ActionCreator,
+  Operation,
+  reducer
+};

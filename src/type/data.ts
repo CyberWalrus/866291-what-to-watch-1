@@ -1,4 +1,4 @@
-interface Film {
+export interface Film {
   id: number;
   title: string;
   bgColor: string;
@@ -20,21 +20,19 @@ interface Film {
   ratingLevel: string;
 }
 
-interface Review {
-  id: number,
-  comment: string,
-  rating: string,
-  userId: number,
-  userName: string,
-  date: string,
-  dateHTML: string
+export interface Review {
+  id: number;
+  comment: string;
+  rating: string;
+  userId: number;
+  userName: string;
+  date: string;
+  dateHTML: string;
 }
 
-interface User {  
-  id: number,
-  email: string,
-  name: string,
-  srcAvatar: string
+export interface User {
+  id: number;
+  email: string;
+  name: string;
+  srcAvatar: string;
 }
-
-export {Film, Review, User};

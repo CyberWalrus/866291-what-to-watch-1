@@ -13,18 +13,18 @@ declare const __REDUX_DEVTOOLS_EXTENSION__: () => any;
 const init = () => {
   const api = createAPI(() => history.pushState(null, null, `/login`));
   const store = createStore(
-      reducer,
-      compose(
-          applyMiddleware(thunk.withExtraArgument(api)),
-          __REDUX_DEVTOOLS_EXTENSION__ &&
+    reducer,
+    compose(
+      applyMiddleware(thunk.withExtraArgument(api)),
+      __REDUX_DEVTOOLS_EXTENSION__ &&
         __REDUX_DEVTOOLS_EXTENSION__()
-      )
+    )
   );
   ReactDOM.render(
-      <Provider store={store}>
-        <App />
-      </Provider>,
-      document.querySelector(`#root`)
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.querySelector(`#root`)
   );
 };
 

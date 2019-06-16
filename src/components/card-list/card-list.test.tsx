@@ -1,14 +1,18 @@
 import * as React from "react";
-import renderer from "react-test-renderer";
+import * as Enzyme from "enzyme";
+import * as Adapter from "enzyme-adapter-react-16";
+import toJson from "enzyme-to-json";
+import {shallow} from "enzyme";
 import {BrowserRouter} from "react-router-dom";
 import {CardList} from "./card-list";
 import {FILMS} from "../../mock/mock-test";
 import {NUMBER_FILM, GENRE_DEFOULT} from "../../constants";
 
+Enzyme.configure({adapter: new Adapter()});
 it(`CardList component renders correctly with props`, () => {
   const handleClick = jest.fn();
-  const tree = renderer
-    .create(
+  const tree = toJson(
+    shallow(
       <BrowserRouter>
         <CardList
           filmId={1}
@@ -24,13 +28,13 @@ it(`CardList component renders correctly with props`, () => {
         />
       </BrowserRouter>
     )
-    .toJSON();
+  );
   expect(tree).toMatchSnapshot();
 });
 it(`CardList component renders correctly with empty props`, () => {
   const handleClick = jest.fn();
-  const tree = renderer
-    .create(
+  const tree = toJson(
+    shallow(
       <BrowserRouter>
         <CardList
           filmId={1}
@@ -46,6 +50,6 @@ it(`CardList component renders correctly with empty props`, () => {
         />
       </BrowserRouter>
     )
-    .toJSON();
+  );
   expect(tree).toMatchSnapshot();
 });
