@@ -16,17 +16,21 @@ import VideScreen from "../video-screen/video-screen";
 import withActiveFilm from "../../hocs/with-active-film/with-active-film";
 import withVideoScreenState from "../../hocs/with-video-screen-state/with-video-screen-state";
 import {Film} from "../../type/data";
+import {StateApp} from "../../type/reducer";
 
 const CardListActiveFilm = withActiveFilm(CardList);
 const VideScreenState = withVideoScreenState(VideScreen);
 
-interface Props {
-  film: Film,
+interface PropsInsert {
   id: number,
   route: string,
   onChangeFilmRoute: () => void,
-
 }
+interface PropsState {
+  film: Film;
+}
+type Props = PropsInsert & PropsState;
+
 
 const PageFilm = ({film, onChangeFilmRoute, route}: Props) => {
   if (film) {
@@ -135,7 +139,7 @@ const PageFilm = ({film, onChangeFilmRoute, route}: Props) => {
   return <div />;
 };
 
-const mapStateToProps = (state, ownProps: Props) =>
+const mapStateToProps = (state: StateApp, ownProps: Props): Props =>
   Object.assign({}, ownProps, {
     film: getFilm(state, ownProps.id)
   });

@@ -12,20 +12,20 @@ it(`PageAddReview correctly renders after relaunch`, () => {
   const handleClick = jest.fn();
   const tree = renderer
     .create(
-        <Provider store={store}>
-          <BrowserRouter>
-            <PageAddReview
-              film={FILM}
-              id={FILM.id}
-              ratingSelected={`1`}
-              text={``}
-              isActive={true}
-              formValid={false}
-              onChageUserInput={handleClick}
-              onSubmitSend={handleClick}
-            />
-          </BrowserRouter>
-        </Provider>
+      <Provider store={store}>
+        <BrowserRouter>
+          <PageAddReview
+            film={FILM}
+            id={FILM.id}
+            ratingSelected={`1`}
+            text={``}
+            isActive={true}
+            formValid={false}
+            onChageUserInput={handleClick}
+            onSubmitSend={handleClick}
+          />
+        </BrowserRouter>
+      </Provider>
     )
     .toJSON();
   expect(tree).toMatchSnapshot();

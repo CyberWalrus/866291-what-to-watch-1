@@ -14,15 +14,19 @@ import withAuthorizationState from "../../hocs/with-authorization-state/with-aut
 import withReviewState from "../../hocs/with-review-state/with-review-state";
 import {Operation} from "../../store/data/data";
 import {getActive} from "../../store/data/selectors";
+import {StateApp, ThunkDispatch} from "../../type/reducer";
 
 const PageFilmWithRoute = withFilmRoute(PageFilm);
 const PageSignInWithState = withAuthorizationState(PageSignIn);
 const PageAddReviewWithState = withReviewState(PageAddReview);
 
-interface Props {
+interface PropsState {
   isActive: boolean;
+}
+interface PropsDispatch{
   loadFilms: () => void;
 }
+type Props = PropsState & PropsDispatch;
 class App extends PureComponent<Props, null> {
   constructor(props: Props) {
     super(props);
@@ -71,12 +75,12 @@ class App extends PureComponent<Props, null> {
   }
 }
 
-const mapStateToProps = (state, ownProps) =>
+const mapStateToProps = (state: StateApp, ownProps: Props): Props =>
   Object.assign({}, ownProps, {
     isActive: getActive(state)
   });
-const mapDispatchToProps = (dispatch) => ({
-  loadFilms: () => dispatch(Operation.loadFilms())
+const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
+  loadFilms: (): Promise<void> => dispatch(Operation.loadFilms())
 });
 
 export {App};

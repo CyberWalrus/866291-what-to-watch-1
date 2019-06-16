@@ -6,6 +6,7 @@ import {getFilm} from "../../store/data/selectors";
 import {MAIN_FILM_ID} from "../../constants";
 import FilmButtonDiv from "../film-button-div/film-button-div";
 import {Film} from "../../type/data";
+import {StateApp} from "../../type/reducer";
 
 interface Props {
   film: Film
@@ -55,7 +56,7 @@ const HeaderMainFilm = ({film}: Props) => {
   }
   return <Header />;
 };
-const mapStateToProps = (state, ownProps) =>
+const mapStateToProps = (state: StateApp, ownProps: Props): Props =>
   Object.assign({}, ownProps, {
     film: getFilm(state, MAIN_FILM_ID)
   });

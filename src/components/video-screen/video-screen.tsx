@@ -5,8 +5,9 @@ import {OptionsVideoFull, VideoScreenStyle} from "../../constants";
 import {connect} from "react-redux";
 import {getFilm} from "../../store/data/selectors";
 import {Film} from "../../type/data";
+import {StateApp} from "../../type/reducer";
 
-interface Props {
+interface PropsInsert {
   filmId: number;
   time: string;
   progressValue: number;
@@ -17,8 +18,11 @@ interface Props {
   onMouseTogglerDown: () => void;
   onSendVideoRef: () => void;
   onSendProgressRef: (value: any) => void;
+}
+interface PropsState {
   film: Film;
 }
+type Props = PropsInsert & PropsState;
 class VideoScreen extends PureComponent<Props, null> {
   public progressRef: any;
   constructor(props) {
@@ -127,7 +131,7 @@ class VideoScreen extends PureComponent<Props, null> {
   }
 }
 
-const mapStateToProps = (state, ownProps) =>
+const mapStateToProps = (state: StateApp, ownProps: Props): Props =>
   Object.assign({}, ownProps, {
     film: getFilm(state, ownProps.filmId)
   });

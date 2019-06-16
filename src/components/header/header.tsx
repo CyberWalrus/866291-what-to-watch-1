@@ -5,16 +5,21 @@ import {connect} from "react-redux";
 import RoutePath, {routeToFilm} from "../../routes";
 import {getAuthorizationStatus, getUser} from "../../store/user/selectors";
 import {User} from "../../type/data";
+import {StateApp, ThunkDispatch} from "../../type/reducer";
 
-interface Props {
-  isAuthorizationRequired: boolean;
+interface PropsInsert {
   isUserClass?: boolean;
   isShowIcon?: boolean;
   filmTitle?: string;
   filmId?: number;
-  title: string;
+  title?: string;
+}
+interface PropsState {
+  isAuthorizationRequired: boolean;
   user: User
 }
+
+type Props = PropsInsert & PropsState
 
 const Header = ({
   isAuthorizationRequired,
@@ -88,7 +93,7 @@ const Header = ({
   );
 };
 
-const mapStateToProps = (state, ownProps) =>
+const mapStateToProps = (state: StateApp, ownProps: Props): Props =>
   Object.assign({}, ownProps, {
     isAuthorizationRequired: getAuthorizationStatus(state),
     user: getUser(state)

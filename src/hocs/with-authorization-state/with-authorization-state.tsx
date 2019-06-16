@@ -5,12 +5,16 @@ import {connect} from "react-redux";
 import {compose} from "recompose";
 import {getError} from "../../store/user/selectors";
 import {Operation, ActionCreator} from "../../store/user/user";
+import {StateApp, ThunkDispatch} from "../../type/reducer";
 
-interface Props {
+interface PropsState {
   errorMessage: string;
+}
+interface PropsDispatch{
   onSignIn: (email: string, password: string) => void;
   onResetError: () => void;
 }
+type Props = PropsState & PropsDispatch;
 interface State {
   email: string;
   password: string;
@@ -26,9 +30,7 @@ interface FormErrors {
 }
 
 const withAuthorizationState = (Component) => {
-  type P = React.ComponentProps<typeof Component>;
-  type T = Assign<Props, P>;
-  class WithAuthorizationState extends PureComponent<T, State> {
+  class WithAuthorizationState extends PureComponent<Props, State> {
     constructor(props) {
       super(props);
       this.state = {
@@ -99,7 +101,6 @@ const withAuthorizationState = (Component) => {
     render() {
       return (
         <Component
-          {...this.props}
           email={this.state.email}
           password={this.state.password}
           formErrors={this.state.formErrors}
@@ -114,12 +115,12 @@ const withAuthorizationState = (Component) => {
   return WithAuthorizationState;
 };
 
-const mapStateToProps = (state, ownProps) =>
+const mapStateToProps = (state: StateApp, ownProps: Props): Props =>
   Object.assign({}, ownProps, {
     errorMessage: getError(state)
   });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
   onSignIn: (email: string, password: string) => {
     dispatch(Operation.signIn(email, password));
   },

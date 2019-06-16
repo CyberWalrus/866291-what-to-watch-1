@@ -4,10 +4,10 @@ import {connect} from "react-redux";
 import Card from "../card/card";
 import {getFilms, getFavorites} from "../../store/data/selectors";
 import {Film} from "../../type/data";
+import {StateApp} from "../../type/reducer";
 
-interface Props {
-  filmId: number,
-  films: Film[]
+interface PropsInsert {
+  filmId: number
   numberFilm: number,
   activeFilm: number,
   genreFilm: string,
@@ -17,6 +17,11 @@ interface Props {
   onMouseLeaveCard: (id:number) => void,
   onClickToRedirect: (id:number) => void
 }
+interface PropsState {
+  films: Film[]
+}
+
+type Props = PropsInsert & PropsState;
 
 const CardList = ({
   films,
@@ -64,7 +69,7 @@ const CardList = ({
   );
 };
 
-const mapStateToProps = (state, ownProps: Props) =>
+const mapStateToProps = (state: StateApp, ownProps: Props): Props =>
   Object.assign({}, ownProps, {
     films: ownProps.isFavorite
       ? getFavorites(state, ownProps.numberFilm)

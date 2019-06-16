@@ -6,17 +6,21 @@ import HiddenIcon from "../hidden-icon/hidden-icon";
 import Header from "../header/header";
 import {DisabledStyle, TextLength, ratingRadioValues} from "../../constants";
 import {Film} from "../../type/data";
+import {StateApp} from "../../type/reducer";
 
-interface Props {  
-  id: number,
-  ratingSelected: string,
-  text: string,
-  isActive: boolean,
-  formValid: boolean,
-  film: Film,
-  onChageUserInput: () => void,
-  onSubmitSend: () => void
+interface PropsInsert {
+  id: number;
+  ratingSelected: string;
+  text: string;
+  isActive: boolean;
+  formValid: boolean;
+  onChageUserInput: () => void;
+  onSubmitSend: () => void;
 }
+interface PropsState {
+  film: Film;
+}
+type Props = PropsInsert & PropsState;
 
 const PageAddReview = ({
   film,
@@ -54,10 +58,7 @@ const PageAddReview = ({
             </div>
           </div>
 
-          <div
-            className="add-review"
-            style={!isActive ? DisabledStyle : {}}
-          >
+          <div className="add-review" style={!isActive ? DisabledStyle : {}}>
             <form onSubmit={onSubmitSend} className="add-review__form">
               <div className="rating">
                 <div className="rating__stars">
@@ -115,7 +116,7 @@ const PageAddReview = ({
   return <div />;
 };
 
-const mapStateToProps = (state, ownProps: Props) =>
+const mapStateToProps = (state: StateApp, ownProps: Props): Props =>
   Object.assign({}, ownProps, {
     film: getFilm(state, ownProps.id)
   });

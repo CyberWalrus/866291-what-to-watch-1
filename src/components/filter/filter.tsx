@@ -3,12 +3,16 @@ import {connect} from "react-redux";
 import {ActionCreator} from "../../store/filter/filter";
 import {getGeners} from "../../store/data/selectors";
 import {getGenreSelected} from "../../store/filter/selectors";
+import {StateApp, ThunkDispatch} from "../../type/reducer";
 
-interface Props {
-  genreSelected: string,
-  genres: string[],
-  onChangeFilter: (value: string) => void
+interface PropsState {
+  genreSelected: string;
+  genres: string[];
 }
+interface PropsDispatch{
+  onChangeFilter: (value: string) => void;
+}
+type Props = PropsState & PropsDispatch;
 
 const Filter = ({genres, genreSelected, onChangeFilter}: Props) => {
   return (
@@ -35,18 +39,18 @@ const Filter = ({genres, genreSelected, onChangeFilter}: Props) => {
   );
 };
 
-const mapStateToProps = (state, ownProps) =>
+const mapStateToProps = (state: StateApp, ownProps: Props): Props =>
   Object.assign({}, ownProps, {
     genres: getGeners(state),
     genreSelected: getGenreSelected(state)
   });
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
   onChangeFilter: (value) => dispatch(ActionCreator.changeGenre(value))
 });
 
 export {Filter};
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Filter);

@@ -3,10 +3,10 @@ import {PureComponent} from "react";
 import {FilmRoute} from "../../constants";
 
 interface Props {
-  id: number
+  id: number;
 }
 interface State {
-  route: FilmRoute
+  route: FilmRoute;
 }
 const withFilmRoute = (Component) => {
   class WithFilmRoute extends PureComponent<Props, State> {

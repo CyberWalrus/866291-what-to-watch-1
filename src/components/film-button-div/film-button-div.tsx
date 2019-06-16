@@ -7,15 +7,21 @@ import {getAuthorizationStatus} from "../../store/user/selectors";
 import {Operation} from "../../store/data/data";
 import {ActionCreator} from "../../store/filter/filter";
 import {FavoriteStatus} from "../../constants";
+import {StateApp, ThunkDispatch} from "../../type/reducer";
 
-interface Props {
+interface PropsInsert {
   id: number,
-  isFavorite: boolean,
+  isFavorite?: boolean,
+  isShowReview?: boolean,
+}
+interface PropsState {
   isAuthorizationRequired: boolean,
-  isShowReview: boolean,
+}
+interface PropsDispatch{
   onSendFavorite: (status: number, id: number) => void,
   onVideoScreenOpen: (id: number) => void,
 }
+type Props = PropsInsert & PropsState & PropsDispatch;
 class FilmButtonDiv extends PureComponent<Props, null> {
   constructor(props) {
     super(props);
@@ -83,11 +89,11 @@ class FilmButtonDiv extends PureComponent<Props, null> {
   }
 }
 
-const mapStateToProps = (state, ownProps) =>
+const mapStateToProps = (state: StateApp, ownProps: Props): Props =>
   Object.assign({}, ownProps, {
     isAuthorizationRequired: getAuthorizationStatus(state)
   });
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
   onSendFavorite: (status: number, filmId: number) =>
     dispatch(Operation.sendFavorite(status, filmId)),
   onVideoScreenOpen: (filmId: number) => dispatch(ActionCreator.setPlayFilmId(filmId))

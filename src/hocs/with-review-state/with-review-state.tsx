@@ -7,7 +7,19 @@ import {Operation, ActionCreator} from "../../store/data/data";
 import {REVIEW_MESSAGE, TextLength, RatingValue} from "../../constants";
 import {Redirect} from "react-router-dom";
 import {routeToFilm} from "../../routes";
+import {StateApp, ThunkDispatch} from "../../type/reducer";
 
+interface PropsInsert {
+  id: number;
+}
+interface PropsState {
+  reviewMessage: string;
+}
+interface PropsDispatch{
+  onSendReview: (rating: string, comment: string, filmId: number) => void;
+  onResetReviewMessage: () => void;
+}
+type Props = PropsInsert & PropsState & PropsDispatch;
 interface State {
   ratingSelected: string;
   text: string;
@@ -17,12 +29,7 @@ interface State {
   isActive: boolean;
   redirect: boolean;
 }
-interface Props {
-  id: number;
-  reviewMessage: string;
-  onSendReview: (rating: string, comment: string, filmId: number) => void;
-  onResetReviewMessage: () => void;
-}
+
 const withReviewState = (Component) => {
   class WithReviewState extends PureComponent<Props, State> {
     constructor(props) {
@@ -127,14 +134,14 @@ const withReviewState = (Component) => {
   return WithReviewState;
 };
 
-const mapStateToProps = (state, ownProps) =>
+const mapStateToProps = (state: StateApp, ownProps: Props): Props =>
   Object.assign({}, ownProps, {
     reviewMessage: getReviewMessage(state)
   });
-const mapDispatchToProps = (dispatch) => ({
-  onSendReview: (rating: string, comment: string, filmId: number): void =>
+const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
+  onSendReview: (rating: string, comment: string, filmId: number): Promise<void> =>
     dispatch(Operation.sendReview(rating, comment, filmId)),
-  onResetReviewMessage: (): void => dispatch(ActionCreator.resetReviewMessage())
+  onResetReviewMessage: () => dispatch(ActionCreator.resetReviewMessage())
 });
 export {withReviewState};
 

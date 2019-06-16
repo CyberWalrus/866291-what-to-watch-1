@@ -3,16 +3,21 @@ import {Redirect, Route} from "react-router-dom";
 import {getAuthorizationStatus} from "../../store/user/selectors";
 import {connect} from "react-redux";
 import RoutePath from "../../routes";
+import {StateApp} from "../../type/reducer";
 
-interface Props {
+interface PropsInsert {
   rest: any,
   path: string,
   component: any,
-  isAuthorizationRequired: boolean,
   location: object,
   isAuthor: boolean,
   redirectPath: string
 }
+interface PropsState {
+  isAuthorizationRequired: boolean,
+}
+type Props = PropsInsert & PropsState;
+
 const PrivateRoute = ({
   component: Component,
   isAuthorizationRequired,
@@ -41,7 +46,7 @@ const PrivateRoute = ({
   );
 };
 
-const mapStateToProps = (state, ownProps) =>
+const mapStateToProps = (state: StateApp, ownProps: Props): Props =>
   Object.assign({}, ownProps, {
     isAuthorizationRequired: getAuthorizationStatus(state)
   });

@@ -5,6 +5,15 @@ import {compose} from "recompose";
 import {getPlayFilmId} from "../../store/filter/selectors";
 import {ActionCreator} from "../../store/filter/filter";
 import {BodyOverflow, PADDING_VIDEO} from "../../constants";
+import {StateApp, ThunkDispatch} from "../../type/reducer";
+
+interface PropsState {
+  playFilmId: number;
+}
+interface PropsDispatch {
+  onResetPlayFilmId: () => void;
+}
+type Props = PropsState & PropsDispatch;
 
 interface State {
   isOpen: boolean;
@@ -15,10 +24,6 @@ interface State {
   progressValue: number;
   progressRef: HTMLProgressElement;
   videoRef: HTMLVideoElement;
-}
-interface Props {
-  playFilmId: number;
-  onResetPlayFilmId: () => void;
 }
 
 const _timeConvert = (num) => {
@@ -164,19 +169,19 @@ const withVideoScreenState = (Component) => {
   return WithVideoScreenState;
 };
 
-const mapStateToProps = (state, ownProps) =>
+const mapStateToProps = (state: StateApp, ownProps: Props): Props =>
   Object.assign({}, ownProps, {
     playFilmId: getPlayFilmId(state)
   });
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
   onResetPlayFilmId: () => dispatch(ActionCreator.resetPlayFilmId())
 });
 export {withVideoScreenState};
 
 export default compose(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps
-    ),
-    withVideoScreenState
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  withVideoScreenState
 );
