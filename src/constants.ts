@@ -72,6 +72,11 @@ const OptionsVideoFull = {
   isLoop: false,
   isControls: false
 };
+const VideoScreenStyle = {  
+  zIndex: 100,
+  background: `url() no-repeat center center fixed`,
+  backgroundSize: `cover`
+}
 
 export {
   GENRE_DEFOULT,
@@ -90,6 +95,7 @@ export {
   FilmRoute,
   OptionsVideoMin,
   OptionsVideoFull,
+  VideoScreenStyle,
   BodyOverflow,
   FavoriteStatus,
   DisabledStyle,

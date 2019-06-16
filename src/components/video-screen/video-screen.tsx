@@ -1,23 +1,23 @@
 import * as React from "react";
 import {PureComponent, Fragment} from "react";
 import VideoPlayer from "../video-player/video-player";
-import {OptionsVideoFull} from "../../constants";
+import {OptionsVideoFull, VideoScreenStyle} from "../../constants";
 import {connect} from "react-redux";
 import {getFilm} from "../../store/data/selectors";
 import {Film} from "../../type";
 
-interface Props {  
-  filmId: number,
-  time: string,
-  progressValue: number,
-  isPlaying: boolean,
-  onChangePlay: () => void,
-  onClickClose: () => void,
-  onClickFullScreen: () => void,
-  onMouseTogglerDown: () => void,
-  onSendVideoRef: () => void,
-  onSendProgressRef: (value: any) => void,
-  film: Film
+interface Props {
+  filmId: number;
+  time: string;
+  progressValue: number;
+  isPlaying: boolean;
+  onChangePlay: () => void;
+  onClickClose: () => void;
+  onClickFullScreen: () => void;
+  onMouseTogglerDown: () => void;
+  onSendVideoRef: () => void;
+  onSendProgressRef: (value: any) => void;
+  film: Film;
 }
 class VideoScreen extends PureComponent<Props, null> {
   public progressRef: any;
@@ -47,10 +47,9 @@ class VideoScreen extends PureComponent<Props, null> {
       <Fragment>
         <div
           className="player"
-          style={{
-            background: `url(${film.srcBgImage}) no-repeat center center fixed`,
-            backgroundSize: `cover`
-          }}
+          style={Object.assign({}, VideoScreenStyle, {
+            background: `url(${film.srcBgImage}) no-repeat center center fixed`
+          })}
         >
           <VideoPlayer
             options={OptionsVideoFull}
@@ -60,11 +59,7 @@ class VideoScreen extends PureComponent<Props, null> {
             isPlaying={isPlaying}
           />
 
-          <button
-            type="button"
-            className="player__exit"
-            onClick={onClickClose}
-          >
+          <button type="button" className="player__exit" onClick={onClickClose}>
             Exit
           </button>
           <div className="player__controls">
