@@ -2,7 +2,8 @@ import {
   FilmDataAdapter,
   getGenerFromData,
   ReviewDataAdapter,
-  updateFilmAdapter
+  updateFilmAdapter,
+  ReviewSortAdapter
 } from "../../api/data-adapter";
 import {REVIEW_MESSAGE, SendUrl} from "../../constants";
 import NameSpace from "../name-spaces";
@@ -81,7 +82,7 @@ const ActionCreator = {
   loadReviews: (reviews: ReviewResponse[]): UpdateReviews => {
     return {
       type: ActionType.SET_REVIEWS,
-      payload: reviews.map(ReviewDataAdapter)
+      payload: reviews.sort(ReviewSortAdapter).map(ReviewDataAdapter)
     };
   },
   loadGenre: (films: FilmResponse[]): UpdateGenres => {

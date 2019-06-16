@@ -20,30 +20,54 @@ class FilmReview extends PureComponent<Props, null> {
     this.props.onLoadReviews(this.props.filmId);
   }
   render() {
+    const colFirst = [];
+    const colSecond = [];
+    if (this.props.reviews) {
+      this.props.reviews.map(
+        ({comment, rating, userName, date, dateHTML}, index) => {
+          if (index % 2) {
+            colSecond.push(
+              <div className="review" key={index}>
+                <blockquote className="review__quote">
+                  <p className="review__text">{comment}</p>
+
+                  <footer className="review__details">
+                    <cite className="review__author">{userName}</cite>
+                    <time className="review__date" dateTime={dateHTML}>
+                      {date}
+                    </time>
+                  </footer>
+                </blockquote>
+
+                <div className="review__rating">{rating}</div>
+              </div>
+            );
+          } else {
+            colFirst.push(
+              <div className="review" key={index}>
+                <blockquote className="review__quote">
+                  <p className="review__text">{comment}</p>
+
+                  <footer className="review__details">
+                    <cite className="review__author">{userName}</cite>
+                    <time className="review__date" dateTime={dateHTML}>
+                      {date}
+                    </time>
+                  </footer>
+                </blockquote>
+
+                <div className="review__rating">{rating}</div>
+              </div>
+            );
+          }
+        }
+      );
+    }
     return (
       <Fragment>
         <div className="movie-card__reviews movie-card__row">
-          <div className="movie-card__reviews-col">
-            {this.props.reviews &&
-              this.props.reviews.map(
-                  ({comment, rating, userName, date, dateHTML}, index) => (
-                    <div className="review" key={index}>
-                      <blockquote className="review__quote">
-                        <p className="review__text">{comment}</p>
-
-                        <footer className="review__details">
-                          <cite className="review__author">{userName}</cite>
-                          <time className="review__date" dateTime={dateHTML}>
-                            {date}
-                          </time>
-                        </footer>
-                      </blockquote>
-
-                      <div className="review__rating">{rating}</div>
-                    </div>
-                  )
-              )}
-          </div>
+          <div className="movie-card__reviews-col">{colFirst && colFirst.map((item, index) => item)}</div>
+          <div className="movie-card__reviews-col">{colSecond && colSecond.map((item, index) => item)}</div>
         </div>
       </Fragment>
     );
@@ -61,6 +85,6 @@ const mapDispatchToProps = (dispatch) => ({
 export {FilmReview};
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(FilmReview);

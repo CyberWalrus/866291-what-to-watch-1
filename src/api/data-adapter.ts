@@ -21,6 +21,11 @@ const ReviewDataAdapter = (data: ReviewResponse): Review => {
     userName: data.user && data.user.name ? data.user.name : ``
   };
 };
+const ReviewSortAdapter = (item: ReviewResponse, itemNext: ReviewResponse) => {
+  const date: number = new Date(item.date).getTime();
+  const dateNext: number = new Date(itemNext.date).getTime();
+  return dateNext - date;
+}
 const getGenerFromData = (data: FilmResponse[]): string[] => {
   const uniqueGeners = [...new Set(data.map((item) => item.genre))];
   uniqueGeners.unshift(GENRE_DEFOULT);
@@ -121,5 +126,6 @@ export {
   ReviewDataAdapter,
   getGenerFromData,
   userDataAdapter,
-  updateFilmAdapter
+  updateFilmAdapter,
+  ReviewSortAdapter
 };
