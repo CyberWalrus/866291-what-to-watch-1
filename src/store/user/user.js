@@ -44,7 +44,7 @@ const ActionCreator = {
 const Operation = {
   signIn: (email, password) => (dispatch, _getState, api) => {
     return api
-      .post(SendUrl.FILMS, {
+      .post(SendUrl.LOGIN, {
         email,
         password
       })
