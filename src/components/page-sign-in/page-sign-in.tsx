@@ -35,7 +35,7 @@ const PageSignIn: FunctionComponent<Props> = ({
                     if (formErrors[fieldName].length > 0) {
                       return <p key={i}>{formErrors[fieldName]}</p>;
                     } else {
-                      return <Fragment />;
+                      return <Fragment key={i}/>;
                     }
                   }
                 )}
