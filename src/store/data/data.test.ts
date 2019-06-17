@@ -71,7 +71,7 @@ describe(`Action data correctly`, () => {
 });
 
 describe(`Operation data correctly`, () => {
-  it(`Should make a correct API call to ${SendUrl.FILMS}`, function () {
+  it(`Should make a correct API call to ${SendUrl.FILMS}`, () => {
     const dispatch = jest.fn();
     const api = createAPI(dispatch);
     const apiMock = new MockAdapter(api);
@@ -89,10 +89,31 @@ describe(`Operation data correctly`, () => {
         type: ActionType.SET_GENERS,
         payload: getGenerFromData(FILMS_RESPONSE)
       });
+      expect(dispatch).toHaveBeenNthCalledWith(3, {
+        type: ActionType.SET_ACTIVE,
+        payload: true
+      });
     });
   });
 
-  it(`Should make a correct API call to ${SendUrl.FAVORITE}`, function () {
+  it(`Should make a correct API call with fail to ${SendUrl.FILMS}`, () => {
+    const dispatch = jest.fn();
+    const api = createAPI(dispatch);
+    const apiMock = new MockAdapter(api);
+    const loadFilms = Operation.loadFilms();
+
+    apiMock.onGet(SendUrl.FILMS).reply(400, FILMS_RESPONSE);
+
+    return loadFilms(dispatch, jest.fn(), api).then(() => {
+      expect(dispatch).toHaveBeenCalledTimes(1);
+      expect(dispatch).toHaveBeenNthCalledWith(1, {
+        type: ActionType.SET_ACTIVE,
+        payload: false
+      });
+    });
+  });
+
+  it(`Should make a correct API call to ${SendUrl.FAVORITE}`, () => {
     const dispatch = jest.fn();
     const api = createAPI(dispatch);
     const apiMock = new MockAdapter(api);
@@ -109,7 +130,7 @@ describe(`Operation data correctly`, () => {
     });
   });
 
-  it(`Should make a correct API call to ${SendUrl.COMMENTS}`, function () {
+  it(`Should make a correct API call to ${SendUrl.COMMENTS}`, () => {
     const dispatch = jest.fn();
     const api = createAPI(dispatch);
     const apiMock = new MockAdapter(api);
@@ -127,7 +148,27 @@ describe(`Operation data correctly`, () => {
     });
   });
 
-  it(`Should make a correct API call to ${SendUrl.FAVORITE}`, function () {
+  it(`Should make a correct API call with fail to post ${
+    SendUrl.COMMENTS
+  }/1`, () => {
+    const dispatch = jest.fn();
+    const api = createAPI(dispatch);
+    const apiMock = new MockAdapter(api);
+    const filmId = 1;
+    const loadReviews = Operation.loadReviews(filmId);
+
+    apiMock.onGet(`${SendUrl.COMMENTS}/${filmId}`).reply(400, REVIEWS_RESPONSE);
+
+    return loadReviews(dispatch, jest.fn(), api).then(() => {
+      expect(dispatch).toHaveBeenCalledTimes(1);
+      expect(dispatch).toHaveBeenNthCalledWith(1, {
+        type: ActionType.SET_REVIEWS,
+        payload: initialState.reviews
+      });
+    });
+  });
+
+  it(`Should make a correct API call to ${SendUrl.FAVORITE}`, () => {
     const dispatch = jest.fn();
     const api = createAPI(dispatch);
     const apiMock = new MockAdapter(api);
@@ -147,9 +188,7 @@ describe(`Operation data correctly`, () => {
     });
   });
 
-  it(`Should make a correct API call to post ${
-    SendUrl.COMMENTS
-  }/1`, function () {
+  it(`Should make a correct API call to post ${SendUrl.COMMENTS}/1`, () => {
     const dispatch = jest.fn();
     const api = createAPI(dispatch);
     const apiMock = new MockAdapter(api);
@@ -165,6 +204,28 @@ describe(`Operation data correctly`, () => {
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: ActionType.SET_REVIEW_MESSAGE,
         payload: REVIEW_MESSAGE
+      });
+    });
+  });
+
+  it(`Should make a correct API call with fail to post ${
+    SendUrl.COMMENTS
+  }/1`, () => {
+    const dispatch = jest.fn();
+    const api = createAPI(dispatch);
+    const apiMock = new MockAdapter(api);
+    const filmId = 1;
+    const rating = `1`;
+    const comment = `sfasfa`;
+    const sendReview = Operation.sendReview(rating, comment, filmId);
+
+    apiMock.onPost(`${SendUrl.COMMENTS}/${filmId}`).reply(400, `fake`);
+
+    return sendReview(dispatch, jest.fn(), api).then(() => {
+      expect(dispatch).toHaveBeenCalledTimes(1);
+      expect(dispatch).toHaveBeenNthCalledWith(1, {
+        type: ActionType.SET_REVIEW_MESSAGE,
+        payload: `Error: Request failed with status code 400`
       });
     });
   });

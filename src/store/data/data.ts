@@ -196,10 +196,11 @@ const Operation = {
             dispatch(ActionCreator.loadReviews(response.data));
           }
         )
-        .catch(() => {
-          dispatch(ActionCreator.resetReviews());
-        })
-        .catch((): void => {});
+        .catch(
+          (): void => {
+            dispatch(ActionCreator.resetReviews());
+          }
+        );
     };
   },
   sendReview: (

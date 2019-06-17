@@ -61,6 +61,33 @@ describe(`Operation user correctly`, () => {
       });
     });
   });
+  it(`Should make a correct API call with fail to ${SendUrl.LOGIN}`, () => {
+    const dispatch = jest.fn();
+    const api = createAPI(dispatch);
+    const apiMock = new MockAdapter(api);
+    const email = `katopuh25@gmail.com`;
+    const password = `123`;
+    const signIn = Operation.signIn(email, password);
+
+    apiMock
+      .onPost(SendUrl.LOGIN, {
+        email,
+        password
+      })
+      .reply(400, `Error: Request failed with status code 400`);
+
+    return signIn(dispatch, jest.fn(), api).then(() => {
+      expect(dispatch).toHaveBeenCalledTimes(2);
+      expect(dispatch).toHaveBeenNthCalledWith(1, {
+        type: ActionType.SET_ERROR,
+        payload: `Error: Request failed with status code 400`
+      });
+      expect(dispatch).toHaveBeenNthCalledWith(2, {
+        type: ActionType.REQUIRED_AUTHORIZATION,
+        payload: false
+      });
+    });
+  });
 });
 
 describe(`Reducer user correctly`, () => {
