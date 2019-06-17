@@ -1,0 +1,130 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardList component renders correctly with empty props 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <CardList
+    activeFilm={0}
+    filmId={1}
+    films={Array []}
+    genreFilm="All genres"
+    isFavorite={true}
+    numberFilm={20}
+    onClickShowMore={[MockFunction]}
+    onClickToRedirect={[MockFunction]}
+    onMouseEnterCard={[MockFunction]}
+    onMouseLeaveCard={[MockFunction]}
+  />
+</Router>
+`;
+
+exports[`CardList component renders correctly with props 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <CardList
+    activeFilm={0}
+    filmId={1}
+    films={
+      Array [
+        Object {
+          "bgColor": "#977461",
+          "description": "In 1954, a U.S. Marshal investigates the disappearance of a murderer, who escaped from a hospital for the criminally insane.",
+          "director": "Martin Scorsese",
+          "genre": "Thriller",
+          "id": 1,
+          "isFavorite": false,
+          "pageUrl": "Shutter Island",
+          "rating": "8,1",
+          "ratingLevel": "Very good",
+          "released": 2010,
+          "runTime": "1h 44m",
+          "scoresCount": 1002557,
+          "srcBgImage": "https://es31-server.appspot.com/wtw/static/film/background/Shutter_Island.jpg",
+          "srcPosterImage": "https://es31-server.appspot.com/wtw/static/film/poster/Shutter_Island.jpg",
+          "srcPreviewImage": "https://es31-server.appspot.com/wtw/static/film/preview/shutter-island.jpg",
+          "srcPreviewVideo": "https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4",
+          "srcVideo": "http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4",
+          "starrings": Array [
+            "Leonardo DiCaprio",
+            "Emily Mortimer",
+            "Mark Ruffalo",
+          ],
+          "title": "Shutter Island",
+        },
+        Object {
+          "bgColor": "#F1E9CE",
+          "description": "Macbeth, the Thane of Glamis, receives a prophecy from a trio of witches that one day he will become King of Scotland. Consumed by ambition and spurred to action by his wife, Macbeth murders his king and takes the throne for himself.",
+          "director": "Justin Kurzel",
+          "genre": "Drama",
+          "id": 2,
+          "isFavorite": false,
+          "pageUrl": "Macbeth",
+          "rating": "6,6",
+          "ratingLevel": "Good",
+          "released": 2015,
+          "runTime": "1h 44m",
+          "scoresCount": 48798,
+          "srcBgImage": "https://es31-server.appspot.com/wtw/static/film/background/Macbeth.jpg",
+          "srcPosterImage": "https://es31-server.appspot.com/wtw/static/film/poster/Macbeth.jpg",
+          "srcPreviewImage": "https://es31-server.appspot.com/wtw/static/film/preview/macbeth.jpg",
+          "srcPreviewVideo": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm",
+          "srcVideo": "http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4",
+          "starrings": Array [
+            "Michael Fassbender",
+            "Marion Cotillard",
+            "Jack Madigan",
+          ],
+          "title": "Macbeth",
+        },
+      ]
+    }
+    genreFilm="All genres"
+    isFavorite={true}
+    numberFilm={20}
+    onClickShowMore={[MockFunction]}
+    onClickToRedirect={[MockFunction]}
+    onMouseEnterCard={[MockFunction]}
+    onMouseLeaveCard={[MockFunction]}
+  />
+</Router>
+`;

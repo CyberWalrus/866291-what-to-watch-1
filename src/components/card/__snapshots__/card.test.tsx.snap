@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card correctly renders after relaunch 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <Card
+    id={1}
+    isActive={false}
+    onClickToRedirect={[MockFunction]}
+    onMouseEnterCard={[MockFunction]}
+    onMouseLeaveCard={[MockFunction]}
+    srcPreviewImage="https://es31-server.appspot.com/wtw/static/film/preview/shutter-island.jpg"
+    srcPreviewVideo="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
+    title="Shutter Island"
+  />
+</Router>
+`;

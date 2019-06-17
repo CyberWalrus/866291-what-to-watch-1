@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilmNav correctly renders after relaunch 1`] = `
+<nav
+  className="movie-nav movie-card__nav"
+>
+  <ul
+    className="movie-nav__list"
+  >
+    <li
+      className="movie-nav__item movie-nav__item--active"
+      key="0"
+    >
+      <a
+        className="movie-nav__link"
+        onClick={[Function]}
+      >
+        Overview
+      </a>
+    </li>
+    <li
+      className="movie-nav__item"
+      key="1"
+    >
+      <a
+        className="movie-nav__link"
+        onClick={[Function]}
+      >
+        Details
+      </a>
+    </li>
+    <li
+      className="movie-nav__item"
+      key="2"
+    >
+      <a
+        className="movie-nav__link"
+        onClick={[Function]}
+      >
+        Reviews
+      </a>
+    </li>
+  </ul>
+</nav>
+`;

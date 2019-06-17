@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageAddReview correctly renders after relaunch 1`] = `
+<ContextProvider
+  value={
+    Object {
+      "store": Object {
+        "dispatch": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+        Symbol(observable): [Function],
+      },
+      "subscription": Subscription {
+        "handleChangeWrapper": [Function],
+        "listeners": Object {
+          "clear": [Function],
+          "get": [Function],
+          "notify": [Function],
+          "subscribe": [Function],
+        },
+        "onStateChange": [Function],
+        "parentSub": undefined,
+        "store": Object {
+          "dispatch": [Function],
+          "getState": [Function],
+          "replaceReducer": [Function],
+          "subscribe": [Function],
+          Symbol(observable): [Function],
+        },
+        "unsubscribe": [Function],
+      },
+    }
+  }
+>
+  <BrowserRouter>
+    <PageAddReview
+      film={
+        Object {
+          "bgColor": "#977461",
+          "description": "In 1954, a U.S. Marshal investigates the disappearance of a murderer, who escaped from a hospital for the criminally insane.",
+          "director": "Martin Scorsese",
+          "genre": "Thriller",
+          "id": 1,
+          "isFavorite": false,
+          "pageUrl": "Shutter Island",
+          "rating": "8,1",
+          "ratingLevel": "Very good",
+          "released": 2010,
+          "runTime": "1h 44m",
+          "scoresCount": 1002557,
+          "srcBgImage": "https://es31-server.appspot.com/wtw/static/film/background/Shutter_Island.jpg",
+          "srcPosterImage": "https://es31-server.appspot.com/wtw/static/film/poster/Shutter_Island.jpg",
+          "srcPreviewImage": "https://es31-server.appspot.com/wtw/static/film/preview/shutter-island.jpg",
+          "srcPreviewVideo": "https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4",
+          "srcVideo": "http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4",
+          "starrings": Array [
+            "Leonardo DiCaprio",
+            "Emily Mortimer",
+            "Mark Ruffalo",
+          ],
+          "title": "Shutter Island",
+        }
+      }
+      formValid={false}
+      id={1}
+      isActive={true}
+      onChageUserInput={[MockFunction]}
+      onSubmitSend={[MockFunction]}
+      ratingSelected="1"
+      text=""
+    />
+  </BrowserRouter>
+</ContextProvider>
+`;

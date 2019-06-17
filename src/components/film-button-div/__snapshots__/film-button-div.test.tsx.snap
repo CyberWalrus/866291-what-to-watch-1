@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilmButtonDiv correctly renders after relaunch 1`] = `
+<Router
+  history={
+    Object {
+      "action": "POP",
+      "block": [Function],
+      "createHref": [Function],
+      "go": [Function],
+      "goBack": [Function],
+      "goForward": [Function],
+      "length": 1,
+      "listen": [Function],
+      "location": Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      },
+      "push": [Function],
+      "replace": [Function],
+    }
+  }
+>
+  <FilmButtonDiv
+    id={1}
+    isAuthorizationRequired={false}
+    isFavorite={false}
+    onSendFavorite={[MockFunction]}
+    onVideoScreenOpen={[MockFunction]}
+  />
+</Router>
+`;
