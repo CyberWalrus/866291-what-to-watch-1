@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Fragment} from "react";
+import {Fragment, ReactElement, FunctionComponent} from "react";
 import {connect} from "react-redux";
 import {getFilm} from "../../store/data/selectors";
 import Footer from "../footer/footer";
@@ -22,17 +22,20 @@ const CardListActiveFilm = withActiveFilm(CardList);
 const VideScreenState = withVideoScreenState(VideScreen);
 
 interface PropsInsert {
-  id: number,
-  route: string,
-  onChangeFilmRoute: () => void,
+  id: number;
+  route: string;
+  onChangeFilmRoute: () => void;
 }
 interface PropsState {
   film: Film;
 }
 type Props = PropsInsert & PropsState;
 
-
-const PageFilm = ({film, onChangeFilmRoute, route}: Props) => {
+const PageFilm: FunctionComponent<Props> = ({
+  film,
+  onChangeFilmRoute,
+  route
+}: Props): ReactElement => {
   if (film) {
     const {
       title,
@@ -146,4 +149,4 @@ const mapStateToProps = (state: StateApp, ownProps: Props): Props =>
 
 export {PageFilm};
 
-export default connect(mapStateToProps)(PageFilm);
+export default connect<Props, {}, {}, StateApp>(mapStateToProps)(PageFilm);

@@ -1,12 +1,12 @@
 import * as React from "react";
-import {PureComponent} from "react";
+import {PureComponent, RefObject, ReactElement} from "react";
 
 interface Props {
   videoSrc: string;
   posterSrc: string;
   options: Option;
   isPlaying: boolean;
-  onSendVideoRef?: (value: any) => void;
+  onSendVideoRef?: (value: HTMLVideoElement) => void;
 }
 
 interface Option {
@@ -17,18 +17,18 @@ interface Option {
   isControls: boolean;
 }
 class VideoPlayer extends PureComponent<Props, null> {
-  private videoRef: any;
-  constructor(props) {
+  public videoRef: RefObject<HTMLVideoElement>;
+  public constructor(props: Props) {
     super(props);
 
     this.videoRef = React.createRef();
   }
-  componentDidMount() {
+  public componentDidMount(): void {
     if (this.props.onSendVideoRef) {
       this.props.onSendVideoRef(this.videoRef.current);
     }
   }
-  componentDidUpdate() {
+  public componentDidUpdate(): void {
     if (!this.props.onSendVideoRef) {
       const video = this.videoRef.current;
       if (this.props.isPlaying) {
@@ -38,7 +38,7 @@ class VideoPlayer extends PureComponent<Props, null> {
       }
     }
   }
-  render() {
+  public render(): ReactElement {
     const {videoSrc, posterSrc, options} = this.props;
     const {
       width,

@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Fragment} from "react";
+import {Fragment, ReactElement, FunctionComponent} from "react";
 import {connect} from "react-redux";
 import Card from "../card/card";
 import {getFilms, getFavorites} from "../../store/data/selectors";
@@ -7,23 +7,23 @@ import {Film} from "../../type/data";
 import {StateApp} from "../../type/reducer";
 
 interface PropsInsert {
-  filmId: number
-  numberFilm: number,
-  activeFilm: number,
-  genreFilm: string,
-  isFavorite: boolean,
-  onClickShowMore: () => void,
-  onMouseEnterCard: (id: number) => void,
-  onMouseLeaveCard: (id: number) => void,
-  onClickToRedirect: (id: number) => void
+  filmId: number;
+  numberFilm: number;
+  activeFilm: number;
+  genreFilm: string;
+  isFavorite: boolean;
+  onClickShowMore: () => void;
+  onMouseEnterCard: (id: number) => void;
+  onMouseLeaveCard: (id: number) => void;
+  onClickToRedirect: (id: number) => void;
 }
 interface PropsState {
-  films: Film[]
+  films: Film[];
 }
 
 type Props = PropsInsert & PropsState;
 
-const CardList = ({
+const CardList: FunctionComponent<Props> = ({
   films,
   numberFilm,
   activeFilm,
@@ -32,25 +32,27 @@ const CardList = ({
   onMouseLeaveCard,
   onClickToRedirect,
   genreFilm
-}: Props) => {
+}: Props): ReactElement => {
   const isShow = genreFilm ? false : true;
   return (
     <Fragment>
       <div className="catalog__movies-list">
         {films &&
-          films.map(({id, title, srcPreviewImage, srcPreviewVideo}) => (
-            <Card
-              key={id}
-              id={id}
-              title={title}
-              srcPreviewImage={srcPreviewImage}
-              srcPreviewVideo={srcPreviewVideo}
-              isActive={activeFilm === id}
-              onMouseEnterCard={() => onMouseEnterCard(id)}
-              onMouseLeaveCard={() => onMouseLeaveCard(id)}
-              onClickToRedirect={() => onClickToRedirect(id)}
-            />
-          ))}
+          films.map(
+            ({id, title, srcPreviewImage, srcPreviewVideo}): ReactElement => (
+              <Card
+                key={id}
+                id={id}
+                title={title}
+                srcPreviewImage={srcPreviewImage}
+                srcPreviewVideo={srcPreviewVideo}
+                isActive={activeFilm === id}
+                onMouseEnterCard={(): void => onMouseEnterCard(id)}
+                onMouseLeaveCard={(): void => onMouseLeaveCard(id)}
+                onClickToRedirect={(): void => onClickToRedirect(id)}
+              />
+            )
+          )}
       </div>
       {films && isShow && films.length >= numberFilm ? (
         <div className="catalog__more">
@@ -83,4 +85,4 @@ const mapStateToProps = (state: StateApp, ownProps: Props): Props =>
 
 export {CardList};
 
-export default connect(mapStateToProps)(CardList);
+export default connect<Props, {}, {}, StateApp>(mapStateToProps)(CardList);

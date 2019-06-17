@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Fragment} from "react";
+import {Fragment, ReactElement, FunctionComponent} from "react";
 import CardList from "../card-list/card-list";
 import Filter from "../filter/filter";
 import Footer from "../footer/footer";
@@ -12,7 +12,7 @@ import withVideoScreenState from "../../hocs/with-video-screen-state/with-video-
 const CardListActiveFilm = withActiveFilm(CardList);
 const VideScreenState = withVideoScreenState(VideScreen);
 
-const PageMain = () => {
+const PageMain: FunctionComponent = (): ReactElement => {
   return (
     <Fragment>
       <HiddenIcon />

@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Fragment} from "react";
+import {Fragment, ReactElement, FunctionComponent} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import RoutePath, {routeToFilm} from "../../routes";
@@ -16,12 +16,12 @@ interface PropsInsert {
 }
 interface PropsState {
   isAuthorizationRequired: boolean;
-  user: User
+  user: User;
 }
 
-type Props = PropsInsert & PropsState
+type Props = PropsInsert & PropsState;
 
-const Header = ({
+const Header: FunctionComponent<Props> = ({
   isAuthorizationRequired,
   isUserClass = false,
   isShowIcon = true,
@@ -29,7 +29,7 @@ const Header = ({
   filmId = 0,
   user,
   title
-}: Props) => {
+}: Props): ReactElement => {
   return (
     <header
       className={

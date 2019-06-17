@@ -40,11 +40,15 @@ class App extends PureComponent<Props> {
     return (
       <BrowserRouter>
         <Switch>
-          <Route path={RoutePath.INDEX} exact render={() => <PageMain />} />
+          <Route
+            path={RoutePath.INDEX}
+            exact
+            render={(): ReactElement => <PageMain />}
+          />
           <Route
             exact
             path={RoutePath.FILM}
-            render={(props) => (
+            render={(props: any): ReactElement => (
               <PageFilmWithRoute id={parseInt(props.match.params.id, 10)} />
             )}
           />
@@ -52,7 +56,7 @@ class App extends PureComponent<Props> {
           <PrivateRoute
             exact
             path={RoutePath.ADD_REVIEW}
-            component={(props) => (
+            component={(props: any): ReactElement => (
               <PageAddReviewWithState
                 id={parseInt(props.match.params.id, 10)}
               />
@@ -77,7 +81,9 @@ const mapStateToProps = (state: StateApp, ownProps: Props): Props =>
     isActive: getActive(state)
   });
 const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
-  loadFilms: (): Promise<void> => dispatch(Operation.loadFilms())
+  loadFilms: (): void => {
+    dispatch(Operation.loadFilms());
+  }
 });
 
 export {App};

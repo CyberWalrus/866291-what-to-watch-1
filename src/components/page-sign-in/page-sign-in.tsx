@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Fragment} from "react";
+import {Fragment, ReactElement, FunctionComponent} from "react";
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import {DisabledStyle} from "../../constants";
@@ -13,14 +13,14 @@ interface Props {
   onClickSubmit: () => void;
 }
 
-const PageSignIn = ({
+const PageSignIn: FunctionComponent<Props> = ({
   email,
   password,
   formErrors,
   formValid,
   onChangeUserInput,
   onClickSubmit
-}: Props) => {
+}: Props): ReactElement => {
   return (
     <Fragment>
       <div className="user-page">
@@ -30,13 +30,15 @@ const PageSignIn = ({
           <form onSubmit={onClickSubmit} className="sign-in__form">
             <div className="sign-in__message">
               {formErrors &&
-                Object.keys(formErrors).map((fieldName, i) => {
-                  if (formErrors[fieldName].length > 0) {
-                    return <p key={i}>{formErrors[fieldName]}</p>;
-                  } else {
-                    return ``;
+                Object.keys(formErrors).map(
+                  (fieldName, i): ReactElement => {
+                    if (formErrors[fieldName].length > 0) {
+                      return <p key={i}>{formErrors[fieldName]}</p>;
+                    } else {
+                      return <Fragment />;
+                    }
                   }
-                })}
+                )}
             </div>
             <div className="sign-in__fields">
               <div className="sign-in__field">

@@ -1,4 +1,5 @@
 import * as React from "react";
+import {ReactElement, FunctionComponent} from "react";
 import {Redirect, Route} from "react-router-dom";
 import {getAuthorizationStatus} from "../../store/user/selectors";
 import {connect} from "react-redux";
@@ -6,31 +7,31 @@ import RoutePath from "../../routes";
 import {StateApp} from "../../type/reducer";
 
 interface PropsInsert {
-  rest?: any,
-  path?: string,
-  component: any,
-  location: object,
-  isAuthor?: boolean,
-  redirectPath?: string
+  rest?: any;
+  path?: string;
+  component: any;
+  location: object;
+  isAuthor?: boolean;
+  redirectPath?: string;
 }
 interface PropsState {
-  isAuthorizationRequired: boolean,
+  isAuthorizationRequired: boolean;
 }
 type Props = PropsInsert & PropsState;
 
-const PrivateRoute = ({
+const PrivateRoute: FunctionComponent<Props> = ({
   component: Component,
   isAuthorizationRequired,
   rest,
   redirectPath = RoutePath.LOGIN,
   isAuthor = true,
   path
-}: Props) => {
+}: Props): ReactElement => {
   return (
     <Route
       {...rest}
       path={path}
-      render={(props) =>
+      render={(props: any): ReactElement =>
         isAuthorizationRequired === isAuthor ? (
           <Component {...props} />
         ) : (

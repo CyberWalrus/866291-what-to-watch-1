@@ -1,15 +1,21 @@
 import * as React from "react";
-import {Fragment} from "react";
+import {Fragment, ReactElement, FunctionComponent} from "react";
 
-interface Props{
-  runTime: string,
-  genre: string,
-  released: number,
-  director: string,
-  starrings: string[]
+interface Props {
+  runTime: string;
+  genre: string;
+  released: number;
+  director: string;
+  starrings: string[];
 }
 
-const FilmDetails = ({runTime, genre, released, director, starrings}: Props) => {
+const FilmDetails: FunctionComponent<Props> = ({
+  runTime,
+  genre,
+  released,
+  director,
+  starrings
+}: Props): ReactElement => {
   return (
     <Fragment>
       <div className="movie-card__text movie-card__row">
@@ -21,12 +27,14 @@ const FilmDetails = ({runTime, genre, released, director, starrings}: Props) => 
           <p className="movie-card__details-item">
             <strong className="movie-card__details-name">Starring</strong>
             <span className="movie-card__details-value">
-              {starrings.map((item, index) => (
-                <Fragment key={index}>
-                  {item}
-                  <br />
-                </Fragment>
-              ))}
+              {starrings.map(
+                (item, index): ReactElement => (
+                  <Fragment key={index}>
+                    {item}
+                    <br />
+                  </Fragment>
+                )
+              )}
             </span>
           </p>
         </div>
@@ -34,9 +42,7 @@ const FilmDetails = ({runTime, genre, released, director, starrings}: Props) => 
         <div className="movie-card__text-col">
           <p className="movie-card__details-item">
             <strong className="movie-card__details-name">Run Time</strong>
-            <span className="movie-card__details-value">
-              {runTime}
-            </span>
+            <span className="movie-card__details-value">{runTime}</span>
           </p>
           <p className="movie-card__details-item">
             <strong className="movie-card__details-name">Genre</strong>

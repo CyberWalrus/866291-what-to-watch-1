@@ -1,8 +1,9 @@
 import * as React from "react";
+import {ReactElement, FunctionComponent} from "react";
 import {Link} from "react-router-dom";
 import RoutePath from "../../routes";
 
-const Footer = () => {
+const Footer: FunctionComponent = (): ReactElement => {
   return (
     <footer className="page-footer">
       <div className="logo">

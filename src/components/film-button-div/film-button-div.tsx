@@ -1,5 +1,5 @@
 import * as React from "react";
-import {PureComponent, Fragment} from "react";
+import {PureComponent, Fragment, ReactElement} from "react";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import RoutePath, {routeToReview} from "../../routes";
@@ -10,34 +10,25 @@ import {FavoriteStatus} from "../../constants";
 import {StateApp, ThunkDispatch} from "../../type/reducer";
 
 interface PropsInsert {
-  id: number,
-  isFavorite?: boolean,
-  isShowReview?: boolean,
+  id: number;
+  isFavorite?: boolean;
+  isShowReview?: boolean;
 }
 interface PropsState {
-  isAuthorizationRequired: boolean,
+  isAuthorizationRequired: boolean;
 }
-interface PropsDispatch{
-  onSendFavorite: (status: number, id: number) => void,
-  onVideoScreenOpen: (id: number) => void,
+interface PropsDispatch {
+  onSendFavorite: (status: number, id: number) => void;
+  onVideoScreenOpen: (id: number) => void;
 }
 type Props = PropsInsert & PropsState & PropsDispatch;
 class FilmButtonDiv extends PureComponent<Props, null> {
-  constructor(props) {
+  public constructor(props: Props) {
     super(props);
     this._handleClickFavorite = this._handleClickFavorite.bind(this);
     this._handleClickPlay = this._handleClickPlay.bind(this);
   }
-  _handleClickPlay() {
-    const {id} = this.props;
-    this.props.onVideoScreenOpen(id);
-  }
-  _handleClickFavorite() {
-    const {id, isFavorite} = this.props;
-    const status = isFavorite ? FavoriteStatus.REMOVE : FavoriteStatus.ADD;
-    this.props.onSendFavorite(status, id);
-  }
-  render() {
+  public render(): ReactElement {
     const {id, isFavorite, isAuthorizationRequired, isShowReview} = this.props;
     return (
       <div className="movie-card__buttons">
@@ -75,10 +66,7 @@ class FilmButtonDiv extends PureComponent<Props, null> {
         )}
 
         {isShowReview ? (
-          <Link
-            to={routeToReview(id)}
-            className="btn movie-card__button"
-          >
+          <Link to={routeToReview(id)} className="btn movie-card__button">
             Add review
           </Link>
         ) : (
@@ -87,6 +75,15 @@ class FilmButtonDiv extends PureComponent<Props, null> {
       </div>
     );
   }
+  private _handleClickPlay(): void {
+    const {id} = this.props;
+    this.props.onVideoScreenOpen(id);
+  }
+  private _handleClickFavorite(): void {
+    const {id, isFavorite} = this.props;
+    const status = isFavorite ? FavoriteStatus.REMOVE : FavoriteStatus.ADD;
+    this.props.onSendFavorite(status, id);
+  }
 }
 
 const mapStateToProps = (state: StateApp, ownProps: Props): Props =>
@@ -94,9 +91,12 @@ const mapStateToProps = (state: StateApp, ownProps: Props): Props =>
     isAuthorizationRequired: getAuthorizationStatus(state)
   });
 const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
-  onSendFavorite: (status: number, filmId: number) =>
-    dispatch(Operation.sendFavorite(status, filmId)),
-  onVideoScreenOpen: (filmId: number) => dispatch(ActionCreator.setPlayFilmId(filmId))
+  onSendFavorite: (status: number, filmId: number): void => {
+    dispatch(Operation.sendFavorite(status, filmId));
+  },
+  onVideoScreenOpen: (filmId: number): void => {
+    dispatch(ActionCreator.setPlayFilmId(filmId));
+  }
 });
 
 export {FilmButtonDiv};

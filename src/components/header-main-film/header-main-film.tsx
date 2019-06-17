@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Fragment} from "react";
+import {Fragment, ReactElement, FunctionComponent} from "react";
 import Header from "../header/header";
 import {connect} from "react-redux";
 import {getFilm} from "../../store/data/selectors";
@@ -9,10 +9,12 @@ import {Film} from "../../type/data";
 import {StateApp} from "../../type/reducer";
 
 interface Props {
-  film: Film
+  film: Film;
 }
 
-const HeaderMainFilm = ({film}: Props) => {
+const HeaderMainFilm: FunctionComponent<Props> = ({
+  film
+}: Props): ReactElement => {
   if (film) {
     return (
       <Fragment>
@@ -43,10 +45,7 @@ const HeaderMainFilm = ({film}: Props) => {
                   <span className="movie-card__year">{film.released}</span>
                 </p>
 
-                <FilmButtonDiv
-                  id={film.id}
-                  isFavorite={film.isFavorite}
-                />
+                <FilmButtonDiv id={film.id} isFavorite={film.isFavorite} />
               </div>
             </div>
           </div>

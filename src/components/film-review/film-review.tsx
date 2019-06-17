@@ -1,30 +1,33 @@
 import * as React from "react";
-import {PureComponent, Fragment} from "react";
+import {PureComponent, Fragment, ReactElement} from "react";
 import {connect} from "react-redux";
 import {getReviews} from "../../store/data/selectors";
 import {Operation as OperationData} from "../../store/data/data";
 import {Review} from "../../type/data";
+import {StateApp, ThunkDispatch} from "../../type/reducer";
 
-interface Props {
+interface PropsInsert {
   filmId: number;
-  onLoadReviews: (filmId: number) => void;
+}
+interface PropsState {
   reviews: Review[];
 }
+interface PropsDispatch {
+  onLoadReviews: (filmId: number) => void;
+}
+
+type Props = PropsInsert & PropsState & PropsDispatch;
 
 class FilmReview extends PureComponent<Props, null> {
-  constructor(props) {
-    super(props);
-  }
-
-  componentWillMount() {
+  public componentWillMount(): void {
     this.props.onLoadReviews(this.props.filmId);
   }
-  render() {
-    const colFirst = [];
-    const colSecond = [];
+  public render(): ReactElement {
+    const colFirst: ReactElement[] = [];
+    const colSecond: ReactElement[] = [];
     if (this.props.reviews) {
       this.props.reviews.map(
-        ({comment, rating, userName, date, dateHTML}, index) => {
+        ({comment, rating, userName, date, dateHTML}, index): void => {
           if (index % 2) {
             colSecond.push(
               <div className="review" key={index}>
@@ -66,25 +69,31 @@ class FilmReview extends PureComponent<Props, null> {
     return (
       <Fragment>
         <div className="movie-card__reviews movie-card__row">
-          <div className="movie-card__reviews-col">{colFirst && colFirst.map((item) => item)}</div>
-          <div className="movie-card__reviews-col">{colSecond && colSecond.map((item) => item)}</div>
+          <div className="movie-card__reviews-col">
+            {colFirst && colFirst.map((item): ReactElement => item)}
+          </div>
+          <div className="movie-card__reviews-col">
+            {colSecond && colSecond.map((item): ReactElement => item)}
+          </div>
         </div>
       </Fragment>
     );
   }
 }
 
-const mapStateToProps = (state, ownProps) =>
+const mapStateToProps = (state: StateApp, ownProps: Props): Props =>
   Object.assign({}, ownProps, {
     reviews: getReviews(state)
   });
 
-const mapDispatchToProps = (dispatch) => ({
-  onLoadReviews: (filmId) => dispatch(OperationData.loadReviews(filmId))
+const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
+  onLoadReviews: (filmId: number): void => {
+    dispatch(OperationData.loadReviews(filmId));
+  }
 });
 export {FilmReview};
 
-export default connect(
+export default connect<Props, PropsDispatch, {}, StateApp>(
   mapStateToProps,
   mapDispatchToProps
 )(FilmReview);

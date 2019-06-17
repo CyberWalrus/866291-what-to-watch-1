@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Fragment} from "react";
+import {Fragment, ReactElement, FunctionComponent} from "react";
 import {connect} from "react-redux";
 import {getFilm} from "../../store/data/selectors";
 import HiddenIcon from "../hidden-icon/hidden-icon";
@@ -22,7 +22,7 @@ interface PropsState {
 }
 type Props = PropsInsert & PropsState;
 
-const PageAddReview = ({
+const PageAddReview: FunctionComponent<Props> = ({
   film,
   text,
   ratingSelected,
@@ -30,7 +30,7 @@ const PageAddReview = ({
   onSubmitSend,
   formValid,
   isActive
-}: Props) => {
+}: Props): ReactElement => {
   if (film) {
     return (
       <Fragment>
@@ -63,25 +63,27 @@ const PageAddReview = ({
               <div className="rating">
                 <div className="rating__stars">
                   {ratingRadioValues &&
-                    ratingRadioValues.map((item, index) => (
-                      <Fragment key={index}>
-                        <input
-                          className="rating__input"
-                          id={`star-${item}`}
-                          type="radio"
-                          name="ratingSelected"
-                          value={item}
-                          checked={ratingSelected === item}
-                          onChange={onChageUserInput}
-                        />
-                        <label
-                          className="rating__label"
-                          htmlFor={`star-${item}`}
-                        >
-                          {`Rating ${item}`}
-                        </label>
-                      </Fragment>
-                    ))}
+                    ratingRadioValues.map(
+                      (item, index): ReactElement => (
+                        <Fragment key={index}>
+                          <input
+                            className="rating__input"
+                            id={`star-${item}`}
+                            type="radio"
+                            name="ratingSelected"
+                            value={item}
+                            checked={ratingSelected === item}
+                            onChange={onChageUserInput}
+                          />
+                          <label
+                            className="rating__label"
+                            htmlFor={`star-${item}`}
+                          >
+                            {`Rating ${item}`}
+                          </label>
+                        </Fragment>
+                      )
+                    )}
                 </div>
               </div>
 
@@ -123,4 +125,4 @@ const mapStateToProps = (state: StateApp, ownProps: Props): Props =>
 
 export {PageAddReview};
 
-export default connect(mapStateToProps)(PageAddReview);
+export default connect<Props, {}, {}, StateApp>(mapStateToProps)(PageAddReview);

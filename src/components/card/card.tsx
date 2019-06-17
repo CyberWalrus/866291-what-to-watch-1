@@ -1,22 +1,22 @@
 import * as React from "react";
-import {Fragment} from "react";
+import {Fragment, ReactElement, FunctionComponent} from "react";
 import VideoPlayer from "../video-player/video-player";
 import {OptionsVideoMin} from "../../constants";
 import {Link} from "react-router-dom";
 import {routeToFilm} from "../../routes";
 
 interface Props {
-  id: number,
-  title: string,
-  srcPreviewImage: string,
-  srcPreviewVideo: string,
-  isActive: boolean,
-  onClickToRedirect: () => void,
-  onMouseLeaveCard: () => void,
-  onMouseEnterCard: () => void,
+  id: number;
+  title: string;
+  srcPreviewImage: string;
+  srcPreviewVideo: string;
+  isActive: boolean;
+  onClickToRedirect: () => void;
+  onMouseLeaveCard: () => void;
+  onMouseEnterCard: () => void;
 }
 
-const Card = ({
+const Card: FunctionComponent<Props> = ({
   id,
   title,
   srcPreviewImage,
@@ -25,7 +25,7 @@ const Card = ({
   onClickToRedirect,
   onMouseLeaveCard,
   onMouseEnterCard
-}: Props) => {
+}: Props): ReactElement => {
   return (
     <article
       onClick={onClickToRedirect}

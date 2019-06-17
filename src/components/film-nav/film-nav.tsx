@@ -1,4 +1,5 @@
 import * as React from "react";
+import {ReactElement, FunctionComponent} from "react";
 import {FilmRoute} from "../../constants";
 
 interface Props {
@@ -6,12 +7,13 @@ interface Props {
   onChangeFilmRoute: (value: FilmRoute) => void;
 }
 
-const FilmNav = ({onChangeFilmRoute, route}: Props) => {
+const FilmNav: FunctionComponent<Props> = ({onChangeFilmRoute, route}: Props): ReactElement => {
   return (
     <nav className="movie-nav movie-card__nav">
       <ul className="movie-nav__list">
-        {Object.keys(FilmRoute).map((key, i) => (
-          <li key={i}
+        {Object.keys(FilmRoute).map((key, i): ReactElement => (
+          <li
+            key={i}
             className={
               route === FilmRoute[key]
                 ? `movie-nav__item movie-nav__item--active`
@@ -19,7 +21,7 @@ const FilmNav = ({onChangeFilmRoute, route}: Props) => {
             }
           >
             <a
-              onClick={() => onChangeFilmRoute(FilmRoute[key])}
+              onClick={(): void => onChangeFilmRoute(FilmRoute[key])}
               className="movie-nav__link"
             >
               {FilmRoute[key]}

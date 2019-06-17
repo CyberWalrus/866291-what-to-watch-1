@@ -1,6 +1,7 @@
 import * as React from "react";
+import {ReactElement, FunctionComponent} from "react";
 
-const HiddenIcon = () => {
+const HiddenIcon: FunctionComponent = (): ReactElement => {
   return (
     <div className="visually-hidden">
       <svg xmlns="http://www.w3.org/2000/svg">

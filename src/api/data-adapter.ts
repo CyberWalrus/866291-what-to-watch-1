@@ -90,13 +90,13 @@ const ReviewDataAdapter = (data: ReviewResponse): Review => {
     userName: data.user && data.user.name ? data.user.name : ``
   };
 };
-const ReviewSortAdapter = (item: ReviewResponse, itemNext: ReviewResponse) => {
+const ReviewSortAdapter = (item: ReviewResponse, itemNext: ReviewResponse): number => {
   const date: number = new Date(item.date).getTime();
   const dateNext: number = new Date(itemNext.date).getTime();
   return dateNext - date;
 };
 const getGenerFromData = (data: FilmResponse[]): string[] => {
-  const uniqueGeners = [...new Set(data.map((item) => item.genre))];
+  const uniqueGeners = [...new Set(data.map((item): string => item.genre))];
   uniqueGeners.unshift(GENRE_DEFOULT);
   if (uniqueGeners.length > 9) {
     uniqueGeners.length = 9;
@@ -114,7 +114,7 @@ const userDataAdapter = (data: UserResponse): User => {
 const updateFilmAdapter = (array: Film[], film: FilmResponse): Film[] => {
   const filmNew = _filmDataAdapter(film);
   const elementPos = array
-    .map((item) => {
+    .map((item): number => {
       return item.id;
     })
     .indexOf(filmNew.id);
