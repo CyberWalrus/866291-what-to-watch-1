@@ -8,10 +8,10 @@ import {FILM} from "../../mock/data-mock";
 
 Enzyme.configure({adapter: new Adapter()});
 
-const WithFilmRoute = withFilmRoute(() => <div />);
+const WithFilmRoute = withFilmRoute((): React.ReactElement => <div />);
 
-describe(`<WithFilmRoute/>`, () => {
-  it(`Should default state`, () => {
+describe(`<WithFilmRoute/>`, (): void => {
+  it(`Should default state`, (): void => {
     const tree = mount(<WithFilmRoute id={FILM.id} />);
     expect(tree.state(`route`)).toEqual(FilmRoute.OVERVIEW);
   });

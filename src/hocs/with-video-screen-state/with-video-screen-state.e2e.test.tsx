@@ -6,11 +6,11 @@ import {withVideoScreenState} from "./with-video-screen-state";
 
 Enzyme.configure({adapter: new Adapter()});
 
-const WithVideoScreenState = withVideoScreenState(() => <div />);
+const WithVideoScreenState = withVideoScreenState((): React.ReactElement => <div />);
 
-describe(`<WithVideoScreenState/>`, () => {
+describe(`<WithVideoScreenState/>`, (): void => {
   const handleClick = jest.fn();
-  it(`Should default state`, () => {
+  it(`Should default state`, (): void => {
     const tree = mount(
       <WithVideoScreenState playFilmId={0} onResetPlayFilmId={handleClick} />
     );

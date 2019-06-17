@@ -1,5 +1,5 @@
 import * as React from "react";
-import {PureComponent} from "react";
+import {PureComponent, ComponentClass, ReactElement} from "react";
 import {connect} from "react-redux";
 import {compose} from "recompose";
 import {getReviewMessage} from "../../store/data/selectors";
@@ -30,9 +30,9 @@ interface State {
   redirect: boolean;
 }
 
-const withReviewState = (Component) => {
+const withReviewState = (Component: any): ComponentClass<Props, State> => {
   class WithReviewState extends PureComponent<Props, State> {
-    constructor(props) {
+    public constructor(props: Props) {
       super(props);
       this.state = {
         ratingSelected: `0`,
@@ -48,7 +48,7 @@ const withReviewState = (Component) => {
       this._handleValidateField = this._handleValidateField.bind(this);
       this._handleValidateForm = this._handleValidateForm.bind(this);
     }
-    componentDidUpdate(): void {
+    public componentDidUpdate(): void {
       if (this.props.reviewMessage) {
         if (this.props.reviewMessage === REVIEW_MESSAGE) {
           this.setState({
@@ -67,14 +67,14 @@ const withReviewState = (Component) => {
         });
       }
     }
-    handleUserInput(event: React.ChangeEvent<HTMLInputElement>): void {
+    public handleUserInput(event: React.ChangeEvent<HTMLInputElement>): void {
       const key = event.target.name as keyof State;
       const value = event.target.value as string;
-      this.setState<never>({[key]: value}, () => {
+      this.setState<never>({[key]: value}, (): void => {
         this._handleValidateField(key, value);
       });
     }
-    handleFormSubmit(event: React.ChangeEvent<HTMLInputElement>): void {
+    public handleFormSubmit(event: React.ChangeEvent<HTMLInputElement>): void {
       const rating = this.state.ratingSelected;
       const comment = this.state.text;
       const filmId = this.props.id;
@@ -84,7 +84,25 @@ const withReviewState = (Component) => {
       });
       this.props.onSendReview(rating, comment, filmId);
     }
-    _handleValidateField(fieldName: keyof State, value: string): void {
+
+    public render(): ReactElement {
+      if (this.state.redirect) {
+        return <Redirect to={routeToFilm(this.props.id)} />;
+      }
+      return (
+        <Component
+          id={this.props.id}
+          text={this.state.text}
+          isActive={this.state.isActive}
+          ratingSelected={this.state.ratingSelected}
+          formValid={this.state.formValid}
+          onChageUserInput={this.handleUserInput}
+          onSubmitSend={this.handleFormSubmit}
+        />
+      );
+    }
+
+    private _handleValidateField(fieldName: keyof State, value: string): void {
       let textValid = this.state.textValid;
       let ratingValid = this.state.ratingValid;
       switch (fieldName) {
@@ -108,27 +126,10 @@ const withReviewState = (Component) => {
         this._handleValidateForm
       );
     }
-    _handleValidateForm(): void {
+    private _handleValidateForm(): void {
       this.setState({
         formValid: this.state.textValid && this.state.ratingValid
       });
-    }
-
-    render() {
-      if (this.state.redirect) {
-        return <Redirect to={routeToFilm(this.props.id)} />;
-      }
-      return (
-        <Component
-          id={this.props.id}
-          text={this.state.text}
-          isActive={this.state.isActive}
-          ratingSelected={this.state.ratingSelected}
-          formValid={this.state.formValid}
-          onChageUserInput={this.handleUserInput}
-          onSubmitSend={this.handleFormSubmit}
-        />
-      );
     }
   }
   return WithReviewState;
@@ -141,12 +142,14 @@ const mapStateToProps = (state: StateApp, ownProps: Props): Props =>
 const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
   onSendReview: (rating: string, comment: string, filmId: number): Promise<void> =>
     dispatch(Operation.sendReview(rating, comment, filmId)),
-  onResetReviewMessage: () => dispatch(ActionCreator.resetReviewMessage())
+  onResetReviewMessage: (): void => {
+    dispatch(ActionCreator.resetReviewMessage());
+  }
 });
 export {withReviewState};
 
 export default compose(
-  connect(
+  connect<Props, PropsDispatch, {}, StateApp>(
     mapStateToProps,
     mapDispatchToProps
   ),

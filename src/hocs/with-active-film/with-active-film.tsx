@@ -1,5 +1,5 @@
 import * as React from "react";
-import {PureComponent} from "react";
+import {PureComponent, ComponentClass, ReactElement} from "react";
 import {NUMBER_FILM, TIMEOUT_INTERVAL} from "../../constants";
 import {Redirect} from "react-router-dom";
 import {routeToFilm} from "../../routes";
@@ -11,11 +11,10 @@ interface State {
   timeOutId: number;
 }
 
-const withActiveFilm = (Component) => {
+const withActiveFilm = (Component: any): ComponentClass<any, State> => {
   type P = React.ComponentProps<typeof Component>;
   class WithActiveFilm extends PureComponent<P, State> {
-    private _timeOutList: object;
-    constructor(props) {
+    public constructor(props: P) {
       super(props);
       this.state = {
         activeFilm: 0,
@@ -29,22 +28,22 @@ const withActiveFilm = (Component) => {
       this.handleShowMore = this.handleShowMore.bind(this);
       this.handleToRedirect = this.handleToRedirect.bind(this);
     }
-    componentDidUpdate(): void {
+    public componentDidUpdate(): void {
       if (this.state.redirectId) {
         this.setState({
           redirectId: 0
         });
       }
     }
-    componentWillUnmount(): void {
+    public componentWillUnmount(): void {
       clearTimeout(this._timeOutList[this.state.timeOutId]);
     }
 
-    handleSetActiveFilm(id: number): void {
+    public handleSetActiveFilm(id: number): void {
       this.setState({
         timeOutId: id
       });
-      this._timeOutList[id] = setTimeout(() => {
+      this._timeOutList[id] = setTimeout((): void => {
         this.setState({
           activeFilm: id,
           timeOutId: 0
@@ -54,7 +53,7 @@ const withActiveFilm = (Component) => {
       }, TIMEOUT_INTERVAL);
     }
 
-    handleRemoveActiveFilm(id: number): void {
+    public handleRemoveActiveFilm(id: number): void {
       clearTimeout(this._timeOutList[id]);
       delete this._timeOutList[id];
       this.setState({
@@ -63,17 +62,17 @@ const withActiveFilm = (Component) => {
       });
     }
 
-    handleShowMore(): void {
+    public handleShowMore(): void {
       this.setState({
         numberFilm: this.state.numberFilm + NUMBER_FILM
       });
     }
-    handleToRedirect(id: number): void {
+    public handleToRedirect(id: number): void {
       this.setState({
         redirectId: id
       });
     }
-    render() {
+    public render(): ReactElement {
       if (this.state.redirectId) {
         return <Redirect to={routeToFilm(this.state.redirectId)} />;
       }
@@ -89,6 +88,7 @@ const withActiveFilm = (Component) => {
         />
       );
     }
+    private _timeOutList: object;
   }
   return WithActiveFilm;
 };

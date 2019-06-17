@@ -6,26 +6,26 @@ import {ActionCreator, ActionType, Operation, reducer} from "./user";
 import {initialState} from "./user";
 import {USER, USER_RESPONSE} from "../../mock/data-mock";
 
-describe(`Action user correctly`, () => {
-  it(`Should return a correct status of authorization`, () => {
+describe(`Action user correctly`, (): void => {
+  it(`Should return a correct status of authorization`, (): void => {
     expect(ActionCreator.requireAuthorization(true)).toEqual({
       type: ActionType.REQUIRED_AUTHORIZATION,
       payload: true
     });
   });
-  it(`Should return a correct signIn`, () => {
+  it(`Should return a correct signIn`, (): void => {
     expect(ActionCreator.signIn(USER_RESPONSE)).toEqual({
       type: ActionType.SIGN_IN,
       payload: userDataAdapter(USER_RESPONSE)
     });
   });
-  it(`Should return a correct setError`, () => {
+  it(`Should return a correct setError`, (): void => {
     expect(ActionCreator.setError(`error`)).toEqual({
       type: ActionType.SET_ERROR,
       payload: `error`
     });
   });
-  it(`Should return a correct resetError`, () => {
+  it(`Should return a correct resetError`, (): void => {
     expect(ActionCreator.resetError()).toEqual({
       type: ActionType.SET_ERROR,
       payload: initialState.errorMessage
@@ -33,8 +33,8 @@ describe(`Action user correctly`, () => {
   });
 });
 
-describe(`Operation user correctly`, () => {
-  it(`Should make a correct API call to ${SendUrl.LOGIN}`, () => {
+describe(`Operation user correctly`, (): void => {
+  it(`Should make a correct API call to ${SendUrl.LOGIN}`, (): void => {
     const dispatch = jest.fn();
     const api = createAPI(dispatch);
     const apiMock = new MockAdapter(api);
@@ -49,19 +49,23 @@ describe(`Operation user correctly`, () => {
       })
       .reply(200, USER_RESPONSE);
 
-    return signIn(dispatch, jest.fn(), api).then(() => {
-      expect(dispatch).toHaveBeenCalledTimes(4);
-      expect(dispatch).toHaveBeenNthCalledWith(1, {
-        type: ActionType.SIGN_IN,
-        payload: userDataAdapter(USER_RESPONSE)
-      });
-      expect(dispatch).toHaveBeenNthCalledWith(2, {
-        type: ActionType.REQUIRED_AUTHORIZATION,
-        payload: true
-      });
-    });
+    signIn(dispatch, jest.fn(), api).then(
+      (): void => {
+        expect(dispatch).toHaveBeenCalledTimes(4);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.SIGN_IN,
+          payload: userDataAdapter(USER_RESPONSE)
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.REQUIRED_AUTHORIZATION,
+          payload: true
+        });
+      }
+    );
   });
-  it(`Should make a correct API call with fail to ${SendUrl.LOGIN}`, () => {
+  it(`Should make a correct API call with fail to ${
+    SendUrl.LOGIN
+  }`, (): void => {
     const dispatch = jest.fn();
     const api = createAPI(dispatch);
     const apiMock = new MockAdapter(api);
@@ -76,23 +80,24 @@ describe(`Operation user correctly`, () => {
       })
       .reply(400, `Error: Request failed with status code 400`);
 
-    return signIn(dispatch, jest.fn(), api).then(() => {
-      expect(dispatch).toHaveBeenCalledTimes(2);
-      expect(dispatch).toHaveBeenNthCalledWith(1, {
-        type: ActionType.SET_ERROR,
-        payload: `Error: Request failed with status code 400`
-      });
-      expect(dispatch).toHaveBeenNthCalledWith(2, {
-        type: ActionType.REQUIRED_AUTHORIZATION,
-        payload: false
-      });
-    });
+    signIn(dispatch, jest.fn(), api).then(
+      (): void => {
+        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.SET_ERROR,
+          payload: `Error: Request failed with status code 400`
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.REQUIRED_AUTHORIZATION,
+          payload: false
+        });
+      }
+    );
   });
 });
 
-describe(`Reducer user correctly`, () => {
-
-  it(`Reducer test set authorization`, () => {
+describe(`Reducer user correctly`, (): void => {
+  it(`Reducer test set authorization`, (): void => {
     expect(
       reducer(initialState, {
         type: ActionType.REQUIRED_AUTHORIZATION,
@@ -101,9 +106,10 @@ describe(`Reducer user correctly`, () => {
     ).toEqual(
       Object.assign({}, initialState, {
         isAuthorizationRequired: true
-      }));
+      })
+    );
   });
-  it(`Reducer test change SIGN_IN`, () => {
+  it(`Reducer test change SIGN_IN`, (): void => {
     expect(
       reducer(initialState, {
         type: ActionType.SIGN_IN,
@@ -115,7 +121,7 @@ describe(`Reducer user correctly`, () => {
       })
     );
   });
-  it(`Reducer test set error`, () => {
+  it(`Reducer test set error`, (): void => {
     expect(
       reducer(initialState, {
         type: ActionType.SET_ERROR,

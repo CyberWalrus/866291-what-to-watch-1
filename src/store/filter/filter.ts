@@ -49,7 +49,7 @@ const ActionCreator = {
   }
 };
 
-const reducer = (state: State = initialState, action: Action) => {
+const reducer = (state: State = initialState, action: Action): State => {
   switch (action.type) {
     case ActionType.CHANGE_GENRE:
       return Object.assign({}, state, {

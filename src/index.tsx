@@ -10,8 +10,8 @@ import App from "./components/app/app";
 
 declare const __REDUX_DEVTOOLS_EXTENSION__: () => any;
 
-const init = () => {
-  const api = createAPI(() => history.pushState(null, null, `/login`));
+const init = (): void => {
+  const api = createAPI((): void => history.pushState(null, null, `/login`));
   const store = createStore(
     reducer,
     compose(

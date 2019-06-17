@@ -94,7 +94,7 @@ const Operation = {
   }
 };
 
-const reducer = (state: State = initialState, action: Action) => {
+const reducer = (state: State = initialState, action: Action): State => {
   switch (action.type) {
     case ActionType.REQUIRED_AUTHORIZATION:
       return Object.assign({}, state, {

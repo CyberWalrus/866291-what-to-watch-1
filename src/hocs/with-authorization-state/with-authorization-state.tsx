@@ -1,5 +1,5 @@
 import * as React from "react";
-import {PureComponent} from "react";
+import {PureComponent, ComponentClass, ReactElement} from "react";
 import {connect} from "react-redux";
 import {compose} from "recompose";
 import {getError} from "../../store/user/selectors";
@@ -28,9 +28,9 @@ interface FormErrors {
   signIn: string;
 }
 
-const withAuthorizationState = (Component) => {
+const withAuthorizationState = (Component: any): ComponentClass<Props, State> => {
   class WithAuthorizationState extends PureComponent<Props, State> {
-    constructor(props) {
+    public constructor(props: Props) {
       super(props);
       this.state = {
         email: ``,
@@ -46,7 +46,7 @@ const withAuthorizationState = (Component) => {
       this._handleValidateField = this._handleValidateField.bind(this);
       this._handleValidateForm = this._handleValidateForm.bind(this);
     }
-    componentDidUpdate(): void {
+    public componentDidUpdate(): void {
       if (this.props.errorMessage) {
         const formErrors = this.state.formErrors;
         formErrors.signIn = this.props.errorMessage;
@@ -56,19 +56,32 @@ const withAuthorizationState = (Component) => {
         this.props.onResetError();
       }
     }
-    handleUserInput(event: React.ChangeEvent<HTMLInputElement>): void {
+    public handleUserInput(event: React.ChangeEvent<HTMLInputElement>): void {
       const key = event.target.name as keyof State;
       const value = event.target.value as string;
-      this.setState<never>({[key]: value}, () => {
+      this.setState<never>({[key]: value}, (): void => {
         this._handleValidateField(key, value);
       });
     }
-    handleSendSubmit(event: React.ChangeEvent<HTMLInputElement>): void {
+    public handleSendSubmit(event: React.ChangeEvent<HTMLInputElement>): void {
       const {email, password} = this.state;
       event.preventDefault();
       this.props.onSignIn(email, password);
     }
-    _handleValidateField(fieldName: keyof State, value: string): void {
+
+    public render(): ReactElement {
+      return (
+        <Component
+          email={this.state.email}
+          password={this.state.password}
+          formErrors={this.state.formErrors}
+          formValid={this.state.formValid}
+          onChangeUserInput={this.handleUserInput}
+          onClickSubmit={this.handleSendSubmit}
+        />
+      );
+    }
+    private _handleValidateField(fieldName: keyof State, value: string): void {
       const fieldValidationErrors = this.state.formErrors;
       let emailValid = this.state.emailValid;
       switch (fieldName) {
@@ -91,24 +104,12 @@ const withAuthorizationState = (Component) => {
         this._handleValidateForm
       );
     }
-    _handleValidateForm(): void {
+    private _handleValidateForm(): void {
       this.setState({
         formValid: this.state.emailValid && this.state.passwordValid
       });
     }
 
-    render() {
-      return (
-        <Component
-          email={this.state.email}
-          password={this.state.password}
-          formErrors={this.state.formErrors}
-          formValid={this.state.formValid}
-          onChangeUserInput={this.handleUserInput}
-          onClickSubmit={this.handleSendSubmit}
-        />
-      );
-    }
   }
 
   return WithAuthorizationState;
@@ -120,10 +121,10 @@ const mapStateToProps = (state: StateApp, ownProps: Props): Props =>
   });
 
 const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
-  onSignIn: (email: string, password: string) => {
+  onSignIn: (email: string, password: string): void => {
     dispatch(Operation.signIn(email, password));
   },
-  onResetError: () => {
+  onResetError: (): void => {
     dispatch(ActionCreator.resetError());
   }
 });
@@ -131,7 +132,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
 export {withAuthorizationState};
 
 export default compose(
-  connect(
+  connect<Props, PropsDispatch, {}, StateApp>(
     mapStateToProps,
     mapDispatchToProps
   ),

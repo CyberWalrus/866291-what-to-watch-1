@@ -1,5 +1,5 @@
 import * as React from "react";
-import {PureComponent} from "react";
+import {PureComponent, ComponentClass, ReactElement} from "react";
 import {FilmRoute} from "../../constants";
 
 interface Props {
@@ -8,9 +8,9 @@ interface Props {
 interface State {
   route: FilmRoute;
 }
-const withFilmRoute = (Component) => {
+const withFilmRoute = (Component: any): ComponentClass<Props, State> => {
   class WithFilmRoute extends PureComponent<Props, State> {
-    constructor(props) {
+    public constructor(props: Props) {
       super(props);
 
       this.state = {
@@ -19,13 +19,13 @@ const withFilmRoute = (Component) => {
 
       this.handleChangeFilmRoute = this.handleChangeFilmRoute.bind(this);
     }
-    handleChangeFilmRoute(route: FilmRoute): void {
+    public handleChangeFilmRoute(route: FilmRoute): void {
       this.setState({
         route
       });
     }
 
-    render() {
+    public render(): ReactElement {
       return (
         <Component
           id={this.props.id}

@@ -2,19 +2,19 @@ import * as React from "react";
 import {PureComponent} from "react";
 
 interface Props {
-  videoSrc: string,
-  posterSrc: string,
-  options: Option
-  isPlaying: boolean
-  onSendVideoRef?: (value: any) => void,
+  videoSrc: string;
+  posterSrc: string;
+  options: Option;
+  isPlaying: boolean;
+  onSendVideoRef?: (value: any) => void;
 }
 
 interface Option {
-  width: string,
-  height: string,
-  isMuted: boolean,
-  isLoop: boolean
-  isControls: boolean
+  width: string;
+  height: string;
+  isMuted: boolean;
+  isLoop: boolean;
+  isControls: boolean;
 }
 class VideoPlayer extends PureComponent<Props, null> {
   private videoRef: any;

@@ -7,10 +7,10 @@ import {NUMBER_FILM} from "../../constants";
 
 Enzyme.configure({adapter: new Adapter()});
 
-const WithActiveFilmWrapper = withActiveFilm(() => <div />);
+const WithActiveFilmWrapper = withActiveFilm((): React.ReactElement => <div />);
 
-describe(`<withActiveFilm/>`, () => {
-  it(`Should default state`, () => {
+describe(`<withActiveFilm/>`, (): void => {
+  it(`Should default state`, (): void => {
     const tree = mount(<WithActiveFilmWrapper />);
     expect(tree.state(`activeFilm`)).toEqual(0);
     expect(tree.state(`numberFilm`)).toEqual(NUMBER_FILM);

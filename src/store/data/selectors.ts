@@ -21,7 +21,7 @@ const getFilms = (
   if (genre === GENRE_DEFOULT) {
     films = state[NAME_SPACE].films.slice();
   } else {
-    state[NAME_SPACE].films.map((item) => {
+    state[NAME_SPACE].films.map((item): void => {
       if (item.genre === genre && item.id !== filmId) {
         films.push(item);
       }
@@ -48,7 +48,7 @@ const getReviews = (state: StateApp): Review[] => {
 };
 
 const getFilm = (state: StateApp, id: number): Film => {
-  const film = state[NAME_SPACE].films.find((item) => item.id === id);
+  const film = state[NAME_SPACE].films.find((item): boolean => item.id === id);
   return film;
 };
 

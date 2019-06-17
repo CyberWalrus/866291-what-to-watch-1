@@ -1,5 +1,5 @@
 import * as React from "react";
-import {PureComponent, Fragment} from "react";
+import {PureComponent, Fragment, ReactElement, ComponentClass} from "react";
 import {connect} from "react-redux";
 import {compose} from "recompose";
 import {getPlayFilmId} from "../../store/filter/selectors";
@@ -26,14 +26,14 @@ interface State {
   videoRef: HTMLVideoElement;
 }
 
-const _timeConvert = (num) => {
+const _timeConvert = (num: number): string => {
   const minutes = Math.floor(num / 60);
   const seconds = Math.floor(num % 60);
   return `${minutes}:${seconds}`;
 };
-const withVideoScreenState = (Component) => {
+const withVideoScreenState = (Component: any): ComponentClass<Props, State> => {
   class WithVideoScreenState extends PureComponent<Props, State> {
-    constructor(props) {
+    public constructor(props: Props) {
       super(props);
       this.state = {
         isOpen: false,
@@ -54,7 +54,7 @@ const withVideoScreenState = (Component) => {
       this._handlePointerUp = this._handlePointerUp.bind(this);
       this._handlePointerMove = this._handlePointerMove.bind(this);
     }
-    componentDidUpdate(): void {
+    public componentDidUpdate(): void {
       if (this.props.playFilmId) {
         this.setState({
           isOpen: true,
@@ -70,10 +70,10 @@ const withVideoScreenState = (Component) => {
         this.props.onResetPlayFilmId();
       }
     }
-    handleSendVideoRef(ref: HTMLVideoElement): void {
+    public handleSendVideoRef(ref: HTMLVideoElement): void {
       const video = ref;
-      video.onloadedmetadata = () => {
-        video.ontimeupdate = () => {
+      video.onloadedmetadata = (): void => {
+        video.ontimeupdate = (): void => {
           const value = (100 / video.duration) * video.currentTime;
 
           this.setState({
@@ -87,18 +87,18 @@ const withVideoScreenState = (Component) => {
       };
     }
 
-    handleSendProgressRef(ref: HTMLProgressElement): void {
+    public handleSendProgressRef(ref: HTMLProgressElement): void {
       this.setState({
         progressRef: ref
       });
     }
-    handleClose() {
+    public handleClose(): void {
       this.setState({
         isOpen: false
       });
       document.body.style.overflow = BodyOverflow.VISIBLE;
     }
-    handleChangePlay(): void {
+    public handleChangePlay(): void {
       const video = this.state.videoRef;
       if (video) {
         if (this.state.isPlaying === false) {
@@ -114,38 +114,20 @@ const withVideoScreenState = (Component) => {
         }
       }
     }
-    handleFullScreen(): void {
+    public handleFullScreen(): void {
       const video = this.state.videoRef;
       if (video && video.requestFullscreen) {
         video.requestFullscreen();
       }
     }
-    handlePointerDown(): void {
+    public handlePointerDown(): void {
       const video = this.state.videoRef;
       if (video) {
         window.addEventListener(`pointerup`, this._handlePointerUp);
         window.addEventListener(`pointermove`, this._handlePointerMove);
       }
     }
-    _handlePointerUp() {
-      window.removeEventListener(`pointerup`, this._handlePointerUp);
-      window.removeEventListener(`pointermove`, this._handlePointerMove);
-    }
-    _handlePointerMove(event): void {
-      const video = this.state.videoRef;
-      let progressValue =
-        (100 / this.state.progressRef.clientWidth) *
-        (event.clientX - PADDING_VIDEO);
-      if (progressValue >= 100) {
-        progressValue = 100;
-      }
-      const time = video.duration * (progressValue / 100);
-      video.currentTime = time;
-      this.setState({
-        progressValue
-      });
-    }
-    render() {
+    public render(): ReactElement {
       if (this.state.isOpen) {
         return (
           <Component
@@ -164,6 +146,25 @@ const withVideoScreenState = (Component) => {
       }
       return <Fragment />;
     }
+
+    private _handlePointerUp(): void {
+      window.removeEventListener(`pointerup`, this._handlePointerUp);
+      window.removeEventListener(`pointermove`, this._handlePointerMove);
+    }
+    private _handlePointerMove(event): void {
+      const video = this.state.videoRef;
+      let progressValue =
+        (100 / this.state.progressRef.clientWidth) *
+        (event.clientX - PADDING_VIDEO);
+      if (progressValue >= 100) {
+        progressValue = 100;
+      }
+      const time = video.duration * (progressValue / 100);
+      video.currentTime = time;
+      this.setState({
+        progressValue
+      });
+    }
   }
 
   return WithVideoScreenState;
@@ -174,12 +175,14 @@ const mapStateToProps = (state: StateApp, ownProps: Props): Props =>
     playFilmId: getPlayFilmId(state)
   });
 const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
-  onResetPlayFilmId: () => dispatch(ActionCreator.resetPlayFilmId())
+  onResetPlayFilmId: (): void => {
+    dispatch(ActionCreator.resetPlayFilmId());
+  }
 });
 export {withVideoScreenState};
 
 export default compose(
-  connect(
+  connect<Props, PropsDispatch, {}, StateApp>(
     mapStateToProps,
     mapDispatchToProps
   ),

@@ -18,51 +18,52 @@ import {
   STATE
 } from "../../mock/data-mock";
 import {initialState} from "./data";
+import {StateApp} from "../../type/reducer";
 
-describe(`Action data correctly`, () => {
-  it(`Should return a correct loadFilms`, () => {
+describe(`Action data correctly`, (): void => {
+  it(`Should a correct loadFilms`, (): void => {
     expect(ActionCreator.loadFilms(FILMS_RESPONSE)).toEqual({
       type: ActionType.SET_FILMS,
       payload: FILMS_RESPONSE.map(FilmDataAdapter)
     });
   });
-  it(`Should return a correct updateFilms`, () => {
+  it(`Should a correct updateFilms`, (): void => {
     expect(ActionCreator.updateFilms(FILMS, FILM_RESPONSE)).toEqual({
       type: ActionType.SET_FILMS,
       payload: updateFilmAdapter(FILMS, FILM_RESPONSE)
     });
   });
-  it(`Should return a correct loadFavorites`, () => {
+  it(`Should a correct loadFavorites`, (): void => {
     expect(ActionCreator.loadFavorites(FILMS_RESPONSE)).toEqual({
       type: ActionType.SET_FAVORITES,
       payload: FILMS_RESPONSE.map(FilmDataAdapter)
     });
   });
-  it(`Should return a correct loadReviews`, () => {
+  it(`Should a correct loadReviews`, (): void => {
     expect(ActionCreator.loadReviews(REVIEWS_RESPONSE)).toEqual({
       type: ActionType.SET_REVIEWS,
       payload: REVIEWS_RESPONSE.map(ReviewDataAdapter)
     });
   });
-  it(`Should return a correct loadGenre`, () => {
+  it(`Should a correct loadGenre`, (): void => {
     expect(ActionCreator.loadGenre(FILMS_RESPONSE)).toEqual({
       type: ActionType.SET_GENERS,
       payload: getGenerFromData(FILMS_RESPONSE)
     });
   });
-  it(`Should return a correct resetReviews`, () => {
+  it(`Should a correct resetReviews`, (): void => {
     expect(ActionCreator.resetReviews()).toEqual({
       type: ActionType.SET_REVIEWS,
       payload: initialState.reviews
     });
   });
-  it(`Should return a correct setReviewMessage`, () => {
+  it(`Should a correct setReviewMessage`, (): void => {
     expect(ActionCreator.setReviewMessage(`fake`)).toEqual({
       type: ActionType.SET_REVIEW_MESSAGE,
       payload: `fake`
     });
   });
-  it(`Should return a correct resetReviewMessage`, () => {
+  it(`Should a correct resetReviewMessage`, (): void => {
     expect(ActionCreator.resetReviewMessage()).toEqual({
       type: ActionType.SET_REVIEW_MESSAGE,
       payload: initialState.reviewMessage
@@ -70,8 +71,8 @@ describe(`Action data correctly`, () => {
   });
 });
 
-describe(`Operation data correctly`, () => {
-  it(`Should make a correct API call to ${SendUrl.FILMS}`, () => {
+describe(`Operation data correctly`, (): void => {
+  it(`Should make a correct API call to ${SendUrl.FILMS}`, (): void => {
     const dispatch = jest.fn();
     const api = createAPI(dispatch);
     const apiMock = new MockAdapter(api);
@@ -79,24 +80,28 @@ describe(`Operation data correctly`, () => {
 
     apiMock.onGet(SendUrl.FILMS).reply(200, FILMS_RESPONSE);
 
-    return loadFilms(dispatch, jest.fn(), api).then(() => {
-      expect(dispatch).toHaveBeenCalledTimes(3);
-      expect(dispatch).toHaveBeenNthCalledWith(1, {
-        type: ActionType.SET_FILMS,
-        payload: FILMS_RESPONSE.map(FilmDataAdapter)
-      });
-      expect(dispatch).toHaveBeenNthCalledWith(2, {
-        type: ActionType.SET_GENERS,
-        payload: getGenerFromData(FILMS_RESPONSE)
-      });
-      expect(dispatch).toHaveBeenNthCalledWith(3, {
-        type: ActionType.SET_ACTIVE,
-        payload: true
-      });
-    });
+    loadFilms(dispatch, jest.fn(), api).then(
+      (): void => {
+        expect(dispatch).toHaveBeenCalledTimes(3);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.SET_FILMS,
+          payload: FILMS_RESPONSE.map(FilmDataAdapter)
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
+          type: ActionType.SET_GENERS,
+          payload: getGenerFromData(FILMS_RESPONSE)
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(3, {
+          type: ActionType.SET_ACTIVE,
+          payload: true
+        });
+      }
+    );
   });
 
-  it(`Should make a correct API call with fail to ${SendUrl.FILMS}`, () => {
+  it(`Should make a correct API call with fail to ${
+    SendUrl.FILMS
+  }`, (): void => {
     const dispatch = jest.fn();
     const api = createAPI(dispatch);
     const apiMock = new MockAdapter(api);
@@ -104,16 +109,18 @@ describe(`Operation data correctly`, () => {
 
     apiMock.onGet(SendUrl.FILMS).reply(400, FILMS_RESPONSE);
 
-    return loadFilms(dispatch, jest.fn(), api).then(() => {
-      expect(dispatch).toHaveBeenCalledTimes(1);
-      expect(dispatch).toHaveBeenNthCalledWith(1, {
-        type: ActionType.SET_ACTIVE,
-        payload: false
-      });
-    });
+    loadFilms(dispatch, jest.fn(), api).then(
+      (): void => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.SET_ACTIVE,
+          payload: false
+        });
+      }
+    );
   });
 
-  it(`Should make a correct API call to ${SendUrl.FAVORITE}`, () => {
+  it(`Should make a correct API call to ${SendUrl.FAVORITE}`, (): void => {
     const dispatch = jest.fn();
     const api = createAPI(dispatch);
     const apiMock = new MockAdapter(api);
@@ -121,16 +128,18 @@ describe(`Operation data correctly`, () => {
 
     apiMock.onGet(SendUrl.FAVORITE).reply(200, FILMS_RESPONSE);
 
-    return loadFavorites(dispatch, jest.fn(), api).then(() => {
-      expect(dispatch).toHaveBeenCalledTimes(1);
-      expect(dispatch).toHaveBeenNthCalledWith(1, {
-        type: ActionType.SET_FAVORITES,
-        payload: FILMS_RESPONSE.map(FilmDataAdapter)
-      });
-    });
+    loadFavorites(dispatch, jest.fn(), api).then(
+      (): void => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.SET_FAVORITES,
+          payload: FILMS_RESPONSE.map(FilmDataAdapter)
+        });
+      }
+    );
   });
 
-  it(`Should make a correct API call to ${SendUrl.COMMENTS}`, () => {
+  it(`Should make a correct API call to ${SendUrl.COMMENTS}`, (): void => {
     const dispatch = jest.fn();
     const api = createAPI(dispatch);
     const apiMock = new MockAdapter(api);
@@ -139,18 +148,20 @@ describe(`Operation data correctly`, () => {
 
     apiMock.onGet(`${SendUrl.COMMENTS}/${filmId}`).reply(200, REVIEWS_RESPONSE);
 
-    return loadReviews(dispatch, jest.fn(), api).then(() => {
-      expect(dispatch).toHaveBeenCalledTimes(1);
-      expect(dispatch).toHaveBeenNthCalledWith(1, {
-        type: ActionType.SET_REVIEWS,
-        payload: REVIEWS_RESPONSE.map(ReviewDataAdapter)
-      });
-    });
+    loadReviews(dispatch, jest.fn(), api).then(
+      (): void => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.SET_REVIEWS,
+          payload: REVIEWS_RESPONSE.map(ReviewDataAdapter)
+        });
+      }
+    );
   });
 
   it(`Should make a correct API call with fail to post ${
     SendUrl.COMMENTS
-  }/1`, () => {
+  }/1`, (): void => {
     const dispatch = jest.fn();
     const api = createAPI(dispatch);
     const apiMock = new MockAdapter(api);
@@ -159,22 +170,22 @@ describe(`Operation data correctly`, () => {
 
     apiMock.onGet(`${SendUrl.COMMENTS}/${filmId}`).reply(400, REVIEWS_RESPONSE);
 
-    return loadReviews(dispatch, jest.fn(), api).then(() => {
-      expect(dispatch).toHaveBeenCalledTimes(1);
-      expect(dispatch).toHaveBeenNthCalledWith(1, {
-        type: ActionType.SET_REVIEWS,
-        payload: initialState.reviews
-      });
-    });
+    loadReviews(dispatch, jest.fn(), api).then(
+      (): void => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.SET_REVIEWS,
+          payload: initialState.reviews
+        });
+      }
+    );
   });
 
-  it(`Should make a correct API call to ${SendUrl.FAVORITE}`, () => {
+  it(`Should make a correct API call to ${SendUrl.FAVORITE}`, (): void => {
     const dispatch = jest.fn();
     const api = createAPI(dispatch);
     const apiMock = new MockAdapter(api);
-    const _getState = () => {
-      return STATE;
-    };
+    const _getState = (): StateApp => STATE;
     const filmId = 1;
     const status = 1;
     const sendFavorite = Operation.sendFavorite(filmId, status);
@@ -183,12 +194,16 @@ describe(`Operation data correctly`, () => {
       .onPost(`${SendUrl.FAVORITE}/${filmId}/${status}`)
       .reply(200, [{fake: true}]);
 
-    return sendFavorite(dispatch, _getState, api).then(() => {
-      expect(dispatch).toHaveBeenCalledTimes(2);
-    });
+    sendFavorite(dispatch, _getState, api).then(
+      (): void => {
+        expect(dispatch).toHaveBeenCalledTimes(2);
+      }
+    );
   });
 
-  it(`Should make a correct API call to post ${SendUrl.COMMENTS}/1`, () => {
+  it(`Should make a correct API call to post ${
+    SendUrl.COMMENTS
+  }/1`, (): void => {
     const dispatch = jest.fn();
     const api = createAPI(dispatch);
     const apiMock = new MockAdapter(api);
@@ -199,18 +214,20 @@ describe(`Operation data correctly`, () => {
 
     apiMock.onPost(`${SendUrl.COMMENTS}/${filmId}`).reply(200, `fake`);
 
-    return sendReview(dispatch, jest.fn(), api).then(() => {
-      expect(dispatch).toHaveBeenCalledTimes(1);
-      expect(dispatch).toHaveBeenNthCalledWith(1, {
-        type: ActionType.SET_REVIEW_MESSAGE,
-        payload: REVIEW_MESSAGE
-      });
-    });
+    sendReview(dispatch, jest.fn(), api).then(
+      (): void => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.SET_REVIEW_MESSAGE,
+          payload: REVIEW_MESSAGE
+        });
+      }
+    );
   });
 
   it(`Should make a correct API call with fail to post ${
     SendUrl.COMMENTS
-  }/1`, () => {
+  }/1`, (): void => {
     const dispatch = jest.fn();
     const api = createAPI(dispatch);
     const apiMock = new MockAdapter(api);
@@ -221,18 +238,20 @@ describe(`Operation data correctly`, () => {
 
     apiMock.onPost(`${SendUrl.COMMENTS}/${filmId}`).reply(400, `fake`);
 
-    return sendReview(dispatch, jest.fn(), api).then(() => {
-      expect(dispatch).toHaveBeenCalledTimes(1);
-      expect(dispatch).toHaveBeenNthCalledWith(1, {
-        type: ActionType.SET_REVIEW_MESSAGE,
-        payload: `Error: Request failed with status code 400`
-      });
-    });
+    sendReview(dispatch, jest.fn(), api).then(
+      (): void => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.SET_REVIEW_MESSAGE,
+          payload: `Error: Request failed with status code 400`
+        });
+      }
+    );
   });
 });
 
-describe(`Reducer data correctly`, () => {
-  it(`Reducer test set films`, () => {
+describe(`Reducer data correctly`, (): void => {
+  it(`Reducer test set films`, (): void => {
     expect(
       reducer(initialState, {
         type: ActionType.SET_FILMS,
@@ -244,7 +263,7 @@ describe(`Reducer data correctly`, () => {
       })
     );
   });
-  it(`Reducer test set favorites`, () => {
+  it(`Reducer test set favorites`, (): void => {
     expect(
       reducer(initialState, {
         type: ActionType.SET_FAVORITES,
@@ -256,7 +275,7 @@ describe(`Reducer data correctly`, () => {
       })
     );
   });
-  it(`Reducer test set reviews`, () => {
+  it(`Reducer test set reviews`, (): void => {
     expect(
       reducer(initialState, {
         type: ActionType.SET_REVIEWS,
@@ -268,7 +287,7 @@ describe(`Reducer data correctly`, () => {
       })
     );
   });
-  it(`Reducer test set geners`, () => {
+  it(`Reducer test set geners`, (): void => {
     expect(
       reducer(initialState, {
         type: ActionType.SET_GENERS,
@@ -280,7 +299,7 @@ describe(`Reducer data correctly`, () => {
       })
     );
   });
-  it(`Reducer test set review message`, () => {
+  it(`Reducer test set review message`, (): void => {
     expect(
       reducer(initialState, {
         type: ActionType.SET_REVIEW_MESSAGE,

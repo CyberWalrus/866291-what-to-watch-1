@@ -7,10 +7,10 @@ import {FILM} from "../../mock/data-mock";
 
 Enzyme.configure({adapter: new Adapter()});
 
-const WithReviewState = withReviewState(() => <div />);
+const WithReviewState = withReviewState((): React.ReactElement => <div />);
 
-describe(`<WithReviewState/>`, () => {
-  it(`Should default state`, () => {
+describe(`<WithReviewState/>`, (): void => {
+  it(`Should default state`, (): void => {
     const handleClick = jest.fn();
     const tree = mount(
       <WithReviewState

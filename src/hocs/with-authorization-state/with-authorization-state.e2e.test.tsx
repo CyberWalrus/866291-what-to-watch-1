@@ -6,10 +6,10 @@ import {withAuthorizationState} from "./with-authorization-state";
 
 Enzyme.configure({adapter: new Adapter()});
 
-const WithAuthorizationState = withAuthorizationState(() => <div />);
+const WithAuthorizationState = withAuthorizationState((): React.ReactElement => <div />);
 
-describe(`<WithAuthorizationState/>`, () => {
-  it(`Should default state`, () => {
+describe(`<WithAuthorizationState/>`, (): void => {
+  it(`Should default state`, (): void => {
     const handleClick = jest.fn();
     const tree = mount(
       <WithAuthorizationState

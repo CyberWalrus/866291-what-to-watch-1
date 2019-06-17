@@ -1,5 +1,5 @@
 import * as React from "react";
-import {PureComponent} from "react";
+import {PureComponent, ReactElement} from "react";
 import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import RoutePath from "../../routes";
@@ -23,20 +23,17 @@ const PageAddReviewWithState = withReviewState(PageAddReview);
 interface PropsState {
   isActive: boolean;
 }
-interface PropsDispatch{
+interface PropsDispatch {
   loadFilms: () => void;
 }
 type Props = PropsState & PropsDispatch;
-class App extends PureComponent<Props, null> {
-  constructor(props: Props) {
-    super(props);
-  }
-  componentDidMount(): void {
+class App extends PureComponent<Props> {
+  public componentDidMount(): void {
     if (!this.props.isActive) {
       this.props.loadFilms();
     }
   }
-  render() {
+  public render(): ReactElement {
     if (!this.props.isActive) {
       return <div>Error</div>;
     }
@@ -85,7 +82,7 @@ const mapDispatchToProps = (dispatch: ThunkDispatch): PropsDispatch => ({
 
 export {App};
 
-export default connect(
+export default connect<Props, PropsDispatch, {}, StateApp>(
   mapStateToProps,
   mapDispatchToProps
 )(App);
