@@ -12,7 +12,7 @@ import {FILM} from "../../mock/data-mock";
 import {FilmRoute} from "../../constants";
 Enzyme.configure({adapter: new Adapter()});
 
-it(`PageFilm correctly renders after relaunch`, () => {
+it(`PageFilm correctly renders after relaunch`, (): void => {
   const handleClick = jest.fn();
   const store = createStore(reducer);
   const tree = toJson(

@@ -8,7 +8,7 @@ import {GENRE_DEFOULT} from "../../constants";
 import {GENRES} from "../../mock/data-mock";
 Enzyme.configure({adapter: new Adapter()});
 
-it(`Filter correctly renders after relaunch`, () => {
+it(`Filter correctly renders after relaunch`, (): void => {
   const handleClick = jest.fn();
   const tree = toJson(
     shallow(

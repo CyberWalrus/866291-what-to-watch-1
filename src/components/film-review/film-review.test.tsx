@@ -7,7 +7,7 @@ import {FilmReview} from "./film-review";
 import {FILM, REVIEWS} from "../../mock/data-mock";
 
 Enzyme.configure({adapter: new Adapter()});
-it(`FilmReview correctly renders after relaunch`, () => {
+it(`FilmReview correctly renders after relaunch`, (): void => {
   const handleClick = jest.fn();
   const tree = toJson(
     shallow(

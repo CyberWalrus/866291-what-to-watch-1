@@ -8,7 +8,7 @@ import {Header} from "./header";
 import {USER} from "../../mock/data-mock";
 Enzyme.configure({adapter: new Adapter()});
 
-it(`Header correctly renders after relaunch`, () => {
+it(`Header correctly renders after relaunch`, (): void => {
   const tree = toJson(
     shallow(
       <BrowserRouter>

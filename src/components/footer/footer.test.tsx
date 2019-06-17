@@ -7,7 +7,7 @@ import {BrowserRouter} from "react-router-dom";
 import Footer from "./footer";
 Enzyme.configure({adapter: new Adapter()});
 
-it(`Footer correctly renders after relaunch`, () => {
+it(`Footer correctly renders after relaunch`, (): void => {
   const tree = toJson(
     shallow(
       <BrowserRouter>

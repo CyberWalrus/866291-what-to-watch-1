@@ -10,7 +10,7 @@ import PageSignIn from "./page-sign-in";
 import reducer from "../../store";
 Enzyme.configure({adapter: new Adapter()});
 
-it(`PageSignIn correctly renders after relaunch`, () => {
+it(`PageSignIn correctly renders after relaunch`, (): void => {
   const store = createStore(reducer);
   const handleClick = jest.fn();
   const tree = toJson(

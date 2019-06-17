@@ -7,7 +7,7 @@ import FilmNav from "./film-nav";
 import {FilmRoute} from "../../constants";
 
 Enzyme.configure({adapter: new Adapter()});
-it(`FilmNav correctly renders after relaunch`, () => {
+it(`FilmNav correctly renders after relaunch`, (): void => {
   const handleClick = jest.fn();
   const tree = toJson(
     shallow(

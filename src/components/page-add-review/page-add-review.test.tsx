@@ -11,7 +11,7 @@ import {FILM} from "../../mock/data-mock";
 import reducer from "../../store";
 Enzyme.configure({adapter: new Adapter()});
 
-it(`PageAddReview correctly renders after relaunch`, () => {
+it(`PageAddReview correctly renders after relaunch`, (): void => {
   const store = createStore(reducer);
   const handleClick = jest.fn();
   const tree = toJson(

@@ -8,7 +8,7 @@ import {FILM} from "../../mock/data-mock";
 import {OptionsVideoFull} from "../../constants";
 Enzyme.configure({adapter: new Adapter()});
 
-it(`VideoPlayer correctly renders after relaunch`, () => {
+it(`VideoPlayer correctly renders after relaunch`, (): void => {
   const tree = toJson(
     shallow(
       <VideoPlayer

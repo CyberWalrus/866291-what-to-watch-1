@@ -8,7 +8,7 @@ import {FilmButtonDiv} from "./film-button-div";
 import {FILM} from "../../mock/data-mock";
 
 Enzyme.configure({adapter: new Adapter()});
-it(`FilmButtonDiv correctly renders after relaunch`, () => {
+it(`FilmButtonDiv correctly renders after relaunch`, (): void => {
   const handleClick = jest.fn();
   const tree = toJson(
     shallow(

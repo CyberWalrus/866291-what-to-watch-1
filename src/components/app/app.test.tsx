@@ -10,7 +10,7 @@ import {Provider} from "react-redux";
 
 Enzyme.configure({adapter: new Adapter()});
 
-it(`App correctly renders after relaunch`, () => {
+it(`App correctly renders after relaunch`, (): void => {
   const store = createStore(reducer);
   const handleClick = jest.fn();
   const tree = toJson(

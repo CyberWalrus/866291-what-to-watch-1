@@ -10,7 +10,7 @@ import PageMyList from "./page-my-list";
 import reducer from "../../store";
 Enzyme.configure({adapter: new Adapter()});
 
-it(`PageMyList correctly renders after relaunch`, () => {
+it(`PageMyList correctly renders after relaunch`, (): void => {
   const store = createStore(reducer);
   const tree = toJson(
     shallow(

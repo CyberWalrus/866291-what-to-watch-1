@@ -10,7 +10,7 @@ import {Provider} from "react-redux";
 import {BrowserRouter} from "react-router-dom";
 Enzyme.configure({adapter: new Adapter()});
 
-it(`PageMain correctly renders after relaunch`, () => {
+it(`PageMain correctly renders after relaunch`, (): void => {
   const store = createStore(reducer);
   const tree = toJson(
     shallow(

@@ -7,7 +7,7 @@ import {VideoScreen} from "./video-screen";
 import {FILM} from "../../mock/data-mock";
 Enzyme.configure({adapter: new Adapter()});
 
-it(`VideoScreen correctly renders after relaunch`, () => {
+it(`VideoScreen correctly renders after relaunch`, (): void => {
   const handleClick = jest.fn();
   const tree = toJson(
     shallow(

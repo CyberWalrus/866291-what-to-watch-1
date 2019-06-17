@@ -7,8 +7,8 @@ import {PrivateRoute} from "./private-route";
 import {BrowserRouter, Switch} from "react-router-dom";
 Enzyme.configure({adapter: new Adapter()});
 
-it(`PrivateRoute correctly renders after relaunch`, () => {
-  const TestComponent = () => {
+it(`PrivateRoute correctly renders after relaunch`, (): void => {
+  const TestComponent = (): React.ReactElement => {
     return <div />;
   };
   const tree = toJson(

@@ -1,5 +1,5 @@
 import * as React from "react";
-import {PureComponent, Fragment} from "react";
+import {PureComponent, Fragment, RefObject, ReactElement} from "react";
 import VideoPlayer from "../video-player/video-player";
 import {OptionsVideoFull, VideoScreenStyle} from "../../constants";
 import {connect} from "react-redux";
@@ -24,18 +24,18 @@ interface PropsState {
 }
 type Props = PropsInsert & PropsState;
 class VideoScreen extends PureComponent<Props, null> {
-  public progressRef: any;
-  constructor(props) {
+  public progressRef: RefObject<HTMLProgressElement>;
+  public constructor(props: Props) {
     super(props);
 
     this.progressRef = React.createRef();
   }
-  componentDidMount() {
+  public componentDidMount(): void {
     if (this.props.onSendProgressRef) {
       this.props.onSendProgressRef(this.progressRef.current);
     }
   }
-  render() {
+  public render(): ReactElement {
     const {
       isPlaying,
       film,
@@ -138,4 +138,4 @@ const mapStateToProps = (state: StateApp, ownProps: Props): Props =>
 
 export {VideoScreen};
 
-export default connect(mapStateToProps)(VideoScreen);
+export default connect<Props, {}, {}, StateApp>(mapStateToProps)(VideoScreen);

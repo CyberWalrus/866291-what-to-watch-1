@@ -6,7 +6,7 @@ import {shallow} from "enzyme";
 import HiddenIcon from "./hidden-icon";
 Enzyme.configure({adapter: new Adapter()});
 
-it(`HiddenIcon correctly renders after relaunch`, () => {
+it(`HiddenIcon correctly renders after relaunch`, (): void => {
   const tree = toJson(shallow(<HiddenIcon />));
   expect(tree).toMatchSnapshot();
 });

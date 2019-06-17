@@ -9,7 +9,7 @@ import {FILMS} from "../../mock/data-mock";
 import {NUMBER_FILM, GENRE_DEFOULT} from "../../constants";
 
 Enzyme.configure({adapter: new Adapter()});
-it(`CardList component renders correctly with props`, () => {
+it(`CardList component renders correctly with props`, (): void => {
   const handleClick = jest.fn();
   const tree = toJson(
     shallow(
@@ -31,7 +31,7 @@ it(`CardList component renders correctly with props`, () => {
   );
   expect(tree).toMatchSnapshot();
 });
-it(`CardList component renders correctly with empty props`, () => {
+it(`CardList component renders correctly with empty props`, (): void => {
   const handleClick = jest.fn();
   const tree = toJson(
     shallow(

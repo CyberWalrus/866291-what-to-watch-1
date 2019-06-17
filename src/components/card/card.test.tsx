@@ -9,7 +9,7 @@ import {FILM} from "../../mock/data-mock";
 
 Enzyme.configure({adapter: new Adapter()});
 
-it(`Card correctly renders after relaunch`, () => {
+it(`Card correctly renders after relaunch`, (): void => {
   const handleClick = jest.fn();
   const tree = toJson(
     shallow(

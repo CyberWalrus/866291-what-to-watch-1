@@ -11,7 +11,7 @@ import {FILM} from "../../mock/data-mock";
 import reducer from "../../store";
 Enzyme.configure({adapter: new Adapter()});
 
-it(`HeaderMainFilm correctly renders after relaunch`, () => {
+it(`HeaderMainFilm correctly renders after relaunch`, (): void => {
   const store = createStore(reducer);
   const tree = toJson(
     shallow(

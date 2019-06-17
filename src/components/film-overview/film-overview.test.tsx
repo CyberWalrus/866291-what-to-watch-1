@@ -7,7 +7,7 @@ import FilmOverview from "./film-overview";
 import {FILM} from "../../mock/data-mock";
 
 Enzyme.configure({adapter: new Adapter()});
-it(`FilmOverview correctly renders after relaunch`, () => {
+it(`FilmOverview correctly renders after relaunch`, (): void => {
   const tree = toJson(
     shallow(
       <FilmOverview
